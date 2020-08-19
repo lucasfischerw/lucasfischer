@@ -1,0 +1,26 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Desafio - Geração em tempo real</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<body>
+	<div id="clique"><p class="titulo" id="titulo">Veja a cor de fundo mudar</p></div>
+	<div class="selecione">
+		<p>Selecione um número</p>	
+	</div>
+	<div class="input">
+		<input type="number" id="valor">
+	</div>
+	<div class="check">
+		<input type="checkbox" onchange="apagarAnteriores()" class="checkbox">
+	 	<label for="apagar">Manter botões anteriores</label>	
+	</div>
+	<div class="pronto">
+		<button onclick="Principal()" class="btn-pronto">Pronto</button>	
+	</div>
+	<div class="espacador"></div>
+	<script src="script.js"></script>
+</body>
+</html>
