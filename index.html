@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	<link type="text/javascript" href="javascript/script.js">
+	<link rel="stylesheet" href="css/aos.css"/>
 	<title>Lucas Fischer</title>
 </head>
 <body onload = "Carregou()">
@@ -25,7 +26,19 @@
 				</ul>
 			</nav>
 		</header>
+		<div class="paginaInicial">
+			<img src="imagens/lucasfischer.jpg" class="minhaImagem">
+			<p class="nome">Lucas Fischer</p>	
+		</div>
 	</div>
 	<script src="javascript/script.js"></script>
+	<script src="javascript/aos.js"></script>
+	<script>
+	AOS.init({
+		offset: 200, 
+		duration: 800,
+		disable: 'mobile'
+		});
+	</script>
 </body>
 </html>
