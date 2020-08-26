@@ -14,6 +14,7 @@ body {
 	background-attachment: fixed;
 	background-color: rgb(0, 0, 0);
 	color: white;
+	overflow-y: hidden;
 }
 
 img {
@@ -38,30 +39,38 @@ img {
 	}
 }
 
-/*@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
 	body {
-		background-color: black;
-		color: white;
+		background-color: rgb(0, 0, 0);
 	}
 }
 
 @media (prefers-color-scheme: light) {
 	body {
-		background-color: whitesmoke;
-		color: black;
+		background-color: rgb(255, 255, 255);
 	}
-}*/
+}
 
 @keyframes menu {
 	0% {top: -60px;}
 	100% {top: 0px;}
 }
 
+@keyframes imagem {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+
+@keyframes titulo {
+	0% {transform: scale(0.2);}
+	100% {transform: scale(1);}
+}
+
 .content {
 	display: none;
+	background-image: url(../imagens/fundo.jpg);
 	width: 100vw;
 	height: 100vh;
-	background-image: url(../imagens/fundo.jpg);
 }
 
 .imagemCarregando {
@@ -112,20 +121,48 @@ img {
 
 .paginaInicial {
 	height: 100vh;
-	display: flex;
 }
 
 .nome {
-	font-size: 50px;
+	font-size: 8vw;
+	margin-top: 8vh;
 	font-family: 'Balsamiq Sans', cursive;
 	font-weight: 800;
-	margin-top: 40vh;
-	margin-left: 15vw;
+	animation: titulo 0.5s;
+}
+
+.imagemTexto {
+	text-align: center;
+	display: inherit;
 }
 
 .minhaImagem {
-	width: auto;
-	height: 50vh;
+	width: 80vw;
+	height: auto;
 	margin-top: 30vh;
-	margin-left: 10vw;
+	animation: imagem 0.5s;
+}
+
+@media(min-width: 340px) {
+	.minhaImagem {
+		width: 300px;
+	}
+}
+
+@media(min-width: 850px) {
+	.imagemTexto {
+		text-align: initial;
+		display: flex;
+	}
+	.nome {
+		margin-top: 40vh;
+		margin-left: 8vw;
+		font-size: 80px;
+		padding-right: 0.5em;
+	}
+	.minhaImagem {
+		width: auto;
+		height: 50vh;
+		margin-left: 10vw;
+	}
 }
