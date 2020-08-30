@@ -6,13 +6,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Desafio-Memória</title>
 </head>
-<body>
+<body onload="preloadImage('imagens/1.png')">
 	<div class="conteudo">
 		<h1 class="titulo">Memória</h1>
 		<div id="linha1" class="linhas"></div>
 		<div id="linha2" class="linhas"></div>
 		<button onclick="Jogar()" id="botao">Jogar</button>
 		<div class="pontos" id="pontos">Pontos: 0</div>
+		<div class="tentativas" id="tentativas">Tentativas: 0</div>
 	</div>
 	<script src="javascript/script.js"></script>
 </body>

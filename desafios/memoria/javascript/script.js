@@ -7,11 +7,13 @@ var imagem;
 var totalJogadas = 0;
 var estaJogando = false;
 var vezesGanhou = 0;
+var tentativas = 0;
 
 function Jogar() {
 	if (estaJogando == false) {
 		estaJogando = true;
 		document.getElementById("pontos").innerHTML = "Pontos: "+vezesGanhou+""
+		document.getElementById("tentativas").innerHTML = "Tentativas: "+tentativas+""
 		document.getElementById('botao').style.cursor = "not-allowed"
 		document.getElementById('linha1').innerHTML = ""
 		document.getElementById('linha1').style.color = "black"
@@ -40,7 +42,6 @@ function clicou(numeroBotao) {
 	document.getElementById("carta-"+numeroBotao+"").style.backgroundImage = "url(imagens/"+imagem[numeroBotao - 1]+".png)"
 	document.getElementById("carta-"+numeroBotao+"").innerHTML = ""
 	document.getElementById("carta-"+numeroBotao+"").style.backgroundSize = "22vh 22vh"
-	document.getElementById("carta-"+numeroBotao+"").classList.add("animacaoGiro")
 	totalJogadas = totalJogadas + 1;
 	if (totalJogadas == 2) {
 		pontuacao()
@@ -83,22 +84,26 @@ function pontuacao() {
 		setTimeout(function() {
 			document.getElementById("carta-"+escolhido1+"").classList.add("desaparecer")
 			document.getElementById("carta-"+escolhido2+"").classList.add("desaparecer")
-			document.getElementById("carta-"+escolhido1+"").style.backgroundImage = 'none'
-			document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
 			vezesGanhou = vezesGanhou + 1;
+			tentativas = tentativas + 1;
+			document.getElementById("tentativas").innerHTML = "Tentativas: "+tentativas+""
 			document.getElementById("pontos").innerHTML = "Pontos: "+vezesGanhou+""
-			if (vezesGanhou == 6) {
-				resetar()
-				setTimeout(function() {
-					console.log('GANHOU')
-					document.getElementById('linha1').innerHTML = "Ganhou! Parabéns!"
-					document.getElementById('linha2').innerHTML = ""
-					document.getElementById('linha1').style.color = "rgb(70, 180, 70)"
-					document.getElementById('botao').innerHTML = "Reiniciar"
-					document.getElementById('botao').style.cursor = "pointer"
-					estaJogando = false;
-				}, 200)
-			}
+			setTimeout(function() {
+				document.getElementById("carta-"+escolhido1+"").style.backgroundImage = 'none'
+				document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
+				if (vezesGanhou == 6) {
+					resetar()
+					setTimeout(function() {
+						console.log('GANHOU')
+						document.getElementById('linha1').innerHTML = "Ganhou! Parabéns!"
+						document.getElementById('linha2').innerHTML = ""
+						document.getElementById('linha1').style.color = "rgb(70, 180, 70)"
+						document.getElementById('botao').innerHTML = "Reiniciar"
+						document.getElementById('botao').style.cursor = "pointer"
+						estaJogando = false;
+					}, 200)
+				}
+			}, 500)
 		}, 500)
 	} else {
 		setTimeout(function() {
@@ -106,6 +111,8 @@ function pontuacao() {
 			document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
 			document.getElementById("carta-"+escolhido1+"").innerHTML = ""+escolhido1+""
 			document.getElementById("carta-"+escolhido2+"").innerHTML = ""+escolhido2+""
+			tentativas = tentativas + 1
+			document.getElementById("tentativas").innerHTML = "Tentativas: "+tentativas+""
 		}, 800)
 	}
 }
@@ -119,4 +126,15 @@ function resetar() {
 	totalJogadas = 0;
 	estaJogando = false;
 	vezesGanhou = 0;
+	tentativas = 0;
+}
+
+function preloadImage(url) {
+	var controle = 1;
+	while(controle <= 6) {
+	    var img = new Image();
+		img.src = "imagens/"+controle+".png";
+		console.log(controle)
+		controle = controle + 1
+	}
 }
