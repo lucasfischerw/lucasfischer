@@ -1,0 +1,100 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">
+		<title>O apostador - par ou ímpar?</title>
+		<link rel="shortcut icon" href="/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
+		<link rel="icon" type="image/png" sizes="196x196" href="/favicon-192.png">
+		<link rel="icon" type="image/png" sizes="160x160" href="/favicon-160.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+		<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+		<link rel="apple-touch-icon" href="/favicon-57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/favicon-114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/favicon-72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/favicon-144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/favicon-60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/favicon-120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/favicon-76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/favicon-152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+		<meta name="msapplication-TileColor" content="#FFFFFF">
+		<meta name="msapplication-TileImage" content="/favicon-144.png">
+		<meta name="msapplication-config" content="/browserconfig.xml">
+	</head>
+	<body>
+		<div class="conteudo" id="conteudo">
+			<p class="title"> Selecione sua Aposta e o Valor </p>
+			<div class="caixa-apostas">
+				<select id="apostas">
+					<option value="par">Par</option>
+				  	<option value="impar">Ímpar</option>
+				</select>
+				<input id="valorAposta" type="number">
+			</div>
+			<div class="caixa-btn-apostar">
+				<button onclick="Apostar()">Jogar</button>
+				<button onclick="Estatisticas()">Estatísticas</button>
+			</div>
+			<div class="avisosEResultado">
+				<div id="resultado">
+					<p>Vitórias:<div id="pts-vitoria">0</div></p>
+					<p>Derrotas:<div id="pts-derrota">0</div></p>
+				</div>
+				<div class="ganhouOuPerdeu">
+					<p id="status"></p>
+				</div>
+				<div class="avisos">
+					<p>Saldo Atual:<div id="valor">R$50,00</div></p>
+					<p>Valor sorteado:<div id="numeroSorteado">-</div></p>
+				</div>
+			</div>
+		</div>
+		<div class="estatisticas" id="estatisticas">
+			<a href="javascript:void(0)" onclick="Inicial()" class="container"><img src="imagens/271218.png" class="back_arrow transform"></a>
+			<p class="title"> Estatísticas </p>
+			<div class="tudo">
+				<div class="display">
+					<div class="comumEsquerda vermelho transform" id="comumEsquerda" onclick="primeira()">
+						<p>Vezes que apostou em par e perdeu:<div id="parDerrota">0</div></p>
+						<p>Vezes que apostou em ímpar e perdeu:<div id="imparDerrota">0</div></p>
+					</div>
+					<div class="comumDireita verde transform">
+						<p>Vezes que apostou em par e ganhou:<div id="parAcerto">0</div></p>
+						<p>Vezes que apostou em ímpar e ganhou:<div id="imparAcerto">0</div></p>
+					</div>
+					<div id="chart"></div>
+				</div>
+				<div class="display">
+					<div class="comumEsquerda azul margem transform" id="comumEsquerda2">
+						<p>Vezes que o sorteio foi um número par:<div id="vezesPar">0</div></p>
+					</div>
+					<div class="comumDireita azul2 margem transform">
+						<p>Vezes que o sorteio foi um número ímpar:<div id="vezesImpar">0</div></p>
+					</div>
+					<div id="chart2"></div>
+				</div>
+				<div class="display">
+					<div class="comumEsquerda laranja margem transform" id="comumEsquerda3">
+						<p>Total de dinheiro apostado:<div id="totalDinheiro">R$00,00</div></p>
+					</div>
+					<div class="diferente vermelho margem transform">
+						<p>Total de dinheiro perdido:<div id="dinheiroPerdido">R$00,00</div></p>
+					</div>
+					<div class="diferente verde margem transform">
+						<p>Total de dinheiro ganho:<div id="dinheiroGanho">R$00,00</div></p>
+					</div>
+					<div id="chart3"></div>
+				</div>
+			</div>
+		</div>
+		<script src="javascript/script.js"></script>
+		<script src="https://www.gstatic.com/charts/loader.js"></script>
+ 		<script>
+			google.charts.load('current', {packages: ['corechart']});
+		</script> 
+	</body>
+</html>

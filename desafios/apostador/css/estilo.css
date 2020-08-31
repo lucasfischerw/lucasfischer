@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+body {
+	background-color: rgb(40, 137, 217);
+}
+
+button:hover,
+button:active {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.conteudo {
+	width: 80%;
+	margin: 30px auto;
+	background-color: white;
+	padding: 20px 40px;
+	border-radius: 20px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 900;
+}
+
+.caixa-btn-apostar {
+	display: flex;
+	text-align: center;
+	justify-content: space-around;
+}
+
+#apostas {
+	width: 100%;
+	height: 4%;
+	margin-bottom: 2.5vh;
+}
+
+#valorAposta {
+	width: 100%;
+	height: 4%;
+}
+
+.caixa-btn-apostar {
+	margin: 20px auto;
+}
+
+.caixa-btn-apostar button {
+	width: 25%;
+	height: 6vh;
+	text-decoration: none;
+	border-radius: 10px;
+	border-color: white;
+	border-style: none;
+	transition: transform 0.3s;
+}
+
+.carteira {
+	display: flex;
+}
+
+.estatisticas {
+	display: none;
+}
+
+#resultado {
+	width: 25%;
+}
+.avisos {
+	width: 25%;
+	text-align: right;
+}
+.avisosEResultado {
+	display: flex;
+}
+
+.ganhouOuPerdeu {
+	width: 50%;
+}
+
+.ganhouOuPerdeu p {
+	margin-top: 10%;
+	text-align: center;
+	font-size: 50px;
+}
+
+#chart:active,
+#chart:hover,
+#chart2:active,
+#chart2:hover,
+#chart3:active,
+#chart3:hover{
+	cursor: pointer;
+}
+
+#chart {
+	width: 30%;
+}
+
+#chart2 {
+	width: 30%;
+}
+
+#chart3 {
+	width: 30%;
+}
+
+.comumEsquerda {
+	width: 35%;
+	text-align: center;
+	border-radius: 15px;
+}
+
+.diferente {
+	width: 16.5%;
+	text-align: center;
+	border-radius: 15px;
+	margin-left: 2.5%;
+}
+
+.comumDireita {
+	width: 35%;
+	margin-left: 3%;
+	text-align: center;
+	border-radius: 15px;
+}
+
+.display {
+	display: flex;
+}
+
+.vermelho {
+	background-color: rgb(255, 70, 70);
+}
+
+.verde {
+	background-color: rgb(70, 180, 70);
+}
+
+.azul {
+	background-color: rgb(40, 137, 217);
+}
+
+.azul2 {
+	background-color: #254DB2;
+}
+
+.laranja {
+	background-color: rgb(255, 128, 40);
+}
+
+.margem {
+	margin-top: 20px;
+}
+
+.estatisticas {
+	width: 80%;
+	margin: 30px auto;
+	background-color: white;
+	padding: 20px 40px;
+	border-radius: 20px;
+	display: none;
+	color: white;
+	font-weight: bold;
+}
+
+.estatisticas .title {
+	margin-top: 0;
+}
+
+.estatisticasAvancadas .title {
+	margin-top: 0;
+}
+
+.title {
+	text-align: center;
+	font-size: 4vw;
+	color: black;
+	font-weight: bold;
+}
+
+.back_arrow {
+	width: 25px;
+	height: auto;
+	margin-top: 20px;
+}
+
+.transform {
+	z-index: 1;
+	transition: 0.3s transform;
+}
+
+.transform:active,
+.transform:hover{
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+#status {
+	opacity: 0;
+	transition: all .3s;
+}
