@@ -21,6 +21,7 @@ button {
 	border-color: whitesmoke;
 	border-style: none;
 	transition: all 0.2s;
+	outline: none;
 }
 
 button:hover {
