@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+body {
+	background-color: rgb(240, 180, 0);
+}
+
+
+.content {
+	width: 80vw;
+	height: 45vh;
+	margin-left: 10vw;
+	margin-top: 20vh;
+	background-color: whitesmoke;
+	border-radius: 30px;
+}
+
+.container {
+	position: absolute;
+	top: 25vh;
+	background-color: rgb(70, 180, 70);
+	width: 22vw;
+	height: 35vh;
+	margin-left: 3vw;
+	border-radius: 15px;
+	transition: transform 0.5s;
+}
+
+.container:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.imagem-link {
+	margin-left: 2.5vw;
+	margin-top: 2.5vh;
+	width: 17vw;
+	height: 20vh;
+	border-radius: 15px;
+}
+
+p {
+	font-family: 'Balsamiq Sans', cursive;
+	font-size: 1.5em;
+	color: white;
+	text-align: center;
+	width: 100%;
+	line-height: 10vh;
+}
+
+.container2 {
+	position: absolute;
+	top: 25vh;
+	background-color: rgb(40, 137, 217);
+	width: 22vw;
+	height: 35vh;
+	margin-left: 28vw;
+	border-radius: 15px;
+	transition: transform 0.5s;
+}
+
+.container2:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.container3 {
+	position: absolute;
+	top: 25vh;
+	background-color: rgb(255, 70, 70);
+	width: 22vw;
+	height: 35vh;
+	margin-left: 55vw;
+	border-radius: 15px;
+	transition: transform 0.5s;
+}
+
+.container3:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
