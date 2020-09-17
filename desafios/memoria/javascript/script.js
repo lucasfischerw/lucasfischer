@@ -25,6 +25,9 @@ function Carregou() {
 function Jogar() {
 	if (estaJogando == false) {
 		estaJogando = true;
+		ranNumsFacil = shuffle([1, 2, 3, 1, 2, 3]);
+		ranNumsMedio = shuffle([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]);
+		ranNumsDificil = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 		document.getElementById('menuConfiguracoes').style.display = "none"
 		document.getElementById('linha1').style.opacity = "1"
 		document.body.style.backgroundColor = "rgb(40, 137, 217)"
