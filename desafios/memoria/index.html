@@ -26,14 +26,41 @@
 	<meta name="msapplication-TileImage" content="imagens/favicon/favicon-144.png">
 	<meta name="msapplication-config" content="imagens/favicon/browserconfig.xml">
 </head>
-<body>
-	<div class="conteudo">
-		<h1 class="titulo">Memória</h1>
-		<div id="linha1" class="linhas"></div>
-		<div id="linha2" class="linhas"></div>
-		<button onclick="Jogar()" id="botao">Jogar</button>
-		<div class="pontos" id="pontos">Pontos: 0</div>
-		<div class="tentativas" id="tentativas">Tentativas: 0</div>
+<body onload="Carregou()">
+	<div id="carregando-container"><img class="carregando" id="carregando" src="imagens/carregando.gif"></div>
+	<div class="conteudo" id="conteudo">
+		<div><img class="configurar" src="imagens/13.png" onclick="AbrirConfiguracoes()"></div>
+		<div class="container-geral">
+			<h1 class="titulo" id="titulo">Memória</h1>
+			<div id="linha1" class="linhas"></div>
+			<div id="linha2" class="linhas"></div>
+			<div id="linha3" class="linhas"></div>
+			<div id="linha4" class="linhas"></div>
+			<button onclick="Jogar()" id="botao" class="botao-jogar">Jogar</button>
+			<div class="pontos" id="pontos">Pontos: 0</div>
+			<div class="tentativas" id="tentativas">Tentativas: 0</div>	
+		</div>
+	</div>
+	<div id="menuConfiguracoes" class="menuConfiguracoes">
+		<p class="dificuldade">Dificuldade:</p>
+		<div class="select">
+			<div onclick="anterior()" class="anterior" id="anterior"><</div>
+			<div class="dificuldadeEscolhida" id="dificuldadeEscolhida">Médio</div>
+			<div onclick="proximo()" class="proximo" id="proximo">></div>
+		</div>
+		<div class="inputPowerUp">
+			<input type="checkbox" id="ativarPowerUp" class="ativarPowerUp" name="ativarPowerUp" checked="true">
+			<label for="ativarPowerUp"> Ativar PowerUp</label><br>
+		</div>
+		<button onclick="AbrirConfiguracoes()" class="botao-ok">Ok</button>	
+	</div>
+	<div id="menuPowerUp" class="menuPowerUp">
+		<div class="texto">
+			<p>Acerte a</p>
+			<div id="imagem"></div>
+			<p>em no máximo 3 tentativas para ganhar um PowerUp</p>		
+		</div>
+		<button onclick="FecharPowerUp()" class="botao-ok">Ok</button>	
 	</div>
 	<script src="javascript/script.js"></script>
 </body>

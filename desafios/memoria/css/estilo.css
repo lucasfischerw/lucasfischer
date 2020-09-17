@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
 
 * {
 	margin: 0;
@@ -9,7 +10,13 @@
 }
 
 body {
-	background-color: rgb(40, 137, 217);
+	background-color: rgb(255, 255, 255);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 button {
@@ -24,12 +31,27 @@ button {
 	outline: none;
 }
 
+.botao-ok {
+	margin-top: 7vh;
+	margin-left: 20vw;
+	background-color: #4caf50;
+	color: white;
+}
+
 button:hover {
 	transform: scale(1.1);
 	cursor: pointer;
 }
 
+.carregando {
+	width: 10vw;
+	height: auto;
+	margin-left: 45vw;
+	margin-top: 35vh;
+}
+
 .conteudo {
+	display: none;
 	background-color: white;
 	width: 80vw;
 	height: 80vh;
@@ -61,6 +83,16 @@ button:hover {
 	margin-top: 8vh;
 }
 
+#linha3 {
+	display: none;
+	margin-top: 8vh;
+}
+
+#linha4 {
+	display: none;
+	margin-top: 8vh;
+}
+
 .carta {
 	border-radius: 15px;
 	text-align: center;
@@ -80,25 +112,45 @@ button:hover {
 .desaparecer {
 	cursor: initial !important;
 	animation: desaparecer 0.5s;
+	opacity: 0 !important;
 }
 
 .pontos {
 	margin-top: -3vh;
 	margin-left: 10vw;
-}
+	font-family: 'Didact Gothic', sans-serif !important}
 
 .tentativas {
 	margin-top: -3vh;
 	margin-left: 64vw;
+	font-family: 'Didact Gothic', sans-serif !important; 
 }
 
 .comImagem {
 	animation: forwards opacidade 0.5s;
 }
 
+.menuPowerUp {
+	display: none;
+	width: 50vw;
+	margin-left: 50vw;
+	height: 50vh;
+	margin-top: -65vh;
+	margin-left: 25vw;
+	background-color: whitesmoke;
+	border-radius: 15px;
+	align-items: center;
+	transition: all 0.5s;
+	animation: aparecer 0.5s forwards;
+}
+
+.menuPowerUpFechado {
+	animation: desaparecer 0.5s forwards;
+}
+
 @keyframes desaparecer {
 	0% {opacity: 1; transform: scale(1);}
-	100% {opacity: 0; transform: scale(0.2); background-image: none;}
+	100% {opacity: 0; transform: scale(0.1);}
 }
 
 @keyframes aparecer {
@@ -109,4 +161,139 @@ button:hover {
 @keyframes opacidade {
 	0% {opacity: 0; transform: scale(0.2);}
 	100% {opacity: 1; transform: scale(1);}
+}
+
+.configurar {
+	width: 30px;
+	height: auto;
+	margin-left: 3vw;
+	margin-top: 25px;
+	background-color: rgb(255, 255, 255);
+	transition: all 0.5s;
+}
+
+.configurar:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.container-geral {
+	margin-top: -55px;
+}
+
+.menuConfiguracoes {
+	display: none;
+	width: 50vw;
+	margin-left: 50vw;
+	height: 45vh;
+	margin-top: -67vh;
+	margin-left: 25vw;
+	background-color: whitesmoke;
+	border-radius: 15px;
+	align-items: center;
+	transition: all 0.3s;
+}
+
+.abrirMenu {
+	animation: abreMenu forwards 0.5s;
+}
+
+@keyframes abreMenu {
+	0% {opacity: 0.2; transform: scale(0.1); margin-left: -10vw; margin-top: -48vw;}
+	100% {opacity: 1; transform: scale(1); margin-left: 25vw; margin-top: -33vw;}
+}
+
+.fecharMenu {
+	animation: fechaMenu forwards 0.5s;
+}
+
+@keyframes fechaMenu {
+	0% {opacity: 1; transform: scale(1); margin-left: 25vw; margin-top: -33vw; display: inherit;}
+	100% {opacity: 0; transform: scale(0.1); margin-left: -10vw; margin-top: -48vw; display: none;}
+}
+
+.menuConfiguracoes p {
+	font-family: 'Didact Gothic', sans-serif !important;
+	padding-top: 1vh;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.menuConfiguracoes div {
+	font-family: 'Didact Gothic', sans-serif !important;
+	padding-top: 1vh;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.menuConfiguracoes img {
+	width: 30px;
+	height: auto;
+	margin-left: 47vw;
+	margin-top: 1vh;
+}
+
+.select {
+	width: 25vw;
+	margin-left: 12.5vw;
+	margin-top: 5vh;
+	text-align: center;
+	display: flex;
+	line-height: 10vh;
+}
+
+.dificuldadeEscolhida {
+	font-family: 'Didact Gothic', sans-serif !important;
+	display: inline-block;
+    margin:0 auto;
+}
+
+.anterior {
+	transform: scale(1);
+	float: left;
+	transition: all 0.5s;
+}
+
+.anterior:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+.proximo {
+	transform: scale(1);
+	float: right;
+	transition: all 0.5s;
+}
+
+.proximo:hover {
+	transform: scale(1.2);
+	cursor: pointer;
+}
+
+
+.texto {
+	align-self: center;
+}
+
+.texto p {
+	font-family: 'Didact Gothic', sans-serif !important;
+	padding-top: 1vh;
+	text-align: center;
+	font-size: 1.2em;
+}
+
+#imagem {
+	width: 20vh;
+	height: 20vh;
+	margin-top: 3vh;
+	margin-bottom: 3vh;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 15px;
+}
+
+.inputPowerUp {
+	margin-top: 5vh;
+	text-align: center;
+	height: fit-content;
 }
