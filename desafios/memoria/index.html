@@ -36,9 +36,10 @@
 			<div id="linha2" class="linhas"></div>
 			<div id="linha3" class="linhas"></div>
 			<div id="linha4" class="linhas"></div>
-			<button onclick="Jogar()" id="botao" class="botao-jogar">Jogar</button>
-			<div class="pontos" id="pontos">Pontos: 0</div>
-			<div class="tentativas" id="tentativas">Tentativas: 0</div>	
+			<div class="flex">	
+				<div onclick="Jogar()" id="botao-jogar" class="botao-jogar">Jogar</div>	
+				<div onclick="Estatisticas()" id="botao" class="botao-estatisticas">Estatísticas</div>	
+			</div>
 		</div>
 	</div>
 	<div id="menuConfiguracoes" class="menuConfiguracoes">
@@ -61,6 +62,37 @@
 			<p>em no máximo 3 tentativas para ganhar um PowerUp</p>		
 		</div>
 		<button onclick="FecharPowerUp()" class="botao-ok">Ok</button>	
+	</div>
+	<div class="estatisticas" id="estatisticas">
+		<a href="javascript:void(0)" onclick="Inicial()" class="container"><img src="imagens/271218.png" class="back_arrow transform"></a>
+		<h1 class="titulo2"> Estatísticas </h1>
+		<div class="cartoes">
+			<div class="cartao medio direita vermelho">
+				<p class="center subtitulo-carta">Vezes que errou</p>
+				<p class="center numero" id="vezesErrou">-</p>
+				<p class="center subtitulo-carta espaco">Porcentagem de erro</p>
+				<p class="center numero" id="porcentagemErro">-</p>
+			</div>
+			<div class="cartao medio esquerda verde">
+				<p class="center subtitulo-carta">Vezes que acertou</p>
+				<p class="center numero" id="vezesAcertou">-</p>
+				<p class="center subtitulo-carta espaco">Porcentagem de acerto</p>
+				<p class="center numero" id="porcentagemAcerto">-</p>
+			</div>
+			<div class="cartao grande direita laranja">
+				<div class="justFlex">
+					<div class="width">
+						<p class="center subtitulo-carta">Total de jogadas hoje</p>
+						<p class="center numero" id="totalJogadasHoje">-</p>	
+					</div>
+					<div class="width espacamento">
+						<p class="center subtitulo-carta">Total de jogadas na última rodada</p>
+						<p class="center numero" id="jogadasUltimaRodada">-</p>		
+					</div>		
+				</div>
+			</div>
+		</div>
+			
 	</div>
 	<script src="javascript/script.js"></script>
 </body>

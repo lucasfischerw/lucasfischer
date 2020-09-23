@@ -20,8 +20,6 @@ body {
 }
 
 button {
-	margin-top: 5vh;
-	margin-left: 35vw;
 	width: 10vw;
 	height: 5vh;
 	border-radius: 1vw;
@@ -296,4 +294,136 @@ button:hover {
 	margin-top: 5vh;
 	text-align: center;
 	height: fit-content;
+}
+
+.flex {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 6vh;
+}
+
+.flex div {
+	width: 10vw;
+	height: 5vh;
+	border-radius: 1vw;
+	border-color: whitesmoke;
+	background-color: whitesmoke;
+	border-style: none;
+	transition: all 0.2s;
+	outline: none;
+	text-align: center;
+	line-height: 5vh;
+	font-family: 'Didact Gothic', sans-serif !important;
+}
+
+.flex div:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.estatisticas {
+	display: none;
+	background-color: white;
+	width: 80vw;
+	height: 80vh;
+	margin-left: 10vw;
+	margin-top: 10vh;
+	border-radius: 15px;
+	margin-bottom: 8vh;
+}
+
+.titulo2 {
+	text-align: center;
+	margin-top: -4vh;
+	font-family: 'Balsamiq Sans', cursive;
+}
+
+.vermelho {
+	background-color: rgb(255, 70, 70);
+}
+
+.verde {
+	background-color: rgb(70, 180, 70);
+}
+
+.azul {
+	background-color: rgb(40, 137, 217);
+}
+
+.azul2 {
+	background-color: #254DB2;
+}
+
+.laranja {
+	background-color: rgb(255, 128, 40);
+}
+
+.back_arrow {
+	width: 25px;
+	height: auto;
+	margin-top: 4vh;
+	margin-left: 3vw;
+}
+
+.transform:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: transform 0.5s;
+}
+
+.cartao {
+	height: 22vh;
+	border-radius: 15px;
+}
+
+.medio {
+	width: 30vw;
+}
+
+.grande {
+	width: 70vw;
+	height: 10vh !important;
+}
+
+.direita {
+	margin-left: 5vw;
+	margin-top: 5vh;
+}
+
+.esquerda {
+	margin-left: 45vw;
+	margin-top: -22vh;
+}
+
+.center {
+	text-align: center;
+}
+
+.subtitulo-carta {
+	color: white;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 20px;
+}
+
+.numero {
+	margin-top: 20px;
+	color: white;
+	font-family: 'Didact Gothic', sans-serif;
+	font-weight: bold;
+}
+
+.espaco {
+	margin-top: 20px;
+}
+
+.width {
+	width: 30vw;
+}
+
+.justFlex {
+	display: flex;
+}
+
+.espacamento {
+	margin-left: 10vw;
 }

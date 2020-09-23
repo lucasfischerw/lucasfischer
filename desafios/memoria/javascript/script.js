@@ -12,11 +12,16 @@ var estaJogando = false;
 var vezesGanhou = 0;
 var tentativas = 0;
 var possivelAbrirProxima = true;
+var jogou = false;
 var dificuldade = 2;
 var intervaloFecha = 800;
 var quantidadeCartas = 12;
 var imagemEscolhida;
 var numeroImagem = 0;
+var totalVezesErrou = 0;
+var totalVezesAcertou = 0;
+var vezesHoje = 0;
+var vezesUltimaRodada = 0;
 
 function Carregou() {
 	preloadImage()
@@ -25,18 +30,18 @@ function Carregou() {
 function Jogar() {
 	if (estaJogando == false) {
 		estaJogando = true;
+		vezesUltimaRodada = 0;
+		jogou = true;
 		ranNumsFacil = shuffle([1, 2, 3, 1, 2, 3]);
 		ranNumsMedio = shuffle([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]);
 		ranNumsDificil = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
 		document.getElementById('menuConfiguracoes').style.display = "none"
 		document.getElementById('linha1').style.opacity = "1"
 		document.body.style.backgroundColor = "rgb(40, 137, 217)"
-		document.getElementById("pontos").innerHTML = "Pontos: "+vezesGanhou+""
-		document.getElementById("tentativas").innerHTML = "Tentativas: "+tentativas+""
-		document.getElementById('botao').style.cursor = "not-allowed"
+		document.getElementById('botao-jogar').style.cursor = "not-allowed"
 		document.getElementById('linha1').innerHTML = ""
 		document.getElementById('linha1').style.color = "black"
-		document.getElementById('botao').innerHTML = "Jogar"
+		document.getElementById('botao-jogar').innerHTML = "Jogar"
 		if (dificuldade == 3) {
 			quantidadeCartas = 24
 			document.getElementById('linha3').style.display = "flex"
@@ -62,7 +67,7 @@ function Jogar() {
 			document.getElementById('menuPowerUp').style.marginTop = "-65vh"
 			imagemEscolhida = ranNumsFacil[Math.floor(Math.random() * (4 - 1)) + 1]
 		}
-		if(document.getElementById('ativarPowerUp').checked == true) {
+		if (document.getElementById('ativarPowerUp').checked == true) {
 			powerUp()
 		} else {
 			Desenha()
@@ -150,6 +155,7 @@ function pontuacao() {
 	}
 	if (escolhido2 != 0) {
 		if (document.getElementById("carta-"+escolhido1+"").style.backgroundImage == document.getElementById("carta-"+escolhido2+"").style.backgroundImage) {
+			totalVezesAcertou++;
 			setTimeout(function() {
 				document.getElementById("carta-"+escolhido1+"").classList.add("desaparecer")
 				document.getElementById("carta-"+escolhido2+"").classList.add("desaparecer")
@@ -159,14 +165,14 @@ function pontuacao() {
 				document.getElementById("carta-"+escolhido2+"").classList.remove("comImagem")
 				vezesGanhou = vezesGanhou + 1;
 				tentativas = tentativas + 1;
-				document.getElementById("tentativas").innerHTML = "Tentativas: "+tentativas+""
-				document.getElementById("pontos").innerHTML = "Pontos: "+vezesGanhou+""
+				vezesUltimaRodada = tentativas;
+				vezesHoje++;
 				setTimeout(function() {
 					document.getElementById("carta-"+escolhido1+"").style.backgroundImage = 'none'
 					document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
 					if (vezesGanhou < numeroCartas/2) {
 						if (numeroImagem == imagemEscolhida) {
-							if (tentativas <= 100) {
+							if (tentativas <= 3) {
 								if (document.getElementById('ativarPowerUp').checked == true) {
 									console.log("PowerUp")
 									document.getElementById('titulo').innerHTML = "PowerUp!"
@@ -182,20 +188,22 @@ function pontuacao() {
 					}
 					if (vezesGanhou == numeroCartas/2) {
 						setTimeout(function() {
-							document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" Tentativas"
 							document.getElementById('linha2').innerHTML = ""
 							if (tentativas < 12) {
 								document.getElementById('linha1').style.color = "rgb(70, 180, 70)"
+								document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(70, 180, 70)"
 							} else if (tentativas < 20) {
 								document.getElementById('linha1').style.color = "rgb(240, 180, 0)"
+								document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(240, 180, 0)"
 							} else {
 								document.getElementById('linha1').style.color = "rgb(255, 70, 70)"
+								document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(255, 70, 70)"
 							}
-							document.getElementById('botao').innerHTML = "Reiniciar"
-							document.getElementById('botao').style.cursor = "pointer"
+							document.getElementById('botao-jogar').innerHTML = "Reiniciar"
+							document.getElementById('botao-jogar').style.cursor = "pointer"
 							estaJogando = false;
 							possivelAbrirProxima = true;
 							resetar()
@@ -204,6 +212,10 @@ function pontuacao() {
 				}, 500)
 			}, 900)
 		} else {
+			totalVezesErrou++;
+			tentativas = tentativas + 1
+			vezesUltimaRodada = tentativas;
+			vezesHoje++;
 			setTimeout(function() {
 				document.getElementById("carta-"+escolhido1+"").style.backgroundImage = 'none'
 				document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
@@ -213,8 +225,6 @@ function pontuacao() {
 				document.getElementById("carta-"+escolhido2+"").classList.remove("comImagem")
 				document.getElementById("carta-"+escolhido1+"").style.opacity = "1"
 				document.getElementById("carta-"+escolhido2+"").style.opacity = "1"
-				tentativas = tentativas + 1
-				document.getElementById("tentativas").innerHTML = "Tentativas: "+tentativas+""
 				possivelAbrirProxima = true;
 			}, 900)
 		}
@@ -330,7 +340,7 @@ function powerUpAtivo() {
 	possivelAbrirProxima = false;
 	if (dificuldade == 1) {
 		while(controle < (numeroCartas + 1)) {
-			if(document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
+			if (document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
 				console.log('Nao vai')
 			} else {
 				document.getElementById("carta-"+controle+"").classList.add("comImagem")
@@ -342,7 +352,7 @@ function powerUpAtivo() {
 		}
 	} else if (dificuldade == 2) {
 		while(controle < (numeroCartas + 1)) {
-			if(document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
+			if (document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
 				console.log('Nao vai')
 			} else {
 				document.getElementById("carta-"+controle+"").classList.add("comImagem")
@@ -369,6 +379,30 @@ function powerUpAtivo() {
 			document.getElementById("carta-"+controle+"").innerHTML = ""+controle+""
 			controle++
 		}
+		document.getElementById('titulo').innerHTML = "Memória"
 		possivelAbrirProxima = true;
 	}, 1500)
+}
+
+function Estatisticas () {
+	if (estaJogando == false) {
+		document.getElementById('conteudo').style.display = "none";
+		document.getElementById('estatisticas').style.display = "inherit";
+	}
+	if (jogou == true) {
+		var a = totalVezesAcertou + totalVezesErrou;
+		var b = 100;
+		var x = (b * totalVezesAcertou) / a;
+		document.getElementById('porcentagemAcerto').innerHTML = ""+parseInt(x)+"%"
+		document.getElementById('porcentagemErro').innerHTML = ""+parseInt(b - x)+"%"
+		document.getElementById('vezesErrou').innerHTML = ""+totalVezesErrou+""
+		document.getElementById('vezesAcertou').innerHTML = ""+totalVezesAcertou+""
+		document.getElementById('totalJogadasHoje').innerHTML = ""+vezesHoje+""
+		document.getElementById('jogadasUltimaRodada').innerHTML = ""+vezesUltimaRodada+""
+	}
+}
+
+function Inicial() {
+	document.getElementById('estatisticas').style.display = "none";
+	document.getElementById('conteudo').style.display = "inherit";
 }
