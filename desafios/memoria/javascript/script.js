@@ -248,7 +248,7 @@ function resetar() {
 
 function preloadImage() {
 	var controle = 1;
-	while(controle <= 8) {
+	while(controle <= 13) {
 		var img = new Image();
 		img.src = "imagens/"+controle+".png";
 		controle = controle + 1
