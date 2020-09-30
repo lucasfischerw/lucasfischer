@@ -15,6 +15,7 @@ var possivelAbrirProxima = true;
 var jogou = false;
 var dificuldade = 2;
 var intervaloFecha = 800;
+var intervalo = 0;
 var quantidadeCartas = 12;
 var imagemEscolhida;
 var numeroImagem = 0;
@@ -35,43 +36,57 @@ function Jogar() {
 		ranNumsFacil = shuffle([1, 2, 3, 1, 2, 3]);
 		ranNumsMedio = shuffle([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]);
 		ranNumsDificil = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-		document.getElementById('menuConfiguracoes').style.display = "none"
-		document.getElementById('linha1').style.opacity = "1"
-		document.body.style.backgroundColor = "rgb(40, 137, 217)"
-		document.getElementById('botao-jogar').style.cursor = "not-allowed"
-		document.getElementById('linha1').innerHTML = ""
-		document.getElementById('linha1').style.color = "black"
-		document.getElementById('botao-jogar').innerHTML = "Jogar"
-		if (dificuldade == 3) {
-			quantidadeCartas = 24
-			document.getElementById('linha3').style.display = "flex"
-			document.getElementById('linha4').style.display = "flex"
-			document.getElementById('conteudo').style.height = "140vh"
-			document.getElementById('conteudo').style.marginBottom = "10vh"
-			document.getElementById('menuPowerUp').style.marginTop = "-125vh"
-			imagemEscolhida = ranNumsDificil[Math.floor(Math.random() * (13 - 1)) + 1]
-		} else if (dificuldade == 2) {
-			quantidadeCartas = 12
-			document.getElementById('linha3').style.display = "none"
-			document.getElementById('linha4').style.display = "none"
-			document.getElementById('conteudo').style.height = "80vh"
-			document.getElementById('conteudo').style.marginBottom = "0"
-			document.getElementById('menuPowerUp').style.marginTop = "-65vh"
-			imagemEscolhida = ranNumsMedio[Math.floor(Math.random() * (7 - 1)) + 1]
-		} else if (dificuldade == 1) {
-			quantidadeCartas = 6
-			document.getElementById('linha3').style.display = "none"
-			document.getElementById('linha4').style.display = "none"
-			document.getElementById('conteudo').style.height = "80vh"
-			document.getElementById('conteudo').style.marginBottom = "0"
-			document.getElementById('menuPowerUp').style.marginTop = "-65vh"
-			imagemEscolhida = ranNumsFacil[Math.floor(Math.random() * (4 - 1)) + 1]
-		}
-		if (document.getElementById('ativarPowerUp').checked == true) {
-			powerUp()
+		if(aberto == true) {
+			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
+			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
+			document.getElementById('linha1').style.opacity = "1"
+			intervalo = 500
+			setTimeout(function() {
+				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
+				document.getElementById('menuConfiguracoes').style.display = "none"
+				aberto = false
+			}, 500)
 		} else {
-			Desenha()
+			intervalo = 0
 		}
+		setTimeout(function() {
+			document.getElementById('linha1').style.opacity = "1"
+			document.body.style.backgroundColor = "rgb(40, 137, 217)"
+			document.getElementById('botao-jogar').style.cursor = "not-allowed"
+			document.getElementById('linha1').innerHTML = ""
+			document.getElementById('linha1').style.color = "black"
+			document.getElementById('botao-jogar').innerHTML = "Jogar"
+			if (dificuldade == 3) {
+				quantidadeCartas = 24
+				document.getElementById('linha3').style.display = "flex"
+				document.getElementById('linha4').style.display = "flex"
+				document.getElementById('conteudo').style.height = "140vh"
+				document.getElementById('conteudo').style.marginBottom = "10vh"
+				document.getElementById('menuPowerUp').style.marginTop = "-125vh"
+				imagemEscolhida = ranNumsDificil[Math.floor(Math.random() * (13 - 1)) + 1]
+			} else if (dificuldade == 2) {
+				quantidadeCartas = 12
+				document.getElementById('linha3').style.display = "none"
+				document.getElementById('linha4').style.display = "none"
+				document.getElementById('conteudo').style.height = "80vh"
+				document.getElementById('conteudo').style.marginBottom = "0"
+				document.getElementById('menuPowerUp').style.marginTop = "-65vh"
+				imagemEscolhida = ranNumsMedio[Math.floor(Math.random() * (7 - 1)) + 1]
+			} else if (dificuldade == 1) {
+				quantidadeCartas = 6
+				document.getElementById('linha3').style.display = "none"
+				document.getElementById('linha4').style.display = "none"
+				document.getElementById('conteudo').style.height = "80vh"
+				document.getElementById('conteudo').style.marginBottom = "0"
+				document.getElementById('menuPowerUp').style.marginTop = "-65vh"
+				imagemEscolhida = ranNumsFacil[Math.floor(Math.random() * (4 - 1)) + 1]
+			}
+			if (document.getElementById('ativarPowerUp').checked == true) {
+				powerUp()
+			} else {
+				Desenha()
+			}
+		}, intervalo)
 	}
 }
 
@@ -135,7 +150,6 @@ function shuffle(array) {
 }
 
 function pontuacao() {
-	console.log("Pontuação")
 	controle = 0
 	escolhido1 = 0;
 	totalJogadas = 0
@@ -174,12 +188,12 @@ function pontuacao() {
 						if (numeroImagem == imagemEscolhida) {
 							if (tentativas <= 3) {
 								if (document.getElementById('ativarPowerUp').checked == true) {
-									console.log("PowerUp")
 									document.getElementById('titulo').innerHTML = "PowerUp!"
 									powerUpAtivo()		
+								} else {
+									possivelAbrirProxima = true;
 								}
 							} else {
-								console.log("Muito tarde")
 								possivelAbrirProxima = true;
 							}
 						} else {
@@ -298,7 +312,7 @@ function anterior() {
 			document.getElementById('dificuldadeEscolhida').innerHTML = "Médio"
 		}
 	}
-	console.log(dificuldade)	
+	
 }
 
 function proximo() {
@@ -317,7 +331,6 @@ function proximo() {
 			document.getElementById('dificuldadeEscolhida').innerHTML = "Difícil"
 		}
 	}
-	console.log(dificuldade)
 }
 
 function powerUp() {
@@ -386,13 +399,26 @@ function powerUpAtivo() {
 
 function Estatisticas () {
 	if (estaJogando == false) {
-		document.getElementById('conteudo').style.display = "none";
-		document.getElementById('estatisticas').style.display = "inherit";
+		if(aberto == true) {
+			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
+			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
+			document.getElementById('linha1').style.opacity = "1"
+			setTimeout(function() {
+				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
+				document.getElementById('menuConfiguracoes').style.display = "none"
+				aberto = false
+				document.getElementById('conteudo').style.display = "none";
+				document.getElementById('estatisticas').style.display = "inherit";
+			}, 500)
+		} else {
+			document.getElementById('conteudo').style.display = "none";
+			document.getElementById('estatisticas').style.display = "inherit";
+		}
 	}
 	if (jogou == true) {
 		var a = totalVezesAcertou + totalVezesErrou;
 		var b = 100;
-		var x = (b * totalVezesAcertou) / a;
+		var x = parseInt((b * totalVezesAcertou) / a);
 		document.getElementById('porcentagemAcerto').innerHTML = ""+parseInt(x)+"%"
 		document.getElementById('porcentagemErro').innerHTML = ""+parseInt(b - x)+"%"
 		document.getElementById('vezesErrou').innerHTML = ""+totalVezesErrou+""
