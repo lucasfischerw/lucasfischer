@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	<title>Tarefas</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body onload="carregou()">
+	<div class="flex">	
+		<div class="menu">
+			<img class="logo" src="imagens/logo.jpg">
+			<p class="titulo">Nome</p>
+			<div class="espacador"></div>
+			<div class="botao" id="primeiro" onclick="tarefas()">Tarefas</div>
+			<div class="botao" id="segundo" onclick="aulas()">Aulas</div>
+			<div class="botao" id="terceiro" onclick="provas()">Avaliações</div>
+		</div>
+		<div class="tarefas" id="tarefas">
+			<div class="dia">
+				<p class="titulodia">Hoje</p>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Hoje</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Hoje</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Hoje</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Amanhã</p>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Amanhã</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Amanhã</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Amanhã</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Amanhã</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Sexta</p>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Sexta</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Sexta</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Tema</div>
+					<div>&#128197; Sexta</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="vejamais">Veja Mais &#8594;</p>
+			</div>
+		</div>
+		<div class="aulas" id="aulas">
+			<div class="dia">
+				<p class="titulodia">Hoje</p>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qua, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qua, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qua, 16:50</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Amanhã</p>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qui, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qui, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qui, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; qui, 16:50</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Sexta</p>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; sex, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; sex, 16:50</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; sex, 16:50</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="vejamais">Veja Mais &#8594;</p>
+			</div>
+		</div>
+		<div class="provas" id="provas">
+			
+		</div>
+	</div>
+	<script type="text/javascript" src="javascript/script.js"></script>
+</body>
+</html>
