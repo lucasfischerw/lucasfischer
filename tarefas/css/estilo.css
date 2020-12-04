@@ -179,11 +179,13 @@ div .botao {
 }
 
 #diapassado {
+	padding-left: 3px;
 	font-family: 'Didact Gothic', sans-serif;
 	color: #afafaf;
 }
 
 #diapresente {
+	padding-left: 3px;
 	font-family: 'Didact Gothic', sans-serif;
 }
 
@@ -204,4 +206,10 @@ div .botao {
 
 .par {
 	background-color: rgb(40, 137, 217);
+}
+
+.adicionar {
+	float: right;
+	height: 48px;
+	width: auto;
 }
