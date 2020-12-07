@@ -1,8 +1,8 @@
 var diaEscolhido = 0
 var prefixo = "null"
 var dia1 = 2
-var dia2 = 0
-var dia3 = 1
+var dia2 = 1
+var dia3 = 2
 var dia4 = 1
 var dia5 = 0
 var quantidade = [dia1, dia2, dia3, dia4, dia5]
