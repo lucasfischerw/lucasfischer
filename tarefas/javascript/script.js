@@ -1,6 +1,12 @@
 var diaEscolhido = 0
 var prefixo = "null"
-var quantidade = [2, 0, 1, 1, 0]
+var dia1 = 2
+var dia2 = 0
+var dia3 = 1
+var dia4 = 1
+var dia5 = 0
+var quantidade = [dia1, dia2, dia3, dia4, dia5]
+var controle = 0
 
 function tarefas() {
 	document.getElementById('tarefas').style.display = "inherit"
@@ -69,6 +75,7 @@ function adicionarDia(dia) {
 }
 
 function adicionaTarefa() {
+	controle++;
 	document.getElementById('tarefas').style.display = "inherit"
 	document.getElementById('telaAdicionar').style.display = "none"
 	if (quantidade[diaEscolhido-1] != 0) {
@@ -78,26 +85,32 @@ function adicionaTarefa() {
 	}
 	var tarefa = document.createElement("div")
 	tarefa.setAttribute("class", "tarefa")
-	tarefa.setAttribute("id", "tarefaCriada")
+	tarefa.setAttribute("id", "tarefaCriada-"+controle+"")
 	document.getElementById("dia-"+diaEscolhido+"").appendChild(tarefa)
 	var titulo = document.createElement("div")
 	titulo.setAttribute("class", "nometarefa")
 	titulo.innerHTML = document.getElementById("nomedatarefa").value;
-	document.getElementById("tarefaCriada").appendChild(titulo)
+	document.getElementById("tarefaCriada-"+controle+"").appendChild(titulo)
 	var data = document.createElement("div")
 	if (diaEscolhido == 1) {
-		prefixo = "seg"
+		prefixo = "seg";
+		dia1 = dia1 + 1
 	} else if (diaEscolhido == 2) {
-		prefixo = "ter"
+		prefixo = "ter";
+		dia2 = dia2 + 1
 	} else if (diaEscolhido == 3) {
-		prefixo = "qua"
+		prefixo = "qua";
+		dia3 = dia3 + 1
 	} else if (diaEscolhido == 4) {
-		prefixo = "qui"
+		prefixo = "qui";
+		dia4 = dia4 + 1
 	} else if (diaEscolhido == 5) {
-		prefixo = "sex"
+		prefixo = "sex";
+		dia5 = dia5 + 1
 	}
 	data.innerHTML = "&#128197; "+prefixo+", "+document.getElementById("horario").value+""
-	document.getElementById("tarefaCriada").appendChild(data)
+	document.getElementById("tarefaCriada-"+controle+"").appendChild(data)
+	quantidade = [dia1, dia2, dia3, dia4, dia5]
 }
 
 function voltarProva() {
