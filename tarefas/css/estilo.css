@@ -198,6 +198,7 @@ div .botao {
 	background-color: #47B447;
 	color: white;
 	border-radius: 10px;
+	cursor: pointer;
 }
 
 .impar {
@@ -212,4 +213,118 @@ div .botao {
 	float: right;
 	height: 48px;
 	width: auto;
+}
+
+.adicionar {
+	cursor: pointer;
+	height: 5vh;
+	width: 5vh;
+	background-color: #EEEEEE;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 5vh;
+	font-weight: bold;
+	font-size: 40px;
+	margin-top: 80vh;
+	margin-right: 5vh;
+}
+
+.adicionar:hover {
+	background-color: #47B447;
+	color: white;
+}
+
+.descricaoProva {
+	display: none;
+	height: 100vh;
+	width: 80vw;
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.telaAdicionar {
+	display: none;
+	height: 100vh;
+	width: 80vw;
+}
+
+input {
+	height: 6vh;
+	width: 25vw;
+	margin-top: 10vh;
+	text-align: center;
+	margin-left: 27.5vw;
+}
+
+.diasAdicionar {
+	margin-top: 10vh;
+	display: flex;
+	justify-content: center;
+}
+
+.diaAdicionar {
+	width: 8vw;
+	height: 4vh;
+	line-height: 4vh;
+	background-color: #EEEEEE;
+	font-family: 'Didact Gothic', sans-serif;
+	text-align: center;
+	border-radius: 15px;
+	margin-right: 3vw;
+	cursor: pointer;
+}
+
+.diaAdicionar:hover {
+	background-color: #47B447;
+	color: white;
+}
+
+.botaook {
+	width: 15vw;
+	height: 5vh;
+	line-height: 5vh;
+	background-color: #EEEEEE;
+	border-radius: 15px;
+	font-family: 'Didact Gothic', sans-serif;
+	text-align: center;
+	cursor: pointer;
+	margin-left: 32.5vw;
+	margin-top: 10vh;
+}
+
+.botaook:hover {
+	background-color: #47B447;
+	color: white;
+}
+
+.descricaoConteudo {
+	margin-left: 10vw;
+	margin-top: 10vh;
+	background-color: #EEEEEE;
+	width: 60vw;
+	height: 20vh;
+	line-height: 5vh;
+	text-align: center;
+	border-radius: 15px;
+	font-size: 18px;
+}
+
+.voltar {
+	width: 20px;
+	height: auto;
+	margin-top: 10vh;
+	margin-left: 5vw;
+	transition: transform 0.2s;
+}
+
+.voltar:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.tituloprova {
+	margin-top: -3vh;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 1.6em;
+	font-weight: bold;
+	text-align: center;
 }

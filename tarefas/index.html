@@ -37,7 +37,7 @@
 				<div class="botao" id="terceiro" onclick="provas()">Avaliações</div>
 			</div>
 			<div class="tarefas" id="tarefas">
-				<div class="dia">
+				<div class="dia" id="dia-1">
 					<p class="titulodia">Segunda</p>
 					<div class="tarefa">
 						<div class="nometarefa">Resenha Crítica</div>
@@ -49,26 +49,40 @@
 						<div>&#128197; seg, 23:59</div>
 					</div>
 				</div>
-				<div class="dia">
+				<div class="dia" id="dia-2">
 					<p class="titulodia">Terça</p>
 				</div>
-				<div class="dia">
+				<div class="dia" id="dia-3">
 					<p class="titulodia">Quarta</p>
 					<div class="tarefa">
 						<div class="nometarefa">Inglês</div>
 						<div>&#128197; qua, 08:00</div>
 					</div>
 				</div>
-				<div class="dia">
+				<div class="dia" id="dia-4">
 					<p class="titulodia">Quinta</p>
 					<div class="tarefa">
 						<div class="nometarefa">Geografia</div>
 						<div>&#128197; qui, 23:59</div>
 					</div>
 				</div>
-				<div class="dia">
+				<div class="dia" id="dia-5">
 					<p class="titulodia">Sexta</p>
+					<p class="adicionar" id="adicionar" onclick="adicionar()">+</p>
 				</div>
+			</div>
+			<div class="telaAdicionar" id="telaAdicionar">
+				<p class="titulodia">Adicionar Tarefa</p>
+				<input type="text" placeholder="Nome" id="nomedatarefa">
+				<div class="diasAdicionar">
+					<div class="diaAdicionar" id="diaAdicionar-1" onclick="adicionarDia(1)">Segunda</div>
+					<div class="diaAdicionar" id="diaAdicionar-2" onclick="adicionarDia(2)">Terça</div>
+					<div class="diaAdicionar" id="diaAdicionar-3" onclick="adicionarDia(3)">Quarta</div>
+					<div class="diaAdicionar" id="diaAdicionar-4" onclick="adicionarDia(4)">Quinta</div>
+					<div class="diaAdicionar" id="diaAdicionar-5" onclick="adicionarDia(5)">Sexta</div>
+				</div>
+				<input type="time" placeholder="Horário" id="horario">
+				<div class="botaook" onclick="adicionaTarefa()">Ok</div>
 			</div>
 			<div class="aulas" id="aulas">
 				<div class="dia">
@@ -171,28 +185,28 @@
 				<div class="semanas">
 					<div class="semana primeira">
 						<div class="dia_calendario" id="diapassado">29</div>
-						<div class="dia_calendario" id="diapassado">30<div class="prova">Ciências</div></div>
+						<div class="dia_calendario" id="diapassado">30<div class="prova" id="prova-1">Ciências</div></div>
 						<div class="dia_calendario" id="diapresente">1</div>
 						<div class="dia_calendario" id="diapresente">2</div>
-						<div class="dia_calendario" id="diapresente">3<div class="prova">Alemão DSD</div></div>
-						<div class="dia_calendario" id="diapresente">4<div class="prova impar">Sas Ímpar</div></div>
+						<div class="dia_calendario" id="diapresente">3<div class="prova" id="prova-2">Alemão DSD</div></div>
+						<div class="dia_calendario" id="diapresente">4<div class="prova impar" id="prova-3">Sas Ímpar</div></div>
 						<div class="dia_calendario" id="diapresente">5</div>
 					</div>
 					<div class="semana outras">
 						<div class="dia_calendario" id="diapresente">6</div>
-						<div class="dia_calendario" id="diapresente">7<div class="prova">Geografia</div></div>
+						<div class="dia_calendario" id="diapresente">7<div class="prova" id="prova-4">Geografia</div></div>
 						<div class="dia_calendario" id="diapresente">8</div>
 						<div class="dia_calendario" id="diapresente">9</div>
-						<div class="dia_calendario" id="diapresente">10<div class="prova">Inglês</div></div>
-						<div class="dia_calendario" id="diapresente">11<div class="prova par">Sas Par</div></div>
+						<div class="dia_calendario" id="diapresente">10<div class="prova" id="prova-5">Inglês</div></div>
+						<div class="dia_calendario" id="diapresente">11<div class="prova par" id="prova-6">Sas Par</div></div>
 						<div class="dia_calendario" id="diapresente">12</div>
 					</div>
 					<div class="semana outras">
 						<div class="dia_calendario" id="diapresente">13</div>
-						<div class="dia_calendario" id="diapresente">14<div class="prova">Português</div></div>
+						<div class="dia_calendario" id="diapresente">14<div class="prova" id="prova-7" onclick="prova()">Português</div></div>
 						<div class="dia_calendario" id="diapresente">15</div>
 						<div class="dia_calendario" id="diapresente">16</div>
-						<div class="dia_calendario" id="diapresente">17<div class="prova">Matemática</div></div>
+						<div class="dia_calendario" id="diapresente">17<div class="prova" id="prova-8">Matemática</div></div>
 						<div class="dia_calendario" id="diapresente">18</div>
 						<div class="dia_calendario" id="diapresente">19</div>
 					</div>
@@ -205,8 +219,12 @@
 						<div class="dia_calendario" id="diapresente">25</div>
 						<div class="dia_calendario" id="diapresente">26</div>
 					</div>
-					<!--<img class="adicionar" src="imagens/calendario.png">-->
 				</div>
+			</div>
+			<div class="descricaoProva" id="descricaoProva-1">
+				<img src="imagens/voltar.png" class="voltar" onclick="voltarProva()">
+				<p class="tituloprova">Conteúdo da Prova de Português</p>
+				<p class="descricaoConteudo">Interpretação de texto<br>Figuras de linguagem<br>Elementos de coesão (conjunções e as ideias ou funções, orações coordenadas e subordinadas)<br>Pronomes</p>
 			</div>
 		</div>
 		<script type="text/javascript" src="javascript/script.js"></script>
