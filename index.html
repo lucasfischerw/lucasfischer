@@ -1,66 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/estilo.css">
-	<link type="text/javascript" href="javascript/script.js">
-	<link rel="stylesheet" href="css/aos.css"/>
-	<title>Lucas Fischer</title>
-	<link rel="shortcut icon" href="/faviconMain/favicon.ico">
-	<link rel="icon" sizes="16x16 32x32 64x64" href="/faviconMain/favicon.ico?">
-	<link rel="icon" type="image/png" sizes="196x196" href="/faviconMain/favicon-192.png?">
-	<link rel="icon" type="image/png" sizes="160x160" href="/faviconMain/favicon-160.png?">
-	<link rel="icon" type="image/png" sizes="96x96" href="/faviconMain/favicon-96.png?">
-	<link rel="icon" type="image/png" sizes="64x64" href="/faviconMain/favicon-64.png?">
-	<link rel="icon" type="image/png" sizes="32x32" href="/faviconMain/favicon-32.png?">
-	<link rel="icon" type="image/png" sizes="16x16" href="/faviconMain/favicon-16.png?">
-	<link rel="apple-touch-icon" href="/faviconMain/favicon-57.png?">
-	<link rel="apple-touch-icon" sizes="114x114" href="/faviconMain/favicon-114.png?">
-	<link rel="apple-touch-icon" sizes="72x72" href="/faviconMain/favicon-72.png?">
-	<link rel="apple-touch-icon" sizes="144x144" href="/faviconMain/favicon-144.png?">
-	<link rel="apple-touch-icon" sizes="60x60" href="/faviconMain/favicon-60.png?">
-	<link rel="apple-touch-icon" sizes="120x120" href="/faviconMain/favicon-120.png?">
-	<link rel="apple-touch-icon" sizes="76x76" href="/faviconMain/favicon-76.png?">
-	<link rel="apple-touch-icon" sizes="152x152" href="/faviconMain/favicon-152.png?">
-	<link rel="apple-touch-icon" sizes="180x180" href="/faviconMain/favicon-180.png?">
-	<meta name="msapplication-TileColor" content="#FFFFFF">
-	<meta name="msapplication-TileImage" content="/faviconMain/favicon-144.png">
-	<meta name="msapplication-config" content="/faviconMain/browserconfig.xml">
-</head>
-<body onload = "Carregou()">
-	<div class="carregando" id="carregando">
-		<img src="imagens/carregando.gif" class="imagemCarregando">
-	</div>
-	<div class="content" id="content">
-		<header>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">
+		<link type="text/javascript" href="javascript/script.js">
+		<title>Lucas Fischer</title>
+		<link rel="shortcut icon" href="/faviconMain/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="/faviconMain/favicon.ico?">
+		<link rel="icon" type="image/png" sizes="196x196" href="/faviconMain/favicon-192.png?">
+		<link rel="icon" type="image/png" sizes="160x160" href="/faviconMain/favicon-160.png?">
+		<link rel="icon" type="image/png" sizes="96x96" href="/faviconMain/favicon-96.png?">
+		<link rel="icon" type="image/png" sizes="64x64" href="/faviconMain/favicon-64.png?">
+		<link rel="icon" type="image/png" sizes="32x32" href="/faviconMain/favicon-32.png?">
+		<link rel="icon" type="image/png" sizes="16x16" href="/faviconMain/favicon-16.png?">
+		<link rel="apple-touch-icon" href="/faviconMain/favicon-57.png?">
+		<link rel="apple-touch-icon" sizes="114x114" href="/faviconMain/favicon-114.png?">
+		<link rel="apple-touch-icon" sizes="72x72" href="/faviconMain/favicon-72.png?">
+		<link rel="apple-touch-icon" sizes="144x144" href="/faviconMain/favicon-144.png?">
+		<link rel="apple-touch-icon" sizes="60x60" href="/faviconMain/favicon-60.png?">
+		<link rel="apple-touch-icon" sizes="120x120" href="/faviconMain/favicon-120.png?">
+		<link rel="apple-touch-icon" sizes="76x76" href="/faviconMain/favicon-76.png?">
+		<link rel="apple-touch-icon" sizes="152x152" href="/faviconMain/favicon-152.png?">
+		<link rel="apple-touch-icon" sizes="180x180" href="/faviconMain/favicon-180.png?">
+		<meta name="msapplication-TileColor" content="#FFFFFF">
+		<meta name="msapplication-TileImage" content="/faviconMain/favicon-144.png">
+		<meta name="msapplication-config" content="/faviconMain/browserconfig.xml">
+	</head>
+	<body onload="Carregou()" onscroll="closeNav()">
+		<div class="carregando" id="carregando">
+			<img src="imagens/carregando.gif" class="imagemCarregando">
+		</div>
+		<div class="content" id="content">
 			<nav class="menu" id="menu">
-				<ul data-aos="fade-down" data-aos-duration="400">
+				<ul>
 					<li id="mobile"><a href="index.html">Lucas Fischer</a></li>
 					<li id="mobile"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></li>
-					<li id="normal-pc"><a href="index.html">Lucas Fischer</a></li>
-					<li id="normal-pc"><a href="javascript:void(0)" onclick="Sobre()">Sobre</a></li>
-					<li id="normal-pc"><a href="javascript:void(0)" onclick="Robos()">Programação</a></li>
-					<li id="normal-pc"><a href="javascript:void(0)" onclick="Competicoes()">Meus Projetos</a></li>
-					<li id="normal-pc"><a href="javascript:void(0)" onclick="Contato()">Contato</a></li>
+					<li class="desktop inicio"><a href="index.html">Lucas Fischer</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Sobre()">Sobre</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Programacao()">Programação</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Projetos()">Meus Projetos</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Contato()">Contato</a></li>
 				</ul>
 			</nav>
-		</header>
-		<div class="paginaInicial">
-			<div class="imagemTexto">
-				<img src="imagens/lucasfischer.jpg" class="minhaImagem">
-				<p class="nome">Lucas Fischer</p>	
-			</div>	
+			<div id="sidebar" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<div class="itens">
+				  	<a href="javascript:void(0)" onclick="Sobre()" class="botao">Sobre</a>
+				  	<a href="javascript:void(0)" onclick="Programacao()">Programação</a>
+				  	<a href="javascript:void(0)" onclick="Projetos()">Meus Projetos</a>
+				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
+				</div>
+			</div>
+			<div class="secao">
+				<img class="imagemPessoal" src="imagens/lucasfischer.jpg">
+				<div class="nomeContainer">
+					<p class="nome">Lucas Fischer W.</p>
+				</div>
+			</div>
+			<div class="secao sobre" id="sobre"></div>
 		</div>
-	</div>
-	<script src="javascript/script.js"></script>
-	<script src="javascript/aos.js"></script>
-	<script>
-	AOS.init({
-		offset: 200, 
-		duration: 800,
-		disable: 'mobile'
-		});
-	</script>
-</body>
+		<script src="javascript/script.js"></script>
+	</body>
 </html>
