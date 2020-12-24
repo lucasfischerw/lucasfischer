@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 		<link type="text/javascript" href="javascript/script.js">
 		<title>Lucas Fischer</title>
@@ -27,7 +27,7 @@
 		<meta name="msapplication-TileImage" content="/faviconMain/favicon-144.png">
 		<meta name="msapplication-config" content="/faviconMain/browserconfig.xml">
 	</head>
-	<body onload="Carregou()" onscroll="closeNav()">
+	<body onload="Carregou()" onscroll="closeNav()" onresize="closeNav()" ontouchmove="closeNav()">
 		<div class="carregando" id="carregando">
 			<img src="imagens/carregando.gif" class="imagemCarregando">
 		</div>
@@ -52,13 +52,27 @@
 				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
 				</div>
 			</div>
-			<div class="secao">
-				<img class="imagemPessoal" src="imagens/lucasfischer.jpg">
-				<div class="nomeContainer">
-					<p class="nome">Lucas Fischer W.</p>
+			<div class="conteudo" id="conteudo" onclick="closeNav()">
+				<div class="secao" id="primeiraPag">
+					<div class="imagemPessoalContainer">
+						<img class="imagemPessoal" id="imagemPessoal" src="imagens/lucasfischer.jpg">	
+					</div>
+					<div class="nomeContainer" id="nomeContainer">
+						<p class="nome">Lucas Fischer W.</p>
+					</div>
 				</div>
+				<div class="secao sobre" id="sobre">
+					<div class="imgSobreContainer">
+						<img class="imgSobre" src="imagens/sobre.jpg">
+					</div>
+					<div class="textoSobreContainer">
+						<p class="textoSobre">Sou um estudante do Ensino Médio apaixonado por tecnologia. Faço parte da Equipe de Robótica do Colégio Sinodal, onde já fomos 3 vezes para a etapa nacional da OBR. Adoro programar coisas e fazer uns projetos malucos, assim como compartilhar um pouco do conhecimento que tenho. Vejo a tecnologia não só como uma ferramenta que ajuda as pessoas hoje, mas também como algo que pode mudar o amanhã.</p>
+					</div>
+				</div>
+				<div class="secao" id="programacao"></div>
+				<div class="secao" id="projetos"></div>
+				<div class="secao" id="contato"></div>	
 			</div>
-			<div class="secao sobre" id="sobre"></div>
 		</div>
 		<script src="javascript/script.js"></script>
 	</body>
