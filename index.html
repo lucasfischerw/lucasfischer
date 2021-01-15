@@ -34,9 +34,9 @@
 		<div class="content" id="content">
 			<nav class="menu" id="menu">
 				<ul>
-					<li id="mobile"><a href="index.html">Lucas Fischer</a></li>
+					<li id="mobile"><a href="javascript:void(0)" onclick="Nome()">Lucas Fischer</a></li>
 					<li id="mobile"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></li>
-					<li class="desktop inicio"><a href="index.html">Lucas Fischer</a></li>
+					<li class="desktop inicio"><a href="javascript:void(0)" onclick="Nome()">Lucas Fischer</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Sobre()">Sobre</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Programacao()">Programação</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Projetos()">Meus Projetos</a></li>
@@ -58,7 +58,7 @@
 						<img class="imagemPessoal" id="imagemPessoal" src="imagens/lucasfischer.jpg">	
 					</div>
 					<div class="nomeContainer" id="nomeContainer">
-						<p class="nome">Lucas Fischer W.</p>
+						<p class="nome">Lucas Fischer</p>
 					</div>
 				</div>
 				<div class="secao sobre" id="sobre">
@@ -69,9 +69,71 @@
 						<p class="textoSobre">Sou um estudante do Ensino Médio apaixonado por tecnologia. Faço parte da Equipe de Robótica do Colégio Sinodal, onde já fomos 3 vezes para a etapa nacional da OBR. Adoro programar coisas e fazer uns projetos malucos, assim como compartilhar um pouco do conhecimento que tenho. Vejo a tecnologia não só como uma ferramenta que ajuda as pessoas hoje, mas também como algo que pode mudar o amanhã.</p>
 					</div>
 				</div>
-				<div class="secao" id="programacao"></div>
-				<div class="secao" id="projetos"></div>
-				<div class="secao" id="contato"></div>	
+				<div class="secao" id="programacao">
+					<!---<div class="imgProgramacaoContainer">
+						<img class="imgProgramacao" src="imagens/programacao.png">
+					</div>--->
+					<p class="tituloProgramacao">Meus Conhecimentos</p>
+					<div class="linguagensProgramacao">
+						<div class="linguagem">
+							<img src="imagens/html.png" class="imgProgramacao">
+							<p class="tituloLinguagem">HTML</p>
+						</div>
+						<div class="linguagem">
+							<img src="imagens/css.png" class="imgProgramacao">
+							<p class="tituloLinguagem">CSS</p>
+						</div>
+						<div class="linguagem">
+							<img src="imagens/javascript.png" class="imgProgramacao">
+							<p class="tituloLinguagem">JavaScript</p>
+						</div>
+						<div class="linguagem">
+							<img src="imagens/python.png" class="imgProgramacao">
+							<p class="tituloLinguagem">Python</p>
+						</div>
+					</div>
+				</div>
+				<div class="secao" id="projetos">
+					<div class="linhasProjetos">
+						<div class="projeto" onclick="projeto(1)">
+							<img class="imgProjeto" src="imagens/gewinner.jpg">
+							<p class="tituloProjeto">Site de Robótica</p>
+						</div>
+						<div class="projeto" onclick="projeto(2)">
+							<img class="imgProjeto" src="imagens/apostador.jpg">
+							<p class="tituloProjeto">Desafio do Apostador</p>
+						</div>	
+						<div class="projeto" onclick="projeto(3)">
+							<img class="imgProjeto" src="imagens/memoria.jpg">
+							<p class="tituloProjeto">Desafio da Memória</p>
+						</div>	
+						<div class="projeto" onclick="projeto(4)">
+							<img class="imgProjeto" src="imagens/genius.jpg">
+							<p class="tituloProjeto">Desafio do Genius</p>
+						</div>
+						<div class="projeto" onclick="projeto(5)">
+							<img class="imgProjeto" src="imagens/tarefas.jpg">
+							<p class="tituloProjeto">Site das Tarefas</p>
+						</div>
+						<div class="projeto">
+							<img class="imgProjeto" src="imagens/emBreve.png">
+							<p class="tituloProjeto">Veja Tudo</p>
+						</div>
+					</div>
+				</div>
+				<div class="secao" id="contato">
+					<div class="textoContato">
+						<p class="bold tituloContato">Gostou?</p>
+						<p class="tituloContato contato2">Entre em Contato!</p>
+						<div class="iconesCotato">
+							<img class="imagemContato" src="imagens/instagram.png" onclick="window.open('https://www.instagram.com/fischer_155/')">
+							<img class="imagemContato" src="imagens/facebook.png"  onclick="window.open('https://www.facebook.com/profile.php?id=100009913897593');">
+							<a href="mailto:lucasfischerw@gmail.com"><img class="imagemContato" src="imagens/gmail.png"></a>
+							<img class="imagemContato" src="imagens/telefone.png" onclick="window.open('tel:51993518371');">
+							<img class="imagemContato" src="imagens/youtube.png" onclick="window.open('https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA');">	
+						</div>
+					</div>
+				</div>	
 			</div>
 		</div>
 		<script src="javascript/script.js"></script>

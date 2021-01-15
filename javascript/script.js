@@ -44,38 +44,39 @@ function closeNav() {
   document.body.style.overflowY = "inherit";
 }
 
-var lastScrollTop = window.pageYOffset;
-window.addEventListener("scroll", function(){
-    if (ativo == 1) {
-      var st = window.pageYOffset || document.documentElement.scrollTop;
-      if (window.scrollY == 0) {
-        console.log(1)
-        document.getElementById("menu").style.top = "0px";
-        document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0)";
-        ultimaCor = "rgba(30, 30, 30, 0)"
+function scrolling() {
+  if (ativo == 1) {
+    var st = window.pageYOffset || document.documentElement.scrollTop;
+    if (window.scrollY == 0) {
+      document.getElementById("menu").style.top = "0px";
+      document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0)";
+      ultimaCor = "rgba(30, 30, 30, 0)"
     } else {
       if (st > lastScrollTop){
-        console.log(2)
         document.getElementById("menu").style.top = "-70px";
         setTimeout(function() {
           document.getElementById("menu").style.backgroundColor = ultimaCor;
         }, 200)
       } else {
-          console.log(3)
+        console.log(3)
           document.getElementById("menu").style.top = "0px";
           document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.5)";
           ultimaCor = "rgba(0, 0, 0, 0.5)"
       }
     }
     lastScrollTop = st <= 0 ? 0 : st;
-    }
-},false);
+  }
+}
+
+var lastScrollTop = window.pageYOffset;
+window.addEventListener("scroll", scrolling);
 var isScrolling;
 window.addEventListener('scroll', function(event) {
   window.clearTimeout( isScrolling );
   isScrolling = setTimeout(function() {
     ativo = 1;
-  },66);
+   window.addEventListener("scroll", scrolling);
+  },90);
 }, false);
 
 //Botões Menu
@@ -85,7 +86,9 @@ function scroll(id) {
 }
 
 function Sobre() {
-  possivelSubir = false
+  window.removeEventListener("scroll", scrolling);
+  document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
+  ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
     closeNav()
     setTimeout(function() {
@@ -97,34 +100,67 @@ function Sobre() {
 }
 
 function Programacao() {
+  window.removeEventListener("scroll", scrolling);
+  document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
+  ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
     closeNav()
     setTimeout(function() {
-      document.getElementById('programacao').scrollIntoView({ block: 'start',  behavior: 'smooth' });
+      scroll("programacao")
     }, 300)
   } else {
-    document.getElementById('programacao').scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    scroll("programacao")
   }
 }
 
 function Projetos() {
+  window.removeEventListener("scroll", scrolling);
+  document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
+  ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
     closeNav()
     setTimeout(function() {
-      document.getElementById('projetos').scrollIntoView({ block: 'start',  behavior: 'smooth' });
+      scroll("projetos")
     }, 300)
   } else {
-    document.getElementById('projetos').scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    scroll("projetos")
   }
 }
 
 function Contato() {
+  window.removeEventListener("scroll", scrolling);
+  document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
+  ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
     closeNav()
     setTimeout(function() {
-      document.getElementById('contato').scrollIntoView({ block: 'start',  behavior: 'smooth' });
+      scroll("contato")
     }, 300)
   } else {
-    document.getElementById('contato').scrollIntoView({ block: 'start',  behavior: 'smooth' });
+    scroll("contato")
+  }
+}
+
+function Nome() {
+  if (window.scrollY == 0) {
+    window.open("https://lucasfischer.com.br/index.html", "_self");
+  } else {
+    document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
+    ultimaCor = "rgba(0, 0, 0, 0)"
+    scroll("primeiraPag")
+  }
+}
+
+function projeto(id) {
+  if (id == 1) {
+    window.open("https://teamgewinner.github.io/gewinner/index.html");
+  } else if (id == 2) {
+    window.open("https://lucasfischer.com.br/desafios/apostador/index.html")
+  } else if (id == 3) {
+    window.open("https://lucasfischer.com.br/desafios/memoria/index.html")
+  } else if (id == 4) {
+    window.open("https://lucasfischer.com.br/desafios/genius/index.html")
+  } else if (id == 5) {
+    window.open("https://lucasfischer.com.br/tarefas/index.html")
   }
 }
