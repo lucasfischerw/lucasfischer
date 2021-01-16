@@ -27,7 +27,7 @@
 		<meta name="msapplication-TileImage" content="/faviconMain/favicon-144.png">
 		<meta name="msapplication-config" content="/faviconMain/browserconfig.xml">
 	</head>
-	<body onload="Carregou()" onscroll="closeNav()" onresize="closeNav()" ontouchmove="closeNav()">
+	<body onload="Carregou()" onscroll="closeNav()" ontouchmove="closeNav()">
 		<div class="carregando" id="carregando">
 			<img src="imagens/carregando.gif" class="imagemCarregando">
 		</div>
@@ -70,9 +70,6 @@
 					</div>
 				</div>
 				<div class="secao" id="programacao">
-					<!---<div class="imgProgramacaoContainer">
-						<img class="imgProgramacao" src="imagens/programacao.png">
-					</div>--->
 					<p class="tituloProgramacao">Meus Conhecimentos</p>
 					<div class="linguagensProgramacao">
 						<div class="linguagem">
@@ -115,7 +112,7 @@
 							<img class="imgProjeto" src="imagens/tarefas.jpg">
 							<p class="tituloProjeto">Site das Tarefas</p>
 						</div>
-						<div class="projeto">
+						<div class="projeto" onclick="todosOsProjetos('abrir')">
 							<img class="imgProjeto" src="imagens/emBreve.png">
 							<p class="tituloProjeto">Veja Tudo</p>
 						</div>
@@ -134,6 +131,31 @@
 						</div>
 					</div>
 				</div>	
+			</div>
+		</div>
+		<div class="todosOsProjetos" id="todosOsProjetos">
+			<img src="imagens/seta.png" class="botaoVoltar" onclick="todosOsProjetos('fechar')">
+			<div class="projetosContainer">
+				<div class="projeto" onclick="projeto(1)">
+					<img class="imgProjeto" src="imagens/gewinner.jpg">
+					<p class="tituloProjeto">Site de Robótica</p>
+				</div>
+				<div class="projeto" onclick="projeto(2)">
+					<img class="imgProjeto" src="imagens/apostador.jpg">
+					<p class="tituloProjeto">Desafio do Apostador</p>
+				</div>	
+				<div class="projeto" onclick="projeto(3)">
+					<img class="imgProjeto" src="imagens/memoria.jpg">
+					<p class="tituloProjeto">Desafio da Memória</p>
+				</div>	
+				<div class="projeto" onclick="projeto(4)">
+					<img class="imgProjeto" src="imagens/genius.jpg">
+					<p class="tituloProjeto">Desafio do Genius</p>
+				</div>
+				<div class="projeto" onclick="projeto(5)">
+					<img class="imgProjeto" src="imagens/tarefas.jpg">
+					<p class="tituloProjeto">Site das Tarefas</p>
+				</div>
 			</div>
 		</div>
 		<script src="javascript/script.js"></script>

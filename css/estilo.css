@@ -22,13 +22,11 @@ body {
 .content {
 	display: none;
 	width: 100vw;
-	height: 100vh;
 }
 
 .conteudo {
 	transition: margin 0.3s;
 	width: 100vw;
-	height: 100vh;
 }
 
 .blur {
@@ -110,7 +108,34 @@ body {
 }
 
 .fadein {
-	animation: fadein 1s forwards;
+	animation: fadein 0.8s forwards;
+}
+
+@keyframes fadeleft {
+	0%{margin-left:0;}
+	100%{margin-left:-100vw;}
+}
+
+.fadeleft {
+	animation: fadeleft 0.8s forwards;
+}
+
+@keyframes faderight {
+	0%{margin-left:100vw;}
+	100%{margin-left:0;}
+}
+
+.faderight {
+	animation: faderight 0.8s forwards;
+}
+
+@keyframes fadedown {
+	0%{top:-70px;}
+	100%{top:0px;}
+}
+
+.fadedown {
+	animation: fadedown 0.4s forwards;
 }
 
 /*Barra Superior*/
@@ -161,7 +186,7 @@ body {
 	}
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1200px) {
 	.desktop {
 		display: inherit;
 	}
@@ -183,18 +208,20 @@ body {
 	left: 0px;
 	overflow-x: hidden;
 	font-family: 'Karla', sans-serif;
-	transition: color, top 0.3s;
 	justify-content: space-between;
-  	transition: 0.3s;
+  	transition: all 0.3s;
 }
 
 .itens{
-	margin-top: 20vh;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
 }
 
 .sidenav a {
- 	font-size: 25px;
-	margin-top: 20px;
+ 	font-size: 4vw;
+	margin-top: 3.5vh;
 	padding: 15px 25px;
 	text-align: center;
 	color: white;
@@ -202,6 +229,25 @@ body {
 	transition: 0.3s;
 	border-radius: 15px;
 	font-family: 'Karla', sans-serif;
+}
+
+
+@media (min-width: 150px) {
+	.sidenav a {
+		font-size: 8vw;
+	}
+}
+
+@media (min-width: 320px) {
+	.sidenav a {
+		font-size: 6vw;
+	}
+}
+
+@media (min-width: 500px) {
+	.sidenav a {
+		font-size: 4vw;
+	}
 }
 
 .sidenav a:active,
@@ -319,7 +365,7 @@ img {
 	}
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1200px) {
 	/*PC Grande*/
 	.imagemPessoal {
 		width: 25vw;
@@ -429,7 +475,7 @@ img {
 	}
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1200px) {
 	.textoSobreContainer {
 		width: 51vw;
 		margin-left: 8vw;
@@ -467,7 +513,7 @@ img {
 #programacao {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(40,38,36,1) 33%, rgba(111,110,109,0.6281863087031687) 100%);
+	background-image: url("../imagens/fundoProjetos.png");
 	background-size: cover;
 	width: 100vw;
 	display: inherit;
@@ -497,33 +543,67 @@ img {
 
 @media (min-width: 150px) {
 	@media (min-height: 1px) {
-		.linguagensProgramacao {
-			display: grid;
-			grid-template-columns: 30vw 30vw;
-			margin-left: 20vw;
-			margin-right: 20vw;
+		@media (min-width: 150px) {
+			.linguagensProgramacao {
+				display: grid;
+				grid-template-columns: 30vw 30vw;
+				margin-left: 20vw;
+				margin-right: 20vw;
+				padding-top: 8vh;
+			}
+			.linguagem {
+				margin-right: 0;
+				margin-left: 0;
+				padding-top: 5vh;
+				padding-bottom: 5vh;
+			}
+			.imgProgramacao {
+				width: 30vw;
+			}
+			.linguagem{
+				width: 30vw;
+			}
+			#programacao {
+				height: 115vh;
+			}
+			.tituloProgramacao {
+				padding-top: 5vh;
+				font-size: 4.5vw;
+			}
+			.tituloLinguagem {
+				font-size: 3vw;
+			}
 		}
-		.linguagem {
-			margin-right: 7.5vw;
-			margin-left: 7.5vw;
-			padding-top: 5vh;
-			padding-bottom: 5vh;
-		}
-		.imgProgramacao {
-			width: 20vw;
-		}
-		.linguagem{
-			width: 20vw;
-		}
-		#programacao {
-			height: 100vh;
-		}
-		.tituloProgramacao {
-			padding-top: 6vh;
-			font-size: 4.5vw;
-		}
-		.tituloLinguagem {
-			font-size: 3vw;
+		@media (min-width: 850px) {
+			.linguagensProgramacao {
+				display: grid;
+				grid-template-columns: 30vw 30vw;
+				margin-left: 20vw;
+				margin-right: 20vw;
+				padding-top: 8vh;
+			}
+			.linguagem {
+				margin-right: 7.5vw;
+				margin-left: 7.5vw;
+				padding-top: 5vh;
+				padding-bottom: 5vh;
+			}
+			.imgProgramacao {
+				width: 20vw;
+			}
+			.linguagem{
+				width: 20vw;
+			}
+			#programacao {
+				height: 100vh;
+			}
+			.tituloProgramacao {
+				padding-top: 6vh;
+				font-size: 4.5vw;
+			}
+			.tituloLinguagem {
+				font-size: 3vw;
+			}	
 		}
 	}
 	@media (min-height: 135vw) {
@@ -532,6 +612,7 @@ img {
 			grid-template-columns: 90vw;
 			margin-left: 5vw;
 			margin-right: 5vw;
+			padding-top: 0;
 		}
 		.linguagem {
 			margin-right: 30vw;
@@ -563,7 +644,7 @@ img {
 	}
 }
 
-@media(min-width: 950px) {
+@media(min-width: 1200px) {
 	.linguagensProgramacao {
 		display: grid;
 		grid-template-columns: 25vw 25vw 25vw 25vw;
@@ -599,7 +680,7 @@ img {
 #projetos {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-image: url("../imagens/fundoSobre.jpg");
+	background-image: url("../imagens/fundoProgramacao.jpg");
 	background-size: cover;
 	width: 100vw;
 	height: 100vh;
@@ -664,7 +745,7 @@ img {
 	}
 	@media (min-height: 87vw) {
 		#projetos {
-			height: 120vh;
+			height: 100vh;
 		}
 		.tituloProjeto {
 			font-size: 3vw;
@@ -691,7 +772,7 @@ img {
 	}
 }
 
-@media(min-width: 950px) {
+@media(min-width: 1200px) {
 	.linhasProjetos {
 		display: grid;
 		grid-template-columns: 33.3vw 33.3vw 33.3vw;
@@ -719,8 +800,7 @@ img {
 #contato {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	/*background-image: url("../imagens/fundo.jpg");*/
-	background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(40,38,36,1) 33%, rgba(111,110,109,0.6281863087031687) 100%);
+	background-image: url("../imagens/fundoContato.jpg");
 	background-size: cover;
 	width: 100vw;
 	height: 100vh;
@@ -789,7 +869,7 @@ img {
 	}
 }
 
-@media (min-width: 950px) {
+@media (min-width: 1200px) {
 	.tituloContato {
 		font-size: 3vw;
 	}
@@ -810,4 +890,65 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
 	background-color: #1e1e1e;
 	border-radius: 6px;
+}
+
+/*Todos os Projetos*/
+
+.botaoVoltar {
+	width: 50px;
+	height: auto;
+	transition: transform 0.3s;
+	margin-top: 4vh;
+	margin-left: 4vh;
+}
+
+.botaoVoltar:hover {
+	transform: scale(1.04);
+	cursor: pointer;
+}
+
+.todosOsProjetos {
+	display: none;
+	width: 100vw;
+	height: fit-content;
+	min-height: 100vh;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-image: url("../imagens/fundoProgramacao.jpg");
+	background-size: cover;
+}
+
+.linha {
+	width: 100vw;
+	background-color: red;
+	margin-top: 5vh;
+}
+
+.espacador {
+	height: 10vh;
+	width: 100vw;
+}
+
+.projetosContainer {
+	display: grid;
+	margin-top: 5vh;
+}
+
+@media (min-width: 150px) {
+	@media (min-height: 1px) {
+		.projetosContainer {
+			grid-template-columns: 50vw 50vw;
+		}
+	}
+	@media (min-height: 135vw) {
+		.projetosContainer {
+			grid-template-columns: 100vw;
+		}
+	}
+}
+
+@media (min-width: 1200px) {
+	.projetosContainer {
+		grid-template-columns: 33.3vw 33.3vw 33.3vw;
+	}
 }

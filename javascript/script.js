@@ -15,6 +15,10 @@ async function Carregou() {
     document.getElementById('content').style.display = "inherit";
   }, 300)
   document.getElementById("content").classList.add("fadein")
+  document.getElementById("menu").classList.add("fadedown");
+  setTimeout(function(){
+    document.getElementById("menu").classList.remove("fadedown");
+  }, 700)
 }
 
 //Menus
@@ -27,21 +31,33 @@ var possivelSubir = true;
 function openNav() {
   aberto = true;
   document.getElementById('conteudo').classList.add("blur")
-  document.getElementById("sidebar").style.width = "250px";
+  if (document.body.clientWidth > 626) {
+    document.getElementById("conteudo").style.marginLeft = "40vw";
+  } else {
+    document.getElementById("conteudo").style.marginLeft = "250px";
+  }
+  document.getElementById("sidebar").style.width = "40vw";
+  document.getElementById("sidebar").style.minWidth = "250px";
   document.getElementById("menu").style.display = "none";
-  document.getElementById("conteudo").style.marginLeft = "250px";
   document.getElementById("conteudo").style.opacity = "0.5 !important";
   document.body.style.overflowY = "hidden";
 }
 
 function closeNav() {
-  aberto = false;
   document.getElementById('conteudo').classList.remove("blur")
   document.getElementById("sidebar").style.width = "0px";
+  document.getElementById("sidebar").style.minWidth = "0px";
   document.getElementById("conteudo").style.marginLeft = "0px";
   document.getElementById("conteudo").style.opacity = "1 !important";
-  document.getElementById("menu").style.display = "inline";
+  if (aberto == true) {
+    document.getElementById("menu").classList.add("fadedown");
+    document.getElementById("menu").style.display = "inherit";
+    setTimeout(function() {
+      document.getElementById("menu").classList.remove("fadedown");
+    }, 400)
+  }
   document.body.style.overflowY = "inherit";
+  aberto = false;
 }
 
 function scrolling() {
@@ -58,7 +74,6 @@ function scrolling() {
           document.getElementById("menu").style.backgroundColor = ultimaCor;
         }, 200)
       } else {
-        console.log(3)
           document.getElementById("menu").style.top = "0px";
           document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.5)";
           ultimaCor = "rgba(0, 0, 0, 0.5)"
@@ -86,7 +101,6 @@ function scroll(id) {
 }
 
 function Sobre() {
-  window.removeEventListener("scroll", scrolling);
   document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
   ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
@@ -100,7 +114,6 @@ function Sobre() {
 }
 
 function Programacao() {
-  window.removeEventListener("scroll", scrolling);
   document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
   ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
@@ -114,7 +127,6 @@ function Programacao() {
 }
 
 function Projetos() {
-  window.removeEventListener("scroll", scrolling);
   document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
   ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
@@ -128,7 +140,6 @@ function Projetos() {
 }
 
 function Contato() {
-  window.removeEventListener("scroll", scrolling);
   document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
   ultimaCor = "rgba(0, 0, 0, 0)"
   if (aberto == true) {
@@ -162,5 +173,29 @@ function projeto(id) {
     window.open("https://lucasfischer.com.br/desafios/genius/index.html")
   } else if (id == 5) {
     window.open("https://lucasfischer.com.br/tarefas/index.html")
+  }
+}
+
+
+function todosOsProjetos(funcao) {
+  if (funcao == "abrir") {
+    document.getElementById('content').classList.remove("fadein");
+    document.getElementById('todosOsProjetos').classList.remove("fadein");
+    document.getElementById('content').classList.add("fadeout");
+    setTimeout(function() {
+      document.getElementById('content').style.display = "none";
+      document.getElementById('todosOsProjetos').classList.add("fadein");
+      document.getElementById('todosOsProjetos').style.display = "inherit";
+    }, 300)
+  } else {
+    document.getElementById('todosOsProjetos').classList.remove("fadein");
+    document.getElementById('content').classList.remove("fadein");
+    document.getElementById('todosOsProjetos').classList.add("fadeout");
+    setTimeout(function() {
+      document.getElementById('todosOsProjetos').style.display = "none";
+      document.getElementById('content').classList.add("fadein");
+      document.getElementById('content').style.display = "inherit";
+      document.getElementById("projetos").scrollIntoView({ block: 'start'});
+    }, 300)
   }
 }
