@@ -26,6 +26,7 @@
 		<meta name="msapplication-TileColor" content="#FFFFFF">
 		<meta name="msapplication-TileImage" content="/faviconMain/favicon-144.png">
 		<meta name="msapplication-config" content="/faviconMain/browserconfig.xml">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
 	<body onload="Carregou()" onscroll="closeNav()" ontouchmove="closeNav()">
 		<div class="carregando" id="carregando">
@@ -35,11 +36,11 @@
 			<nav class="menu" id="menu">
 				<ul>
 					<li id="mobile"><a href="javascript:void(0)" onclick="Nome()">Lucas Fischer</a></li>
-					<li id="mobile"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></li>
+					<li id="mobile"><a href="javascript:void(0)" onclick="openNav()" id="botaoExpandir">&#9776;</a></li>
 					<li class="desktop inicio"><a href="javascript:void(0)" onclick="Nome()">Lucas Fischer</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Sobre()">Sobre</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Programacao()">Programação</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Projetos()">Meus Projetos</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Projetos()">Projetos</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Contato()">Contato</a></li>
 				</ul>
 			</nav>
@@ -48,7 +49,7 @@
 				<div class="itens">
 				  	<a href="javascript:void(0)" onclick="Sobre()" class="botao">Sobre</a>
 				  	<a href="javascript:void(0)" onclick="Programacao()">Programação</a>
-				  	<a href="javascript:void(0)" onclick="Projetos()">Meus Projetos</a>
+				  	<a href="javascript:void(0)" onclick="Projetos()">Projetos</a>
 				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
 				</div>
 			</div>
@@ -58,36 +59,24 @@
 						<img class="imagemPessoal" id="imagemPessoal" src="imagens/lucasfischer.jpg">	
 					</div>
 					<div class="nomeContainer" id="nomeContainer">
-						<p class="nome">Lucas Fischer</p>
+						<p id="nomeCima" class="nomeCima">Oi! Eu sou o</p>
+						<p id="nome" class="nome">Lucas Fischer</p>
 					</div>
 				</div>
 				<div class="secao sobre" id="sobre">
 					<div class="imgSobreContainer">
-						<img class="imgSobre" src="imagens/sobre.jpg">
+						<img id="imgSobre" class="imgSobre" src="imagens/sobre.jpg">
 					</div>
 					<div class="textoSobreContainer">
-						<p class="textoSobre">Sou um estudante do Ensino Médio apaixonado por tecnologia. Faço parte da Equipe de Robótica do Colégio Sinodal, onde já fomos 3 vezes para a etapa nacional da OBR. Adoro programar coisas e fazer uns projetos malucos, assim como compartilhar um pouco do conhecimento que tenho. Vejo a tecnologia não só como uma ferramenta que ajuda as pessoas hoje, mas também como algo que pode mudar o amanhã.</p>
+						<p class="textoSobre" id="textoSobre">Sou um estudante do Ensino Médio apaixonado por tecnologia. Faço parte da Equipe de Robótica do Colégio Sinodal, onde já fomos 3 vezes para a etapa nacional da OBR. Adoro programar coisas e fazer uns projetos malucos, assim como compartilhar um pouco do conhecimento que tenho. Vejo a tecnologia não só como uma ferramenta que ajuda as pessoas hoje, mas também como algo que pode mudar o amanhã.</p>
 					</div>
 				</div>
 				<div class="secao" id="programacao">
-					<p class="tituloProgramacao">Meus Conhecimentos</p>
-					<div class="linguagensProgramacao">
-						<div class="linguagem">
-							<img src="imagens/html.png" class="imgProgramacao">
-							<p class="tituloLinguagem">HTML</p>
-						</div>
-						<div class="linguagem">
-							<img src="imagens/css.png" class="imgProgramacao">
-							<p class="tituloLinguagem">CSS</p>
-						</div>
-						<div class="linguagem">
-							<img src="imagens/javascript.png" class="imgProgramacao">
-							<p class="tituloLinguagem">JavaScript</p>
-						</div>
-						<div class="linguagem">
-							<img src="imagens/python.png" class="imgProgramacao">
-							<p class="tituloLinguagem">Python</p>
-						</div>
+					<div class="imgProgramacaoContainer">
+						<img src="imagens/programacao.png" class="imgProgramacao" id="imgProgramacao">
+					</div>
+					<div class="textoProgramacaoContainer">
+						<p class="textoProgramacao">Meu primeiro contato com a programação foi em 2016, aprendendo a programar robôs no software EV3-G. Em 2018, tive meu primeiro contato com HTML e CSS, onde começei a fazer sites simples. Em 2020 desenvolvi ainda mais sites e aprendi Javascript, entendendo que a lógica de programação segue um padrão. Ainda em 2020 aprendi Python, linguagem muito similar a Javascript, para assim programar o robô da nossa equipe com essa linguagem. 2020 foi de longe o ano de mais aprendizado na programação. Fico curioso e animado o que 2021 e adiante reservam!</p>
 					</div>
 				</div>
 				<div class="secao" id="projetos">
@@ -123,9 +112,10 @@
 						<p class="bold tituloContato">Gostou?</p>
 						<p class="tituloContato contato2">Entre em Contato!</p>
 						<div class="iconesCotato">
+							<img class="imagemContato" src="imagens/linkedin.png">
 							<img class="imagemContato" src="imagens/instagram.png" onclick="window.open('https://www.instagram.com/fischer_155/')">
 							<img class="imagemContato" src="imagens/facebook.png"  onclick="window.open('https://www.facebook.com/profile.php?id=100009913897593');">
-							<a href="mailto:lucasfischerw@gmail.com"><img class="imagemContato" src="imagens/gmail.png"></a>
+							<a class="email" href="mailto:lucasfischerw@gmail.com"><img class="imagemContato" src="imagens/gmail.png"></a>
 							<img class="imagemContato" src="imagens/telefone.png" onclick="window.open('tel:51993518371');">
 							<img class="imagemContato" src="imagens/youtube.png" onclick="window.open('https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA');">	
 						</div>

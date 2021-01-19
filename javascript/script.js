@@ -7,8 +7,20 @@ async function preLoad(url) {
 }
 
 async function Carregou() {
-  await preLoad("/imagens/fundo6.jpg")
+  await preLoad("/imagens/fundoInicial.jpg")
+  await preLoad("/imagens/fundoSobre.jpg")
+  await preLoad("/imagens/fundoProgramacao.png")
+  await preLoad("/imagens/fundoProjetos.jpg")
+  await preLoad("/imagens/fundoContato.jpg")
+  await preLoad("/imagens/lucasfischer.jpg")
+  await preLoad("/imagens/programacao.png")
   await preLoad("/imagens/sobre.jpg")
+  await preLoad("/imagens/apostador.jpg")
+  await preLoad("/imagens/emBreve.png")
+  await preLoad("/imagens/genius.jpg")
+  await preLoad("/imagens/gewinner.jpg")
+  await preLoad("/imagens/memoria.jpg")
+  await preLoad("/imagens/tarefas.jpg")
   document.getElementById("carregando").classList.add("fadeout")
   setTimeout(function() {
     document.getElementById('carregando').style.display = "none";
@@ -17,82 +29,83 @@ async function Carregou() {
   document.getElementById("content").classList.add("fadein")
   document.getElementById("menu").classList.add("fadedown");
   setTimeout(function(){
+    document.getElementById('nomeCima').classList.add("fadeup");
+    document.getElementById('nomeCima').style.opacity = "1.0";
+    document.getElementById("imagemPessoal").classList.add("grow");
+    document.getElementById('imagemPessoal').style.opacity = "1.0";
+    setTimeout(function() {
+      document.getElementById('nome').classList.add("fadein");
+    }, 800)
+  }, 500)
+  setTimeout(function(){
     document.getElementById("menu").classList.remove("fadedown");
+    document.getElementById("content").classList.remove("fadein");
   }, 700)
 }
 
 //Menus
 
-var ativo = 1;
 var aberto = false;
 var ultimaCor = "none"
-var possivelSubir = true;
 
 function openNav() {
-  aberto = true;
-  document.getElementById('conteudo').classList.add("blur")
-  if (document.body.clientWidth > 626) {
-    document.getElementById("conteudo").style.marginLeft = "40vw";
-  } else {
-    document.getElementById("conteudo").style.marginLeft = "250px";
-  }
-  document.getElementById("sidebar").style.width = "40vw";
-  document.getElementById("sidebar").style.minWidth = "250px";
-  document.getElementById("menu").style.display = "none";
-  document.getElementById("conteudo").style.opacity = "0.5 !important";
-  document.body.style.overflowY = "hidden";
+  document.getElementById("menu").classList.add("fadeupmenu")
+  setTimeout(function(){
+    if (document.body.clientWidth > 626) {
+      document.getElementById("conteudo").style.marginLeft = "40vw";
+    } else {
+      document.getElementById("conteudo").style.marginLeft = "250px";
+    }
+    document.getElementById("sidebar").style.width = "40vw";
+    document.getElementById("sidebar").style.minWidth = "250px";
+    jQuery('.secao').css('opacity', '0.5');
+    document.body.style.overflowY = "hidden";
+    aberto = true;
+  }, 50)
 }
 
 function closeNav() {
-  document.getElementById('conteudo').classList.remove("blur")
-  document.getElementById("sidebar").style.width = "0px";
-  document.getElementById("sidebar").style.minWidth = "0px";
-  document.getElementById("conteudo").style.marginLeft = "0px";
-  document.getElementById("conteudo").style.opacity = "1 !important";
   if (aberto == true) {
+    document.getElementById("botaoExpandir").style.color = "white"
+    document.getElementById("botaoExpandir").style.backgroundColor = "rgba(0, 0, 0, 0)"
+    document.getElementById("menu").classList.remove("fadeupmenu")
+    document.getElementById("sidebar").style.minWidth = "0px";
+    document.getElementById("sidebar").style.width = "0px";
+    document.getElementById("conteudo").style.marginLeft = "0px";
+    jQuery('.secao').css('opacity', '1');
     document.getElementById("menu").classList.add("fadedown");
-    document.getElementById("menu").style.display = "inherit";
     setTimeout(function() {
       document.getElementById("menu").classList.remove("fadedown");
     }, 400)
-  }
-  document.body.style.overflowY = "inherit";
-  aberto = false;
-}
-
-function scrolling() {
-  if (ativo == 1) {
-    var st = window.pageYOffset || document.documentElement.scrollTop;
-    if (window.scrollY == 0) {
-      document.getElementById("menu").style.top = "0px";
-      document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0)";
-      ultimaCor = "rgba(30, 30, 30, 0)"
-    } else {
-      if (st > lastScrollTop){
-        document.getElementById("menu").style.top = "-70px";
-        setTimeout(function() {
-          document.getElementById("menu").style.backgroundColor = ultimaCor;
-        }, 200)
-      } else {
-          document.getElementById("menu").style.top = "0px";
-          document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-          ultimaCor = "rgba(0, 0, 0, 0.5)"
-      }
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
+    document.body.style.overflowY = "inherit";
+    aberto = false;
   }
 }
 
 var lastScrollTop = window.pageYOffset;
 window.addEventListener("scroll", scrolling);
-var isScrolling;
-window.addEventListener('scroll', function(event) {
-  window.clearTimeout( isScrolling );
-  isScrolling = setTimeout(function() {
-    ativo = 1;
-   window.addEventListener("scroll", scrolling);
-  },90);
-}, false);
+
+function scrolling() {
+  var st = window.pageYOffset || document.documentElement.scrollTop;
+  if (window.scrollY == 0) {
+    document.getElementById("menu").style.top = "0px";
+    document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0)";
+    ultimaCor = "rgba(30, 30, 30, 0)"
+  } else {
+    if (st > lastScrollTop){
+      document.getElementById("menu").style.top = "-70px";
+      setTimeout(function() {
+        document.getElementById("menu").style.backgroundColor = ultimaCor;
+      }, 200)
+    } else {
+        document.getElementById("menu").style.top = "0px";
+        document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0.3)";
+        ultimaCor = "rgba(30, 30, 30, 0.5)"
+    }
+  }
+  lastScrollTop = st <= 0 ? 0 : st;
+}
+
 
 //Botões Menu
 
@@ -179,21 +192,22 @@ function projeto(id) {
 
 function todosOsProjetos(funcao) {
   if (funcao == "abrir") {
-    document.getElementById('content').classList.remove("fadein");
-    document.getElementById('todosOsProjetos').classList.remove("fadein");
+    document.getElementById('content').classList.remove("fadeinfast");
+    document.getElementById('todosOsProjetos').classList.remove("fadeout");
     document.getElementById('content').classList.add("fadeout");
     setTimeout(function() {
       document.getElementById('content').style.display = "none";
-      document.getElementById('todosOsProjetos').classList.add("fadein");
+      document.getElementById('todosOsProjetos').classList.add("fadeinfast");
       document.getElementById('todosOsProjetos').style.display = "inherit";
+      document.getElementById("todosOsProjetos").scrollIntoView({ block: 'start'});
     }, 300)
   } else {
-    document.getElementById('todosOsProjetos').classList.remove("fadein");
-    document.getElementById('content').classList.remove("fadein");
+    document.getElementById('todosOsProjetos').classList.remove("fadeinfast");
+    document.getElementById('content').classList.remove("fadeout");
     document.getElementById('todosOsProjetos').classList.add("fadeout");
     setTimeout(function() {
       document.getElementById('todosOsProjetos').style.display = "none";
-      document.getElementById('content').classList.add("fadein");
+      document.getElementById('content').classList.add("fadeinfast");
       document.getElementById('content').style.display = "inherit";
       document.getElementById("projetos").scrollIntoView({ block: 'start'});
     }, 300)
