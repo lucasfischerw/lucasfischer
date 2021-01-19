@@ -336,11 +336,16 @@ img {
 #primeiraPag {
 	background-repeat: no-repeat;
 	background: url("../imagens/fundoInicial.jpg");
-	-webkit-background-size: cover !important;
-	background-size: cover !important;
+	-webkit-background-size: cover;
+	background-size: cover;
 	background-attachment: fixed;
 	width: 100vw;
 	height: 100vh;
+}
+@media (max-width: @iphone-screen) {
+	#primeiraPag {
+		background-attachment: scroll;
+	}
 }
 
 @media (min-width: 150px) {
