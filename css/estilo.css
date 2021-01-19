@@ -335,7 +335,7 @@ img {
 
 #primeiraPag {
 	background-repeat: no-repeat;
-	background-image: url("../imagens/fundoInicial.jpg");
+	background: url("../imagens/fundoInicial.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
@@ -453,7 +453,7 @@ img {
 
 #sobre {
 	background-repeat: no-repeat;
-	background-image: url("../imagens/fundoSobre.jpg");
+	background: url("../imagens/fundoSobre.jpg");
 	background-size: cover;
 	-webkit-background-size: cover;
 	background-attachment: fixed;
@@ -578,7 +578,7 @@ img {
 
 #programacao {
 	background-repeat: no-repeat;
-	background-image: url("../imagens/fundoProgramacao.png");
+	background: url("../imagens/fundoProgramacao.png");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
@@ -716,7 +716,7 @@ img {
 
 #projetos {
 	background-repeat: no-repeat;
-	background-image: url("../imagens/fundoProjetos.jpg");
+	background: url("../imagens/fundoProjetos.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
@@ -844,7 +844,7 @@ img {
 
 #contato {
 	background-repeat: no-repeat;
-	background-image: url("../imagens/fundoContato.jpg");
+	background: url("../imagens/fundoContato.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
@@ -981,7 +981,7 @@ body::-webkit-scrollbar-thumb {
 	height: fit-content;
 	min-height: 100vh;
 	background-repeat: no-repeat;
-	background-image: url("../imagens/fundoProgramacao.png");
+	background: url("../imagens/fundoProgramacao.png");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
