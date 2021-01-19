@@ -451,10 +451,6 @@ img {
 	height: 100vh;
 }
 
-.textoSobre {
-	text-align: justify;
-}
-
 .imgSobre {
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
@@ -595,10 +591,6 @@ img {
 .imgProgramacao {
 	-webkit-border-radius: 100%;
 	border-radius: 100%;
-}
-
-.textoProgramacao {
-	text-align: justify;
 }
 
 @media (min-width: 150px) {

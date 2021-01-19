@@ -66,8 +66,6 @@ function openNav() {
 
 function closeNav() {
   if (aberto == true) {
-    document.getElementById("botaoExpandir").style.color = "white"
-    document.getElementById("botaoExpandir").style.backgroundColor = "rgba(0, 0, 0, 0)"
     document.getElementById("menu").classList.remove("fadeupmenu")
     document.getElementById("sidebar").style.minWidth = "0px";
     document.getElementById("sidebar").style.width = "0px";
