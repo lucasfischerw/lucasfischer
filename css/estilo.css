@@ -338,14 +338,9 @@ img {
 	background: url("../imagens/fundoInicial.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	width: 100vw;
 	height: 100vh;
-}
-@media (max-width: @iphone-screen) {
-	#primeiraPag {
-		background-attachment: scroll;
-	}
 }
 
 @media (min-width: 150px) {
@@ -461,7 +456,7 @@ img {
 	background: url("../imagens/fundoSobre.jpg");
 	background-size: cover;
 	-webkit-background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	width: 100vw;
 	height: 100vh;
 }
@@ -586,7 +581,7 @@ img {
 	background: url("../imagens/fundoProgramacao.png");
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	width: 100vw;
 	height: 100vh;
 	position: relative;
@@ -724,7 +719,7 @@ img {
 	background: url("../imagens/fundoProjetos.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	width: 100vw;
 	height: 100vh;
 	display: inherit;
@@ -852,7 +847,7 @@ img {
 	background: url("../imagens/fundoContato.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
 	width: 100vw;
 	height: 100vh;
 	display: inherit;
@@ -989,7 +984,7 @@ body::-webkit-scrollbar-thumb {
 	background: url("../imagens/fundoProgramacao.png");
 	-webkit-background-size: cover;
 	background-size: cover;
-	background-attachment: fixed;
+	background-attachment: scroll;
 }
 
 .linha {
