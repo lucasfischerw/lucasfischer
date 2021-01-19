@@ -21,6 +21,13 @@ body {
 	font-family: 'Didact Gothic', sans-serif;
 }
 
+html, body {
+	overflow-x: hidden;
+}
+body {
+	position: relative
+}
+
 .content {
 	display: none;
 	width: 100vw;
@@ -162,6 +169,7 @@ body {
 	font-family: 'Karla', sans-serif;
 	font-weight: 600;
 	transition: 0.5s top, background-color;
+	will-change: transform;
 }
 
 .menu ul {
@@ -328,6 +336,7 @@ img {
 #primeiraPag {
 	background-repeat: no-repeat;
 	background-image: url("../imagens/fundoInicial.jpg");
+	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
 	width: 100vw;
@@ -446,6 +455,7 @@ img {
 	background-repeat: no-repeat;
 	background-image: url("../imagens/fundoSobre.jpg");
 	background-size: cover;
+	-webkit-background-size: cover;
 	background-attachment: fixed;
 	width: 100vw;
 	height: 100vh;
@@ -569,6 +579,7 @@ img {
 #programacao {
 	background-repeat: no-repeat;
 	background-image: url("../imagens/fundoProgramacao.png");
+	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
 	width: 100vw;
@@ -706,6 +717,7 @@ img {
 #projetos {
 	background-repeat: no-repeat;
 	background-image: url("../imagens/fundoProjetos.jpg");
+	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
 	width: 100vw;
@@ -833,6 +845,7 @@ img {
 #contato {
 	background-repeat: no-repeat;
 	background-image: url("../imagens/fundoContato.jpg");
+	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
 	width: 100vw;
@@ -969,6 +982,7 @@ body::-webkit-scrollbar-thumb {
 	min-height: 100vh;
 	background-repeat: no-repeat;
 	background-image: url("../imagens/fundoProgramacao.png");
+	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: fixed;
 }
