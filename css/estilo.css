@@ -336,8 +336,8 @@ img {
 #primeiraPag {
 	background-repeat: no-repeat;
 	background: url("../imagens/fundoInicial.jpg");
-	-webkit-background-size: cover;
-	background-size: cover;
+	-webkit-background-size: cover !important;
+	background-size: cover !important;
 	background-attachment: fixed;
 	width: 100vw;
 	height: 100vh;
