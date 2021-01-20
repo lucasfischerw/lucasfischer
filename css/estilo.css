@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
 
 
 * {
@@ -304,6 +305,7 @@ img {
 .secao {
 	width: 100vw;
 	height: 100vh;
+	transition: opacity 0.3s;
 }
 
 .flex {
@@ -329,8 +331,8 @@ img {
 .nome {
 	opacity: 0;
 	font-size: 6vw;
-	font-weight: normal;
-	font-family: 'Balsamiq Sans', cursive;
+	font-weight: 600;
+	font-family: 'Raleway', sans-serif;
 }
 
 #primeiraPag {
