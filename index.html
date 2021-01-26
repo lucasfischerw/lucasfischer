@@ -28,7 +28,7 @@
 		<meta name="msapplication-config" content="/faviconMain/browserconfig.xml">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
-	<body onload="Carregou()" onscroll="closeNav()" ontouchmove="closeNav()">
+	<body onload="Carregou()" onscroll="closeNav()" ontouchmove="closeNav()" onresize="closeNav()">
 		<div class="carregando" id="carregando">
 			<img src="imagens/carregando.gif" class="imagemCarregando">
 		</div>
@@ -46,8 +46,8 @@
 			</nav>
 			<div id="sidebar" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<div class="itens">
-				  	<a href="javascript:void(0)" onclick="Sobre()" class="botao">Sobre</a>
+				<div class="itens select-none">
+				  	<a href="javascript:void(0)" onclick="Sobre()">Sobre</a>
 				  	<a href="javascript:void(0)" onclick="Programacao()">Programação</a>
 				  	<a href="javascript:void(0)" onclick="Projetos()">Projetos</a>
 				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
@@ -56,7 +56,7 @@
 			<div class="conteudo" id="conteudo" onclick="closeNav()">
 				<div class="secao" id="primeiraPag">
 					<div class="imagemPessoalContainer">
-						<img class="imagemPessoal" id="imagemPessoal" src="imagens/lucasfischer.jpg">	
+						<img class="imagemPessoal select-none" id="imagemPessoal" src="imagens/lucasfischer.jpg">	
 					</div>
 					<div class="nomeContainer" id="nomeContainer">
 						<p id="nomeCima" class="nomeCima">Oi! Eu sou o</p>
@@ -76,7 +76,7 @@
 						<img src="imagens/programacao.png" class="imgProgramacao" id="imgProgramacao">
 					</div>
 					<div class="textoProgramacaoContainer">
-						<p class="textoProgramacao">Meu primeiro contato com a programação foi em 2016, aprendendo a programar robôs no software EV3-G. Em 2018, tive meu primeiro contato com HTML e CSS, onde começei a fazer sites simples. Em 2020 desenvolvi ainda mais sites e aprendi Javascript, entendendo que a lógica de programação segue um padrão. Ainda em 2020 aprendi Python, linguagem muito similar a Javascript, para assim programar o robô da nossa equipe com essa linguagem. 2020 foi de longe o ano de mais aprendizado na programação. Fico curioso e animado o que 2021 e adiante reservam!</p>
+						<p class="textoProgramacao">Meu primeiro contato com a programação foi em 2016, aprendendo a programar robôs no software EV3-G. Em 2018, tive meu primeiro contato com HTML e CSS, onde começei a fazer sites simples. Em 2020 desenvolvi ainda mais sites e aprendi Javascript, entendendo que a lógica de programação segue um padrão. Ainda em 2020 aprendi Python, linguagem muito similar a Javascript, para assim programar o robô da nossa equipe com essa linguagem. 2020 foi de longe o ano de mais aprendizado na programação. Fico curioso e animado para ver o que 2021 e adiante reservam!</p>
 					</div>
 				</div>
 				<div class="secao" id="projetos">
