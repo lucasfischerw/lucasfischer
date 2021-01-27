@@ -95,7 +95,7 @@ function scrolling() {
 	} else if (st > lastScrollTop) {
 		document.getElementById("menu").style.top = "-70px";
 		setTimeout(function() {
-		document.getElementById("menu").style.backgroundColor = ultimaCor;
+			document.getElementById("menu").style.backgroundColor = ultimaCor;
 		}, 200)
 	} else {
 		document.getElementById("menu").style.top = "0px";
@@ -211,6 +211,11 @@ function todosOsProjetos(funcao) {
 			document.getElementById('content').classList.add("fadeinfast");
 			document.getElementById('content').style.display = "inherit";
 			window.scrollTo(0, scroll);
+			setTimeout(function() {
+				document.getElementById("menu").style.top = "0px";
+				document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0.5)";
+				ultimaCor = "rgba(30, 30, 30, 0.5)"	
+			}, 20)
 		}, 300)
 	}
 }
