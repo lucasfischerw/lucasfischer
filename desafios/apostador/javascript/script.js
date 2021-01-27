@@ -101,87 +101,11 @@ function Estatisticas() {
 	document.getElementById('dinheiroGanho').innerHTML = "R$" + valorGanho + ",00";
 	document.getElementById('conteudo').style.display = "none";
 	document.getElementById('estatisticas').style.display = "inherit";
-	if(dinheiroTotalApostado != 0) {
-		document.getElementById('comumEsquerda').style.marginLeft = "0";
-		document.getElementById('comumEsquerda2').style.marginLeft = "0";
-		document.getElementById('comumEsquerda3').style.marginLeft = "0";
-		document.getElementById('chart').style.display = "inherit";
-		document.getElementById('chart2').style.display = "inherit";
-		document.getElementById('chart3').style.display = "inherit";
-		setTimeout(function(){
-	    	drawChart();
-		}, 10);
-	} else {
-		document.getElementById('chart').style.display = "none";
-		document.getElementById('chart2').style.display = "none";
-		document.getElementById('chart3').style.display = "none";
-		document.getElementById('comumEsquerda').style.marginLeft = "13.5%";
-		document.getElementById('comumEsquerda2').style.marginLeft = "13.5%";
-		document.getElementById('comumEsquerda3').style.marginLeft = "13.5%";
-	}
 }
 
 function Inicial() {
 	document.getElementById('conteudo').style.display = "inherit";
 	document.getElementById('estatisticas').style.display = "none";
-}
-
-function drawChart() {
-	const container = document.querySelector('#chart')
-	const container2 = document.querySelector('#chart2')
-	const container3 = document.querySelector('#chart3')
-	nPD = numeroParDerrotas;
-	nPA = numeroParAcertos;
-	nID = numeroImparDerrotas;
-	nIA = numeroImparAcertos;
-	nP = numeroPar;
-	nI = numeroImpar;
-	dTA = dinheiroTotalApostado;
-	vP = valorPerdido;
-	vG = valorGanho;
-
-	const data = new google.visualization.arrayToDataTable([
-		[ 'Par/Ímpar', 'Derrotas/Vitórias' ],
-		[ 'Par - Derrotas', nPD ],
-		[ 'Par - Acertos', nPA ],
-		[ 'Ímpar - Derrotas', nID ],
-		[ 'Ímpar - Acertos', nIA ]
-	])
-	const data2 = new google.visualization.arrayToDataTable([
-		[ 'Par/Ímpar', 'Vezes' ],
-		[ 'Par - Vezes', nP ],
-		[ 'Ímpar - Vezes', nI ]
-	])
-	const data3 = new google.visualization.arrayToDataTable([
-		[ 'Par/Ímpar', 'Dinheiro' ],
-		[ 'Dinheiro total Apostado', dTA ],
-		[ 'Dinheiro Perdido', vP ],
-		[ 'Dinheiro Ganho', vG ]
-	])
-	const options = {
-		title: 'Par ou Ímpar - Acertos e Erros',
-		height: 150,
-		width: 300,
-		colors: ['#FF4646', '#46B446', '#FF4646', '#46B446']
-	}
-	const options2 = {
-		title: 'Par ou Ímpar - Vezes',
-		height: 150,
-		width: 300,
-		colors: ['#2889D9', '#254DB2']
-	}
-	const options3 = {
-		title: 'Dinheiro',
-		height: 150,
-		width: 300,
-		colors: ['#FF8028', '#FF4646', '#46B446']
-	}
-	const chart = new google.visualization.PieChart(container)
-	const chart2 = new google.visualization.PieChart(container2)
-	const chart3 = new google.visualization.PieChart(container3)
-	chart.draw(data, options)
-	chart2.draw(data2, options2)
-	chart3.draw(data3, options3)
 }
 
 function sumir() {
