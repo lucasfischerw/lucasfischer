@@ -13,7 +13,7 @@ async function Carregou() {
 	await preLoad("/imagens/fundoProjetos.jpg")
 	await preLoad("/imagens/fundoContato.jpg")
 	await preLoad("/imagens/lucasfischer.jpg")
-	await preLoad("/imagens/programacao.png")
+	await preLoad("/imagens/programacao.jpg")
 	await preLoad("/imagens/sobre.jpg")
 	await preLoad("/imagens/apostador.jpg")
 	await preLoad("/imagens/emBreve.png")
