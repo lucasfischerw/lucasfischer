@@ -42,6 +42,7 @@ body {
 .imagemCarregando {
 	width: 10vw;
 	height: auto;
+	border-radius: 0;
 }
 
 .carregando {
