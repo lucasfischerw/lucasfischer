@@ -91,6 +91,7 @@ function closeNav() {
 	}
 }
 
+var menuEmBaixo = true;
 var lastScrollTop = window.pageYOffset;
 window.addEventListener("scroll", scrolling);
 
@@ -100,8 +101,10 @@ function scrolling() {
 		document.getElementById("menu").style.top = "0px";
 		document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0)";
 		ultimaCor = "rgba(30, 30, 30, 0)"
+		menuEmBaixo = true;
 	} else if (st > lastScrollTop) {
 		document.getElementById("menu").style.top = "-70px";
+		menuEmBaixo = false;
 		setTimeout(function() {
 			document.getElementById("menu").style.backgroundColor = ultimaCor;
 		}, 200)
@@ -109,6 +112,7 @@ function scrolling() {
 		document.getElementById("menu").style.top = "0px";
 		document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0.5)";
 		ultimaCor = "rgba(30, 30, 30, 0.5)"
+		menuEmBaixo = true;
 	}
 	lastScrollTop = st <= 0 ? 0 : st;
 }
@@ -196,11 +200,17 @@ function projeto(id) {
 	}
 }
 
-var scroll;
+var scrollPosition;
+var posicaoMenu;
 
 function todosOsProjetos(funcao) {
 	if (funcao == "abrir") {
-		scroll = window.pageYOffset || document.documentElement.scrollTop;
+		scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+		if (menuEmBaixo == true) {
+			posicaoMenu = "baixo"
+		} else {
+			posicaoMenu = "cima"
+		}
 		document.getElementById('content').classList.remove("fadeinfast");
 		document.getElementById('todosOsProjetos').classList.remove("fadeout");
 		document.getElementById('content').classList.add("fadeout");
@@ -218,12 +228,16 @@ function todosOsProjetos(funcao) {
 			document.getElementById('todosOsProjetos').style.display = "none";
 			document.getElementById('content').classList.add("fadeinfast");
 			document.getElementById('content').style.display = "inherit";
-			window.scrollTo(0, scroll);
-			setTimeout(function() {
-				document.getElementById("menu").style.top = "0px";
-				document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0.5)";
-				ultimaCor = "rgba(30, 30, 30, 0.5)"	
-			}, 20)
+			if (posicaoMenu == "baixo") {
+				setTimeout(function() {
+					document.getElementById("menu").style.top = "0px";
+					document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0.5)";
+					ultimaCor = "rgba(30, 30, 30, 0.5)"	
+				}, 20)	
+			} else {
+				document.getElementById("menu").style.top = "-70px";
+			}
+			window.scrollTo(0, scrollPosition);
 		}, 300)
 	}
 }
