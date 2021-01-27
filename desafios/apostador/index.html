@@ -27,13 +27,13 @@
 	</head>
 	<body>
 		<div class="conteudo" id="conteudo">
-			<p class="title"> Selecione sua Aposta e o Valor </p>
+			<p class="title">Selecione sua Aposta e o Valor</p>
 			<div class="caixa-apostas">
 				<select id="apostas">
 					<option value="par">Par</option>
 				  	<option value="impar">Ímpar</option>
 				</select>
-				<input id="valorAposta" type="number">
+				<input id="valorAposta" type="number" placeholder="Valor da Aposta">
 			</div>
 			<div class="caixa-btn-apostar">
 				<button onclick="Apostar()">Jogar</button>
@@ -42,14 +42,14 @@
 			<div class="avisosEResultado">
 				<div id="resultado">
 					<p>Vitórias:<div id="pts-vitoria">0</div></p>
-					<p>Derrotas:<div id="pts-derrota">0</div></p>
+					<p class="espacoCima">Derrotas:<div id="pts-derrota">0</div></p>
 				</div>
 				<div class="ganhouOuPerdeu">
-					<p id="status"></p>
+					<p id="status">Ganhou</p>
 				</div>
 				<div class="avisos">
-					<p>Saldo Atual:<div id="valor">R$50,00</div></p>
-					<p>Valor sorteado:<div id="numeroSorteado">-</div></p>
+					<p>Saldo:<div id="valor">R$50,00</div></p>
+					<p class="espacoCima">Valor sorteado:<div id="numeroSorteado">-</div></p>
 				</div>
 			</div>
 		</div>
@@ -58,33 +58,33 @@
 			<p class="title"> Estatísticas </p>
 			<div class="tudo">
 				<div class="display">
-					<div class="comumEsquerda vermelho transform" id="comumEsquerda" onclick="primeira()">
+					<div class="comumEsquerda vermelho" id="comumEsquerda">
 						<p>Vezes que apostou em par e perdeu:<div id="parDerrota">0</div></p>
 						<p>Vezes que apostou em ímpar e perdeu:<div id="imparDerrota">0</div></p>
 					</div>
-					<div class="comumDireita verde transform">
+					<div class="comumDireita verde">
 						<p>Vezes que apostou em par e ganhou:<div id="parAcerto">0</div></p>
 						<p>Vezes que apostou em ímpar e ganhou:<div id="imparAcerto">0</div></p>
 					</div>
 					<div id="chart"></div>
 				</div>
 				<div class="display">
-					<div class="comumEsquerda azul margem transform" id="comumEsquerda2">
+					<div class="comumEsquerda azul margem" id="comumEsquerda2">
 						<p>Vezes que o sorteio foi um número par:<div id="vezesPar">0</div></p>
 					</div>
-					<div class="comumDireita azul2 margem transform">
+					<div class="comumDireita azul2 margem">
 						<p>Vezes que o sorteio foi um número ímpar:<div id="vezesImpar">0</div></p>
 					</div>
 					<div id="chart2"></div>
 				</div>
 				<div class="display">
-					<div class="comumEsquerda laranja margem transform" id="comumEsquerda3">
+					<div class="comumEsquerda laranja margem" id="comumEsquerda3">
 						<p>Total de dinheiro apostado:<div id="totalDinheiro">R$00,00</div></p>
 					</div>
-					<div class="diferente vermelho margem transform">
+					<div class="diferente vermelho margem">
 						<p>Total de dinheiro perdido:<div id="dinheiroPerdido">R$00,00</div></p>
 					</div>
-					<div class="diferente verde margem transform">
+					<div class="diferente verde margem">
 						<p>Total de dinheiro ganho:<div id="dinheiroGanho">R$00,00</div></p>
 					</div>
 					<div id="chart3"></div>
