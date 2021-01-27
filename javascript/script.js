@@ -188,9 +188,11 @@ function projeto(id) {
 	}
 }
 
+var scroll;
 
 function todosOsProjetos(funcao) {
 	if (funcao == "abrir") {
+		scroll = window.pageYOffset || document.documentElement.scrollTop;
 		document.getElementById('content').classList.remove("fadeinfast");
 		document.getElementById('todosOsProjetos').classList.remove("fadeout");
 		document.getElementById('content').classList.add("fadeout");
@@ -208,7 +210,7 @@ function todosOsProjetos(funcao) {
 			document.getElementById('todosOsProjetos').style.display = "none";
 			document.getElementById('content').classList.add("fadeinfast");
 			document.getElementById('content').style.display = "inherit";
-			document.getElementById("projetos").scrollIntoView({ block: 'start'});
+			window.scrollTo(0, scroll);
 		}, 300)
 	}
 }
