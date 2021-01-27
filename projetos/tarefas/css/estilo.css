@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+}
+
+body {
+	display: none;
+}
+
+.titulo {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 2.3em;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 2vh;
+}
+
+.expandir {
+	text-align: center;
+	margin-top: 3vh;
+	transition: transform 0.2s;
+}
+
+.expandir:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.menu {
+	width: 5vw;
+	height: 100vh;
+	background-color: #EEEEEE;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.logo {
+	width: 4vw;
+	height: 4vw;
+	border-radius: 50%;
+	margin-left: 0.5vw;
+	margin-top: 2vh;
+}
+
+.titulo {
+	display: none;
+}
+
+.botao {
+	display: none;
+}
+
+.expandir {
+	display: inherit;
+}
+
+
+@keyframes opacidade {
+	0%{opacity:0;}
+	100%{opacity:1;}
+} 
+
+.opacidade {
+	animation: opacidade 0.5s forwards;
+}
+
+@keyframes fadeout {
+	0%{opacity:1;}
+	100%{opacity:0;}
+}
+
+.fadeout {
+	animation: fadeout 0.1s;
+}
+
+
+div .botao {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 1.6em;
+	height: 60px;
+	width: 15vw;
+	margin-left: 2.5vw;
+	line-height: 50px;
+	text-align: center;
+	margin-top: 4vh;
+	border-style: solid;
+  	border-width: 5px;
+  	border-color: white;
+	border-radius: 15px;
+	transition: 0.2s transform;
+}
+
+.botao:hover {
+	cursor: pointer;
+	transform: scale(1.07);
+}
+
+.espacador {
+	height: 7vh;
+}
+
+.tarefas {
+	height: 100vh;
+	width: 95vw;
+	display: inherit;
+	margin-left: 5vw;
+}
+
+.flex {
+	display: flex;
+}
+
+.dia {
+	width: 18vw;
+	height: 100vh;
+}
+
+.titulodia {
+	margin-top: 5vh;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 1.6em;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+
+/**/
+.vejamais {
+	margin-top: 50vh;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 1.6em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.vejamais:hover {
+	cursor: pointer;
+}
+
+.barrinha {
+	height: 1.5px;
+	width: 75%;
+	margin-left: 12.5%;
+	background-color: #EEEEEE;
+}
+
+.tarefa {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 17px;
+	text-align: center;
+	margin-top: 4vh;
+	padding-bottom: 3vh;
+}
+
+.nometarefa {
+	margin-bottom: 10px;
+}
+
+.textlivre {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	margin-top: 35vh;
+}
+
+.dia_calendario {
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 5px;
+	border-color: #EEEEEE;
+	width: 10vw;
+	height: 10vw;
+	margin-left: -3px;
+}
+
+.semana {
+	width: 70vw;
+	margin-left: 5vw;
+	margin-top: 5vh;
+	display: flex;
+}
+
+.semanas {
+	display: initial;
+	height: 95vh;
+	position: absolute;
+	bottom: 0px;
+}
+
+.primeira {
+	margin-top: 5vh;
+}
+
+.outras {
+	margin-top: -3px;
+}
+
+.descricao_dias {
+	display: flex;
+	height: 5vh;
+	margin-left: 5vw;
+	margin-top: 4vh;
+	line-height: 5vh;
+}
+
+.descricao_cadadia {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	width: 10vw;
+	margin-left: -3px;
+	text-align: center;
+}
+
+#diapassado {
+	padding-left: 3px;
+	font-family: 'Didact Gothic', sans-serif;
+	color: #afafaf;
+}
+
+#diapresente {
+	padding-left: 3px;
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.prova {
+	width: 100%;
+	height: 3.5vh;
+	line-height: 3.5vh;
+	text-align: center;
+	margin-top: 2vh;
+	background-color: #47B447;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.impar {
+	background-color: rgb(255, 70, 70);
+}
+
+.par {
+	background-color: rgb(40, 137, 217);
+}
+
+.adicionar {
+	float: right;
+	height: 48px;
+	width: auto;
+}
+
+.aulas {
+	margin-left: 5vw;
+}
+
+.adicionar {
+	cursor: pointer;
+	height: 5vh;
+	width: 5vh;
+	background-color: #EEEEEE;
+	border-radius: 15px;
+	text-align: center;
+	line-height: 5vh;
+	font-weight: bold;
+	font-size: 40px;
+	margin-top: 90vh;
+	margin-right: 5vh;
+}
+
+.adicionar:hover {
+	background-color: #47B447;
+	color: white;
+}
+
+.descricaoProva {
+	display: none;
+	height: 100vh;
+	width: 80vw;
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.telaAdicionar {
+	display: none;
+	height: 100vh;
+	width: 80vw;
+}
+
+input {
+	height: 6vh;
+	width: 25vw;
+	margin-top: 10vh;
+	text-align: center;
+	margin-left: 27.5vw;
+}
+
+.diasAdicionar {
+	margin-top: 10vh;
+	display: flex;
+	justify-content: center;
+}
+
+.diaAdicionar {
+	width: 8vw;
+	height: 4vh;
+	line-height: 4vh;
+	background-color: #EEEEEE;
+	font-family: 'Didact Gothic', sans-serif;
+	text-align: center;
+	border-radius: 15px;
+	margin-right: 3vw;
+	cursor: pointer;
+}
+
+.diaAdicionar:hover {
+	background-color: #47B447;
+	color: white;
+}
+
+.botaook {
+	width: 15vw;
+	height: 5vh;
+	line-height: 5vh;
+	background-color: #EEEEEE;
+	border-radius: 15px;
+	font-family: 'Didact Gothic', sans-serif;
+	text-align: center;
+	cursor: pointer;
+	margin-left: 32.5vw;
+	margin-top: 10vh;
+}
+
+.botaook:hover {
+	background-color: #47B447;
+	color: white;
+}
+
+.descricaoConteudo {
+	margin-left: 10vw;
+	margin-top: 10vh;
+	background-color: #EEEEEE;
+	width: 60vw;
+	height: 20vh;
+	line-height: 5vh;
+	text-align: center;
+	border-radius: 15px;
+	font-size: 18px;
+}
+
+.voltar {
+	width: 20px;
+	height: auto;
+	margin-top: 10vh;
+	margin-left: 5vw;
+	transition: transform 0.2s;
+}
+
+.voltar:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.tituloprova {
+	margin-top: -3vh;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 1.6em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.provas {
+	margin-left: 12.5vw;
+	height: 100vh;
+}
+
+
+.botaoFechar {
+	width: 3vw;
+    height: 5vw;
+    line-height: 5vw;
+    text-align: center;
+    border-radius: 100%;
+    background-color: #EEEEEE;
+    font-family: 'Didact Gothic', sans-serif;
+	font-size: 1.5em;
+	font-weight: bold;
+    margin-left: 18vw;
+    margin-top: -36vh;
+    display: none;
+}
+
+.botaoFechar:hover {
+	cursor: pointer;
+}
+
+.transicaoAbrirMenu {
+	transition: margin 0.5s, width 0.5s, height 0.5s;
+}
