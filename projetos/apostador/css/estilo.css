@@ -298,9 +298,9 @@ body {
 	}
 	.conteudo {
 		min-height: 450px;
-		margin: 10vh 5vw;
+		margin: 5vh 5vw;
 		width: 90vw;
-		height: 80vh;
+		height: 90vh;
 	}
 	.estatisticas {
 		margin: 10vh 10vw;
