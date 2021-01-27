@@ -232,10 +232,12 @@ function todosOsProjetos(funcao) {
 				setTimeout(function() {
 					document.getElementById("menu").style.top = "0px";
 					document.getElementById("menu").style.backgroundColor = "rgba(30, 30, 30, 0.5)";
-					ultimaCor = "rgba(30, 30, 30, 0.5)"	
+					ultimaCor = "rgba(30, 30, 30, 0.5)"
+					menuEmBaixo = true;
 				}, 20)	
 			} else {
 				document.getElementById("menu").style.top = "-70px";
+				menuEmBaixo = false;
 			}
 			window.scrollTo(0, scrollPosition);
 		}, 300)
