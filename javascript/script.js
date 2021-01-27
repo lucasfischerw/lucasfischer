@@ -190,13 +190,13 @@ function projeto(id) {
 	if (id == 1) {
 		window.open("https://teamgewinner.github.io/gewinner/index.html");
 	} else if (id == 2) {
-		window.open("https://lucasfischer.com.br/desafios/apostador/index.html")
+		window.open("https://lucasfischer.com.br/projetos/apostador/index.html")
 	} else if (id == 3) {
-		window.open("https://lucasfischer.com.br/desafios/memoria/index.html")
+		window.open("https://lucasfischer.com.br/projetos/memoria/index.html")
 	} else if (id == 4) {
-		window.open("https://lucasfischer.com.br/desafios/genius/index.html")
+		window.open("https://lucasfischer.com.br/projetos/genius/index.html")
 	} else if (id == 5) {
-		window.open("https://lucasfischer.com.br/tarefas/index.html")
+		window.open("https://lucasfischer.com.br/projetos/tarefas/index.html")
 	}
 }
 
