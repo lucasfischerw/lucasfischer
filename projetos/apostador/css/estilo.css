@@ -183,34 +183,38 @@ body {
 	font-weight: bold;
 }
 
+.tudo {
+	display: grid;
+	grid-template-columns: 40vw 40vw;
+}
+
 .comumEsquerda {
 	width: 35vw;
-	margin-left: 3.3vw;
+	margin-left: 2.5vw;
+	margin-right: 2.5vw;
 	text-align: center;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-	padding-top: 2vh;
-	padding-bottom: 2vh;
+	padding: 2vh;
 }
 
 .comumDireita {
 	width: 35vw;
-	margin-left: 3.3vw;
+	margin-left: 2.5vw;
+	margin-right: 2.5vw;
 	text-align: center;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-	padding-top: 2vh;
-	padding-bottom: 2vh;
+	padding: 2vh;
 }
 
 .diferente {
-	width: 15.9vw;
+	width: 16vw;
 	text-align: center;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
-	margin-left: 3.3vw;
-	padding-top: 2vh;
-	padding-bottom: 2vh;
+	margin-left: 0;
+	padding: 2vh;
 }
 
 .estatisticas .title {
@@ -265,9 +269,18 @@ body {
 	background-color: rgb(255, 128, 40);
 }
 
+.cartoesMenores {
+	width: 35vw;
+	margin-left: 2.5vw;
+}
+
+.especial {
+	margin-left: 3vw;
+}
+
 /*Responsividade*/
 
-@media(min-height: 130vw) {
+@media(min-height: 100vw) {
 	#valorAposta {
 		width: 70vw;
 		margin-left: 10vw;
@@ -290,10 +303,10 @@ body {
 		height: 80vh;
 	}
 	.estatisticas {
-		min-height: 590px;
-		margin: 10vh 5vw;
-		width: 90vw;
-		height: 80vh;
+		margin: 10vh 10vw;
+		width: 80vw;
+		height: 90vh;
+		min-height: 870px;
 	}
 	.avisosEResultado {
 		grid-template-columns: 25vw 34vw 25vw;
@@ -308,19 +321,81 @@ body {
 	#resultado {
 		width: 25vw;
 	}
+	/**/
 	.comumEsquerda {
-		width: 40vw;
-		margin-left: 3.3vw;
+		width: 60vw;
+		margin-left: 10vw;
 	}
 	.comumDireita {
-		width: 40vw;
-		margin-left: 3.3vw;
+		width: 60vw;
+		margin-left: 10vw;
+		margin-top: 20px;
+	}
+	.cartoesMenores {
+		width: 60vw;
+		margin-left: 10vw;
 	}
 	.diferente {
-		width: 18.4vw;
+		width: 30vw;
 		text-align: center;
 		-webkit-border-radius: 15px;
 		border-radius: 15px;
-		margin-left: 3.3vw;
+		margin-left: 0;
 	}
+	.especial {
+		margin-left: 5vw;
+	}
+	.tudo {
+		display: grid;
+		grid-template-columns: 80vw;
+	}
+}
+
+@media(min-height: 140vw) {
+	.comumEsquerda {
+		width: 80vw;
+		margin-left: 5vw;
+	}
+	.comumDireita {
+		width: 80vw;
+		margin-left: 5vw;
+		margin-top: 20px;
+	}
+	.cartoesMenores {
+		width: 80vw;
+		margin-left: 5vw;
+	}
+	.diferente {
+		width: 38vw;
+		text-align: center;
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin-left: 0;
+	}
+	.especial {
+		margin-left: 5vw;
+	}
+	.estatisticas {
+		margin: 5vh 5vw;
+		width: 90vw;
+		height: auto;
+		min-height: 890px;
+	}
+	.tudo {
+		display: grid;
+		grid-template-columns: 90vw;
+	}
+}
+
+body::-webkit-scrollbar {
+	width: 5px;
+	background-color: rgb(0, 0, 0, 0);
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: rgb(200, 200, 200);
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 }
