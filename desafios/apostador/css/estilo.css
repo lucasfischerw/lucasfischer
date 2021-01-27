@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
 
-body {
-	background-color: rgb(40, 137, 217);
-}
-
-button:hover,
-button:active {
-	cursor: pointer;
-	transform: scale(1.05);
-}
+/*Elementos Gerais*/
 
 * {
 	margin: 0;
@@ -23,9 +15,20 @@ button:active {
 html, body {
 	overflow-x: hidden;
 }
+
 body {
+	background-color: rgb(40, 137, 217);
 	position: relative
 }
+
+@media(hover: hover) and (pointer: fine) {
+	button:hover {
+		cursor: pointer;
+		transform: scale(1.05);
+	}
+}
+
+/*Tela Inicial*/
 
 .conteudo {
 	width: 80vw;
@@ -33,17 +36,10 @@ body {
 	min-height: 370px;
 	margin: 10vh 10vw;
 	background-color: white;
+	-webkit-border-radius: 20px;
 	border-radius: 20px;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 900;
-}
-
-.caixa-btn-apostar {
-	display: flex;
-	text-align: center;
-	justify-content: space-around;
-	padding-top: 7vh;
-	padding-bottom: 5vh;
 }
 
 #apostas {
@@ -53,7 +49,6 @@ body {
 	min-height: 25px;
 	margin-bottom: 2.5vh;
 	border-width: 1px;
-	border-radius: 15px;
 	border-color: rgb(107 107 107 / 50%);
 	text-align-last: center;
 	-webkit-touch-callout: none;
@@ -64,6 +59,7 @@ body {
 	user-select: none;
 	outline: none;
 	border-style: solid;
+	-webkit-border-radius: 10000px;
 	border-radius: 10000px;
 }
 
@@ -73,7 +69,6 @@ body {
 	height: 4vh;
 	min-height: 25px;
 	border-width: 1px;
-	border-radius: 15px;
 	border-color: rgb(107 107 107 / 50%);
 	text-align: center;
 	-webkit-touch-callout: none;
@@ -84,7 +79,17 @@ body {
 	user-select: none;
 	outline: none;
 	border-style: solid;
+	-webkit-border-radius: 10000px;
 	border-radius: 10000px;
+}
+
+.caixa-btn-apostar {
+	-webkit-display: flex;
+	display: flex;
+	text-align: center;
+	justify-content: space-around;
+	padding-top: 7vh;
+	padding-bottom: 5vh;
 }
 
 .caixa-btn-apostar button {
@@ -93,6 +98,7 @@ body {
 	height: 6vh;
 	min-height: 37.5px;
 	text-decoration: none;
+	-webkit-border-radius: 10000px;
 	border-radius: 10000px;
 	border-color: white;
 	border-style: none;
@@ -108,6 +114,7 @@ body {
 }
 
 .carteira {
+	-webkit-display: flex;
 	display: flex;
 }
 
@@ -160,20 +167,28 @@ body {
 	padding-top: 4vh;
 }
 
+/*Tela Estatísticas*/
+
+.estatisticas {
+	display: none;
+	font-family: 'Raleway', sans-serif;
+	width: 80vw;
+	height: 80vh;
+	min-height: 485px;
+	margin: 10vh 10vw;
+	background-color: white;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	color: white;
+	font-weight: bold;
+}
+
 .comumEsquerda {
 	width: 35vw;
 	margin-left: 3.3vw;
 	text-align: center;
+	-webkit-border-radius: 15px;
 	border-radius: 15px;
-	padding-top: 2vh;
-    padding-bottom: 2vh;
-}
-
-.diferente {
-	width: 15.9vw;
-	text-align: center;
-	border-radius: 15px;
-	margin-left: 3.3vw;
 	padding-top: 2vh;
 	padding-bottom: 2vh;
 }
@@ -182,13 +197,52 @@ body {
 	width: 35vw;
 	margin-left: 3.3vw;
 	text-align: center;
+	-webkit-border-radius: 15px;
 	border-radius: 15px;
 	padding-top: 2vh;
-    padding-bottom: 2vh;
+	padding-bottom: 2vh;
+}
+
+.diferente {
+	width: 15.9vw;
+	text-align: center;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	margin-left: 3.3vw;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+}
+
+.estatisticas .title {
+	margin-top: -8vh;
+}
+
+.espacamentoCima {
+	padding-top: 2vh;
+}
+
+.margem {
+	margin-top: 20px;
 }
 
 .display {
+	-webkit-display: flex;
 	display: flex;
+}
+
+.back_arrow {
+	width: 25px;
+	height: auto;
+	margin-top: 20px;
+	margin-left: 20px;
+	transition: 0.3s transform;
+}
+
+@media(hover: hover) and (pointer: fine) {
+	.back_arrow:hover {
+		transform: scale(1.1);
+		cursor: pointer;
+	}
 }
 
 .vermelho {
@@ -211,50 +265,7 @@ body {
 	background-color: rgb(255, 128, 40);
 }
 
-.margem {
-	margin-top: 20px;
-}
-
-.estatisticas {
-	display: none;
-	font-family: 'Raleway', sans-serif;
-	width: 80vw;
-	height: 80vh;
-	min-height: 485px;
-	margin: 10vh 10vw;
-	background-color: white;
-	border-radius: 20px;
-	color: white;
-	font-weight: bold;
-}
-
-.estatisticas .title {
-	margin-top: -8vh;
-}
-
-.back_arrow {
-	width: 25px;
-	height: auto;
-	margin-top: 20px;
-	margin-left: 20px;
-}
-
-.transform {
-	z-index: 1;
-	transition: 0.3s transform;
-}
-
-.transform:active,
-.transform:hover{
-	transform: scale(1.1);
-	cursor: pointer;
-}
-
-.espacamentoCima {
-	padding-top: 2vh;
-}
-
-/*Estatísticas*/
+/*Responsividade*/
 
 @media(min-height: 130vw) {
 	#valorAposta {
@@ -274,21 +285,21 @@ body {
 	}
 	.conteudo {
 		min-height: 450px;
-		margin: 5vh 5vw;
+		margin: 10vh 5vw;
 		width: 90vw;
-		height: 90vh;
+		height: 80vh;
 	}
 	.estatisticas {
-		min-height: 535px;
-		margin: 5vh 5vw;
+		min-height: 590px;
+		margin: 10vh 5vw;
 		width: 90vw;
-		height: 90vh;
+		height: 80vh;
 	}
 	.avisosEResultado {
 		grid-template-columns: 25vw 34vw 25vw;
 	}
 	.ganhouOuPerdeu p {
-		padding-top: 25vh;
+		padding-top: 20vh;
 		font-size: 7vw;
 	}
 	.avisos {
@@ -308,6 +319,7 @@ body {
 	.diferente {
 		width: 18.4vw;
 		text-align: center;
+		-webkit-border-radius: 15px;
 		border-radius: 15px;
 		margin-left: 3.3vw;
 	}

@@ -10,7 +10,7 @@ var numeroImparAcertos = 0;
 var dinheiroTotalApostado = 0;
 var valorPerdido = 0;
 var valorGanho = 0;
-			
+
 function Apostar() {
 	var sorteio = Math.floor(Math.random() * 10);
 	var aposta = document.getElementById("apostas").value;
@@ -89,6 +89,7 @@ function Apostar() {
 		window.alert('O valor mínimo da aposta é R$1,00')
 	}
 }
+
 function Estatisticas() {
 	document.getElementById('vezesPar').innerHTML = numeroPar;
 	document.getElementById('vezesImpar').innerHTML = numeroImpar;
