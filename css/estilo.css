@@ -1014,7 +1014,7 @@ body::-webkit-scrollbar-thumb:hover {
 	height: fit-content;
 	min-height: 100vh;
 	background-repeat: no-repeat;
-	background: url("../imagens/fundoProgramacao.png");
+	background: url("../imagens/fundoProjetos.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: scroll;
