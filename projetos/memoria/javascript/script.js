@@ -4,9 +4,9 @@ var escolhido1 = 0;
 var escolhido2 = 0;
 var numeroCartas = 0;
 var imagem = 0;
-var ranNumsFacil = shuffle([1, 2, 3, 1, 2, 3]);
-var ranNumsMedio = shuffle([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]);
-var ranNumsDificil = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+var ranNumsFacil;
+var ranNumsMedio;
+var ranNumsDificil;
 var totalJogadas = 0;
 var estaJogando = false;
 var vezesGanhou = 0;
@@ -28,6 +28,12 @@ function Carregou() {
 	preloadImage()
 }
 
+function ResetarClasses() {
+	document.getElementById("containerCartas").classList.remove("cartasDificil")
+	document.getElementById("containerCartas").classList.remove("cartasNormal")
+	document.getElementById("containerCartas").classList.remove("cartasFacil")
+}
+
 function Jogar() {
 	if (estaJogando == false) {
 		estaJogando = true;
@@ -39,46 +45,35 @@ function Jogar() {
 		if(aberto == true) {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
-			document.getElementById('linha1').style.opacity = "1"
-			intervalo = 500
+			intervalo = 300
 			setTimeout(function() {
 				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 				document.getElementById('menuConfiguracoes').style.display = "none"
 				aberto = false
-			}, 500)
+			}, 150)
 		} else {
 			intervalo = 0
 		}
+		document.getElementById('containerCartas').innerHTML = ""
+		document.getElementById('containerCartas').classList.remove("textoTentaivas")
+		document.getElementById('containerCartas').classList.add("cartas")
+		document.getElementById('containerCartas').style.color = "rgb(0, 0, 0)"
 		setTimeout(function() {
-			document.getElementById('linha1').style.opacity = "1"
 			document.body.style.backgroundColor = "rgb(40, 137, 217)"
-			document.getElementById('botao-jogar').style.cursor = "not-allowed"
-			document.getElementById('linha1').innerHTML = ""
-			document.getElementById('linha1').style.color = "black"
-			document.getElementById('botao-jogar').innerHTML = "Jogar"
 			if (dificuldade == 3) {
 				quantidadeCartas = 24
-				document.getElementById('linha3').style.display = "flex"
-				document.getElementById('linha4').style.display = "flex"
-				document.getElementById('conteudo').style.height = "140vh"
-				document.getElementById('conteudo').style.marginBottom = "10vh"
-				document.getElementById('menuPowerUp').style.marginTop = "-125vh"
+				ResetarClasses()
+				document.getElementById("containerCartas").classList.add("cartasDificil")
 				imagemEscolhida = ranNumsDificil[Math.floor(Math.random() * (13 - 1)) + 1]
 			} else if (dificuldade == 2) {
 				quantidadeCartas = 12
-				document.getElementById('linha3').style.display = "none"
-				document.getElementById('linha4').style.display = "none"
-				document.getElementById('conteudo').style.height = "80vh"
-				document.getElementById('conteudo').style.marginBottom = "0"
-				document.getElementById('menuPowerUp').style.marginTop = "-65vh"
+				ResetarClasses()
+				document.getElementById("containerCartas").classList.add("cartasNormal")
 				imagemEscolhida = ranNumsMedio[Math.floor(Math.random() * (7 - 1)) + 1]
 			} else if (dificuldade == 1) {
 				quantidadeCartas = 6
-				document.getElementById('linha3').style.display = "none"
-				document.getElementById('linha4').style.display = "none"
-				document.getElementById('conteudo').style.height = "80vh"
-				document.getElementById('conteudo').style.marginBottom = "0"
-				document.getElementById('menuPowerUp').style.marginTop = "-65vh"
+				ResetarClasses()
+				document.getElementById("containerCartas").classList.add("cartasFacil")
 				imagemEscolhida = ranNumsFacil[Math.floor(Math.random() * (4 - 1)) + 1]
 			}
 			if (document.getElementById('ativarPowerUp').checked == true) {
@@ -87,30 +82,58 @@ function Jogar() {
 				Desenha()
 			}
 		}, intervalo)
+	} else {
+		Apaga()
+	}
+}
+
+function Apaga() {
+	if (estaJogando == true) {
+		var numeroCartasInicial = numeroCartas;
+		while (numeroCartas != 0) {
+			document.getElementById("carta-"+numeroCartas+"").classList.add("desaparecer")
+			numeroCartas = numeroCartas - 1;
+		}
+		setTimeout(function() {
+			while (numeroCartasInicial != 0) {
+				var carta = document.getElementById("carta-"+numeroCartasInicial);
+				carta.remove();
+				numeroCartasInicial = numeroCartasInicial - 1;
+			}
+			estaJogando = false;
+			possivelAbrirProxima = true;
+			resetar()
+			document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
+			setTimeout(function() {
+				document.getElementById('menuPowerUp').style.display = "none"
+				document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
+				Jogar()
+			}, 500)
+		}, 200)
+	} else {
+		estaJogando = false;
+		possivelAbrirProxima = true;
+		resetar()
+		document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
+		setTimeout(function() {
+			document.getElementById('menuPowerUp').style.display = "none"
+			document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
+			Jogar()
+		}, 500)
 	}
 }
 
 function Desenha() {
 	while (numeroCartas < quantidadeCartas) {
-			var carta = document.createElement("div");
-			carta.setAttribute("class", "carta")
-			carta.setAttribute("id", "carta-"+parseInt(numeroCartas + 1)+"")
-			carta.style.backgroundColor = "whitesmoke";
-			carta.innerHTML = numeroCartas + 1;
-			carta.setAttribute("onclick", "clicou("+parseInt(numeroCartas+1)+")")
-			carta.style.width = "22vh";
-			carta.style.height = "22vh";
-			if (numeroCartas > 17) {
-				document.getElementById('linha4').appendChild(carta);
-			} else if (numeroCartas > 11) {
-				document.getElementById('linha3').appendChild(carta);
-			} else if (numeroCartas > 5) {
-				document.getElementById('linha2').appendChild(carta);
-			} else {
-				document.getElementById('linha1').appendChild(carta);
-			}
-			numeroCartas = numeroCartas + 1;
-		}
+		var carta = document.createElement("div");
+		carta.setAttribute("class", "carta")
+		carta.setAttribute("id", "carta-"+parseInt(numeroCartas + 1)+"")
+		carta.style.backgroundColor = "whitesmoke";
+		carta.innerHTML = numeroCartas + 1;
+		carta.setAttribute("onclick", "clicou("+parseInt(numeroCartas+1)+")")
+		document.getElementById("containerCartas").appendChild(carta)
+		numeroCartas = numeroCartas + 1;
+	}
 }
 
 function clicou(numeroBotao) {
@@ -128,7 +151,6 @@ function clicou(numeroBotao) {
 			numeroImagem = ranNumsDificil[numeroBotao - 1]
 		}
 		document.getElementById("carta-"+numeroBotao+"").innerHTML = ""
-		document.getElementById("carta-"+numeroBotao+"").style.backgroundSize = "22vh 22vh"
 		totalJogadas = totalJogadas + 1;
 		if (totalJogadas == 2) {
 			pontuacao()
@@ -189,7 +211,7 @@ function pontuacao() {
 							if (tentativas <= 3) {
 								if (document.getElementById('ativarPowerUp').checked == true) {
 									document.getElementById('titulo').innerHTML = "PowerUp!"
-									powerUpAtivo()		
+									powerUpAtivo()
 								} else {
 									possivelAbrirProxima = true;
 								}
@@ -202,18 +224,23 @@ function pontuacao() {
 					}
 					if (vezesGanhou == numeroCartas/2) {
 						setTimeout(function() {
-							document.getElementById('linha2').innerHTML = ""
 							if (tentativas < 12) {
-								document.getElementById('linha1').style.color = "rgb(70, 180, 70)"
-								document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								ResetarClasses()
+								document.getElementById('containerCartas').classList.add("textoTentaivas")
+								document.getElementById('containerCartas').style.color = "rgb(70, 180, 70)"
+								document.getElementById('containerCartas').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(70, 180, 70)"
 							} else if (tentativas < 20) {
-								document.getElementById('linha1').style.color = "rgb(240, 180, 0)"
-								document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								ResetarClasses()
+								document.getElementById('containerCartas').classList.add("textoTentaivas")
+								document.getElementById('containerCartas').style.color = "rgb(240, 180, 0)"
+								document.getElementById('containerCartas').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(240, 180, 0)"
 							} else {
-								document.getElementById('linha1').style.color = "rgb(255, 70, 70)"
-								document.getElementById('linha1').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								ResetarClasses()
+								document.getElementById('containerCartas').classList.add("textoTentaivas")
+								document.getElementById('containerCartas').style.color = "rgb(255, 70, 70)"
+								document.getElementById('containerCartas').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(255, 70, 70)"
 							}
 							document.getElementById('botao-jogar').innerHTML = "Reiniciar"
@@ -223,7 +250,7 @@ function pontuacao() {
 							resetar()
 						}, 200)
 					}
-				}, 500)
+				}, 300)
 			}, 900)
 		} else {
 			totalVezesErrou++;
@@ -272,26 +299,25 @@ function preloadImage() {
 	document.body.style.backgroundColor = "rgb(40, 137, 217)";
 }
 
-function AbrirConfiguracoes() {
+function AbrirConfiguracoes(iniciarJogo) {
 	if (estaJogando == false) {
 		if (aberto == false) {
 			document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 			document.getElementById('menuConfiguracoes').classList.add("abrirMenu")
 			document.getElementById('menuConfiguracoes').style.display = "inherit"
-			document.getElementById('linha1').style.opacity = "0"
-			setTimeout(function() {
-				document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
-				aberto = true
-			}, 500)
+			aberto = true
 		} else {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
-			document.getElementById('linha1').style.opacity = "1"
 			setTimeout(function() {
-				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 				document.getElementById('menuConfiguracoes').style.display = "none"
 				aberto = false
-			}, 500)
+				if (iniciarJogo == true) {
+					setTimeout(function() {
+						Jogar()
+					}, 200)	
+				}
+			}, 150)
 		}	
 	}
 }
@@ -334,9 +360,11 @@ function proximo() {
 }
 
 function powerUp() {
+	document.getElementById('botao-jogar').innerHTML = "Reiniciar"
 	document.getElementById('menuPowerUp').style.display = "inherit"
 	document.getElementById('imagem').style.backgroundImage = "url(imagens/"+imagemEscolhida+".png)"
 	document.getElementById('imagem').style.backgroundSize = "20vh 20vh"
+	window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function FecharPowerUp() {
@@ -358,7 +386,6 @@ function powerUpAtivo() {
 			} else {
 				document.getElementById("carta-"+controle+"").classList.add("comImagem")
 				document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsFacil[controle-1]+".png)"
-				document.getElementById("carta-"+controle+"").style.backgroundSize = "22vh 22vh"
 				document.getElementById("carta-"+controle+"").innerHTML = ""		
 			}
 			controle++
@@ -370,7 +397,6 @@ function powerUpAtivo() {
 			} else {
 				document.getElementById("carta-"+controle+"").classList.add("comImagem")
 				document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsMedio[controle-1]+".png)"
-				document.getElementById("carta-"+controle+"").style.backgroundSize = "22vh 22vh"
 				document.getElementById("carta-"+controle+"").innerHTML = ""		
 			}
 			controle++
@@ -379,7 +405,6 @@ function powerUpAtivo() {
 		while(controle < (numeroCartas + 1)) {
 			document.getElementById("carta-"+controle+"").classList.add("comImagem")
 			document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsDificil[controle-1]+".png)"
-			document.getElementById("carta-"+controle+"").style.backgroundSize = "22vh 22vh"
 			document.getElementById("carta-"+controle+"").innerHTML = ""
 			controle++
 		}
@@ -402,14 +427,15 @@ function Estatisticas () {
 		if(aberto == true) {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
-			document.getElementById('linha1').style.opacity = "1"
 			setTimeout(function() {
 				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 				document.getElementById('menuConfiguracoes').style.display = "none"
 				aberto = false
-				document.getElementById('conteudo').style.display = "none";
-				document.getElementById('estatisticas').style.display = "inherit";
-			}, 500)
+				setTimeout(function() {
+					document.getElementById('conteudo').style.display = "none";
+					document.getElementById('estatisticas').style.display = "inherit";
+				}, 300)
+			}, 150)
 		} else {
 			document.getElementById('conteudo').style.display = "none";
 			document.getElementById('estatisticas').style.display = "inherit";

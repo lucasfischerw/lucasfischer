@@ -20,18 +20,25 @@ body {
 }
 
 button {
-	width: 10vw;
+	width: 100px;
 	height: 5vh;
-	border-radius: 1vw;
+	border-radius: 14px;
 	border-color: whitesmoke;
 	border-style: none;
 	transition: all 0.2s;
 	outline: none;
 }
 
+.buttonContainer {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
 .botao-ok {
 	margin-top: 7vh;
-	margin-left: 20vw;
+	margin-bottom: 2vh;
 	background-color: #4caf50;
 	color: white;
 }
@@ -48,32 +55,26 @@ button:hover {
 	margin-top: 35vh;
 }
 
-.conteudo {
-	display: none;
-	background-color: white;
-	width: 80vw;
-	height: 80vh;
-	margin-left: 10vw;
-	margin-top: 10vh;
-	border-radius: 15px;
-}
-
 .titulo {
 	text-align: center;
-	padding-top: 3vh;
+	line-height: 30px;
+	margin-top: -30px;
+	height: 30px;
 	font-family: 'Balsamiq Sans', cursive;
 }
 
 .linhas {
 	height: 22vh;
-	margin-top: 5vh;
+	margin-top: 3vh;
 	display: flex;
 	justify-content: space-around;
 }
 
-#linha1 {
+.textoTentaivas {
 	font-family: 'Balsamiq Sans', cursive;
-	line-height: 22vh;
+	line-height: 52vh;
+	height: 57vh;
+	text-align: center;
 	font-size: 50px;
 }
 
@@ -94,7 +95,11 @@ button:hover {
 .carta {
 	border-radius: 15px;
 	text-align: center;
-	line-height: 22vh;
+	line-height: 18vh;
+	width: 18vh;
+	height: 18vh;
+	background-size: 18vh 18vh;
+	margin: auto;
 	font-family: 'Balsamiq Sans', cursive;
 	font-size: 30px;
 	transition: all 0.3s;
@@ -103,13 +108,13 @@ button:hover {
 }
 
 .carta:hover {
-	transform: scale(1.1);
+	transform: scale(1.05);
 	cursor: pointer;
 }
 
 .desaparecer {
 	cursor: initial !important;
-	animation: desaparecer 0.5s;
+	animation: desaparecer 0.3s;
 	opacity: 0 !important;
 }
 
@@ -122,28 +127,6 @@ button:hover {
 	margin-top: -3vh;
 	margin-left: 64vw;
 	font-family: 'Didact Gothic', sans-serif !important; 
-}
-
-.comImagem {
-	animation: forwards opacidade 0.5s;
-}
-
-.menuPowerUp {
-	display: none;
-	width: 50vw;
-	margin-left: 50vw;
-	height: 50vh;
-	margin-top: -65vh;
-	margin-left: 25vw;
-	background-color: whitesmoke;
-	border-radius: 15px;
-	align-items: center;
-	transition: all 0.5s;
-	animation: aparecer 0.5s forwards;
-}
-
-.menuPowerUpFechado {
-	animation: desaparecer 0.5s forwards;
 }
 
 @keyframes desaparecer {
@@ -161,13 +144,32 @@ button:hover {
 	100% {opacity: 1; transform: scale(1);}
 }
 
+.comImagem {
+	animation: forwards opacidade 0.5s;
+}
+
+.menuPowerUp {
+	display: none;
+	width: 80vw;
+	background-color: whitesmoke;
+	border-radius: 15px;
+	align-items: center;
+	margin-top: -150vh;
+	margin-left: 5vw;
+	transition: transform 0.3s;
+	animation: aparecer 0.5s forwards;
+}
+
+.menuPowerUpFechado {
+	animation: desaparecer 0.5s forwards;
+}
+
 .configurar {
 	width: 30px;
-	height: auto;
-	margin-left: 3vw;
-	margin-top: 25px;
-	background-color: rgb(255, 255, 255);
-	transition: all 0.5s;
+	height: 30px;
+	margin-left: 15px;
+	margin-top: 15px;
+	transition: transform 0.3s;
 }
 
 .configurar:hover {
@@ -176,38 +178,27 @@ button:hover {
 }
 
 .container-geral {
-	margin-top: -55px;
+	margin-top: -60px;
+	height: 80vh
 }
 
 .menuConfiguracoes {
 	display: none;
-	width: 50vw;
-	margin-left: 50vw;
-	height: 45vh;
-	margin-top: -67vh;
-	margin-left: 25vw;
+	width: 80vw;
 	background-color: whitesmoke;
 	border-radius: 15px;
 	align-items: center;
+	margin-top: -150vh;
+	margin-left: 5vw;
 	transition: all 0.3s;
 }
 
 .abrirMenu {
-	animation: abreMenu forwards 0.5s;
-}
-
-@keyframes abreMenu {
-	0% {opacity: 0.2; transform: scale(0.1); margin-left: -10vw; margin-top: -48vw;}
-	100% {opacity: 1; transform: scale(1); margin-left: 25vw; margin-top: -33vw;}
+	animation: aparecer forwards 0.3s;
 }
 
 .fecharMenu {
-	animation: fechaMenu forwards 0.5s;
-}
-
-@keyframes fechaMenu {
-	0% {opacity: 1; transform: scale(1); margin-left: 25vw; margin-top: -33vw; display: inherit;}
-	100% {opacity: 0; transform: scale(0.1); margin-left: -10vw; margin-top: -48vw; display: none;}
+	animation: desaparecer forwards 0.3s;
 }
 
 .menuConfiguracoes p {
@@ -232,8 +223,8 @@ button:hover {
 }
 
 .select {
-	width: 25vw;
-	margin-left: 12.5vw;
+	width: 67%;
+	margin-left: 16.5%;
 	margin-top: 5vh;
 	text-align: center;
 	display: flex;
@@ -299,21 +290,28 @@ button:hover {
 .flex {
 	display: flex;
 	justify-content: space-around;
-	margin-top: 6vh;
+	padding-top: 6vh;
 }
 
 .flex div {
 	width: 10vw;
-	height: 5vh;
-	border-radius: 1vw;
-	border-color: whitesmoke;
-	background-color: whitesmoke;
+	min-width: 100px;
+	height: 27px;
+	border-radius: 14px;
+	background-color: rgb(239, 239, 239);
 	border-style: none;
 	transition: all 0.2s;
 	outline: none;
 	text-align: center;
-	line-height: 5vh;
+	line-height: 27px;
 	font-family: 'Didact Gothic', sans-serif !important;
+}
+
+@media (min-height: 540px) {
+	.flex div {
+		height: 5vh;
+		line-height: 5vh;
+	}
 }
 
 .flex div:hover {
@@ -334,7 +332,7 @@ button:hover {
 
 .titulo2 {
 	text-align: center;
-	margin-top: -4vh;
+	margin-top: -34px;
 	font-family: 'Balsamiq Sans', cursive;
 }
 
@@ -359,10 +357,10 @@ button:hover {
 }
 
 .back_arrow {
-	width: 25px;
-	height: auto;
-	margin-top: 4vh;
-	margin-left: 3vw;
+	width: 30px;
+	height: 30px;
+	margin-left: 15px;
+	margin-top: 15px;
 }
 
 .transform:hover {
@@ -426,4 +424,201 @@ button:hover {
 
 .espacamento {
 	margin-left: 10vw;
+}
+
+.conteudo {
+	display: none;
+	background-color: white;
+	width: 90vw;
+	height: 180vh;
+	margin: 5vh 5vw;
+	border-radius: 15px;
+}
+
+.configurarContainer {
+	height: 45px;
+}
+
+.cartasFacil {
+	
+}
+
+.cartasNormal {
+	margin-top: 5vh;
+	height: 150vh;
+	width: 90vw;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 45vw);
+	grid-template-rows: repeat(auto-fill, 26vh);
+}
+
+.cartasDificil {
+
+}
+
+/*Responsividade*/
+
+@media (min-width: 60vh) {
+	.cartasNormal {
+		margin-top: 5vh;
+		height: 150vh;
+		width: 90vw;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 45vw);
+		grid-template-rows: repeat(auto-fill, 26vh);
+	}
+	.carta {
+		line-height: 22vh;
+		width: 22vh;
+		height: 22vh;
+		background-size: 22vh 22vh;
+	}
+}
+
+@media (min-width: 90vh) {
+	.cartasNormal {
+		margin-top: 5vh;
+		height: 78vh;
+		width: 90vw;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 22.5vw);
+		grid-template-rows: 26vh 26vh 26vh;
+	}
+	.conteudo {
+		height: 105vh;
+		width: 90vw;
+		margin: 5vh 5vw;
+	}
+	.carta {
+		line-height: 18vh;
+		width: 18vh;
+		height: 18vh;
+		background-size: 18vh 18vh;
+	}
+	.menuPowerUp {
+		width: 60vw;
+		margin-top: -80vh;
+		margin-left: 15vw;
+	}
+	.menuConfiguracoes {
+		width: 60vw;
+		margin-top: -80vh;
+		margin-left: 15vw;
+	}
+}
+
+@media (min-width: 110vh) {
+	.cartasNormal {
+		margin-top: 5vh;
+		height: 78vh;
+		width: 90vw;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 22.5vw);
+		grid-template-rows: 26vh 26vh 26vh;
+	}
+	.conteudo {
+		height: 105vh;
+		width: 90vw;
+		margin: 5vh 5vw;
+	}
+	.carta {
+		line-height: 22vh;
+		width: 22vh;
+		height: 22vh;
+		background-size: 22vh 22vh;
+	}
+}
+
+@media (min-width: 140vh) {
+	.cartasNormal {
+		margin-top: 5vh;
+		height: 52vh;
+		width: 90vw;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 15vw);
+		grid-template-rows: 26vh 26vh;
+	}
+	.conteudo {
+		height: 80vh;
+		width: 90vw;
+		margin: 10vh 5vw;
+	}
+	.carta {
+		line-height: 18vh;
+		width: 18vh;
+		height: 18vh;
+		background-size: 18vh 18vh;
+	}
+	.menuPowerUp {
+		width: 60vw;
+		margin-top: -62vh;
+		margin-left: 15vw;
+	}
+	.menuConfiguracoes {
+		width: 60vw;
+		margin-top: -62vh;
+		margin-left: 15vw;
+	}
+}
+
+@media (min-width: 160vh) {
+	.cartasNormal {
+		margin-top: 5vh;
+		height: 52vh;
+		width: 90vw;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 15vw);
+		grid-template-rows: 26vh 26vh;
+	}
+	.conteudo {
+		height: 80vh;
+		width: 90vw;
+		margin: 10vh 5vw;
+		min-height: calc(72px + 67vh);
+	}
+	.carta {
+		line-height: 22vh;
+		width: 22vh;
+		height: 22vh;
+		background-size: 22vh 22vh;
+	}
+}
+
+@media (min-width: 180vh) {
+	.cartasNormal {
+		margin-top: 5vh;
+		height: 52vh;
+		width: 80vw;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 13.333vw);
+		grid-template-rows: 26vh 26vh;
+	}
+	.conteudo {
+		height: 80vh;
+		width: 80vw;
+		margin: 10vh 10vw;
+	}
+	.menuPowerUp {
+		width: 50vw;
+		margin-top: -62vh;
+		margin-left: 15vw;
+	}
+	.menuConfiguracoes {
+		width: 50vw;
+		margin-top: -62vh;
+		margin-left: 15vw;
+	}
+}
+
+body::-webkit-scrollbar {
+	width: 5px;
+	background-color: rgb(0, 0, 0, 0);
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: rgb(200, 200, 200);
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 }

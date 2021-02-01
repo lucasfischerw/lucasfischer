@@ -29,42 +29,41 @@
 <body onload="Carregou()">
 	<div id="carregando-container"><img class="carregando" id="carregando" src="imagens/carregando.gif"></div>
 	<div class="conteudo" id="conteudo">
-		<div><img class="configurar" src="imagens/13.png" onclick="AbrirConfiguracoes()"></div>
-		<div class="container-geral">
-			<h1 class="titulo" id="titulo">Memória</h1>
-			<div id="linha1" class="linhas"></div>
-			<div id="linha2" class="linhas"></div>
-			<div id="linha3" class="linhas"></div>
-			<div id="linha4" class="linhas"></div>
-			<div class="flex">	
-				<div onclick="Jogar()" id="botao-jogar" class="botao-jogar">Jogar</div>	
-				<div onclick="Estatisticas()" id="botao" class="botao-estatisticas">Estatísticas</div>	
+		<div class="configurarContainer"><img class="configurar" src="imagens/13.png" onclick="AbrirConfiguracoes(false)"></div>
+		<h1 class="titulo" id="titulo">Memória</h1>
+		<div class="cartasNormal" id="containerCartas"></div>
+		<div class="flex">
+			<div onclick="Jogar()" id="botao-jogar" class="botao-jogar">Jogar</div>	
+			<div onclick="Estatisticas()" id="botao" class="botao-estatisticas">Estatísticas</div>	
+		</div>
+		<div id="menuConfiguracoes" class="menuConfiguracoes">
+			<p class="dificuldade">Dificuldade:</p>
+			<div class="select">
+				<div onclick="anterior()" class="anterior" id="anterior"><</div>
+				<div class="dificuldadeEscolhida" id="dificuldadeEscolhida">Médio</div>
+				<div onclick="proximo()" class="proximo" id="proximo">></div>
+			</div>
+			<div class="inputPowerUp">
+				<input type="checkbox" id="ativarPowerUp" class="ativarPowerUp" name="ativarPowerUp" checked="true">
+				<label for="ativarPowerUp"> Ativar PowerUp</label><br>
+			</div>
+			<div class="buttonContainer">
+				<button onclick="AbrirConfiguracoes(true)" class="botao-ok">Ok</button>	
+			</div>
+		</div>
+		<div id="menuPowerUp" class="menuPowerUp">
+			<div class="texto">
+				<p>Acerte a</p>
+				<div id="imagem"></div>
+				<p>em no máximo 3 tentativas para ganhar um PowerUp</p>		
+			</div>
+			<div class="buttonContainer">
+				<button onclick="FecharPowerUp()" class="botao-ok">Ok</button>	
 			</div>
 		</div>
 	</div>
-	<div id="menuConfiguracoes" class="menuConfiguracoes">
-		<p class="dificuldade">Dificuldade:</p>
-		<div class="select">
-			<div onclick="anterior()" class="anterior" id="anterior"><</div>
-			<div class="dificuldadeEscolhida" id="dificuldadeEscolhida">Médio</div>
-			<div onclick="proximo()" class="proximo" id="proximo">></div>
-		</div>
-		<div class="inputPowerUp">
-			<input type="checkbox" id="ativarPowerUp" class="ativarPowerUp" name="ativarPowerUp" checked="true">
-			<label for="ativarPowerUp"> Ativar PowerUp</label><br>
-		</div>
-		<button onclick="AbrirConfiguracoes()" class="botao-ok">Ok</button>	
-	</div>
-	<div id="menuPowerUp" class="menuPowerUp">
-		<div class="texto">
-			<p>Acerte a</p>
-			<div id="imagem"></div>
-			<p>em no máximo 3 tentativas para ganhar um PowerUp</p>		
-		</div>
-		<button onclick="FecharPowerUp()" class="botao-ok">Ok</button>	
-	</div>
 	<div class="estatisticas" id="estatisticas">
-		<a href="javascript:void(0)" onclick="Inicial()" class="container"><img src="imagens/271218.png" class="back_arrow transform"></a>
+		<img src="imagens/271218.png" class="back_arrow transform" onclick="Inicial()">
 		<h1 class="titulo2"> Estatísticas </h1>
 		<div class="cartoes">
 			<div class="cartao medio direita vermelho">

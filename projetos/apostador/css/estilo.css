@@ -59,8 +59,8 @@ body {
 	user-select: none;
 	outline: none;
 	border-style: solid;
-	-webkit-border-radius: 10000px;
-	border-radius: 10000px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
 }
 
 #valorAposta {
@@ -79,8 +79,8 @@ body {
 	user-select: none;
 	outline: none;
 	border-style: solid;
-	-webkit-border-radius: 10000px;
-	border-radius: 10000px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
 }
 
 .caixa-btn-apostar {
@@ -98,8 +98,8 @@ body {
 	height: 6vh;
 	min-height: 37.5px;
 	text-decoration: none;
-	-webkit-border-radius: 10000px;
-	border-radius: 10000px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
 	border-color: white;
 	border-style: none;
 	transition: transform 0.2s;
