@@ -3,10 +3,33 @@
 async function preLoad(url) {
 	var img = new Image();
 	img.src = url;
-return;
+	img.onload = function() {return;}
 }
 
 async function Carregou() {
+	await preLoad("/imagens/fundoInicial.jpg")
+	await preLoad("/imagens/fundoSobre.jpg")
+	await preLoad("/imagens/fundoProgramacao.png")
+	await preLoad("/imagens/fundoProjetos.jpg")
+	await preLoad("/imagens/fundoContato.jpg")
+	await preLoad("/imagens/lucasfischer.jpg")
+	await preLoad("/imagens/programacao.jpg")
+	await preLoad("/imagens/sobre.jpg")
+	await preLoad("/imagens/apostador.jpg")
+	await preLoad("/imagens/apostadorDark.jpg")
+	await preLoad("/imagens/emBreve.png")
+	await preLoad("/imagens/genius.jpg")
+	await preLoad("/imagens/gewinner.jpg")
+	await preLoad("/imagens/memoria.jpg")
+	await preLoad("/imagens/tarefas.jpg")
+	await preLoad("/imagens/floresta.jpg")
+	await preLoad("/imagens/seta.png")
+	await preLoad("/imagens/youtube.png")
+	await preLoad("/imagens/telefone.png")
+	await preLoad("/imagens/gmail.png")
+	await preLoad("/imagens/facebook.png")
+	await preLoad("/imagens/instagram.png")
+	await preLoad("/imagens/linkedin.png")
 	document.getElementById("carregando").classList.add("fadeout")
 	document.getElementById("primeiraPag").scrollIntoView({ block: 'start'});
 	setTimeout(function() {
