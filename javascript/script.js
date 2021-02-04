@@ -7,28 +7,6 @@ return;
 }
 
 async function Carregou() {
-	await preLoad("/imagens/fundoInicial.jpg")
-	await preLoad("/imagens/fundoSobre.jpg")
-	await preLoad("/imagens/fundoProgramacao.png")
-	await preLoad("/imagens/fundoProjetos.jpg")
-	await preLoad("/imagens/fundoContato.jpg")
-	await preLoad("/imagens/lucasfischer.jpg")
-	await preLoad("/imagens/programacao.jpg")
-	await preLoad("/imagens/sobre.jpg")
-	await preLoad("/imagens/apostador.jpg")
-	await preLoad("/imagens/emBreve.png")
-	await preLoad("/imagens/genius.jpg")
-	await preLoad("/imagens/gewinner.jpg")
-	await preLoad("/imagens/memoria.jpg")
-	await preLoad("/imagens/tarefas.jpg")
-	await preLoad("/imagens/floresta.jpg")
-	await preLoad("/imagens/seta.png")
-	await preLoad("/imagens/youtube.png")
-	await preLoad("/imagens/telefone.png")
-	await preLoad("/imagens/gmail.png")
-	await preLoad("/imagens/facebook.png")
-	await preLoad("/imagens/instagram.png")
-	await preLoad("/imagens/linkedin.png")
 	document.getElementById("carregando").classList.add("fadeout")
 	document.getElementById("primeiraPag").scrollIntoView({ block: 'start'});
 	setTimeout(function() {
@@ -69,6 +47,8 @@ function openNav() {
 		document.getElementById("sidebar").style.minWidth = "250px";
 		jQuery('.secao').css('opacity', '0.5');
 		document.body.style.overflowY = "hidden";
+		window.addEventListener("scroll", closeNav);
+		window.addEventListener("touchmove", closeNav);
 		aberto = true;
 	}, 50)
 }
@@ -83,6 +63,8 @@ function closeNav() {
 		document.getElementById("conteudo").style.marginLeft = "0px";
 		jQuery('.secao').css('opacity', '1');
 		document.getElementById("menu").classList.add("fadedown");
+		window.removeEventListener("scroll", closeNav);
+		window.removeEventListener("touchmove", closeNav);
 		setTimeout(function() {
 			document.getElementById("menu").classList.remove("fadedown");
 		}, 400)
@@ -243,3 +225,11 @@ function todosOsProjetos(funcao) {
 		}, 300)
 	}
 }
+
+//window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+	//if (event.matches) {
+		//Escuro
+	//} else {
+		//Claro
+	//}
+//})
