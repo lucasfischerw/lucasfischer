@@ -142,12 +142,11 @@ button:hover {
 
 .textoTentativas {
 	font-family: 'Balsamiq Sans', cursive;
-	line-height: 52vh;
-	height: 150vh;
 	text-align: center;
 	font-size: 50px;
-	height: 71.25%;
-	opacity: 0;
+	padding-top: 10vh;
+    width: 100%;
+	display: none;
 	animation: opacidade 0.6s forwards;
 }
 
@@ -768,34 +767,4 @@ body::-webkit-scrollbar-thumb {
 	background-color: rgb(200, 200, 200);
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-}
-
-@media (min-width: 300px) {
-	.textoTentativas {
-		font-size: 10px;
-	}
-}
-
-@media (min-width: 400px) {
-	.textoTentativas {
-		font-size: 30px;
-	}
-}
-
-@media (min-width: 500px) {
-	.textoTentativas {
-		font-size: 35px;
-	}
-}
-
-@media (min-width: 600px) {
-	.textoTentativas {
-		font-size: 40px;
-	}
-}
-
-@media (min-width: 700px) {
-	.textoTentativas {
-		font-size: 50px;
-	}
 }

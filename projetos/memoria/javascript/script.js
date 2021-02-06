@@ -55,9 +55,8 @@ function Jogar() {
 			intervalo = 0
 		}
 		setTimeout(function() {
-			document.getElementById('containerCartas').innerHTML = ""
-			document.getElementById('containerCartas').classList.remove("textoTentativas")
-			document.getElementById('containerCartas').style.color = "rgb(0, 0, 0)"
+			document.getElementById("textoTentativas").style.display = "none"
+			document.getElementById('containerCartas').style.display = "grid"
 			document.body.style.backgroundColor = "rgb(40, 137, 217)"
 			ResetarClasses()
 			ResetarClassesMenu()
@@ -225,24 +224,32 @@ function pontuacao() {
 					}
 					if (vezesGanhou == numeroCartas/2) {
 						document.getElementById("body").style.transition = "background-color 0.6s"
+						var numeroCartasInicial = numeroCartas;
+						while (numeroCartas != 0) {
+							document.getElementById("carta-"+numeroCartas+"").classList.add("desaparecer")
+							numeroCartas = numeroCartas - 1;
+						}
 						setTimeout(function() {
+							while (numeroCartasInicial != 0) {
+								var carta = document.getElementById("carta-"+numeroCartasInicial);
+								carta.remove();
+								numeroCartasInicial = numeroCartasInicial - 1;
+							}
+						}, 200)
+						setTimeout(function() {
+							document.getElementById('containerCartas').style.display = "inherit"
+							document.getElementById('textoTentativas').style.display = "inherit"
 							if (tentativas < 12) {
-								ResetarClasses()
-								document.getElementById('containerCartas').classList.add("textoTentativas")
-								document.getElementById('containerCartas').style.color = "rgb(70, 180, 70)"
-								document.getElementById('containerCartas').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								document.getElementById('textoTentativas').style.color = "rgb(70, 180, 70)"
+								document.getElementById('textoTentativas').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(70, 180, 70)"
 							} else if (tentativas < 20) {
-								ResetarClasses()
-								document.getElementById('containerCartas').classList.add("textoTentativas")
-								document.getElementById('containerCartas').style.color = "rgb(240, 180, 0)"
-								document.getElementById('containerCartas').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								document.getElementById('textoTentativas').style.color = "rgb(240, 180, 0)"
+								document.getElementById('textoTentativas').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(240, 180, 0)"
 							} else {
-								ResetarClasses()
-								document.getElementById('containerCartas').classList.add("textoTentativas")
-								document.getElementById('containerCartas').style.color = "rgb(255, 70, 70)"
-								document.getElementById('containerCartas').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								document.getElementById('textoTentativas').style.color = "rgb(255, 70, 70)"
+								document.getElementById('textoTentativas').innerHTML = "Ganhou em "+tentativas+" tentativas"
 								document.body.style.backgroundColor = "rgb(255, 70, 70)"
 							}
 							document.getElementById('botao-jogar').innerHTML = "Reiniciar"
@@ -394,7 +401,6 @@ function powerUpAtivo() {
 	if (dificuldade == 1) {
 		while(controle < (numeroCartas + 1)) {
 			if (document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
-				console.log('Nao vai')
 			} else {
 				document.getElementById("carta-"+controle+"").classList.add("comImagem")
 				document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsFacil[controle-1]+".png)"
@@ -405,7 +411,6 @@ function powerUpAtivo() {
 	} else if (dificuldade == 2) {
 		while(controle < (numeroCartas + 1)) {
 			if (document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
-				console.log('Nao vai')
 			} else {
 				document.getElementById("carta-"+controle+"").classList.add("comImagem")
 				document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsMedio[controle-1]+".png)"

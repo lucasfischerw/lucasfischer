@@ -43,23 +43,25 @@
 				<label for="ativarPowerUp"> Ativar PowerUp</label><br>
 			</div>
 			<div class="buttonContainer">
-				<button onclick="AbrirConfiguracoes(true)" class="botao-ok">Ok</button>	
+				<button onclick="AbrirConfiguracoes(true)" class="botao-ok">Ok</button>
 			</div>
 		</div>
 		<div id="menuPowerUp" class="menuPowerUp">
 			<div class="texto">
 				<p>Acerte a</p>
 				<div id="imagem"></div>
-				<p>em no máximo 3 tentativas para ganhar um PowerUp</p>		
+				<p>em no máximo 3 tentativas para ganhar um PowerUp</p>
 			</div>
 			<div class="buttonContainer">
-				<button onclick="FecharPowerUp()" class="botao-ok">Ok</button>	
+				<button onclick="FecharPowerUp()" class="botao-ok">Ok</button>
 			</div>
 		</div>
-		<div class="cartasNormal" id="containerCartas"></div>
+		<div class="cartasNormal" id="containerCartas">
+			<p class="textoTentativas" id="textoTentativas"></p>
+		</div>
 		<div class="flex">
-			<div onclick="Jogar()" id="botao-jogar" class="botao-jogar">Jogar</div>	
-			<div onclick="Estatisticas()" id="botao" class="botao-estatisticas">Estatísticas</div>	
+			<div onclick="Jogar()" id="botao-jogar" class="botao-jogar">Jogar</div>
+			<div onclick="Estatisticas()" id="botao" class="botao-estatisticas">Estatísticas</div>
 		</div>
 	</div>
 	<div class="estatisticas" id="estatisticas">
@@ -82,12 +84,12 @@
 				<div class="justFlex">
 					<div class="width">
 						<p class="center subtitulo-carta">Total de jogadas hoje</p>
-						<p class="center numero" id="totalJogadasHoje">-</p>	
+						<p class="center numero" id="totalJogadasHoje">-</p>
 					</div>
 					<div class="width espacamento">
 						<p class="center subtitulo-carta">Total de jogadas na última rodada</p>
-						<p class="center numero" id="jogadasUltimaRodada">-</p>		
-					</div>		
+						<p class="center numero" id="jogadasUltimaRodada">-</p>
+					</div>
 				</div>
 			</div>
 		</div>
