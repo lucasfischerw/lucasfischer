@@ -153,14 +153,16 @@ button:hover {
 
 .menuPowerUp {
 	display: none;
+	position: absolute;
 	width: 80vw;
 	background-color: whitesmoke;
 	border-radius: 15px;
 	align-items: center;
-	margin-top: -150vh;
+	margin-top: 7vh;
 	margin-left: 5vw;
 	transition: transform 0.3s;
 	animation: aparecer 0.5s forwards;
+	z-index: 10;
 }
 
 .menuPowerUpFechado {
@@ -187,13 +189,15 @@ button:hover {
 
 .menuConfiguracoes {
 	display: none;
+	position: absolute;
 	width: 80vw;
 	background-color: whitesmoke;
 	border-radius: 15px;
 	align-items: center;
-	margin-top: -150vh;
+	margin-top: 5vh;
 	margin-left: 5vw;
 	transition: all 0.3s;
+	z-index: 10;
 }
 
 .abrirMenu {
@@ -558,12 +562,12 @@ button:hover {
 	}
 	.menuPowerUp {
 		width: 60vw;
-		margin-top: -80vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
 		width: 60vw;
-		margin-top: -80vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 }
@@ -652,12 +656,12 @@ button:hover {
 	}
 	.menuPowerUp {
 		width: 60vw;
-		margin-top: -62vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
 		width: 60vw;
-		margin-top: -62vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 }
@@ -743,12 +747,12 @@ button:hover {
 	}
 	.menuPowerUp {
 		width: 50vw;
-		margin-top: -62vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
 		width: 50vw;
-		margin-top: -62vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 }

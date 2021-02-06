@@ -59,20 +59,22 @@ function Jogar() {
 			document.getElementById('containerCartas').classList.remove("textoTentativas")
 			document.getElementById('containerCartas').style.color = "rgb(0, 0, 0)"
 			document.body.style.backgroundColor = "rgb(40, 137, 217)"
+			ResetarClasses()
+			ResetarClassesMenu()
 			if (dificuldade == 3) {
 				quantidadeCartas = 24
-				ResetarClasses()
 				document.getElementById("containerCartas").classList.add("cartasDificil")
+				document.getElementById("conteudo").classList.add("conteudoDificil")
 				imagemEscolhida = ranNumsDificil[Math.floor(Math.random() * (13 - 1)) + 1]
 			} else if (dificuldade == 2) {
 				quantidadeCartas = 12
-				ResetarClasses()
 				document.getElementById("containerCartas").classList.add("cartasNormal")
+				document.getElementById("conteudo").classList.add("conteudoNormal")
 				imagemEscolhida = ranNumsMedio[Math.floor(Math.random() * (7 - 1)) + 1]
 			} else if (dificuldade == 1) {
 				quantidadeCartas = 6
-				ResetarClasses()
 				document.getElementById("containerCartas").classList.add("cartasFacil")
+				document.getElementById("conteudo").classList.add("conteudoFacil")
 				imagemEscolhida = ranNumsFacil[Math.floor(Math.random() * (4 - 1)) + 1]
 			}
 			if (document.getElementById('ativarPowerUp').checked == true) {
@@ -313,14 +315,6 @@ function AbrirConfiguracoes(iniciarJogo) {
 			document.getElementById('menuConfiguracoes').style.display = "inherit"
 			aberto = true
 		} else {
-			ResetarClassesMenu()
-			if (dificuldade == 1) {
-				document.getElementById("conteudo").classList.add("conteudoFacil")
-			} else if (dificuldade == 2) {
-				document.getElementById("conteudo").classList.add("conteudoNormal")
-			} else {
-				document.getElementById("conteudo").classList.add("conteudoDificil")
-			}
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
 			setTimeout(function() {
