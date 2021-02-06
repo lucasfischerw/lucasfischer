@@ -70,14 +70,6 @@ button:hover {
 	justify-content: space-around;
 }
 
-.textoTentaivas {
-	font-family: 'Balsamiq Sans', cursive;
-	line-height: 52vh;
-	height: 57vh;
-	text-align: center;
-	font-size: 50px;
-}
-
 #linha2 {
 	margin-top: 8vh;
 }
@@ -146,6 +138,17 @@ button:hover {
 
 .comImagem {
 	animation: forwards opacidade 0.5s;
+}
+
+.textoTentativas {
+	font-family: 'Balsamiq Sans', cursive;
+	line-height: 52vh;
+	height: 150vh;
+	text-align: center;
+	font-size: 50px;
+	height: 71.25%;
+	opacity: 0;
+	animation: opacidade 0.6s forwards;
 }
 
 .menuPowerUp {
@@ -426,11 +429,29 @@ button:hover {
 	margin-left: 10vw;
 }
 
-.conteudo {
+.conteudoFacil {
+	display: none;
+	background-color: white;
+	width: 90vw;
+	height: 100vh;
+	margin: 5vh 5vw;
+	border-radius: 15px;
+}
+
+.conteudoNormal {
 	display: none;
 	background-color: white;
 	width: 90vw;
 	height: 180vh;
+	margin: 5vh 5vw;
+	border-radius: 15px;
+}
+
+.conteudoDificil {
+	display: none;
+	background-color: white;
+	width: 90vw;
+	height: 340vh;
 	margin: 5vh 5vw;
 	border-radius: 15px;
 }
@@ -440,7 +461,12 @@ button:hover {
 }
 
 .cartasFacil {
-	
+	margin-top: 5vh;
+	height: 75vh;
+	width: 90vw;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 45vw);
+	grid-template-rows: repeat(auto-fill, 26vh);
 }
 
 .cartasNormal {
@@ -453,17 +479,32 @@ button:hover {
 }
 
 .cartasDificil {
-
+	margin-top: 5vh;
+	height: 312vh;
+	width: 90vw;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 45vw);
+	grid-template-rows: repeat(auto-fill, 26vh);
 }
 
 /*Responsividade*/
 
 @media (min-width: 60vh) {
+	.cartasFacil {
+		height: 75vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 45vw);
+		grid-template-rows: repeat(auto-fill, 26vh);
+	}
 	.cartasNormal {
-		margin-top: 5vh;
 		height: 150vh;
 		width: 90vw;
-		display: grid;
+		grid-template-columns: repeat(auto-fill, 45vw);
+		grid-template-rows: repeat(auto-fill, 26vh);
+	}
+	.cartasDificil {
+		height: 312vh;
+		width: 90vw;
 		grid-template-columns: repeat(auto-fill, 45vw);
 		grid-template-rows: repeat(auto-fill, 26vh);
 	}
@@ -476,16 +517,36 @@ button:hover {
 }
 
 @media (min-width: 90vh) {
+	.cartasFacil {
+		height: 52vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 22.5vw);
+		grid-template-rows: 26vh 26vh;
+	}
 	.cartasNormal {
-		margin-top: 5vh;
 		height: 78vh;
 		width: 90vw;
-		display: grid;
 		grid-template-columns: repeat(auto-fill, 22.5vw);
-		grid-template-rows: 26vh 26vh 26vh;
+		grid-template-rows: 26vh 26vh;
 	}
-	.conteudo {
+	.cartasDificil {
+		height: 152vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 22.5vw);
+		grid-template-rows: 26vh 26vh;
+	}
+	.conteudoFacil {
+		height: 78vh;
+		width: 90vw;
+		margin: 11vh 5vw;
+	}
+	.conteudoNormal {
 		height: 105vh;
+		width: 90vw;
+		margin: 5vh 5vw;
+	}
+	.conteudoDificil {
+		height: 180vh;
 		width: 90vw;
 		margin: 5vh 5vw;
 	}
@@ -508,16 +569,36 @@ button:hover {
 }
 
 @media (min-width: 110vh) {
+	.cartasFacil {
+		height: 52vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 22.5vw);
+		grid-template-rows: 26vh 26vh;
+	}
 	.cartasNormal {
-		margin-top: 5vh;
 		height: 78vh;
 		width: 90vw;
-		display: grid;
 		grid-template-columns: repeat(auto-fill, 22.5vw);
 		grid-template-rows: 26vh 26vh 26vh;
 	}
-	.conteudo {
+	.cartasDificil {
+		height: 156vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 22.5vw);
+		grid-template-rows: 26vh 26vh 26vh;
+	}
+	.conteudoFacil {
+		height: 78vh;
+		width: 90vw;
+		margin: 11vh 5vw;
+	}
+	.conteudoNormal {
 		height: 105vh;
+		width: 90vw;
+		margin: 5vh 5vw;
+	}
+	.conteudoDificil {
+		height: 180vh;
 		width: 90vw;
 		margin: 5vh 5vw;
 	}
@@ -530,16 +611,36 @@ button:hover {
 }
 
 @media (min-width: 140vh) {
-	.cartasNormal {
-		margin-top: 5vh;
+	.cartasFacil {
 		height: 52vh;
 		width: 90vw;
-		display: grid;
+		grid-template-columns: repeat(auto-fill, 15vw);
+		grid-template-rows: 52vh;
+	}
+	.cartasNormal {
+		height: 52vh;
+		width: 90vw;
 		grid-template-columns: repeat(auto-fill, 15vw);
 		grid-template-rows: 26vh 26vh;
 	}
-	.conteudo {
+	.cartasDificil {
+		height: 104vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 15vw);
+		grid-template-rows: 26vh 26vh;
+	}
+	.conteudoFacil {
 		height: 80vh;
+		width: 90vw;
+		margin: 10vh 5vw;
+	}
+	.conteudoNormal {
+		height: 80vh;
+		width: 90vw;
+		margin: 10vh 5vw;
+	}
+	.conteudoDificil {
+		height: 130vh;
 		width: 90vw;
 		margin: 10vh 5vw;
 	}
@@ -562,19 +663,41 @@ button:hover {
 }
 
 @media (min-width: 160vh) {
-	.cartasNormal {
-		margin-top: 5vh;
+	.cartasFacil {
 		height: 52vh;
 		width: 90vw;
-		display: grid;
+		grid-template-columns: repeat(auto-fill, 15vw);
+		grid-template-rows: 52vh;
+	}
+	.cartasNormal {
+		height: 52vh;
+		width: 90vw;
 		grid-template-columns: repeat(auto-fill, 15vw);
 		grid-template-rows: 26vh 26vh;
 	}
-	.conteudo {
+	.cartasDificil {
+		height: 104vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 15vw);
+		grid-template-rows: 26vh 26vh;
+	}
+	.conteudoFacil {
 		height: 80vh;
 		width: 90vw;
 		margin: 10vh 5vw;
 		min-height: calc(72px + 67vh);
+	}
+	.conteudoNormal {
+		height: 80vh;
+		width: 90vw;
+		margin: 10vh 5vw;
+		min-height: calc(72px + 67vh);
+	}
+	.conteudoDificil {
+		height: 130vh;
+		width: 90vw;
+		margin: 10vh 5vw;
+		min-height: calc(72px + 120vh);
 	}
 	.carta {
 		line-height: 22vh;
@@ -585,16 +708,36 @@ button:hover {
 }
 
 @media (min-width: 180vh) {
+	.cartasFacil {
+		height: 52vh;
+		width: 90vw;
+		grid-template-columns: repeat(auto-fill, 13.333vw);
+		grid-template-rows: 52vh;
+	}
 	.cartasNormal {
-		margin-top: 5vh;
 		height: 52vh;
 		width: 80vw;
-		display: grid;
 		grid-template-columns: repeat(auto-fill, 13.333vw);
 		grid-template-rows: 26vh 26vh;
 	}
-	.conteudo {
+	.cartasDificil {
+		height: 104vh;
+		width: 80vw;
+		grid-template-columns: repeat(auto-fill, 13.333vw);
+		grid-template-rows: 26vh 26vh 26vh 26vh;
+	}
+	.conteudoFacil {
 		height: 80vh;
+		width: 80vw;
+		margin: 10vh 10vw;
+	}
+	.conteudoNormal {
+		height: 80vh;
+		width: 80vw;
+		margin: 10vh 10vw;
+	}
+	.conteudoDificil {
+		height: 130vh;
 		width: 80vw;
 		margin: 10vh 10vw;
 	}
@@ -621,4 +764,34 @@ body::-webkit-scrollbar-thumb {
 	background-color: rgb(200, 200, 200);
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
+}
+
+@media (min-width: 300px) {
+	.textoTentativas {
+		font-size: 10px;
+	}
+}
+
+@media (min-width: 400px) {
+	.textoTentativas {
+		font-size: 30px;
+	}
+}
+
+@media (min-width: 500px) {
+	.textoTentativas {
+		font-size: 35px;
+	}
+}
+
+@media (min-width: 600px) {
+	.textoTentativas {
+		font-size: 40px;
+	}
+}
+
+@media (min-width: 700px) {
+	.textoTentativas {
+		font-size: 50px;
+	}
 }
