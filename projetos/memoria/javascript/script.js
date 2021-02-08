@@ -236,6 +236,7 @@ function pontuacao() {
 								numeroCartasInicial = numeroCartasInicial - 1;
 							}
 						}, 200)
+						window.scrollTo({top: 0, behavior: 'smooth'});
 						setTimeout(function() {
 							document.getElementById('containerCartas').style.display = "inherit"
 							document.getElementById('textoTentativas').style.display = "inherit"

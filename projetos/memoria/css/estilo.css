@@ -328,12 +328,12 @@ button:hover {
 .estatisticas {
 	display: none;
 	background-color: white;
-	width: 80vw;
+	position: relative;
+	width: 90vw;
 	height: 80vh;
-	margin-left: 10vw;
-	margin-top: 10vh;
+	margin: 10vh 5vw;
 	border-radius: 15px;
-	margin-bottom: 8vh;
+	min-height: 302px;
 }
 
 .titulo2 {
@@ -376,27 +376,27 @@ button:hover {
 }
 
 .cartao {
-	height: 22vh;
+	height: 115px;
 	border-radius: 15px;
 }
 
 .medio {
-	width: 30vw;
+	width: 40vw;
 }
 
 .grande {
-	width: 70vw;
-	height: 10vh !important;
+	width: 85vw;
+	height: 58px;
 }
 
 .direita {
-	margin-left: 5vw;
+	margin-left: 2.5vw;
 	margin-top: 5vh;
 }
 
 .esquerda {
-	margin-left: 45vw;
-	margin-top: -22vh;
+	margin-left: 47.5vw;
+	margin-top: -115px;
 }
 
 .center {
@@ -407,29 +407,30 @@ button:hover {
 	color: white;
 	font-family: 'Didact Gothic', sans-serif;
 	font-size: 20px;
+	height: 27px;
 }
 
 .numero {
-	margin-top: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: 21px;
 	color: white;
 	font-family: 'Didact Gothic', sans-serif;
 	font-weight: bold;
 }
 
 .espaco {
-	margin-top: 20px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 .width {
-	width: 30vw;
+	width: 40vw;
 }
 
 .justFlex {
 	display: flex;
-}
-
-.espacamento {
-	margin-left: 10vw;
+	justify-content: space-around;
 }
 
 .conteudoFacil {
@@ -439,6 +440,7 @@ button:hover {
 	height: 100vh;
 	margin: 5vh 5vw;
 	border-radius: 15px;
+	transition: height 0.3s;
 }
 
 .conteudoNormal {
@@ -448,6 +450,7 @@ button:hover {
 	height: 180vh;
 	margin: 5vh 5vw;
 	border-radius: 15px;
+	transition: height 0.3s;
 }
 
 .conteudoDificil {
@@ -457,6 +460,7 @@ button:hover {
 	height: 340vh;
 	margin: 5vh 5vw;
 	border-radius: 15px;
+	transition: height 0.3s;
 }
 
 .configurarContainer {
@@ -470,6 +474,7 @@ button:hover {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 45vw);
 	grid-template-rows: repeat(auto-fill, 26vh);
+	transition: height 0.3s;
 }
 
 .cartasNormal {
@@ -479,6 +484,7 @@ button:hover {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 45vw);
 	grid-template-rows: repeat(auto-fill, 26vh);
+	transition: height 0.3s;
 }
 
 .cartasDificil {
@@ -488,6 +494,7 @@ button:hover {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 45vw);
 	grid-template-rows: repeat(auto-fill, 26vh);
+	transition: height 0.3s;
 }
 
 /*Responsividade*/
@@ -713,7 +720,7 @@ button:hover {
 @media (min-width: 180vh) {
 	.cartasFacil {
 		height: 52vh;
-		width: 90vw;
+		width: 80vw;
 		grid-template-columns: repeat(auto-fill, 13.333vw);
 		grid-template-rows: 52vh;
 	}
@@ -728,6 +735,26 @@ button:hover {
 		width: 80vw;
 		grid-template-columns: repeat(auto-fill, 13.333vw);
 		grid-template-rows: 26vh 26vh 26vh 26vh;
+	}
+	.estatisticas {
+		width: 80vw;
+		margin: 10vh 10vw;
+	}
+	.width {
+		width: 30vw;
+	}
+	.grande {
+		width: 70vw;
+	}
+	.medio {
+		width: 30vw;
+	}
+	.direita {
+		margin-left: 5vw;
+	}
+
+	.esquerda {
+		margin-left: 45vw;
 	}
 	.conteudoFacil {
 		height: 80vh;
@@ -767,4 +794,10 @@ body::-webkit-scrollbar-thumb {
 	background-color: rgb(200, 200, 200);
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
+}
+
+.cartoes {
+	position: absolute;
+	top: 50%;
+	transform: translate(0%, -50%);
 }
