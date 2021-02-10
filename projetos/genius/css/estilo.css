@@ -51,12 +51,19 @@ body  {
 	}
 }
 
+@media (min-height: 540px) {
+	.botoes {
+		margin-top: 20vh;
+		grid-template-columns: repeat(auto-fill, 50%);
+		grid-template-rows: 10vh 10vh;
+	}
+}
+
+
 @media (min-width: 600px) {
-	@media (min-height: 1px) {
-		.botoes {
-			grid-template-columns: repeat(auto-fill, 25%);
-			grid-template-rows: 50px;
-		}
+	.botoes {
+		grid-template-columns: repeat(auto-fill, 25%);
+		grid-template-rows: 50px;
 	}
 }
 
