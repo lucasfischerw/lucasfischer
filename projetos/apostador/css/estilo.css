@@ -17,9 +17,13 @@ html, body {
 }
 
 body {
-	background-color: rgb(40, 137, 217);
+	background-color: rgb(240, 180, 0);
 	position: relative;
 	transition: background-color 0.5s;
+}
+
+button {
+	transition: transform 0.32;
 }
 
 @media(hover: hover) and (pointer: fine) {
@@ -112,7 +116,7 @@ body {
 	user-select: none;
 	outline: none;
 	font-size: 1em;
-	transition: background-color 0.5s, color 0.5s;
+	transition: background-color 0.5s, color 0.5s, transform 0.3s;
 }
 
 .carteira {
@@ -156,7 +160,7 @@ body {
 	font-weight: 100;
 	padding-top: 5vh;
 	padding-bottom: 7vh;
-	font-weight: 200;
+	font-weight: 400;
 	transition: color 0.5s;
 }
 
@@ -401,21 +405,4 @@ body::-webkit-scrollbar-thumb {
 	background-color: rgb(200, 200, 200);
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-}
-
-@media (prefers-color-scheme: dark) {
-	body {
-		background-color: rgb(16 94 158);
-	}
-	.conteudo {
-		background-color: #181818;
-		color: white;
-	}
-	.title {
-		color: white;
-	}
-	.caixa-btn-apostar button, #apostas, #valorAposta {
-		color: white;
-		background-color: rgb(59, 59, 59);
-	}
 }
