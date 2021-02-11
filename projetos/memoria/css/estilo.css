@@ -5,18 +5,22 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	list-style: none;
 	text-decoration: none;
 }
 
+html, body {
+	overflow-x: hidden;
+}
+body {
+	position: relative
+}
+
 body {
 	background-color: rgb(255, 255, 255);
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+	-webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -27,9 +31,11 @@ button {
 	border-style: none;
 	transition: all 0.2s;
 	outline: none;
+	min-height: 27px;
 }
 
 .buttonContainer {
+	-webkit-display: flex;
 	display: flex;
 	width: 100%;
 	justify-content: center;
@@ -41,11 +47,19 @@ button {
 	margin-bottom: 2vh;
 	background-color: #4caf50;
 	color: white;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-button:hover {
-	transform: scale(1.1);
-	cursor: pointer;
+@media(hover: hover) and (pointer: fine) {
+	button:hover {
+		transform: scale(1.1);
+		cursor: pointer;
+	}
 }
 
 .carregando {
@@ -61,11 +75,14 @@ button:hover {
 	margin-top: -30px;
 	height: 30px;
 	font-family: 'Balsamiq Sans', cursive;
+	width: calc(100% - 45px);
+	margin-left: 45px;
 }
 
 .linhas {
 	height: 22vh;
 	margin-top: 3vh;
+	-webkit-display: flex;
 	display: flex;
 	justify-content: space-around;
 }
@@ -97,11 +114,19 @@ button:hover {
 	transition: all 0.3s;
 	background-image: none;
 	animation: aparecer 0.3s;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.carta:hover {
-	transform: scale(1.05);
-	cursor: pointer;
+@media(hover: hover) and (pointer: fine) {
+	.carta:hover {
+		transform: scale(1.05);
+		cursor: pointer;
+	}
 }
 
 .desaparecer {
@@ -176,9 +201,11 @@ button:hover {
 	transition: transform 0.3s;
 }
 
-.configurar:hover {
-	transform: scale(1.2);
-	cursor: pointer;
+@media(hover: hover) and (pointer: fine) {
+	.configurar:hover {
+		transform: scale(1.2);
+		cursor: pointer;
+	}
 }
 
 .container-geral {
@@ -233,12 +260,14 @@ button:hover {
 	margin-left: 16.5%;
 	margin-top: 5vh;
 	text-align: center;
+	-webkit-display: flex;
 	display: flex;
 	line-height: 10vh;
 }
 
 .dificuldadeEscolhida {
 	font-family: 'Didact Gothic', sans-serif !important;
+	-webkit-display: inline-block;
 	display: inline-block;
     margin:0 auto;
 }
@@ -249,9 +278,11 @@ button:hover {
 	transition: all 0.5s;
 }
 
-.anterior:hover {
-	transform: scale(1.2);
-	cursor: pointer;
+@media(hover: hover) and (pointer: fine) {
+	.anterior:hover {
+		transform: scale(1.2);
+		cursor: pointer;
+	}
 }
 
 .proximo {
@@ -260,9 +291,11 @@ button:hover {
 	transition: all 0.5s;
 }
 
-.proximo:hover {
-	transform: scale(1.2);
-	cursor: pointer;
+@media(hover: hover) and (pointer: fine) {
+	.proximo:hover {
+		transform: scale(1.2);
+		cursor: pointer;
+	}
 }
 
 
@@ -290,13 +323,21 @@ button:hover {
 .inputPowerUp {
 	margin-top: 5vh;
 	text-align: center;
+	height: -moz-fit-content;
 	height: fit-content;
 }
 
 .flex {
+	-webkit-display: flex;
 	display: flex;
 	justify-content: space-around;
 	padding-top: 6vh;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .flex div {
@@ -320,9 +361,11 @@ button:hover {
 	}
 }
 
-.flex div:hover {
-	transform: scale(1.1);
-	cursor: pointer;
+@media(hover: hover) and (pointer: fine) {
+	.flex div:hover {
+		transform: scale(1.1);
+		cursor: pointer;
+	}
 }
 
 .estatisticas {
@@ -334,6 +377,7 @@ button:hover {
 	margin: 10vh 5vw;
 	border-radius: 15px;
 	min-height: 302px;
+	min-width: 242px;
 }
 
 .titulo2 {
@@ -367,12 +411,20 @@ button:hover {
 	height: 30px;
 	margin-left: 15px;
 	margin-top: 15px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-.transform:hover {
-	transform: scale(1.1);
-	cursor: pointer;
-	transition: transform 0.5s;
+@media(hover: hover) and (pointer: fine) {
+	.transform:hover {
+		transform: scale(1.1);
+		cursor: pointer;
+		transition: transform 0.5s;
+	}
 }
 
 .cartao {
@@ -429,6 +481,7 @@ button:hover {
 }
 
 .justFlex {
+	-webkit-display: flex;
 	display: flex;
 	justify-content: space-around;
 }
@@ -465,12 +518,19 @@ button:hover {
 
 .configurarContainer {
 	height: 45px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .cartasFacil {
 	margin-top: 5vh;
 	height: 75vh;
 	width: 90vw;
+	-webkit-display: grid;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 45vw);
 	grid-template-rows: repeat(auto-fill, 26vh);
@@ -481,6 +541,7 @@ button:hover {
 	margin-top: 5vh;
 	height: 150vh;
 	width: 90vw;
+	-webkit-display: grid;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 45vw);
 	grid-template-rows: repeat(auto-fill, 26vh);
@@ -491,6 +552,7 @@ button:hover {
 	margin-top: 5vh;
 	height: 312vh;
 	width: 90vw;
+	-webkit-display: grid;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 45vw);
 	grid-template-rows: repeat(auto-fill, 26vh);
@@ -783,6 +845,19 @@ button:hover {
 	}
 }
 
+@media (min-width: 220vh) {
+	.menuPowerUp {
+		width: 50vw;
+		margin-top: -4vh;
+		margin-left: 15vw;
+	}
+	.menuConfiguracoes {
+		width: 50vw;
+		margin-top: -4vh;
+		margin-left: 15vw;
+	}
+}
+
 body::-webkit-scrollbar {
 	width: 5px;
 	background-color: rgb(0, 0, 0, 0);
@@ -800,4 +875,42 @@ body::-webkit-scrollbar-thumb {
 	position: absolute;
 	top: 50%;
 	transform: translate(0%, -50%);
+}
+
+@media (min-height: 88vw) {
+	.width .subtitulo-carta {
+		height: 54px;
+	}
+	.grande {
+		height: 85px;
+	}
+}
+
+@media (min-height: 130vw) {
+	.medio {
+		width: 80vw;
+		min-width: 217.8px;
+	}
+	.direita {
+		margin-left: 5vw;
+	}
+	.esquerda {
+		margin-left: 5vw;
+		margin-top: 20px;
+	}
+	.estatisticas {
+		height: 90vh;
+		margin: 5vh 5vw;
+	}
+	.grande {
+		width: 80vw;
+		min-width: 217.8px;
+	}
+}
+
+@media (min-width: 290px) {
+	.titulo {
+		width: 100%;
+		margin-left: 0;
+	}
 }
