@@ -16,7 +16,6 @@ async function Carregou() {
 	await preLoad("/imagens/programacao.jpg")
 	await preLoad("/imagens/sobre.jpg")
 	await preLoad("/imagens/apostador.jpg")
-	await preLoad("/imagens/apostadorDark.jpg")
 	await preLoad("/imagens/emBreve.png")
 	await preLoad("/imagens/genius.jpg")
 	await preLoad("/imagens/gewinner.jpg")
@@ -195,11 +194,11 @@ function projeto(id) {
 	if (id == 1) {
 		window.open("https://teamgewinner.github.io/gewinner/index.html");
 	} else if (id == 2) {
-		window.open("https://lucasfischer.com.br/projetos/apostador/index.html")
+		window.open("https://lucasfischer.com.br/projetos/genius/index.html")
 	} else if (id == 3) {
 		window.open("https://lucasfischer.com.br/projetos/memoria/index.html")
 	} else if (id == 4) {
-		window.open("https://lucasfischer.com.br/projetos/genius/index.html")
+		window.open("https://lucasfischer.com.br/projetos/apostador/index.html")
 	} else if (id == 5) {
 		window.open("https://lucasfischer.com.br/projetos/tarefas/index.html")
 	}
