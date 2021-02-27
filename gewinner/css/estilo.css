@@ -154,7 +154,7 @@ body {
 
 .titulo {
 	text-align: center;
-	font-family: 'Balsamiq Sans', serif;
+	font-family: 'Balsamiq Sans', cursive;
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
@@ -286,7 +286,7 @@ body {
 
 .subtitulo {
 	text-align: center;
-	font-family: 'Balsamiq Sans', serif;
+	font-family: 'Balsamiq Sans', cursive;
 	position: absolute;
 	top: 40%;
 	transform: translateY(-50%);
@@ -322,7 +322,7 @@ body {
 }
 
 .nomePrincipal {
-	font-family: 'Balsamiq Sans', serif;
+	font-family: 'Balsamiq Sans', cursive;
 }
 
 body::-webkit-scrollbar {
