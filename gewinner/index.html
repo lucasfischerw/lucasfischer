@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<title>Gewinner</title>
+		<link rel="stylesheet" type="text/css" href="css/estilo.css">
+	</head>
+	<body ontouchmove = "closeNav()">
+		<div class="carregando">
+			<img>
+		</div>
+		<div class="conteudo">
+			<nav class="menu" id="menu">
+				<ul>
+					<li class="mobile"><a href="index.html">Gewinner</a></li>
+					<li class="mobile"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></li>
+					<li class="desktop"><a href="index.html">G</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Sobre()">Sobre</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Robos()">Robôs</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Competicoes()">Competições</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Contato()">Contato</a></li>
+				</ul>
+			</nav>
+			<div id="sidebar" class="sidenav">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<div class="itens" id="itens">
+				  	<a href="javascript:void(0)" onclick="Sobre()" class="botao">Sobre</a>
+				  	<a href="javascript:void(0)" onclick="Robos()">Robôs</a>
+				  	<a href="javascript:void(0)" onclick="Competicoes()">Competições</a>
+				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
+				</div>
+			</div>
+			<div id="secoes" onclick="closeNav()">
+				<div class="secao" id="inicial">
+					<h1 class="titulo">Gewinner</h1>
+				</div>
+				<div class="secao" id="sobre">
+					<img class="imgEquipe" id="imgEquipe" src="imagens/equipe.jpg">
+				</div>
+				<div class="integrantes" id="integrantes">
+					<div class="integrante">
+						<img src="imagens/Jorge.jpg">
+						<div class="nome">
+							<h2 class="nomePrincipal">Jorge Jardim</h2>
+							<h3 class="cargo">Professor</h3>
+						</div>
+					</div>
+					<div class="integrante">
+						<img src="imagens/Lucas.jpg">
+						<div class="nome">
+							<h2 class="nomePrincipal">Lucas Fischer</h2>
+							<h3 class="cargo">Programador</h3>	
+						</div>
+					</div>
+					<div class="integrante">
+						<img src="imagens/Theodoro.jpg">
+						<div class="nome">
+							<h2 class="nomePrincipal">Theodoro Friedrich</h2>
+							<h3 class="cargo">Montador</h3>	
+						</div>
+					</div>
+				</div>
+				<div class="secao" id="robos">
+					<h1 class="titulo">Robôs que já usamos</h1>
+				</div>
+				<div class="grid" id="robos2">
+					<div class="conjunto">
+						<img src="imagens/1.jpg">
+						<h2 class="tituloConjunto">2018</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/2.jpg">
+						<h2 class="tituloConjunto">2018</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/3.jpg">
+						<h2 class="tituloConjunto">2019</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/4.jpeg">
+						<h2 class="tituloConjunto">2019</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/5.jpg">
+						<h2 class="tituloConjunto">2020</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/2020.jpg">
+						<h2 class="tituloConjunto">2020</h2>
+					</div>
+				</div>
+				<div class="secao" id="competicoes">
+					<h1 class="titulo">Competições que participamos</h1>
+				</div>
+				<div class="grid" id="competicoes2">
+					<div class="conjunto">
+						<img src="imagens/2018.jpg">
+						<h2 class="tituloConjunto">Regional 2018</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/2018_2.jpeg">
+						<h2 class="tituloConjunto">Nacional 2018</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/2019.jpg">
+						<h2 class="tituloConjunto">Regional 2019</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/2019_2.jpg">
+						<h2 class="tituloConjunto">Nacional 2019</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/5.jpg">
+						<h2 class="tituloConjunto">Regional 2020</h2>
+					</div>
+					<div class="conjunto">
+						<img src="imagens/2020.jpg">
+						<h2 class="tituloConjunto">Nacional 2020</h2>
+					</div>
+				</div>
+				<div class="secao" id="contato">
+					<h1 class="subtitulo">Contato</h1>
+					<p class="redirect">Acesse <a href="lucasfischer.com.br">lucasfischer.com.br</a> para entrar em contato!</p>
+				</div>	
+			</div>
+			<div class="arrow-container" id="arrow-container">
+				<img src="imagens/arrow.png" class="arrow" id="arrow" onclick="seta()">
+			</div>
+		</div>
+		<script src="javascript/script.js"></script>
+	</body>
+</html>
