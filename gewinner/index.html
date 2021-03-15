@@ -5,19 +5,41 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 		<title>Gewinner</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
-		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&amp;family=Karla&amp;family=Roboto&amp;display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&amp;display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" href="imagens/favicon/favicon.ico">
+		<link rel="icon" sizes="16x16 32x32 64x64" href="imagens/favicon/favicon.ico">
+		<link rel="icon" type="image/png" sizes="196x196" href="imagens/favicon/favicon-192.png">
+		<link rel="icon" type="image/png" sizes="160x160" href="imagens/favicon/favicon-160.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="imagens/favicon/favicon-96.png">
+		<link rel="icon" type="image/png" sizes="64x64" href="imagens/favicon/favicon-64.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="imagens/favicon/favicon-32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon/favicon-16.png">
+		<link rel="apple-touch-icon" href="imagens/favicon/favicon-57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="imagens/favicon/favicon-114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="imagens/favicon/favicon-72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="imagens/favicon/favicon-144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="imagens/favicon/favicon-60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="imagens/favicon/favicon-120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="imagens/favicon/favicon-76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="imagens/favicon/favicon-152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="imagens/favicon/favicon-180.png">
+		<meta name="msapplication-TileColor" content="#FFFFFF">
+		<meta name="msapplication-TileImage" content="imagens/favicon-144.png">
+		<meta name="msapplication-config" content="imagens/favicon/browserconfig.xml">
 	</head>
-	<body ontouchmove = "closeNav()">
-		<div class="carregando">
-			<img>
+	<body ontouchmove="closeNav()" onload="carregar()">
+		<div class="carregando" id="carregando">
+			<img src="imagens/carregando3.gif">
 		</div>
-		<div class="conteudo">
+		<div class="conteudo" id="conteudo">
 			<nav class="menu" id="menu">
 				<ul>
-					<li class="mobile"><a href="index.html">Gewinner</a></li>
+					<li class="mobile"><a href="javascript:void(0)" onclick="logo()">Gewinner</a></li>
 					<li class="mobile"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></li>
-					<li class="desktop"><a href="index.html">G</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Sobre()">Sobre</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="logo()">G</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Integrantes()">Equipe</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Robos()">Robôs</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Competicoes()">Competições</a></li>
 					<li class="desktop"><a href="javascript:void(0)" onclick="Contato()">Contato</a></li>
@@ -26,7 +48,7 @@
 			<div id="sidebar" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 				<div class="itens" id="itens">
-				  	<a href="javascript:void(0)" onclick="Sobre()" class="botao">Sobre</a>
+				  	<a href="javascript:void(0)" onclick="Integrantes()" class="botao">Equipe</a>
 				  	<a href="javascript:void(0)" onclick="Robos()">Robôs</a>
 				  	<a href="javascript:void(0)" onclick="Competicoes()">Competições</a>
 				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
@@ -34,27 +56,24 @@
 			</div>
 			<div id="secoes" onclick="closeNav()">
 				<div class="secao" id="inicial">
-					<h1 class="titulo">Gewinner</h1>
-				</div>
-				<div class="secao" id="sobre">
-					<img class="imgEquipe" id="imgEquipe" src="imagens/equipe.jpg">
+					<h1 class="tituloPrincipal" id="titulo">Gewinner</h1>
 				</div>
 				<div class="integrantes" id="integrantes">
-					<div class="integrante">
+					<div class="integrante" id="jorge">
 						<img src="imagens/Jorge.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Jorge Jardim</h2>
 							<h3 class="cargo">Professor</h3>
 						</div>
 					</div>
-					<div class="integrante">
+					<div class="integrante" id="fischer">
 						<img src="imagens/Lucas.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Lucas Fischer</h2>
 							<h3 class="cargo">Programador</h3>	
 						</div>
 					</div>
-					<div class="integrante">
+					<div class="integrante" id="theodoro">
 						<img src="imagens/Theodoro.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Theodoro Friedrich</h2>
@@ -63,7 +82,7 @@
 					</div>
 				</div>
 				<div class="secao" id="robos">
-					<h1 class="titulo">Robôs que já usamos</h1>
+					<h1 class="titulo" id="subtituloRobos">Robôs que já usamos</h1>
 				</div>
 				<div class="grid" id="robos2">
 					<div class="conjunto">
@@ -83,46 +102,58 @@
 						<h2 class="tituloConjunto">2019</h2>
 					</div>
 					<div class="conjunto">
-						<img src="imagens/5.jpg">
+						<img src="imagens/6_1.jpg">
 						<h2 class="tituloConjunto">2020</h2>
 					</div>
 					<div class="conjunto">
-						<img src="imagens/2020.jpg">
+						<img src="imagens/6.jpg">
 						<h2 class="tituloConjunto">2020</h2>
 					</div>
 				</div>
 				<div class="secao" id="competicoes">
-					<h1 class="titulo">Competições que participamos</h1>
+					<h1 class="titulo" id="subtituloCompeticoes">Competições que participamos</h1>
 				</div>
 				<div class="grid" id="competicoes2">
+					<div class="conjunto" id="competicaoBase">
+						<a href="paginas/regional2018.html">
+							<img src="imagens/2018.jpg">
+							<h2 class="tituloConjunto">Regional 2018</h2>
+						</a>
+					</div>	
 					<div class="conjunto">
-						<img src="imagens/2018.jpg">
-						<h2 class="tituloConjunto">Regional 2018</h2>
+						<a href="paginas/nacional2018.html">
+							<img src="imagens/2018_2.jpeg">
+							<h2 class="tituloConjunto">Nacional 2018</h2>		
+						</a>
 					</div>
 					<div class="conjunto">
-						<img src="imagens/2018_2.jpeg">
-						<h2 class="tituloConjunto">Nacional 2018</h2>
+						<a href="paginas/regional2019.html">
+							<img src="imagens/2019.jpg">
+							<h2 class="tituloConjunto">Regional 2019</h2>
+						</a>
 					</div>
 					<div class="conjunto">
-						<img src="imagens/2019.jpg">
-						<h2 class="tituloConjunto">Regional 2019</h2>
+						<a href="paginas/nacional2019.html">
+							<img src="imagens/2019_2.jpg">
+							<h2 class="tituloConjunto">Nacional 2019</h2>	
+						</a>
 					</div>
 					<div class="conjunto">
-						<img src="imagens/2019_2.jpg">
-						<h2 class="tituloConjunto">Nacional 2019</h2>
+						<a href="paginas/regional2020.html">
+							<img src="imagens/2020.jpg">
+							<h2 class="tituloConjunto">Regional 2020</h2>	
+						</a>
 					</div>
 					<div class="conjunto">
-						<img src="imagens/5.jpg">
-						<h2 class="tituloConjunto">Regional 2020</h2>
-					</div>
-					<div class="conjunto">
-						<img src="imagens/2020.jpg">
-						<h2 class="tituloConjunto">Nacional 2020</h2>
+						<a href="paginas/nacional2020.html">
+							<img src="imagens/2020_2.jpeg">
+							<h2 class="tituloConjunto">Nacional 2020</h2>	
+						</a>
 					</div>
 				</div>
 				<div class="secao" id="contato">
 					<h1 class="subtitulo">Contato</h1>
-					<p class="redirect">Acesse <a href="lucasfischer.com.br">lucasfischer.com.br</a> para entrar em contato!</p>
+					<p class="redirect">Acesse <a onclick="window.open('https://lucasfischer.com.br/')">lucasfischer.com.br</a> para entrar em contato!</p>
 				</div>	
 			</div>
 			<div class="arrow-container" id="arrow-container">
