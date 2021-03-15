@@ -272,7 +272,7 @@ body {
 
 @media (min-width: 500px) {
 	.sidenav a {
-		font-size: 4vw;
+		font-size: 1.6em;
 	}
 }
 
@@ -414,7 +414,7 @@ img {
 		}
 		.nomeCima {
 			font-size: 8vw;
-			padding-bottom: 3.5vh;
+			padding-bottom: 8px;
 		}
 	}
 }
@@ -432,10 +432,10 @@ img {
 @media (min-width: 170vh) {
 	/*PC Grande*/
 	.imagemPessoal {
-		width: 25vw;
-		height: 25vw;
+		width: 20vw;
+		height: 20vw;
 		margin-top: 0;
-		margin-left: 8vw;
+		margin-left: 10.5vw;
 		margin-right: 0;
 	}
 	.imagemPessoalContainer {
@@ -445,9 +445,7 @@ img {
 		margin-bottom: auto;
 	}
 	.nomeContainer {
-		margin-top: auto;
-		margin-bottom: auto;
-		margin-left: 12vw;
+		margin: auto;
 		width: fit-content;
 		width: -moz-fit-content;
 	}
@@ -456,11 +454,11 @@ img {
 		display: flex;
 	}
 	.nome {
-		font-size: 6vw;
+		font-size: 4em;
 	}
 	.nomeCima {
-		font-size: 4vw;
-		padding-bottom: 4vh;
+		font-size: 3em;
+		padding-bottom: 15px;
 	}
 }
 
@@ -571,9 +569,9 @@ img {
 		font-size: 2vw;
 	}
 	.imgSobre {
-		width: 25vw;
-		height: 25vw;
-		margin-left: 8vw;
+		width: 20vw;
+		height: 20vw;
+		margin-left: 10.5vw;
    		margin-right: 0;
 	}
 	.imgSobreContainer {
@@ -712,9 +710,9 @@ img {
 		font-size: 2vw;
 	}
 	.imgProgramacao {
-		width: 25vw;
-		height: 25vw;
-		margin-left: 8vw;
+		width: 20vw;
+		height: 20vw;
+		margin-left: 10.5vw;
    		margin-right: 0;
 	}
 	.imgProgramacaoContainer {
