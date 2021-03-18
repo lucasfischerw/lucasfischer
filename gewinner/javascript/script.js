@@ -212,46 +212,49 @@ function logo() {
 
 window.addEventListener("scroll", isElementInViewport)
 
-var estado = [false, false, false, false, false, false, false]
+var estado = [false, false, false, false, false, false, false, false]
 
 function isElementInViewport () {
-	if (!estado[0] && document.getElementById("jorge").getBoundingClientRect().top < window.pageYOffset) {
+	if (!estado[0] && document.getElementById("jorge").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("jorge").style.marginLeft = "0"
 		document.getElementById("jorge").style.opacity = "1"
 		estado[0] = true;
-		console.log("1")
 	}
-	if (!estado[1] && document.getElementById("fischer").getBoundingClientRect().top < window.pageYOffset) {
+	if (!estado[1] && document.getElementById("fischer").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("fischer").style.opacity = "1"
 		estado[1] = true;
-		console.log("2")
 	}
-	if ( !estado[2] &&document.getElementById("theodoro").getBoundingClientRect().top < window.pageYOffset) {
+	if ( !estado[2] &&document.getElementById("theodoro").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("theodoro").style.marginLeft = "0"
 		document.getElementById("theodoro").style.opacity = "1"
 		estado[2] = true;
-		console.log("3")
 	}
-	if (!estado[3] && document.getElementById("robos2").getBoundingClientRect().top < document.documentElement.clientHeight/2) {
+	if (!estado[3] && document.getElementById("robos2").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("robos2").style.opacity = "1"
+		document.getElementById("robos2").style.marginLeft = "0"
 		estado[3] = true;
-		console.log("4")
 	}
-	if (!estado[4] && document.getElementById("competicoes2").getBoundingClientRect().top < document.documentElement.clientHeight/2) {
+	if (!estado[4] && document.getElementById("competicoes2").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("competicoes2").style.opacity = "1"
+		document.getElementById("competicoes2").style.marginLeft = "0"
 		estado[4] = true;
-		console.log("5")
 	}
-	if (!estado[5] && document.getElementById("subtituloRobos").getBoundingClientRect().top < document.documentElement.clientHeight-5%document.documentElement.clientHeight) {
+	if (!estado[5] && document.getElementById("subtituloRobos").getBoundingClientRect().top < (window.innerHeight/1.2)) {
 		document.getElementById("subtituloRobos").style.opacity = "1"
-		document.getElementById("subtituloRobos").style.marginTop = "0"
+		document.getElementById("subtituloRobos").style.marginLeft = "0"
 		estado[5] = true;
-		console.log("6")
 	}
-	if (!estado[6] && document.getElementById("subtituloCompeticoes").getBoundingClientRect().top < document.documentElement.clientHeight-5%document.documentElement.clientHeight) {
+	if (!estado[6] && document.getElementById("subtituloCompeticoes").getBoundingClientRect().top < (window.innerHeight/1.2)) {
 		document.getElementById("subtituloCompeticoes").style.opacity = "1"
-		document.getElementById("subtituloCompeticoes").style.marginTop = "0"
+		document.getElementById("subtituloCompeticoes").style.marginLeft = "0"
 		estado[6] = true;
-		console.log("7")
+	}
+	if (!estado[7] && document.getElementById("subtituloContato").getBoundingClientRect().top < (window.innerHeight/1.2)) {
+		document.getElementById("contato").style.opacity = "1"
+		document.getElementById("contato").style.transform = "scale(1)"
+		estado[7] = true;
+	}
+	if (estado[0] && estado.every( (val, i, arr) => val === arr[0] )) {
+		window.removeEventListener("scroll", isElementInViewport)
 	}
 }

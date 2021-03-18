@@ -83,7 +83,7 @@ img,
 	z-index: 1;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 600;
-	transition: 0.3s top, background-color;
+	transition: 0.5s top;
 	will-change: transform;
 }
 
@@ -223,7 +223,7 @@ img,
 #jorge {
 	margin-left: -30%;
 	opacity: 0;
-	transition: margin-left 0.5s, opacity 0.5s;
+	transition: margin-left 0.8s, opacity 0.8s;
 }
 
 #fischer {
@@ -234,7 +234,7 @@ img,
 #theodoro {
 	margin-left: 30%;
 	opacity: 0;
-	transition: margin-left 0.5s, opacity 0.5s;
+	transition: margin-left 0.8s, opacity 0.8s;
 }
 
 .integrante img {
@@ -399,14 +399,14 @@ body::-webkit-scrollbar-thumb:hover {
 	text-align: center;
 	position: fixed;
 	bottom: -40px;
-	transition: bottom 0.3s;
+	transition: bottom 0.5s;
 }
 
 .arrow {
 	width: 40px;
 	height: 40px;
 	cursor: pointer;
-	transition: opacity 0.3s, transform 0.3s;
+	transition: opacity 0.3s, margin-left 0.5s, transform 0.5s;
 }
 
 .cargo {
@@ -460,15 +460,32 @@ body::-webkit-scrollbar-thumb:hover {
 	background: #43b7e3cf;
 }
 
-#competicoes2,
-#robos2 {
-	opacity: 0.1;
-	transition: opacity 1s;
+#subtituloCompeticoes {
+	opacity: 0;
+	margin-left: 200px;
+	transition: margin-left 0.8s, opacity 1s;
 }
 
-#subtituloCompeticoes,
+#competicoes2 {
+	opacity: 0;
+	margin-left: -200px;
+	transition: margin-left 0.8s, opacity 1s;
+}
+
 #subtituloRobos {
-	margin-top: 10%;
-	opacity: 0.1;
-	transition: opacity 1s, margin-top 0.5s;
+	opacity: 0;
+	margin-left: 200px;
+	transition: margin-left 0.8s, opacity 1s;
+}
+
+#robos2 {
+	opacity: 0;
+	margin-left: -200px;
+	transition: margin-left 0.8s, opacity 1s;
+}
+
+#contato {
+	opacity: 0;
+	transform: scale(0.5);
+	transition: opacity 1s, transform 0.8s;
 }
