@@ -231,12 +231,10 @@ function isElementInViewport () {
 	}
 	if (!estado[3] && document.getElementById("robos2").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("robos2").style.opacity = "1"
-		document.getElementById("robos2").style.marginLeft = "0"
 		estado[3] = true;
 	}
 	if (!estado[4] && document.getElementById("competicoes2").getBoundingClientRect().top < (window.innerHeight/1.5)) {
 		document.getElementById("competicoes2").style.opacity = "1"
-		document.getElementById("competicoes2").style.marginLeft = "0"
 		estado[4] = true;
 	}
 	if (!estado[5] && document.getElementById("subtituloRobos").getBoundingClientRect().top < (window.innerHeight/1.2)) {
