@@ -440,16 +440,39 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .textoArtigo {
-	width: 95%;
-	padding-right: 20px;
+	width: 90%;
 	font-family: 'Source Sans Pro', sans-serif;
 	margin: auto;
-	font-size: 1.5em;
+	font-size: 1em;
+	text-align: justify;
 }
 
 #parte1 {
 	display: grid;
-	grid-template-columns: 45vw 55vw;
+	grid-template-columns: 100vw;
+}
+
+@media(min-width: 600px) {
+	.imgArtigo {
+		width: 50%;
+	}
+	.textoArtigo {
+		font-size: 1.2em;
+	}
+}
+
+@media(min-width: 1200px) {
+	#parte1 {
+		display: grid;
+		grid-template-columns: 45vw 55vw;
+	}
+	.imgArtigo {
+		width: 90%;
+	}
+	.textoArtigo {
+		padding-right: 20px;
+		font-size: 1.5em;
+	}
 }
 
 ::-moz-selection {
