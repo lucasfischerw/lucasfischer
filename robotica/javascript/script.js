@@ -1,5 +1,5 @@
 var aberto;
-let isIOS = /iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+let isIOS = /iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel');
 
 if(isIOS) {
     window.alert("Você tem 2 segundos para sair do site")
