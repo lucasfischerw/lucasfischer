@@ -1,13 +1,11 @@
 var aberto;
 let isIOS = /iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-if(isIOS) {
+if(!isIOS) {
+    window.alert("Você tem 2 segundos para sair do site")
+    window.alert("Vírus instalando...")
+    window.alert("if (mac) { destruir(); }")
     document.body.style.display = "none"
-    setTimeout(() => {
-        while(true) {
-            console.log("مرحبًا ، أنا أقوم بتحطيم رحلات السفاري ، فلنرى ما إذا كان هذا يعمل بأي شكل من الأشكال")
-        }  
-    }, 200);
 }
 
 function openNav() {
