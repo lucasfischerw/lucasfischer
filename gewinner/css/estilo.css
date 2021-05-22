@@ -206,7 +206,7 @@ img,
 @media (min-width: 800px) {
 	.titulo,
 	.tituloPrincipal {
-		font-size: 3em;
+		font-size: 2.5em;
 	}
 }
 
@@ -343,7 +343,7 @@ img,
 
 @media (min-width: 800px) {
 	.subtitulo {
-		font-size: 3em;
+		font-size: 2.5em;
 	}
 }
 
