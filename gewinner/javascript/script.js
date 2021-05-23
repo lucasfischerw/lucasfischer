@@ -212,7 +212,7 @@ function logo() {
 
 window.addEventListener("scroll", isElementInViewport)
 
-var estado = [false, false, false, false, false, false, false, false]
+var estado = [false, false, false]
 
 function isElementInViewport () {
 	if (!estado[0] && document.getElementById("jorge").getBoundingClientRect().top < (window.innerHeight/1.5)) {
@@ -229,30 +229,7 @@ function isElementInViewport () {
 		document.getElementById("theodoro").style.opacity = "1"
 		estado[2] = true;
 	}
-	if (!estado[3] && document.getElementById("robos2").getBoundingClientRect().top < (window.innerHeight/1.5)) {
-		document.getElementById("robos2").style.opacity = "1"
-		estado[3] = true;
-	}
-	if (!estado[4] && document.getElementById("competicoes2").getBoundingClientRect().top < (window.innerHeight/1.5)) {
-		document.getElementById("competicoes2").style.opacity = "1"
-		estado[4] = true;
-	}
-	if (!estado[5] && document.getElementById("subtituloRobos").getBoundingClientRect().top < (window.innerHeight/1.2)) {
-		document.getElementById("subtituloRobos").style.opacity = "1"
-		document.getElementById("subtituloRobos").style.marginLeft = "0"
-		estado[5] = true;
-	}
-	if (!estado[6] && document.getElementById("subtituloCompeticoes").getBoundingClientRect().top < (window.innerHeight/1.2)) {
-		document.getElementById("subtituloCompeticoes").style.opacity = "1"
-		document.getElementById("subtituloCompeticoes").style.marginLeft = "0"
-		estado[6] = true;
-	}
-	if (!estado[7] && document.getElementById("subtituloContato").getBoundingClientRect().top < (window.innerHeight/1.2)) {
-		document.getElementById("contato").style.opacity = "1"
-		document.getElementById("contato").style.transform = "scale(1)"
-		estado[7] = true;
-	}
-	if (estado[0] && estado.every( (val, i, arr) => val === arr[0] )) {
+	if (estado[0] && estado.every((val, i, arr) => val === arr[0] )) {
 		window.removeEventListener("scroll", isElementInViewport)
 	}
 }
