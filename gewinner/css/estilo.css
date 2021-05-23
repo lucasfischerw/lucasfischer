@@ -526,25 +526,3 @@ body::-webkit-scrollbar-thumb:hover {
 ::selection {
 	background: #43b7e3cf;
 }
-
-#subtituloCompeticoes {
-	opacity: 0;
-	margin-left: 200px;
-	transition: margin-left 0.8s, opacity 1s;
-}
-
-#competicoes2 {
-	opacity: 0.1;
-	transition: opacity 1s;
-}
-
-#subtituloRobos {
-	opacity: 0;
-	margin-left: -200px;
-	transition: margin-left 0.8s, opacity 1s;
-}
-
-#robos2 {
-	opacity: 0.1;
-	transition: opacity 1s;
-}
