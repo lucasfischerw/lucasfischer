@@ -493,7 +493,7 @@ img {
 			padding-top: 5vh;
 		}
 		.textoSobre {
-			font-size: 2.4vw;
+			font-size: 1.8vw;
 		}
 		.imgSobre {
 			width: 50vh;
@@ -524,7 +524,7 @@ img {
 			padding-top: 5vh;
 		}
 		.textoSobre {
-			font-size: 2.7vh;
+			font-size: 1.8vh;
 		}
 		.imgSobre {
 			width: 70vw;
@@ -564,7 +564,7 @@ img {
 		padding-top: 0;
 	}
 	.textoSobre {
-		font-size: 2vw;
+		font-size: 1.4vw;
 	}
 	.imgSobre {
 		width: 20vw;
@@ -634,7 +634,7 @@ img {
 			padding-top: 5vh;
 		}
 		.textoProgramacao {
-			font-size: 2.4vw;
+			font-size: 1.8vw;
 		}
 		.imgProgramacao {
 			width: 50vh;
@@ -665,7 +665,7 @@ img {
 			padding-top: 5vh;
 		}
 		.textoProgramacao {
-			font-size: 2.7vh;
+			font-size: 1.8vh;
 		}
 		.imgProgramacao {
 			width: 70vw;
@@ -705,7 +705,7 @@ img {
 		padding-top: 0;
 	}
 	.textoProgramacao {
-		font-size: 2vw;
+		font-size: 1.4vw;
 	}
 	.imgProgramacao {
 		width: 20vw;
@@ -758,7 +758,7 @@ img {
 .tituloProjeto {
 	width: 100%;
 	text-align: center;
-	font-size: 2vw;
+	font-size: 1.5vw;
 }
 
 .projeto {
@@ -793,9 +793,6 @@ img {
 		}
 		#projetos {
 			height: 150vh;
-		}
-		.tituloProjeto {
-			font-size: 2vw;
 		}
 	}
 	@media (min-height: 87vw) {
@@ -870,18 +867,17 @@ img {
 	position: relative;
 }
 
-.bold {
-	font-weight: bold;
-	color: whitesmoke;
-	/*font-style: italic;*/
-}
-
 .tituloContato {
 	text-align: center;
+	font-weight: 600;
+	font-family: 'Maven Pro', sans-serif;
 }
 
-.contato2 {
+.tituloContato2 {
 	padding-top: 3vh;
+	font-weight: lighter;
+	text-align: center;
+	font-family: 'Maven Pro', sans-serif;
 }
 
 .textoContato {
@@ -949,7 +945,10 @@ img {
 
 @media (min-width: 170vh) {
 	.tituloContato {
-		font-size: 3vw;
+		font-size: 3em;
+	}
+	.tituloContato2 {
+		font-size: 2em;
 	}
 	.iconesCotato {
 		width: 60vw;
