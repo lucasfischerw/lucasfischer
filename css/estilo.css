@@ -167,7 +167,6 @@ body {
 	z-index: 1;
 	top: 0px;
 	font-family: 'Karla', sans-serif;
-	font-weight: 600;
 	transition: 0.5s top, background-color;
 	will-change: transform;
 }
@@ -280,7 +279,6 @@ body {
 	.sidenav a:hover {
 		color: black;
 		background-color: white;
-		font-weight: bold;
 	}
 }
 
