@@ -192,7 +192,7 @@ function Nome() {
 
 function projeto(id) {
 	if (id == 1) {
-		window.open("https://teamgewinner.github.io/gewinner/index.html");
+		window.open("https://lucasfischer.com.br/gewinner");
 	} else if (id == 2) {
 		window.open("https://lucasfischer.com.br/projetos/genius/index.html")
 	} else if (id == 3) {
