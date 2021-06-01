@@ -857,7 +857,7 @@ img {
 
 #contato {
 	background-repeat: no-repeat;
-	background: url("../imagens/fundoContato.jpg");
+	background: url("../imagens/fundoInicial.jpg");
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-attachment: scroll;
