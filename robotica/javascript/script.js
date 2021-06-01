@@ -33,3 +33,10 @@ function closeNav() {
         aberto = false;
     }
 }
+
+function scroll(id) {
+    console.log(id)
+    document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    document.getElementById("menu").style.backdropFilter = "blur(5px)";
+    document.getElementById(id).scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
