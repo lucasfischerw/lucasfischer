@@ -56,7 +56,7 @@ img,
 	height: 100vh;
 }
 
-.carregando img {
+.carregandoImg {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -525,4 +525,39 @@ body::-webkit-scrollbar-thumb:hover {
 
 ::selection {
 	background: #43b7e3cf;
+}
+
+.aviso {
+	display: none;
+	width: 35%;
+	height: 25%;
+	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 20;
+	backdrop-filter: blur(5px);
+	border-radius: 15px;
+	transition: opacity 0.5s, transform 0.5s;
+}
+
+.aviso p {
+	font-family: 'Raleway', sans-serif;
+}
+
+.aviso button {
+	background-color: #1e1e1e;
+	border: none;
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-top: 10%;
+}
+
+.exclamacao {
+	width: 15%;
+	height: 15%;
 }

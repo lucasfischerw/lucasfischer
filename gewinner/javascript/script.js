@@ -168,6 +168,14 @@ function seta() {
 	}
 }
 
+function carregarAviso() {
+	if (localStorage.getItem("autoScroll") != 1) {
+		document.getElementById("aviso").style.display = "inherit";
+	} else {
+		carregar();
+	}
+}
+
 function carregar() {
 	setTimeout(function() {
 		document.body.style.transition = "opacity 0.3s"
@@ -232,4 +240,13 @@ function isElementInViewport () {
 	if (estado[0] && estado.every((val, i, arr) => val === arr[0] )) {
 		window.removeEventListener("scroll", isElementInViewport)
 	}
+}
+
+function fechaAviso() {
+	document.getElementById("aviso").style.opacity = "0";
+	document.getElementById("aviso").style.transform = "scale(0.5)";
+	setTimeout(() => {
+		document.getElementById("aviso").style.display = "none";
+		carregar();
+	}, 500);
 }

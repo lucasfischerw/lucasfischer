@@ -29,9 +29,20 @@
 		<meta name="msapplication-TileImage" content="imagens/favicon-144.png">
 		<meta name="msapplication-config" content="imagens/favicon/browserconfig.xml">
 	</head>
-	<body ontouchmove="closeNav()" onload="carregar()">
+	<body ontouchmove="closeNav()" onload="carregarAviso()">
 		<div class="carregando" id="carregando">
-			<img src="imagens/carregando3.gif">
+			<div class="aviso" id="aviso">
+				<div style="position: relative;width: 100%;height: 100%;">
+					<div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+						<div style="display: flex;align-items: center;justify-content: space-evenly;">
+							<img class="exclamacao" src="imagens/exclamacao.png">
+							<p>Atenção! Essa página ainda está em construção!</p>
+						</div>
+						<button onclick="fechaAviso()">Certo :)</button>
+					</div>
+				</div>
+			</div>
+			<img class="carregandoImg" src="imagens/carregando3.gif">
 		</div>
 		<div class="conteudo" id="conteudo">
 			<nav class="menu" id="menu">
@@ -121,27 +132,27 @@
 						</a>
 					</div>	
 					<div class="conjunto">
-						<a href="paginas/nacional2018.html">
-							<img src="imagens/2018_2.jpeg">
-							<h2 class="tituloConjunto">Nacional 2018</h2>		
-						</a>
-					</div>
-					<div class="conjunto">
 						<a href="paginas/regional2019.html">
 							<img src="imagens/2019.jpg">
 							<h2 class="tituloConjunto">Regional 2019</h2>
 						</a>
 					</div>
 					<div class="conjunto">
-						<a href="paginas/nacional2019.html">
-							<img src="imagens/2019_2.jpg">
-							<h2 class="tituloConjunto">Nacional 2019</h2>	
-						</a>
-					</div>
-					<div class="conjunto">
 						<a href="paginas/regional2020.html">
 							<img src="imagens/2020.jpg">
 							<h2 class="tituloConjunto">Regional 2020</h2>	
+						</a>
+					</div>
+					<div class="conjunto">
+						<a href="paginas/nacional2018.html">
+							<img src="imagens/2018_2.jpeg">
+							<h2 class="tituloConjunto">Nacional 2018</h2>		
+						</a>
+					</div>
+					<div class="conjunto">
+						<a href="paginas/nacional2019.html">
+							<img src="imagens/2019_2.jpg">
+							<h2 class="tituloConjunto">Nacional 2019</h2>	
 						</a>
 					</div>
 					<div class="conjunto">
