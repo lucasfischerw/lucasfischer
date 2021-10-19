@@ -45,6 +45,7 @@ function errado() {
 
 async function botao(numeroBotao) {
 	if (estaJogando && possivelClicar) {
+		window.navigator.vibrate(300);
 		botoesEscolhidos.push(numeroBotao);
 		if (botoesEscolhidos.length == quantidadeARevelar) {
 			if (resposta()) {
