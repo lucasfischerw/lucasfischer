@@ -34,6 +34,8 @@ function ResetarClasses() {
 	document.getElementById("containerCartas").classList.remove("cartasFacil")
 }
 
+var controleMenuPowerUp = false;
+
 function Jogar() {
 	if (estaJogando == false) {
 		estaJogando = true;
@@ -46,7 +48,7 @@ function Jogar() {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
 			intervalo = 300
-			setTimeout(function() {
+			setTimeout(function () {
 				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 				document.getElementById('menuConfiguracoes').style.display = "none"
 				aberto = false
@@ -54,7 +56,7 @@ function Jogar() {
 		} else {
 			intervalo = 0
 		}
-		setTimeout(function() {
+		setTimeout(function () {
 			document.getElementById("textoTentativas").style.display = "none"
 			document.getElementById('containerCartas').style.display = "grid"
 			document.body.style.backgroundColor = "rgb(40, 137, 217)"
@@ -82,21 +84,25 @@ function Jogar() {
 				Desenha()
 			}
 		}, intervalo)
-	} else {
+	} else if (!menuPowerUpVisivel) {
 		Apaga()
+	} else if (!controleMenuPowerUp) {
+		FecharPowerUp()
 	}
 }
 
 function Apaga() {
 	if (estaJogando == true) {
+		menuPowerUpVisivel = true;
+		controleMenuPowerUp = true;
 		var numeroCartasInicial = numeroCartas;
 		while (numeroCartas != 0) {
-			document.getElementById("carta-"+numeroCartas+"").classList.add("desaparecer")
+			document.getElementById("carta-" + numeroCartas + "").classList.add("desaparecer")
 			numeroCartas = numeroCartas - 1;
 		}
-		setTimeout(function() {
+		setTimeout(function () {
 			while (numeroCartasInicial != 0) {
-				var carta = document.getElementById("carta-"+numeroCartasInicial);
+				var carta = document.getElementById("carta-" + numeroCartasInicial);
 				carta.remove();
 				numeroCartasInicial = numeroCartasInicial - 1;
 			}
@@ -104,53 +110,55 @@ function Apaga() {
 			possivelAbrirProxima = true;
 			resetar()
 			document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
-			setTimeout(function() {
-				document.getElementById('menuPowerUp').style.display = "none"
-				document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
-				Jogar()
-			}, 500)
+			document.getElementById('menuPowerUp').style.display = "none"
+			document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
+			Jogar()
 		}, 200)
 	} else {
 		estaJogando = false;
 		possivelAbrirProxima = true;
 		resetar()
 		document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
-		setTimeout(function() {
-			document.getElementById('menuPowerUp').style.display = "none"
-			document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
-			Jogar()
-		}, 500)
+		document.getElementById('menuPowerUp').style.display = "none"
+		document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
+		Jogar()
 	}
 }
 
 function Desenha() {
+	menuPowerUpVisivel = true;
+	document.getElementById('botao-jogar').innerHTML = "Reiniciar"
 	while (numeroCartas < quantidadeCartas) {
 		var carta = document.createElement("div");
 		carta.setAttribute("class", "carta")
-		carta.setAttribute("id", "carta-"+parseInt(numeroCartas + 1)+"")
+		carta.setAttribute("id", "carta-" + parseInt(numeroCartas + 1) + "")
 		carta.style.backgroundColor = "whitesmoke";
 		carta.innerHTML = numeroCartas + 1;
-		carta.setAttribute("onclick", "clicou("+parseInt(numeroCartas+1)+")")
+		carta.setAttribute("onclick", "clicou(" + parseInt(numeroCartas + 1) + ")")
 		document.getElementById("containerCartas").appendChild(carta)
 		numeroCartas = numeroCartas + 1;
 	}
+	setTimeout(() => {
+		menuPowerUpVisivel = false;
+		controleMenuPowerUp = false;
+	}, 350);
 }
 
 function clicou(numeroBotao) {
 	if (possivelAbrirProxima == true) {
-		document.getElementById("carta-"+numeroBotao+"").classList.add("comImagem")
-		document.getElementById("carta-"+numeroBotao+"").style.opacity = "0"
+		document.getElementById("carta-" + numeroBotao + "").classList.add("comImagem")
+		document.getElementById("carta-" + numeroBotao + "").style.opacity = "0"
 		if (dificuldade == 1) {
-			document.getElementById("carta-"+numeroBotao+"").style.backgroundImage = "url(imagens/"+ranNumsFacil[numeroBotao - 1]+".png)"
+			document.getElementById("carta-" + numeroBotao + "").style.backgroundImage = "url(imagens/" + ranNumsFacil[numeroBotao - 1] + ".png)"
 			numeroImagem = ranNumsFacil[numeroBotao - 1]
 		} else if (dificuldade == 2) {
-			document.getElementById("carta-"+numeroBotao+"").style.backgroundImage = "url(imagens/"+ranNumsMedio[numeroBotao - 1]+".png)"
+			document.getElementById("carta-" + numeroBotao + "").style.backgroundImage = "url(imagens/" + ranNumsMedio[numeroBotao - 1] + ".png)"
 			numeroImagem = ranNumsMedio[numeroBotao - 1]
 		} else {
-			document.getElementById("carta-"+numeroBotao+"").style.backgroundImage = "url(imagens/"+ranNumsDificil[numeroBotao - 1]+".png)"
+			document.getElementById("carta-" + numeroBotao + "").style.backgroundImage = "url(imagens/" + ranNumsDificil[numeroBotao - 1] + ".png)"
 			numeroImagem = ranNumsDificil[numeroBotao - 1]
 		}
-		document.getElementById("carta-"+numeroBotao+"").innerHTML = ""
+		document.getElementById("carta-" + numeroBotao + "").innerHTML = ""
 		totalJogadas = totalJogadas + 1;
 		if (totalJogadas == 2) {
 			pontuacao()
@@ -160,15 +168,15 @@ function clicou(numeroBotao) {
 
 function shuffle(array) {
 	var i = array.length;
-	var	j = 0;
-	var	temp;
+	var j = 0;
+	var temp;
 	while (i--) {
-		j = Math.floor(Math.random() * (i+1));
+		j = Math.floor(Math.random() * (i + 1));
 		temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
-    }
-    return array;
+	}
+	return array;
 }
 
 function pontuacao() {
@@ -177,36 +185,36 @@ function pontuacao() {
 	totalJogadas = 0
 	escolhido2 = 0;
 	possivelAbrirProxima = false;
-	while(controle < numeroCartas) {
-		if (document.getElementById("carta-"+parseInt(controle+1)+"").style.backgroundImage.length > 10) {
-			if (document.getElementById("carta-"+parseInt(controle+1)+"").style.backgroundImage !== 'none') {
+	while (controle < numeroCartas) {
+		if (document.getElementById("carta-" + parseInt(controle + 1) + "").style.backgroundImage.length > 10) {
+			if (document.getElementById("carta-" + parseInt(controle + 1) + "").style.backgroundImage !== 'none') {
 				if (escolhido1 == 0) {
-					escolhido1 = controle+1
+					escolhido1 = controle + 1
 				} else {
-					escolhido2 = controle+1	
+					escolhido2 = controle + 1
 				}
 			}
 		}
-		controle = controle + 1	
+		controle = controle + 1
 	}
 	if (escolhido2 != 0) {
-		if (document.getElementById("carta-"+escolhido1+"").style.backgroundImage == document.getElementById("carta-"+escolhido2+"").style.backgroundImage) {
+		if (document.getElementById("carta-" + escolhido1 + "").style.backgroundImage == document.getElementById("carta-" + escolhido2 + "").style.backgroundImage) {
 			totalVezesAcertou++;
-			setTimeout(function() {
-				document.getElementById("carta-"+escolhido1+"").classList.add("desaparecer")
-				document.getElementById("carta-"+escolhido2+"").classList.add("desaparecer")
-				document.getElementById("carta-"+escolhido1+"").removeAttribute("onclick", "clicou("+parseInt(escolhido1)+")")
-				document.getElementById("carta-"+escolhido2+"").removeAttribute("onclick", "clicou("+parseInt(escolhido2)+")")
-				document.getElementById("carta-"+escolhido1+"").classList.remove("comImagem")
-				document.getElementById("carta-"+escolhido2+"").classList.remove("comImagem")
+			setTimeout(function () {
+				document.getElementById("carta-" + escolhido1 + "").classList.add("desaparecer")
+				document.getElementById("carta-" + escolhido2 + "").classList.add("desaparecer")
+				document.getElementById("carta-" + escolhido1 + "").removeAttribute("onclick", "clicou(" + parseInt(escolhido1) + ")")
+				document.getElementById("carta-" + escolhido2 + "").removeAttribute("onclick", "clicou(" + parseInt(escolhido2) + ")")
+				document.getElementById("carta-" + escolhido1 + "").classList.remove("comImagem")
+				document.getElementById("carta-" + escolhido2 + "").classList.remove("comImagem")
 				vezesGanhou = vezesGanhou + 1;
 				tentativas = tentativas + 1;
 				vezesUltimaRodada = tentativas;
 				vezesHoje++;
-				setTimeout(function() {
-					document.getElementById("carta-"+escolhido1+"").style.backgroundImage = 'none'
-					document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
-					if (vezesGanhou < numeroCartas/2) {
+				setTimeout(function () {
+					document.getElementById("carta-" + escolhido1 + "").style.backgroundImage = 'none'
+					document.getElementById("carta-" + escolhido2 + "").style.backgroundImage = 'none'
+					if (vezesGanhou < numeroCartas / 2) {
 						if (numeroImagem == imagemEscolhida) {
 							if (tentativas <= 3) {
 								if (document.getElementById('ativarPowerUp').checked == true) {
@@ -222,35 +230,35 @@ function pontuacao() {
 							possivelAbrirProxima = true;
 						}
 					}
-					if (vezesGanhou == numeroCartas/2) {
+					if (vezesGanhou == numeroCartas / 2) {
 						document.getElementById("body").style.transition = "background-color 0.6s"
 						var numeroCartasInicial = numeroCartas;
 						while (numeroCartas != 0) {
-							document.getElementById("carta-"+numeroCartas+"").classList.add("desaparecer")
+							document.getElementById("carta-" + numeroCartas + "").classList.add("desaparecer")
 							numeroCartas = numeroCartas - 1;
 						}
-						setTimeout(function() {
+						setTimeout(function () {
 							while (numeroCartasInicial != 0) {
-								var carta = document.getElementById("carta-"+numeroCartasInicial);
+								var carta = document.getElementById("carta-" + numeroCartasInicial);
 								carta.remove();
 								numeroCartasInicial = numeroCartasInicial - 1;
 							}
 						}, 200)
-						window.scrollTo({top: 0, behavior: 'smooth'});
-						setTimeout(function() {
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+						setTimeout(function () {
 							document.getElementById('containerCartas').style.display = "inherit"
 							document.getElementById('textoTentativas').style.display = "inherit"
 							if (tentativas < 12) {
 								document.getElementById('textoTentativas').style.color = "rgb(70, 180, 70)"
-								document.getElementById('textoTentativas').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								document.getElementById('textoTentativas').innerHTML = "Ganhou em " + tentativas + " tentativas"
 								document.body.style.backgroundColor = "rgb(70, 180, 70)"
 							} else if (tentativas < 20) {
 								document.getElementById('textoTentativas').style.color = "rgb(240, 180, 0)"
-								document.getElementById('textoTentativas').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								document.getElementById('textoTentativas').innerHTML = "Ganhou em " + tentativas + " tentativas"
 								document.body.style.backgroundColor = "rgb(240, 180, 0)"
 							} else {
 								document.getElementById('textoTentativas').style.color = "rgb(255, 70, 70)"
-								document.getElementById('textoTentativas').innerHTML = "Ganhou em "+tentativas+" tentativas"
+								document.getElementById('textoTentativas').innerHTML = "Ganhou em " + tentativas + " tentativas"
 								document.body.style.backgroundColor = "rgb(255, 70, 70)"
 							}
 							document.getElementById('botao-jogar').innerHTML = "Reiniciar"
@@ -267,15 +275,15 @@ function pontuacao() {
 			tentativas = tentativas + 1
 			vezesUltimaRodada = tentativas;
 			vezesHoje++;
-			setTimeout(function() {
-				document.getElementById("carta-"+escolhido1+"").style.backgroundImage = 'none'
-				document.getElementById("carta-"+escolhido2+"").style.backgroundImage = 'none'
-				document.getElementById("carta-"+escolhido1+"").innerHTML = ""+escolhido1+""
-				document.getElementById("carta-"+escolhido2+"").innerHTML = ""+escolhido2+""
-				document.getElementById("carta-"+escolhido1+"").classList.remove("comImagem")
-				document.getElementById("carta-"+escolhido2+"").classList.remove("comImagem")
-				document.getElementById("carta-"+escolhido1+"").style.opacity = "1"
-				document.getElementById("carta-"+escolhido2+"").style.opacity = "1"
+			setTimeout(function () {
+				document.getElementById("carta-" + escolhido1 + "").style.backgroundImage = 'none'
+				document.getElementById("carta-" + escolhido2 + "").style.backgroundImage = 'none'
+				document.getElementById("carta-" + escolhido1 + "").innerHTML = "" + escolhido1 + ""
+				document.getElementById("carta-" + escolhido2 + "").innerHTML = "" + escolhido2 + ""
+				document.getElementById("carta-" + escolhido1 + "").classList.remove("comImagem")
+				document.getElementById("carta-" + escolhido2 + "").classList.remove("comImagem")
+				document.getElementById("carta-" + escolhido1 + "").style.opacity = "1"
+				document.getElementById("carta-" + escolhido2 + "").style.opacity = "1"
 				possivelAbrirProxima = true;
 			}, 900)
 		}
@@ -299,9 +307,9 @@ function resetar() {
 
 function preloadImage() {
 	var controle = 1;
-	while(controle <= 13) {
+	while (controle <= 13) {
 		var img = new Image();
-		img.src = "imagens/"+controle+".png";
+		img.src = "imagens/" + controle + ".png";
 		controle = controle + 1
 	}
 	document.getElementById('carregando-container').style.display = "none";
@@ -325,16 +333,16 @@ function AbrirConfiguracoes(iniciarJogo) {
 		} else {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
-			setTimeout(function() {
+			setTimeout(function () {
 				document.getElementById('menuConfiguracoes').style.display = "none"
 				aberto = false
 				if (iniciarJogo == true) {
-					setTimeout(function() {
+					setTimeout(function () {
 						Jogar()
-					}, 200)	
+					}, 200)
 				}
 			}, 150)
-		}	
+		}
 	}
 }
 
@@ -354,7 +362,7 @@ function anterior() {
 			document.getElementById('dificuldadeEscolhida').innerHTML = "Médio"
 		}
 	}
-	
+
 }
 
 function proximo() {
@@ -379,17 +387,21 @@ var menuPowerUpVisivel = false;
 
 function powerUp() {
 	menuPowerUpVisivel = true;
-	document.getElementById('botao-jogar').innerHTML = "Reiniciar"
+	controleMenuPowerUp = true;
+	document.getElementById('botao-jogar').innerHTML = "Ok"
 	document.getElementById('menuPowerUp').style.display = "inherit"
-	document.getElementById('imagem').style.backgroundImage = "url(imagens/"+imagemEscolhida+".png)"
+	document.getElementById('imagem').style.backgroundImage = "url(imagens/" + imagemEscolhida + ".png)"
 	document.getElementById('imagem').style.backgroundSize = "20vh 20vh"
-	window.scrollTo({top: 0, behavior: 'smooth'});
+	window.scrollTo({ top: 0, behavior: 'smooth' });
+	setTimeout(() => {
+		controleMenuPowerUp = false;
+	}, 550);
 }
 
 function FecharPowerUp() {
-	menuPowerUpVisivel = false;
+	controleMenuPowerUp = true;
 	document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
-	setTimeout(function() {
+	setTimeout(function () {
 		document.getElementById('menuPowerUp').style.display = "none"
 		document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
 		Desenha()
@@ -400,39 +412,39 @@ function powerUpAtivo() {
 	var controle = 1;
 	possivelAbrirProxima = false;
 	if (dificuldade == 1) {
-		while(controle < (numeroCartas + 1)) {
-			if (document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
+		while (controle < (numeroCartas + 1)) {
+			if (document.getElementById("carta-" + controle + "").classList.contains("desaparecer")) {
 			} else {
-				document.getElementById("carta-"+controle+"").classList.add("comImagem")
-				document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsFacil[controle-1]+".png)"
-				document.getElementById("carta-"+controle+"").innerHTML = ""		
+				document.getElementById("carta-" + controle + "").classList.add("comImagem")
+				document.getElementById("carta-" + controle + "").style.backgroundImage = "url(imagens/" + ranNumsFacil[controle - 1] + ".png)"
+				document.getElementById("carta-" + controle + "").innerHTML = ""
 			}
 			controle++
 		}
 	} else if (dificuldade == 2) {
-		while(controle < (numeroCartas + 1)) {
-			if (document.getElementById("carta-"+controle+"").classList.contains("desaparecer")) {
+		while (controle < (numeroCartas + 1)) {
+			if (document.getElementById("carta-" + controle + "").classList.contains("desaparecer")) {
 			} else {
-				document.getElementById("carta-"+controle+"").classList.add("comImagem")
-				document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsMedio[controle-1]+".png)"
-				document.getElementById("carta-"+controle+"").innerHTML = ""		
+				document.getElementById("carta-" + controle + "").classList.add("comImagem")
+				document.getElementById("carta-" + controle + "").style.backgroundImage = "url(imagens/" + ranNumsMedio[controle - 1] + ".png)"
+				document.getElementById("carta-" + controle + "").innerHTML = ""
 			}
 			controle++
 		}
 	} else {
-		while(controle < (numeroCartas + 1)) {
-			document.getElementById("carta-"+controle+"").classList.add("comImagem")
-			document.getElementById("carta-"+controle+"").style.backgroundImage = "url(imagens/"+ranNumsDificil[controle-1]+".png)"
-			document.getElementById("carta-"+controle+"").innerHTML = ""
+		while (controle < (numeroCartas + 1)) {
+			document.getElementById("carta-" + controle + "").classList.add("comImagem")
+			document.getElementById("carta-" + controle + "").style.backgroundImage = "url(imagens/" + ranNumsDificil[controle - 1] + ".png)"
+			document.getElementById("carta-" + controle + "").innerHTML = ""
 			controle++
 		}
 	}
 	controle = 1
-	setTimeout(function() {
-		while(controle < (numeroCartas + 1)) {
-			document.getElementById("carta-"+controle+"").classList.remove("comImagem")
-			document.getElementById("carta-"+controle+"").style.backgroundImage = "none"
-			document.getElementById("carta-"+controle+"").innerHTML = ""+controle+""
+	setTimeout(function () {
+		while (controle < (numeroCartas + 1)) {
+			document.getElementById("carta-" + controle + "").classList.remove("comImagem")
+			document.getElementById("carta-" + controle + "").style.backgroundImage = "none"
+			document.getElementById("carta-" + controle + "").innerHTML = "" + controle + ""
 			controle++
 		}
 		document.getElementById('titulo').innerHTML = "Memória"
@@ -440,35 +452,33 @@ function powerUpAtivo() {
 	}, 1500)
 }
 
-function Estatisticas () {
-	if (estaJogando == false) {
-		if(aberto == true) {
-			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
-			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
-			setTimeout(function() {
-				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
-				document.getElementById('menuConfiguracoes').style.display = "none"
-				aberto = false
-				setTimeout(function() {
-					document.getElementById('conteudo').style.display = "none";
-					document.getElementById('estatisticas').style.display = "inherit";
-				}, 300)
-			}, 150)
-		} else {
-			document.getElementById('conteudo').style.display = "none";
-			document.getElementById('estatisticas').style.display = "inherit";
-		}
+function Estatisticas() {
+	if (aberto == true) {
+		document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
+		document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
+		setTimeout(function () {
+			document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
+			document.getElementById('menuConfiguracoes').style.display = "none"
+			aberto = false
+			setTimeout(function () {
+				document.getElementById('conteudo').style.display = "none";
+				document.getElementById('estatisticas').style.display = "inherit";
+			}, 300)
+		}, 150)
+	} else {
+		document.getElementById('conteudo').style.display = "none";
+		document.getElementById('estatisticas').style.display = "inherit";
 	}
-	if (jogou == true) {
+	if (totalVezesAcertou + totalVezesErrou != 0) {
 		var a = totalVezesAcertou + totalVezesErrou;
 		var b = 100;
 		var x = parseInt((b * totalVezesAcertou) / a);
-		document.getElementById('porcentagemAcerto').innerHTML = ""+parseInt(x)+"%"
-		document.getElementById('porcentagemErro').innerHTML = ""+parseInt(b - x)+"%"
-		document.getElementById('vezesErrou').innerHTML = ""+totalVezesErrou+""
-		document.getElementById('vezesAcertou').innerHTML = ""+totalVezesAcertou+""
-		document.getElementById('totalJogadasHoje').innerHTML = ""+vezesHoje+""
-		document.getElementById('jogadasUltimaRodada').innerHTML = ""+vezesUltimaRodada+""
+		document.getElementById('porcentagemAcerto').innerHTML = "" + parseInt(x) + "%"
+		document.getElementById('porcentagemErro').innerHTML = "" + parseInt(b - x) + "%"
+		document.getElementById('vezesErrou').innerHTML = "" + totalVezesErrou + ""
+		document.getElementById('vezesAcertou').innerHTML = "" + totalVezesAcertou + ""
+		document.getElementById('totalJogadasHoje').innerHTML = "" + vezesHoje + ""
+		document.getElementById('jogadasUltimaRodada').innerHTML = "" + vezesUltimaRodada + ""
 	}
 }
 
