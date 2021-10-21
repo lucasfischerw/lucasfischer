@@ -34,8 +34,6 @@ function ResetarClasses() {
 	document.getElementById("containerCartas").classList.remove("cartasFacil")
 }
 
-var controleMenuPowerUp = false;
-
 function Jogar() {
 	if (estaJogando == false) {
 		estaJogando = true;
@@ -84,17 +82,13 @@ function Jogar() {
 				Desenha()
 			}
 		}, intervalo)
-	} else if (!menuPowerUpVisivel) {
+	} else {
 		Apaga()
-	} else if (!controleMenuPowerUp) {
-		FecharPowerUp()
 	}
 }
 
 function Apaga() {
 	if (estaJogando == true) {
-		menuPowerUpVisivel = true;
-		controleMenuPowerUp = true;
 		var numeroCartasInicial = numeroCartas;
 		while (numeroCartas != 0) {
 			document.getElementById("carta-"+numeroCartas+"").classList.add("desaparecer")
@@ -110,24 +104,26 @@ function Apaga() {
 			possivelAbrirProxima = true;
 			resetar()
 			document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
-			document.getElementById('menuPowerUp').style.display = "none"
-			document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
-			Jogar()
+			setTimeout(function() {
+				document.getElementById('menuPowerUp').style.display = "none"
+				document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
+				Jogar()
+			}, 500)
 		}, 200)
 	} else {
 		estaJogando = false;
 		possivelAbrirProxima = true;
 		resetar()
 		document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
-		document.getElementById('menuPowerUp').style.display = "none"
-		document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
-		Jogar()
+		setTimeout(function() {
+			document.getElementById('menuPowerUp').style.display = "none"
+			document.getElementById('menuPowerUp').classList.remove("menuPowerUpFechado")
+			Jogar()
+		}, 500)
 	}
 }
 
 function Desenha() {
-	menuPowerUpVisivel = true;
-	document.getElementById('botao-jogar').innerHTML = "Reiniciar"
 	while (numeroCartas < quantidadeCartas) {
 		var carta = document.createElement("div");
 		carta.setAttribute("class", "carta")
@@ -138,10 +134,6 @@ function Desenha() {
 		document.getElementById("containerCartas").appendChild(carta)
 		numeroCartas = numeroCartas + 1;
 	}
-	setTimeout(() => {
-		menuPowerUpVisivel = false;
-		controleMenuPowerUp = false;		
-	}, 350);
 }
 
 function clicou(numeroBotao) {
@@ -387,19 +379,15 @@ var menuPowerUpVisivel = false;
 
 function powerUp() {
 	menuPowerUpVisivel = true;
-	controleMenuPowerUp = true;
-	document.getElementById('botao-jogar').innerHTML = "Ok"
+	document.getElementById('botao-jogar').innerHTML = "Reiniciar"
 	document.getElementById('menuPowerUp').style.display = "inherit"
 	document.getElementById('imagem').style.backgroundImage = "url(imagens/"+imagemEscolhida+".png)"
 	document.getElementById('imagem').style.backgroundSize = "20vh 20vh"
 	window.scrollTo({top: 0, behavior: 'smooth'});
-	setTimeout(() => {
-		controleMenuPowerUp = false;
-	}, 550);
 }
 
 function FecharPowerUp() {
-	controleMenuPowerUp = true;
+	menuPowerUpVisivel = false;
 	document.getElementById('menuPowerUp').classList.add("menuPowerUpFechado")
 	setTimeout(function() {
 		document.getElementById('menuPowerUp').style.display = "none"
@@ -453,23 +441,25 @@ function powerUpAtivo() {
 }
 
 function Estatisticas () {
-	if(aberto == true) {
-		document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
-		document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
-		setTimeout(function() {
-			document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
-			document.getElementById('menuConfiguracoes').style.display = "none"
-			aberto = false
+	if (estaJogando == false) {
+		if(aberto == true) {
+			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
+			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
 			setTimeout(function() {
-				document.getElementById('conteudo').style.display = "none";
-				document.getElementById('estatisticas').style.display = "inherit";
-			}, 300)
-		}, 150)
-	} else {
-		document.getElementById('conteudo').style.display = "none";
-		document.getElementById('estatisticas').style.display = "inherit";
+				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
+				document.getElementById('menuConfiguracoes').style.display = "none"
+				aberto = false
+				setTimeout(function() {
+					document.getElementById('conteudo').style.display = "none";
+					document.getElementById('estatisticas').style.display = "inherit";
+				}, 300)
+			}, 150)
+		} else {
+			document.getElementById('conteudo').style.display = "none";
+			document.getElementById('estatisticas').style.display = "inherit";
+		}
 	}
-	if (totalVezesAcertou+totalVezesErrou != 0) {
+	if (jogou == true) {
 		var a = totalVezesAcertou + totalVezesErrou;
 		var b = 100;
 		var x = parseInt((b * totalVezesAcertou) / a);

@@ -630,7 +630,7 @@ button {
 	}
 	.menuPowerUp {
 		width: 60vw;
-		margin-top: 10vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
@@ -724,7 +724,7 @@ button {
 	}
 	.menuPowerUp {
 		width: 60vw;
-		margin-top: 10vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
@@ -835,7 +835,7 @@ button {
 	}
 	.menuPowerUp {
 		width: 50vw;
-		margin-top: 10vh;
+		margin-top: 7vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
@@ -848,7 +848,7 @@ button {
 @media (min-width: 220vh) {
 	.menuPowerUp {
 		width: 50vw;
-		margin-top: -1vh;
+		margin-top: -4vh;
 		margin-left: 15vw;
 	}
 	.menuConfiguracoes {
