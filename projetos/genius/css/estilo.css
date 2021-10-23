@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital@1&display=swap');
 
 * {
 	margin: 0;
@@ -187,7 +186,7 @@ body  {
 	position: absolute;
 	width: inherit;
 	height: 30px;
-	font-family: 'Balsamiq Sans', cursive;
+	font-family: 'Varela Round', sans-serif;
 }
 
 @keyframes removeTitulo {
