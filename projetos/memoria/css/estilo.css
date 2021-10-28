@@ -903,3 +903,7 @@ body::-webkit-scrollbar-thumb {
 		margin-left: 0;
 	}
 }
+
+::selection {
+    background: #43b7e3cf;
+}

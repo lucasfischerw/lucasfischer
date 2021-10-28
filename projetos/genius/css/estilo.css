@@ -102,7 +102,7 @@ body  {
 	border-radius: 15px;
 	text-align: center;
 	background-color: rgb(239, 239, 239);
-	color: white;
+	color: black;
 	transition: 0.2s transform;
 	margin: auto;
 	-youbkit-touch-callout: none;
@@ -121,7 +121,7 @@ body  {
 
 @media(hover: hover) and (pointer: fine) {
 	.btn:hover {
-		cursor: pointer;
+		cursor: not-allowed;
 		transform: scale(1.06);
 	}
 }
@@ -135,6 +135,7 @@ body  {
 
 .botaoJogar {
 	color: black;
+	cursor: pointer !important;
 	margin: 0;
 	margin-top: auto;
     margin-bottom: auto;
@@ -161,22 +162,6 @@ body  {
 	text-align: center;
 	display: none;
 	background-color: rgb(70, 180, 70);
-}
-
-#botao1 {
-	background-color: rgb(255, 70, 70);
-}
-
-#botao2 {
-	background-color: rgb(70, 180, 70);
-}
-
-#botao3 {
-	background-color: rgb(40, 137, 217);
-}
-
-#botao4 {
-	background-color: rgb(240, 180, 0);
 }
 
 .titulo {
@@ -216,4 +201,8 @@ body::-webkit-scrollbar-thumb {
 	background-color: rgb(200, 200, 200);
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
+}
+
+::selection {
+    background: #43b7e3cf;
 }

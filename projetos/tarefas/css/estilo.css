@@ -401,3 +401,7 @@ input {
 .transicaoAbrirMenu {
 	transition: margin 0.5s, width 0.5s, height 0.5s;
 }
+
+::selection {
+    background: #43b7e3cf;
+}

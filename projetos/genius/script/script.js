@@ -43,6 +43,28 @@ function errado() {
 	reset()
 }
 
+function CorBotoes(colorir) {
+	if(colorir) {
+		document.getElementById("botao1").style.backgroundColor = "rgb(255, 70, 70)";
+		document.getElementById("botao2").style.backgroundColor = "rgb(70, 180, 70)";
+		document.getElementById("botao3").style.backgroundColor = "rgb(40, 137, 217)";
+		document.getElementById("botao4").style.backgroundColor = "rgb(240, 180, 0)";
+		for (let i = 0; i < 4; i++) {
+			document.getElementsByClassName("btn")[i].style.color = "white";
+			document.getElementsByClassName("btn")[i].style.cursor = "pointer";
+		}
+	} else {
+		document.getElementById("botao1").style.backgroundColor = "rgb(239, 239, 239)";
+		document.getElementById("botao2").style.backgroundColor = "rgb(239, 239, 239)";
+		document.getElementById("botao3").style.backgroundColor = "rgb(239, 239, 239)";
+		document.getElementById("botao4").style.backgroundColor = "rgb(239, 239, 239)";
+		for (let i = 0; i < 4; i++) {
+			document.getElementsByClassName("btn")[i].style.color = "black";
+			document.getElementsByClassName("btn")[i].style.cursor = "not-allowed";
+		}
+	}
+}
+
 async function botao(numeroBotao) {
 	if (estaJogando && possivelClicar) {
 		botoesEscolhidos.push(numeroBotao);
@@ -61,6 +83,7 @@ async function botao(numeroBotao) {
 				if (quantidadeARevelar > 4 && quantidadeARevelar < 12) {
 					intervalo = intervalo - 100;
 				}
+				CorBotoes(true);
 				possivelClicar = true;
 			} else {
 				errado()
@@ -72,6 +95,7 @@ async function botao(numeroBotao) {
 }
 
 function desenhaCor(codigoCor) {
+	CorBotoes(false);
 	if (codigoCor == 1) {
 		document.getElementById('conteudo').innerHTML = "Vermelho"
 		document.getElementById('textoBotao').style.backgroundColor = "rgb(255, 70, 70)"
@@ -114,6 +138,7 @@ async function iniciarJogo() {
 			sequencia.push(Math.floor(Math.random() * (5 - 1)) + 1);
 			desenhaCor(sequencia[0])
 			await sleep(intervalo)
+			CorBotoes(true);
 			possivelClicar = true;
 		}, 450)
 	}

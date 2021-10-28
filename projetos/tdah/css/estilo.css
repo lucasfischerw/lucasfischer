@@ -180,3 +180,7 @@ p {
 		font-size: 3vw;
 	}	
 }
+
+::selection {
+    background: #43b7e3cf;
+}

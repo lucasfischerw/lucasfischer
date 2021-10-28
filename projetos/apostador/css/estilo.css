@@ -406,3 +406,7 @@ body::-webkit-scrollbar-thumb {
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
 }
+
+::selection {
+    background: #43b7e3cf;
+}
