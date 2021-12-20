@@ -24,65 +24,62 @@
 		<link rel="apple-touch-icon" sizes="76x76" href="imagens/favicon/favicon-76.png">
 		<link rel="apple-touch-icon" sizes="152x152" href="imagens/favicon/favicon-152.png">
 		<link rel="apple-touch-icon" sizes="180x180" href="imagens/favicon/favicon-180.png">
+		<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 		<meta name="msapplication-TileColor" content="#FFFFFF">
 		<meta name="msapplication-TileImage" content="imagens/favicon-144.png">
 		<meta name="msapplication-config" content="imagens/favicon/browserconfig.xml">
 	</head>
-	<body ontouchmove="closeNav()" onload="carregarAviso()">
+	<body ontouchmove="CloseNav()"  onload="Carregando()" onscroll="CloseNav()" onresize="CloseNav()">
 		<div class="carregando" id="carregando">
-			<div class="aviso" id="aviso">
-				<div style="position: relative;width: 100%;height: 100%;">
-					<div style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-						<div style="display: flex;align-items: center;justify-content: space-evenly;">
-							<img class="exclamacao" src="imagens/exclamacao.png">
-							<p>Site temporariamente desativado para futura atualização. Obrigado pela compreensão :)</p>
-						</div>
-					</div>
-				</div>
+			<!-- <img class="carregandoImg" src="imagens/carregando3.gif"> -->
+			<div class="aviso">
+				<p>Site desativado temporariamente devido a uma atualização que ocorrerá nos próximos dias. Obrigado pela compreensão :)</p>
 			</div>
-			<img class="carregandoImg" src="imagens/carregando3.gif">
+			<div class="imagem">
+				<img src="imagens/natal.png">
+			</div>
 		</div>
 		<div class="conteudo" id="conteudo">
 			<nav class="menu" id="menu">
 				<ul>
-					<li class="mobile"><a href="javascript:void(0)" onclick="logo()">Gewinner</a></li>
-					<li class="mobile"><a href="javascript:void(0)" onclick="openNav()">&#9776;</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="logo()">Gewinner</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Integrantes()">Equipe</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Robos()">Robôs</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Competicoes()">Competições</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Contato()">Contato</a></li>
+					<li class="mobile"><a href="javascript:void(0)" onclick="Logo()">Gewinner</a></li>
+					<li class="mobile"><a href="javascript:void(0)" onclick="OpenNav()">&#9776;</a></li>
+					<li class="desktop"><a href="javascript:void(0)" onclick="Logo()">Gewinner</a></li>
+					<li class="desktop"><a href="javascript:void(0)" id="equipe-btn">Equipe</a></li>
+					<li class="desktop"><a href="javascript:void(0)" id="fotos-btn">Galeria</a></li>
+					<li class="desktop"><a href="javascript:void(0)" id="competicoes-btn">Competições</a></li>
+					<li class="desktop"><a href="javascript:void(0)" id="contato-btn">Contato</a></li>
 				</ul>
 			</nav>
 			<div id="sidebar" class="sidenav">
-				<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<a href="javascript:void(0)" class="closebtn" onclick="CloseNav()">&times;</a>
 				<div class="itens" id="itens">
-				  	<a href="javascript:void(0)" onclick="Integrantes()" class="botao">Equipe</a>
-				  	<a href="javascript:void(0)" onclick="Robos()">Robôs</a>
-				  	<a href="javascript:void(0)" onclick="Competicoes()">Competições</a>
-				  	<a href="javascript:void(0)" onclick="Contato()">Contato</a>
+				  	<a href="javascript:void(0)" id="equipe-btn-mobile">Equipe</a>
+				  	<a href="javascript:void(0)" id="fotos-btn-mobile">Galeria</a>
+				  	<a href="javascript:void(0)" id="competicoes-btn-mobile">Competições</a>
+				  	<a href="javascript:void(0)" id="contato-btn-mobile">Contato</a>
 				</div>
 			</div>
-			<div id="secoes" onclick="closeNav()">
+			<div id="secoes" onclick="CloseNav()">
 				<div class="secao" id="inicial">
 					<h1 class="tituloPrincipal" id="titulo">Gewinner</h1>
 				</div>
-				<div class="integrantes" id="integrantes">
-					<div class="integrante" id="jorge">
+				<div class="equipe" id="equipe">
+					<div class="integrante" id="jorge" data-aos="fade-right">
 						<img src="imagens/Jorge.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Jorge Jardim</h2>
 							<h3 class="cargo">Professor</h3>
 						</div>
 					</div>
-					<div class="integrante" id="fischer">
+					<div class="integrante" id="fischer" data-aos="fade">
 						<img src="imagens/Lucas.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Lucas Fischer</h2>
 							<h3 class="cargo">Programador</h3>	
 						</div>
 					</div>
-					<div class="integrante" id="theodoro">
+					<div class="integrante" id="theodoro" data-aos="fade-left">
 						<img src="imagens/Theodoro.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Theodoro Friedrich</h2>
@@ -90,92 +87,74 @@
 						</div>
 					</div>
 				</div>
-				<div class="secao" id="robos">
-					<h1 class="titulo" id="subtituloRobos">Robôs que já usamos</h1>
+				<div class="galeria" id="fotos">
+					<img src="imagens/2019resultado.jpg" data-aos="fade">
+					<img src="imagens/2019aprendizado.jpg" data-aos="fade">
+					<img src="imagens/4_2.jpg" data-aos="fade">
+					<img src="imagens/2018_2f.jpeg" data-aos="fade">
+					<img src="imagens/2018_3.jpg" data-aos="fade">
+					<img src="imagens/2.jpg" data-aos="fade">
+					<img src="imagens/5.jpg" data-aos="fade">
+					<img src="imagens/1.jpg" data-aos="fade">
 				</div>
-				<div class="grid" id="robos2">
-					<div class="conjunto">
-						<img src="imagens/1.jpg">
-						<h2 class="tituloConjunto">2018</h2>
-					</div>
-					<div class="conjunto">
-						<img src="imagens/2.jpg">
-						<h2 class="tituloConjunto">2018</h2>
-					</div>
-					<div class="conjunto">
-						<img src="imagens/3.jpg">
-						<h2 class="tituloConjunto">2019</h2>
-					</div>
-					<div class="conjunto">
-						<img src="imagens/4.jpeg">
-						<h2 class="tituloConjunto">2019</h2>
-					</div>
-					<div class="conjunto">
-						<img src="imagens/6_1.jpg">
-						<h2 class="tituloConjunto">2020</h2>
-					</div>
-					<div class="conjunto">
-						<img src="imagens/6.jpg">
-						<h2 class="tituloConjunto">2020</h2>
-					</div>
-				</div>
-				<div class="secao" id="competicoes">
+				<div class="secao" id="competicoes-titulo" data-aos="fade-right" data-aos-duration="1000">
 					<h1 class="titulo" id="subtituloCompeticoes">Competições que participamos</h1>
 				</div>
-				<div class="grid" id="competicoes2">
-					<div class="conjunto" id="competicaoBase">
-						<a href="paginas/regional2018.html">
-							<img src="imagens/2018.jpg">
-							<h2 class="tituloConjunto">Regional 2018</h2>
-						</a>
+				<div class="competicoes" id="competicoes">
+					<div class="competicao" id="competicao-0" data-aos="zoom-in">
+						<img src="imagens/2018.jpg">
+						<h2 class="tituloConjunto">Regional 2018</h2>
 					</div>	
-					<div class="conjunto">
-						<a href="paginas/regional2019.html">
-							<img src="imagens/2019.jpg">
-							<h2 class="tituloConjunto">Regional 2019</h2>
-						</a>
+					<div class="competicao" id="competicao-1" data-aos="zoom-in">
+						<img src="imagens/2018_2.jpeg">
+						<h2 class="tituloConjunto">Nacional 2018</h2>		
 					</div>
-					<div class="conjunto">
-						<a href="paginas/regional2020.html">
-							<img src="imagens/2020.jpg">
-							<h2 class="tituloConjunto">Regional 2020</h2>	
-						</a>
+					<div class="competicao" id="competicao-2" data-aos="zoom-in">
+						<img src="imagens/2019.jpg">
+						<h2 class="tituloConjunto">Regional 2019</h2>
 					</div>
-					<div class="conjunto">
-						<a href="paginas/nacional2018.html">
-							<img src="imagens/2018_2.jpeg">
-							<h2 class="tituloConjunto">Nacional 2018</h2>		
-						</a>
+					<div class="competicao" id="competicao-3" data-aos="zoom-in">
+						<img src="imagens/2019_2.jpg">
+						<h2 class="tituloConjunto">Nacional 2019</h2>	
 					</div>
-					<div class="conjunto">
-						<a href="paginas/nacional2019.html">
-							<img src="imagens/2019_2.jpg">
-							<h2 class="tituloConjunto">Nacional 2019</h2>	
-						</a>
+					<div class="competicao" id="competicao-4" data-aos="zoom-in">
+						<img src="imagens/2020.jpg">
+						<h2 class="tituloConjunto">Regional 2020</h2>	
 					</div>
-					<div class="conjunto">
-						<a href="paginas/nacional2020.html">
-							<img src="imagens/2020_2.jpeg">
-							<h2 class="tituloConjunto">Nacional 2020</h2>	
-						</a>
+					<div class="competicao" id="competicao-5" data-aos="zoom-in">
+						<img src="imagens/2020_2.jpeg">
+						<h2 class="tituloConjunto">Nacional 2020</h2>	
+					</div>
+					<div class="competicao" id="competicao-6" data-aos="zoom-in">
+						<img src="imagens/2021.jpg">
+						<h2 class="tituloConjunto">Regional 2021</h2>	
+					</div>
+					<div class="competicao" id="competicao-7" data-aos="zoom-in">
+						<img src="imagens/2021_2.jpg">
+						<h2 class="tituloConjunto">Nacional 2021</h2>	
 					</div>
 				</div>
 				<div class="secao" id="contato">
-					<h1 class="subtitulo" id="subtituloContato">Contato</h1>
+					<h1 class="subtitulo" id="subtituloContato" data-aos="fade-left" data-aos-duration="1000">Contato</h1>
 					<div class="iconesCotato">
-						<img class="imagemContato" src="imagens/fischer.png" onclick="window.open('https://www.lucasfischer.com.br/')">
-						<img class="imagemContato" src="imagens/instagram.png" onclick="window.open('https://www.instagram.com/fischer.lucas_/')">
-						<img class="imagemContato" src="imagens/facebook.png"  onclick="window.open('https://www.facebook.com/profile.php?id=100009913897593');">
-						<a class="email" href="mailto:lucasfischerw@gmail.com"><img class="imagemContato" src="imagens/gmail.png"></a>
-						<img class="imagemContato" src="imagens/telefone.png" onclick="window.open('tel:51993518371');">
-						<img class="imagemContato" src="imagens/youtube.png" onclick="window.open('https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA');">	
+						<img class="imagemContato" src="imagens/fischer.png" onclick="window.open('https://www.lucasfischer.com.br/')" data-aos="fade">
+						<img class="imagemContato" src="imagens/instagram.png" onclick="window.open('https://www.instagram.com/fischer.lucas_/')" data-aos="fade">
+						<img class="imagemContato" src="imagens/facebook.png"  onclick="window.open('https://www.facebook.com/profile.php?id=100009913897593');" data-aos="fade">
+						<a class="email" href="mailto:lucasfischerw@gmail.com"><img class="imagemContato" src="imagens/gmail.png" data-aos="fade"></a>
+						<img class="imagemContato" src="imagens/telefone.png" onclick="window.open('tel:51993518371');" data-aos="fade">
+						<img class="imagemContato" src="imagens/youtube.png" onclick="window.open('https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA');" data-aos="fade">	
 					</div>
 				</div>	
 			</div>
-			<div class="arrow-container" id="arrow-container">
-				<img src="imagens/arrow.png" class="arrow" id="arrow" onclick="seta()">
-			</div>
 		</div>
 		<script src="javascript/script.js"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			setTimeout(() => {
+				AOS.init({
+					duration: 650,
+				});
+			}, 500);
+		</script>
 	</body>
 </html>
