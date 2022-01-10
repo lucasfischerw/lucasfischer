@@ -1,5 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+@font-face {
+	font-family: Varela Round;
+	src: url(VarelaRoundFonte.ttf);
+}
+
+@font-face {
+	font-family: Raleway;
+	src: url(RalewayFonte.ttf);
+}
+
+@font-face {
+	font-family: Source Sans Pro;
+	src: url(SourceSansProFonte.ttf);
+}
 
 * {
 	margin: 0;
@@ -15,16 +27,17 @@
 
 html, body {
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 }
 
 body {
-	scroll-behavior: smooth;
 	position: relative;
 	background-color: rgb(0, 0, 0);
 }
 
 img,
-.conjunto {
+.conjunto,
+a {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
@@ -34,23 +47,21 @@ img,
 	display: none;
 }
 
-.desktop {
-	display: none;
-}
-
-.mobile {
-	display: inherit;
-}
-
 #secoes {
 	background-image: url(../imagens/fundo.png);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	transition: margin 0.5s, opacity 0.5s;
+	-webkit-transition: .5s -webkit-filter linear;
+	-moz-transition: .5s -moz-filter linear;
+	-moz-transition: .5s filter linear;
+	-ms-transition: .5s -ms-filter linear;
+	-o-transition: .5s -o-filter linear;
+	transition: .5s margin cubic-bezier(0.18, 0.89, 0.32, 1.28), .5s opacity, .5s filter linear, .5s -webkit-filter linear;
 }
 
-/* .carregando {
+.carregando {
+	opacity: 0;
 	position: relative;
 	width: 100vw;
 	height: 100vh;
@@ -64,19 +75,9 @@ img,
 	width: 20vw;
 	max-width: 100px;
 	height: auto;
-} */
-
-@media (min-width: 870px) {
-	.desktop {
-		display: inherit;
-	}
-	.mobile {
-		display: none;
-	}
 }
 
 .menu {
-	color: white;
 	width: 100%;
 	position: fixed;
 	top: -70px;
@@ -84,7 +85,6 @@ img,
 	font-family: 'Raleway', sans-serif;
 	font-weight: 600;
 	transition: 0.5s top;
-	will-change: top;
 }
 
 .menu ul {
@@ -92,78 +92,87 @@ img,
 	justify-content: space-around;
 }
 
-.menu li {
-	list-style: none;
-}
-
 .menu a {
-	color: white;
 	display: block;
-	padding: 15px 50px;
+	padding: 15px 50px 12px 50px;
+	text-align: center;
 	font-size: 1em;
-	border-radius: 15px;
-	transition: color 0.3s, background-color 0.3s;
-}
-
-@media(hover: hover) and (pointer: fine) {
-	.menu a:hover {
-		color: black;
-		background-color: white;
-	}
+	position: relative;
+	cursor: pointer;
 }
 
 .sidenav {
 	height: 100vh;
 	width: 0;
-	color: white;
-	text-decoration: none;
 	background-color: #0b0b0b;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	overflow-x: hidden;
 	font-family: 'Raleway', sans-serif;
-	transition: color, top 0.3s;
 	justify-content: space-between;
-	transition: width 0.5s;
+	transition: .5s width cubic-bezier(0.18, 0.89, 0.32, 1.28), .3s top ease;
 }
 
 .itens {
 	position: absolute;
-	top: 50%;
+	top: 55%;
 	transform: translateY(-50%);
 	width: 100%;
 	opacity: 0;
 	margin-left: -100px;
-	transition: opacity 0.5s, margin 0.5s;
+	transition: .3s opacity ease, .35s margin ease;
 }
 
 .sidenav a {
-	text-decoration: none;
-	font-size: 25px;
-	margin: 20px 0px;
-	padding: 15px 50px;
+	font-size: 1.25em;
+	margin: 2vh auto;
+	padding: 12px 25px;
 	text-align: center;
-	color: white;
 	display: block;
-	border-radius: 15px;
-	transition: color 0.3s, background-color 0.3s;
+	position: relative;
+	cursor: pointer;
+	width: 200px;
+	transition: .3s margin ease;
 }
 
-@media(hover: hover) and (pointer: fine) {
-	.sidenav a:hover {
-		color: black;
-		background-color: white;
+@media (min-height: 500px) {
+	.sidenav a {
+		margin: 30px auto;
 	}
+	.itens {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+
+.btn-mobile::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background-color: #fff;
+	transform: scaleX(0);
+	transform-origin: right;
+	transition: .25s transform ease-out;
+}
+
+.btn-mobile:hover::after {
+	transform: scaleX(1);
+	transform-origin: left;
 }
 
 .sidenav .closebtn {
 	position: absolute;
-	padding: 10px 25px;
-	margin-top: 0;
 	top: 0px;
 	right: 0px;
-	font-size: 36px;
+	padding: 10px 25px;
+	margin-top: 0;
+	font-size: 38px;
+	width: auto;
 }
 
 /*Partes do Site*/
@@ -179,17 +188,7 @@ img,
 	100%{top: 50%; transform: translateY(-50%); opacity: 1;}
 }
 
-.titulo {
-	text-align: center;
-	font-family: 'Varela Round', sans-serif;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 100%;
-	font-size: 2em;
-	padding: 15px;
-}
-
+.titulo, 
 .tituloPrincipal {
 	text-align: center;
 	font-family: 'Varela Round', sans-serif;
@@ -197,9 +196,17 @@ img,
 	width: 100%;
 	font-size: 2em;
 	padding: 15px;
+}
+
+.titulo {
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.tituloPrincipal {
 	opacity: 0;
-	-webkit-animation: titulo .3s linear 0.35s 1 normal forwards;
-    animation: titulo .3s linear 0.35s 1 normal forwards;
+	-webkit-animation: .3s titulo linear 0.35s 1 normal forwards;
+    animation: .3s titulo linear 0.35s 1 normal forwards;
 }
 
 @media (min-width: 800px) {
@@ -216,6 +223,7 @@ img,
 	text-align: center;
 	align-items: center;
 	min-height: 100vh;
+	padding-bottom: 10vh;
 }
 
 .integrante img {
@@ -224,64 +232,50 @@ img,
 	border-radius: 100%;
 }
 
-@media (min-width: 775px) {
-	.equipe {
-		grid-template-columns: 33.3% 33.3% 33.3%;
-		grid-template-rows: 100%;
-	}
-	.integrante img {
-		width: 45%;
-		max-width: 200px;
-		min-width: 150px;
-	}
-}
-
 .integrante {
 	margin: 25px 0px;
 	width: 100%;
 }
 
-/* #fischer {
-	opacity: 0;
-	transition: opacity 1s;
-}
-
-#jorge {
-	margin-left: -30%;
-	opacity: 0;
-	transition: margin-left 0.8s, opacity 0.8s;
-}
-
-#theodoro {
-	margin-left: 30%;
-	opacity: 0;
-	transition: margin-left 0.8s, opacity 0.8s;
-} */
-
-.competicoes {
-	display: grid;
-	grid-template-columns: 100vw;
-	min-height: 100vh;
-	padding: 10vh 0;
-	width: 100vw;
-}
-
-.competicao {
-	width: 75vw;
-	height: fit-content;
-	margin: auto;
+.nome {
 	text-align: center;
-	cursor: pointer;
-	position: relative;
-	margin: 30px auto;
+	margin: 20px;
 }
 
-.competicao img {
-	width: 100%;
-	height: auto;
-	border-radius: 15px;
+.nomePrincipal {
+	font-family: 'Varela Round', sans-serif;
 }
 
+.cargo {
+	margin: 6px;
+	font-family: 'Raleway', sans-serif;
+}
+
+@media(min-width: 750px) {
+	.equipe {
+		grid-template-columns: 50% 50%;
+	}
+	.integrante img {
+		width: 22.5vw;
+		max-width: 200px;
+		min-width: 150px;
+	}
+	#theodoro {
+		width: 200%;
+	}
+}
+
+@media (min-width: 1000px) {
+	.equipe {
+		grid-template-columns: 33.3% 33.3% 33.3%;
+		grid-template-rows: 100%;
+	}
+	#theodoro {
+		width: 100%;
+	}
+}
+
+.competicoes,
 .galeria {
 	display: grid;
 	grid-template-columns: 100vw;
@@ -302,6 +296,30 @@ img,
 	border-radius: 10px;
 }
 
+.competicao {
+	width: 75vw;
+	height: fit-content;
+	margin: auto;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	margin: 30px auto;
+}
+
+.animar {
+	transition: .15s transform ease;
+}
+
+.animar:active {
+	transform: scale(0.95);
+}
+
+.competicao img {
+	width: 100%;
+	height: auto;
+	border-radius: 15px;
+}
+
 @media (min-width: 450px) {
 	.competicao,
 	.galeria img {
@@ -318,8 +336,10 @@ img,
 	.galeria {
 		grid-template-columns: repeat(auto-fill, 50vw);
 	}
+	.ultima {
+		margin-left: 72.5%;
+	}
 }
-
 
 @media (min-width: 750px) {
 	.competicao,
@@ -338,6 +358,9 @@ img,
 	.competicoes,
 	.galeria {
 		grid-template-columns: repeat(auto-fill, 25vw);
+	}
+	.irregular {
+		margin-left: 72.5%;
 	}
 }
 
@@ -364,9 +387,6 @@ img,
 	border-radius: 0;
 	transition: all 0.2s;
 	max-width: 100%;
-}
-
-.imagemContato:hover {
 	cursor: pointer;
 }
 
@@ -413,15 +433,6 @@ img,
 	}
 }
 
-.nome {
-	text-align: center;
-	margin: 20px;
-}
-
-.nomePrincipal {
-	font-family: 'Varela Round', sans-serif;
-}
-
 body::-webkit-scrollbar {
 	width: 7px;
 	background-color: rgb(0, 0, 0, 0);
@@ -438,12 +449,7 @@ body::-webkit-scrollbar-thumb:hover {
 	border-radius: 6px;
 }
 
-.cargo {
-	margin: 6px;
-	font-family: 'Raleway', sans-serif;
-}
-
-/*Paginas*/
+/*Estilo das Paginas*/
 
 .botaoVoltar img {
 	width: 40px;
@@ -453,52 +459,61 @@ body::-webkit-scrollbar-thumb:hover {
 .botaoVoltar {
 	position: fixed;
 	top: 30px;
-	left: 30px;
+	left: -100px;
 	opacity: 0;
 	cursor: pointer;
+	transition: .3s opacity ease, .3s left ease;
 }
 
 .artigo {
 	display: grid;
-	grid-template-columns: 50vw 50vw;
+	grid-template-columns: 100vw;
 	min-height: 100vh;
+	padding: 10vh 0;
 }
 
 .img-artigo {
-	width: 40vw;
+	width: 80%;
 	height: auto;
 	border-radius: 15px;
 	margin: auto;
 }
 
 .texto-artigo {
-	width: 90%;
+	width: 80%;
 	font-family: 'Source Sans Pro', sans-serif;
 	margin: auto;
-	font-size: 1.2em;
-	text-align: justify;
+	font-size: 1.17em;
+	/* text-align: justify; */
+	padding: 5vh 0;
 }
 
-@media(min-width: 600px) {
-	.imgArtigo {
-		width: 50%;
-	}
-	.textoArtigo {
-		font-size: 1.2em;
-	}
+#img-especial {
+	grid-row: 1;
 }
 
-@media(min-width: 1200px) {
-	#parte1 {
-		display: grid;
-		grid-template-columns: 45vw 55vw;
+@media (min-width: 170vh) {
+	@media (min-height: 0px) {
+		.img-artigo {
+			width: 40%;
+		}
+		.texto-artigo {
+			width: 40%;
+		}
 	}
-	.imgArtigo {
-		width: 90%;
-	}
-	.textoArtigo {
-		padding-right: 20px;
-		font-size: 1.5em;
+	@media (min-height: 515px) {
+		.artigo {
+			grid-template-columns: 50vw 50vw;
+		}
+		#img-especial {
+			grid-column: 2;
+		}
+		.img-artigo {
+			width: 80%;
+		}
+		.texto-artigo {
+			width: 80%;
+		}
 	}
 }
 
@@ -508,45 +523,4 @@ body::-webkit-scrollbar-thumb:hover {
 
 ::selection {
 	background: #43b7e3cf;
-}
-
-.carregando p {
-	text-align: center;
-	font-family: 'Varela Round', sans-serif;
-	line-height: 30px;
-}
-
-.carregando {
-	width: 100vw;
-	height: 100vh;
-	position: relative;
-}
-
-.aviso {
-	width: 80vw;
-	position: absolute;
-	top: 50%;
-	transform: translate(10vw, -50%);
-}
-
-.imagem {
-	width: 100vw;
-	position: fixed;
-	bottom: 0;
-}
-
-.carregando img {
-	height: 20vh;
-	width: auto;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-@media(min-width: 500px) {	
-	.aviso {
-		width: 50vw;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
 }

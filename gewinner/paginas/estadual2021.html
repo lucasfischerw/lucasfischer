@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<title>Estadual 2021</title>
+	<link rel="stylesheet" type="text/css" href="../css/estilo.css">
+	<link rel="shortcut icon" href="../imagens/favicon/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="../imagens/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="../imagens/favicon/favicon-192.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="../imagens/favicon/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../imagens/favicon/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="../imagens/favicon/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../imagens/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../imagens/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" href="../imagens/favicon/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../imagens/favicon/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../imagens/favicon/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../imagens/favicon/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../imagens/favicon/favicon-60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../imagens/favicon/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../imagens/favicon/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../imagens/favicon/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../imagens/favicon/favicon-180.png">
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="../imagens/favicon-144.png">
+	<meta name="msapplication-config" content="../imagens/favicon/browserconfig.xml">
+	<script src="javascript/scriptPag.js"></script>
+</head>
+
+<body id="pagina">
+	<div class="conteudo" id="conteudo">
+		<div id="secoes">
+			<div class="secao">
+				<h1 class="tituloPrincipal">OBR Estadual 2021</h1>
+			</div>
+			<div class="artigo">
+				<img class="img-artigo" src="../imagens/2021_Estadual_1.jpg" data-aos="fade-right"></img>
+				<div class="texto-artigo" data-aos="fade-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+					in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			</div>
+			<div class="artigo">
+				<div class="texto-artigo" data-aos="fade-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+					in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+				<img class="img-artigo" src="../imagens/2021_Estadual_1.jpg" data-aos="fade-left"
+					id="img-especial"></img>
+			</div>
+			<div class="artigo">
+				<img class="img-artigo" src="../imagens/2021_Estadual_3.jpg" data-aos="fade-right"></img>
+				<div class="texto-artigo" data-aos="fade-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+					nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+					in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+					occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			</div>
+		</div>
+		<div class="botaoVoltar" id="botaoVoltar">
+			<a href="../index.html"><img src="../imagens/voltar.png"></a>
+		</div>
+	</div>
+	<script>
+		document.getElementById("pagina").onload = function Carregar() {
+			Carregando();
+			setTimeout(() => {
+				AOS.init({
+					duration: 650,
+					once: true
+				});
+			}, 500);
+		}
+	</script>
+	<script src="../javascript/aos.js"></script>
+</body>
+
+</html>

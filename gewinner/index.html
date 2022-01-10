@@ -5,8 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 		<title>Gewinner</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 		<link rel="shortcut icon" href="imagens/favicon/favicon.ico">
 		<link rel="icon" sizes="16x16 32x32 64x64" href="imagens/favicon/favicon.ico">
 		<link rel="icon" type="image/png" sizes="196x196" href="imagens/favicon/favicon-192.png">
@@ -28,36 +26,26 @@
 		<meta name="msapplication-TileColor" content="#FFFFFF">
 		<meta name="msapplication-TileImage" content="imagens/favicon-144.png">
 		<meta name="msapplication-config" content="imagens/favicon/browserconfig.xml">
+		<script src="javascript/script.js"></script>
 	</head>
-	<body ontouchmove="CloseNav()"  onload="Carregando()" onscroll="CloseNav()" onresize="CloseNav()">
+	<body id="pagina" onscroll="CloseNav()" ontouchmove="CloseNav()">
 		<div class="carregando" id="carregando">
-			<!-- <img class="carregandoImg" src="imagens/carregando3.gif"> -->
-			<div class="aviso">
-				<p>Site desativado temporariamente devido a uma atualização que ocorrerá nos próximos dias. Obrigado pela compreensão :)</p>
-			</div>
-			<div class="imagem">
-				<img src="imagens/natal.png">
-			</div>
+			<img class="carregandoImg" src="imagens/carregando.gif">
 		</div>
 		<div class="conteudo" id="conteudo">
 			<nav class="menu" id="menu">
 				<ul>
-					<li class="mobile"><a href="javascript:void(0)" onclick="Logo()">Gewinner</a></li>
+					<li class="mobile"><a class="btn-mobile" href="javascript:void(0)" onclick="Logo()">Página Inicial</a></li>
 					<li class="mobile"><a href="javascript:void(0)" onclick="OpenNav()">&#9776;</a></li>
-					<li class="desktop"><a href="javascript:void(0)" onclick="Logo()">Gewinner</a></li>
-					<li class="desktop"><a href="javascript:void(0)" id="equipe-btn">Equipe</a></li>
-					<li class="desktop"><a href="javascript:void(0)" id="fotos-btn">Galeria</a></li>
-					<li class="desktop"><a href="javascript:void(0)" id="competicoes-btn">Competições</a></li>
-					<li class="desktop"><a href="javascript:void(0)" id="contato-btn">Contato</a></li>
 				</ul>
 			</nav>
 			<div id="sidebar" class="sidenav">
 				<a href="javascript:void(0)" class="closebtn" onclick="CloseNav()">&times;</a>
 				<div class="itens" id="itens">
-				  	<a href="javascript:void(0)" id="equipe-btn-mobile">Equipe</a>
-				  	<a href="javascript:void(0)" id="fotos-btn-mobile">Galeria</a>
-				  	<a href="javascript:void(0)" id="competicoes-btn-mobile">Competições</a>
-				  	<a href="javascript:void(0)" id="contato-btn-mobile">Contato</a>
+				  	<a class="btn-mobile" id="equipe-btn-mobile" onclick="Scroll(Secoes[0])">Equipe</a>
+					<a class="btn-mobile" id="fotos-btn-mobile" onclick="Scroll(Secoes[1])">Galeria</a>
+					<a class="btn-mobile" id="competicoes-btn-mobile" onclick="Scroll(Secoes[2])">Competições</a>
+					<a class="btn-mobile" id="contato-btn-mobile" onclick="Scroll(Secoes[3])">Contato</a>
 				</div>
 			</div>
 			<div id="secoes" onclick="CloseNav()">
@@ -73,7 +61,7 @@
 						</div>
 					</div>
 					<div class="integrante" id="fischer" data-aos="fade">
-						<img src="imagens/Lucas.jpg">
+						<img src="imagens/Fischer.jpg">
 						<div class="nome">
 							<h2 class="nomePrincipal">Lucas Fischer</h2>
 							<h3 class="cargo">Programador</h3>	
@@ -87,57 +75,91 @@
 						</div>
 					</div>
 				</div>
-				<div class="galeria" id="fotos">
-					<img src="imagens/2019resultado.jpg" data-aos="fade">
-					<img src="imagens/2019aprendizado.jpg" data-aos="fade">
-					<img src="imagens/4_2.jpg" data-aos="fade">
-					<img src="imagens/2018_2f.jpeg" data-aos="fade">
-					<img src="imagens/2018_3.jpg" data-aos="fade">
-					<img src="imagens/2.jpg" data-aos="fade">
-					<img src="imagens/5.jpg" data-aos="fade">
-					<img src="imagens/1.jpg" data-aos="fade">
+				<div class="galeria" id="galeria">
+					<img src="imagens/2017_Marista_1.jpg" data-aos="fade">
+					<img src="imagens/2018_Estadual_1.jpeg" data-aos="fade">
+					<img src="imagens/2018_Mostratec_1.jpg" data-aos="fade">
+					<img src="imagens/2019_Estadual_1.jpg" data-aos="fade">
+					<img src="imagens/2019_Marista_1.jpg" data-aos="fade">
+					<img src="imagens/2019_Nacional_3.jpg" data-aos="fade">
+					<img src="imagens/2021_Estadual_1.jpg" data-aos="fade">
+					<img src="imagens/2021_Nacional_1.jpg" data-aos="fade">
 				</div>
-				<div class="secao" id="competicoes-titulo" data-aos="fade-right" data-aos-duration="1000">
-					<h1 class="titulo" id="subtituloCompeticoes">Competições que participamos</h1>
+				<div class="secao" id="competicoes-titulo">
+					<h1 class="titulo" id="subtituloCompeticoes" data-aos="fade-right">Competições que participamos</h1>
 				</div>
 				<div class="competicoes" id="competicoes">
-					<div class="competicao" id="competicao-0" data-aos="zoom-in">
-						<img src="imagens/2018.jpg">
-						<h2 class="tituloConjunto">Regional 2018</h2>
+					<div class="competicao" id="competicao-7" data-aos="fade" onclick="Redirect(0)">
+						<div class="animar">
+							<img src="imagens/2017_Marista_1.jpg">
+							<h2 class="tituloConjunto">Marista 2017</h2>
+						</div>
+					</div>
+					<div class="competicao" id="competicao-0" data-aos="fade" onclick="Redirect(1)">
+						<div class="animar">
+							<img src="imagens/2018_Estadual_3.jpg">
+							<h2 class="tituloConjunto">OBR Estadual 2018</h2>				
+						</div>
 					</div>	
-					<div class="competicao" id="competicao-1" data-aos="zoom-in">
-						<img src="imagens/2018_2.jpeg">
-						<h2 class="tituloConjunto">Nacional 2018</h2>		
+					<div class="competicao" id="competicao-7" data-aos="fade" onclick="Redirect(2)">
+						<div class="animar">
+							<img src="imagens/2018_Mostratec_3.jpg">
+							<h2 class="tituloConjunto">Mostratec 2018</h2>					
+						</div>
 					</div>
-					<div class="competicao" id="competicao-2" data-aos="zoom-in">
-						<img src="imagens/2019.jpg">
-						<h2 class="tituloConjunto">Regional 2019</h2>
+					<div class="competicao" id="competicao-1" data-aos="fade" onclick="Redirect(3)">
+						<div class="animar">
+							<img src="imagens/2018_Nacional_1.jpg">
+							<h2 class="tituloConjunto">OBR Nacional 2018</h2>							
+						</div>
 					</div>
-					<div class="competicao" id="competicao-3" data-aos="zoom-in">
-						<img src="imagens/2019_2.jpg">
-						<h2 class="tituloConjunto">Nacional 2019</h2>	
+					<div class="competicao" id="competicao-2" data-aos="fade" onclick="Redirect(4)">
+						<div class="animar">
+							<img src="imagens/2019_Estadual_3.jpg">
+							<h2 class="tituloConjunto">OBR Estadual 2019</h2>						
+						</div>
 					</div>
-					<div class="competicao" id="competicao-4" data-aos="zoom-in">
-						<img src="imagens/2020.jpg">
-						<h2 class="tituloConjunto">Regional 2020</h2>	
+					<div class="competicao" id="competicao-7" data-aos="fade" onclick="Redirect(5)">
+						<div class="animar">
+							<img src="imagens/2019_Marista_1.jpg">
+							<h2 class="tituloConjunto">Marista 2019</h2>						
+						</div>
 					</div>
-					<div class="competicao" id="competicao-5" data-aos="zoom-in">
-						<img src="imagens/2020_2.jpeg">
-						<h2 class="tituloConjunto">Nacional 2020</h2>	
+					<div class="competicao" id="competicao-3" data-aos="fade" onclick="Redirect(6)">
+						<div class="animar">
+							<img src="imagens/2019_Nacional_3.jpg">
+							<h2 class="tituloConjunto">OBR Nacional 2019</h2>							
+						</div>
 					</div>
-					<div class="competicao" id="competicao-6" data-aos="zoom-in">
-						<img src="imagens/2021.jpg">
-						<h2 class="tituloConjunto">Regional 2021</h2>	
+					<div class="competicao" id="competicao-4" data-aos="fade" onclick="Redirect(7)">
+						<div class="animar">
+							<img src="imagens/2020_Estadual_1.jpg">
+							<h2 class="tituloConjunto">OBR Estadual 2020</h2>							
+						</div>
 					</div>
-					<div class="competicao" id="competicao-7" data-aos="zoom-in">
-						<img src="imagens/2021_2.jpg">
-						<h2 class="tituloConjunto">Nacional 2021</h2>	
+					<div class="competicao irregular" id="competicao-5" data-aos="fade" onclick="Redirect(8)">
+						<div class="animar">
+							<img src="imagens/2020_Nacional_1.jpeg">
+							<h2 class="tituloConjunto">OBR Nacional 2020</h2>							
+						</div>
+					</div>
+					<div class="competicao irregular" id="competicao-6" data-aos="fade" onclick="Redirect(9)">
+						<div class="animar">
+							<img src="imagens/2021_Estadual_3.jpg">
+							<h2 class="tituloConjunto">OBR Estadual 2021</h2>		
+						</div>
+					</div>
+					<div class="competicao ultima" id="competicao-7" data-aos="fade" onclick="Redirect(10)">
+						<div class="animar">
+							<img src="imagens/2021_Nacional_3.jpg">
+							<h2 class="tituloConjunto">OBR Nacional 2021</h2>	
+						</div>
 					</div>
 				</div>
 				<div class="secao" id="contato">
 					<h1 class="subtitulo" id="subtituloContato" data-aos="fade-left" data-aos-duration="1000">Contato</h1>
 					<div class="iconesCotato">
-						<img class="imagemContato" src="imagens/fischer.png" onclick="window.open('https://www.lucasfischer.com.br/')" data-aos="fade">
+						<img class="imagemContato" src="imagens/site.png" onclick="window.open('https://www.lucasfischer.com.br/')" data-aos="fade">
 						<img class="imagemContato" src="imagens/instagram.png" onclick="window.open('https://www.instagram.com/fischer.lucas_/')" data-aos="fade">
 						<img class="imagemContato" src="imagens/facebook.png"  onclick="window.open('https://www.facebook.com/profile.php?id=100009913897593');" data-aos="fade">
 						<a class="email" href="mailto:lucasfischerw@gmail.com"><img class="imagemContato" src="imagens/gmail.png" data-aos="fade"></a>
@@ -147,14 +169,21 @@
 				</div>	
 			</div>
 		</div>
-		<script src="javascript/script.js"></script>
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		<script>
-			setTimeout(() => {
-				AOS.init({
-					duration: 650,
-				});
-			}, 500);
+			if(localStorage.getItem("scrollPosition") == 0) {
+				document.getElementById("carregando").style.opacity = "1";
+			}
+			document.getElementById("pagina").onload = function Carregar() {
+				Carregando();
+				setTimeout(() => {
+					AOS.init({
+						duration: 650,
+						once: true
+					});
+				}, 500);
+			}
 		</script>
+		<script src="javascript/aos.js"></script>
+		<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-G11KY17YMD"></script>
 	</body>
 </html>
