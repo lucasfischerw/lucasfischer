@@ -3,7 +3,7 @@ var Secoes = ["equipe", "galeria", "competicoes", "contato"];
 
 function OpenNav() {
 	if(!Aberto) {
-		document.getElementById("secoes").style.transition = ".5s margin cubic-bezier(0.18, 0.89, 0.32, 1.28), .5s opacity, .5s filter linear, .5s -webkit-filter linear";
+		document.getElementById("secoes").style.transition = ".5s margin cubic-bezier(0.18, 0.89, 0.32, 1.28), .5s opacity";
 		document.getElementById("sidebar").style.transition = ".5s width cubic-bezier(0.18, 0.89, 0.32, 1.28)";
 		document.getElementById("menu").style.top = "-70px"
 		document.getElementById("sidebar").style.width = "250px";
@@ -113,7 +113,6 @@ function Logo() {
 var Redirect_Links = ["marista2017", "estadual2018", "mostratec2018","nacional2018", "estadual2019", "marista2019", "nacional2019", "estadual2020", "nacional2020", "estadual2021", "nacional2021"];
 
 function Redirect(Pagina) {
-	// localStorage.setItem("scrollPosition", window.pageYOffset);
-	// window.open("https://lucasfischer.com.br/gewinner/paginas/"+Redirect_Links[Pagina]+"", "_self");
-	window.alert("Não disponível")
+	localStorage.setItem("scrollPosition", window.pageYOffset);
+	window.open("https://lucasfischer.com.br/gewinner/paginas/"+Redirect_Links[Pagina]+"", "_self");
 }
