@@ -212,24 +212,34 @@ a {
 }
 
 .equipe {
+	display: flex;
+	flex-wrap: wrap;
 	width: 100vw;
-	display: grid;
-	grid-template-columns: 100%;
 	text-align: center;
 	align-items: center;
 	min-height: 100vh;
 	padding-bottom: 10vh;
+	column-gap: 50px;
+}
+
+.equipe > * {
+	flex: 0 1 300px;
 }
 
 .integrante img {
-	width: 150px;
-	height: auto;
 	border-radius: 100%;
+	width: 150px;
+}
+
+@media (min-width: 1000px) {
+	.integrante img {
+		width: 200px;
+	}
 }
 
 .integrante {
-	margin: 25px 0px;
 	width: 100%;
+	margin: 25px auto;
 }
 
 .nome {
@@ -246,37 +256,20 @@ a {
 	font-family: 'Raleway', sans-serif;
 }
 
-@media(min-width: 750px) {
-	.equipe {
-		grid-template-columns: 50% 50%;
-	}
-	.integrante img {
-		width: 22.5vw;
-		max-width: 200px;
-		min-width: 150px;
-	}
-	#theodoro {
-		width: 200%;
-	}
-}
-
-@media (min-width: 1000px) {
-	.equipe {
-		grid-template-columns: 33.3% 33.3% 33.3%;
-		grid-template-rows: 100%;
-	}
-	#theodoro {
-		width: 100%;
-	}
-}
-
 .competicoes,
 .galeria {
-	display: grid;
-	grid-template-columns: 100vw;
+	display: flex;
+	flex-wrap: wrap;
 	min-height: 100vh;
 	padding: 10vh 0;
-	width: 100vw;
+	width: 90vw;
+	column-gap: 50px;
+	margin: 0 5vw;
+}
+
+.competicoes > *,
+.galeria > * {
+	flex: 0 1 300px;
 }
 
 .galeria p {
@@ -285,16 +278,16 @@ a {
 }
 
 .galeria img {
-	width: 75vw;
-	height: auto;
 	margin: 10px auto;
 	border-radius: 10px;
+	position: relative;
+	width: 100%;
+	height: auto;
 }
 
-.competicao {
-	width: 75vw;
+.competicao,
+.galeria div {
 	height: fit-content;
-	margin: auto;
 	text-align: center;
 	cursor: pointer;
 	position: relative;
@@ -315,7 +308,7 @@ a {
 	border-radius: 15px;
 }
 
-@media (min-width: 450px) {
+/* @media (min-width: 450px) {
 	.competicao,
 	.galeria img {
 		width: 337.5px;
@@ -357,7 +350,7 @@ a {
 	.irregular {
 		margin-left: 72.5%;
 	}
-}
+} */
 
 .tituloConjunto {
 	padding: 10px;
@@ -394,8 +387,8 @@ a {
 	height: fit-content;
 	display: grid;
 	position: absolute;
-	top: 40%;
-	transform: translateY(-50%);
+	top: 65%;
+	transform: translateY(-65%);
 }
 
 @media (min-width: 150px) {
@@ -404,7 +397,6 @@ a {
 		margin-left: 10vw;
 		margin-right: 10vw;
 		grid-template-columns: 26.6vw 26.6vw 26.6vw;
-		margin-top: 20vh;
 	}
 	.imagemContato {
 		padding-top: 5vh;
@@ -415,7 +407,7 @@ a {
 @media (min-width: 670px) {
 	.iconesCotato {
 		width: 70vw;
-		margin: 20vh 15vw;
+		margin: 0 15vw;
 		grid-template-columns: repeat(auto-fill, 11.66vw);
 	}
 }
@@ -423,7 +415,7 @@ a {
 @media (min-width: 170vh) {
 	.iconesCotato {
 		width: 50vw;
-		margin: 20vh 25vw;
+		margin: 0 25vw;
 		grid-template-columns: repeat(auto-fill, 8.33vw);
 	}
 }
