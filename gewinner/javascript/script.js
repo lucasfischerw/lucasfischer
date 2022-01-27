@@ -5,7 +5,7 @@ function OpenNav() {
 	if(!Aberto) {
 		document.getElementById("secoes").style.transition = ".5s margin cubic-bezier(0.18, 0.89, 0.32, 1.28), .5s opacity";
 		document.getElementById("sidebar").style.transition = ".5s width cubic-bezier(0.18, 0.89, 0.32, 1.28)";
-		document.getElementById("menu").style.top = "-70px"
+		document.getElementById("menu").style.top = "-90px"
 		document.getElementById("sidebar").style.width = "250px";
 		document.getElementById("secoes").style.marginLeft = "250px";
 		document.getElementById("secoes").style.opacity = "0.5";
@@ -36,7 +36,7 @@ var lastScrollTop = window.pageYOffset;
 function isScrolling() {
 	var st = window.pageYOffset || document.documentElement.scrollTop;
 	if (st > lastScrollTop+0.5) {
-		document.getElementById("menu").style.top = "-70px";
+		document.getElementById("menu").style.top = "-90px";
 	} else {
 		document.getElementById("menu").style.top = "0px";
 		if(window.scrollY < 10) {
