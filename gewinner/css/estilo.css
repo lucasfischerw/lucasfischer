@@ -296,11 +296,13 @@ a {
 	margin: 30px auto;
 }
 
-.animar {
+.animar,
+.container-img {
 	transition: .15s transform ease;
 }
 
-.animar:active {
+.animar:active,
+.container-img:active {
 	transform: scale(0.95);
 }
 
@@ -319,8 +321,7 @@ a {
 	text-align: center;
 	font-family: 'Varela Round', sans-serif;
 	position: absolute;
-	top: 30%;
-	transform: translateY(-50%);
+	bottom: 65vh;
 	width: 100%;
 	font-size: 2em;
 }
@@ -328,8 +329,7 @@ a {
 .imagemContato {
 	width: 35px;
 	height: auto;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto;
 	border-radius: 0;
 	transition: all 0.2s;
 	max-width: 100%;
@@ -345,21 +345,16 @@ a {
 	height: fit-content;
 	display: grid;
 	position: absolute;
-	top: 65%;
-	transform: translateY(-65%);
+	bottom: 25vh;
+	row-gap: 50px;
+	width: 80vw;
+	margin: 0 10vw;
+	grid-template-columns: 26.6vw 26.6vw 26.6vw;
 }
 
-@media (min-width: 150px) {
-	.iconesCotato {
-		width: 80vw;
-		margin-left: 10vw;
-		margin-right: 10vw;
-		grid-template-columns: 26.6vw 26.6vw 26.6vw;
-	}
-	.imagemContato {
-		padding-top: 5vh;
-		padding-bottom: 5vh;
-	}
+.container-img {
+	display: block;
+	text-align: center;
 }
 
 @media (min-width: 670px) {
@@ -367,6 +362,7 @@ a {
 		width: 70vw;
 		margin: 0 15vw;
 		grid-template-columns: repeat(auto-fill, 11.66vw);
+		bottom: 35vh;
 	}
 }
 
