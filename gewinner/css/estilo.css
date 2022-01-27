@@ -155,9 +155,11 @@ a {
 	transition: .25s transform ease-out;
 }
 
-.btn-mobile:hover::after {
-	transform: scaleX(1);
-	transform-origin: left;
+@media(hover: hover) and (pointer: fine) {
+	.btn-mobile:hover::after {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
 }
 
 .sidenav .closebtn {
@@ -307,50 +309,6 @@ a {
 	height: auto;
 	border-radius: 15px;
 }
-
-/* @media (min-width: 450px) {
-	.competicao,
-	.galeria img {
-		width: 337.5px;
-	}
-}
-
-@media (min-width: 500px) {
-	.competicao, 
-	.galeria img {
-		width: 75%;
-	}
-	.competicoes,
-	.galeria {
-		grid-template-columns: repeat(auto-fill, 50vw);
-	}
-	.ultima {
-		margin-left: 72.5%;
-	}
-}
-
-@media (min-width: 750px) {
-	.competicao,
-	.galeria img {
-		width: 55%;
-	}
-}
-
-@media(min-width: 1200px) {
-	.competicao {
-		width: 15vw;
-	}
-	.galeria img {
-		width: 22.5vw;
-	}
-	.competicoes,
-	.galeria {
-		grid-template-columns: repeat(auto-fill, 25vw);
-	}
-	.irregular {
-		margin-left: 72.5%;
-	}
-} */
 
 .tituloConjunto {
 	padding: 10px;
