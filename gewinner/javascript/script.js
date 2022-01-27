@@ -102,6 +102,12 @@ function Carregando() {
 	}, 500)
 }
 
+window.onfocus = function () {
+	if(localStorage.getItem("scrollPosition") != 0) {
+		Carregar();
+	}
+}
+
 function Logo() {
 	if(window.scrollY < 10) {
 		window.open("https://lucasfischer.com.br/gewinner/index.html", "_self");
@@ -117,7 +123,6 @@ function Redirect(Pagina) {
 	document.body.style.opacity = "0";
 	localStorage.setItem("scrollPosition", window.pageYOffset);
 	setTimeout(() => {
-		document.body.style.opacity = "1";
 		window.open("https://lucasfischer.com.br/gewinner/paginas/"+Redirect_Links[Pagina]+"", "_self");
 	}, 250);
 }

@@ -10,6 +10,11 @@ window.addEventListener("scroll", function(){
 	lastScrollTop = st <= 0 ? 0 : st;
 }, false);
 
+window.addEventListener("beforeunload", () => {
+	document.body.style.transition = ".25s opacity"
+	document.body.style.opacity = "0"
+});
+
 function Carregando() {
 	document.body.style.transition = "opacity 0.3s"
 	document.body.style.opacity = "0"
