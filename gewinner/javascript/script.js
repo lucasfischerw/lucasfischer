@@ -117,6 +117,7 @@ function Redirect(Pagina) {
 	document.body.style.opacity = "0";
 	localStorage.setItem("scrollPosition", window.pageYOffset);
 	setTimeout(() => {
+		document.body.style.opacity = "1";
 		window.open("https://lucasfischer.com.br/gewinner/paginas/"+Redirect_Links[Pagina]+"", "_self");
 	}, 250);
 }
