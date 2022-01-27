@@ -113,7 +113,10 @@ function Logo() {
 var Redirect_Links = ["marista2017", "estadual2018", "mostratec2018","nacional2018", "estadual2019", "marista2019", "nacional2019", "estadual2020", "nacional2020", "estadual2021", "nacional2021"];
 
 function Redirect(Pagina) {
+	document.body.style.transition = ".25s opacity";
 	document.body.style.opacity = "0";
 	localStorage.setItem("scrollPosition", window.pageYOffset);
-	window.open("https://lucasfischer.com.br/gewinner/paginas/"+Redirect_Links[Pagina]+"", "_self");
+	setTimeout(() => {
+		window.open("https://lucasfischer.com.br/gewinner/paginas/"+Redirect_Links[Pagina]+"", "_self");
+	}, 250);
 }
