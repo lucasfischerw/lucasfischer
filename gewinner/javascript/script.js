@@ -76,13 +76,8 @@ function Carregando() {
 		setTimeout(() => {
 			document.body.style.transition = "opacity 1s"
 			document.body.style.opacity = "1"
-			if (localStorage.getItem("scrollPosition") < 10) {
-				document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
-				document.getElementById("menu").style.backdropFilter = "none";
-			} else {
-				document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
-				document.getElementById("menu").style.backdropFilter = "blur(5px)";
-			}
+			document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+			document.getElementById("menu").style.backdropFilter = "blur(5px)";
 			localStorage.setItem("scrollPosition", 0);
 		}, 50);
 	} else {
