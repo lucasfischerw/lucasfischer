@@ -104,7 +104,7 @@ function Carregando() {
 
 window.onfocus = function () {
 	if(localStorage.getItem("scrollPosition") != 0) {
-		Carregar();
+		Carregando();
 	}
 }
 
