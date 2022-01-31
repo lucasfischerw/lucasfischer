@@ -88,7 +88,6 @@ body::-webkit-scrollbar-thumb:hover {
     font-family: 'Didact Gothic', sans-serif;
     transition: .3s height, .3s background-color, 1s top;
     z-index: 3;
-    animation: menu-animation 1s ease 4.5s forwards;
 }
 
 .menu img {
@@ -284,6 +283,7 @@ h1 {
 .project img {
     width: calc(100% - 20px);
     margin: 10px;
+    border-radius: 10px;
 }
 
 .project h2 {
@@ -321,7 +321,7 @@ h1 {
     bottom: -60px;
     width: 100%;
     text-align: center;
-    animation: arrow-animation 1s ease 4.5s forwards;
+    transition: bottom 1s ease;
 }
 
 .arrow img {
@@ -359,20 +359,5 @@ h1 {
 @keyframes welcome {
     to {
         padding-top: 15px;
-    }
-}
-
-@keyframes menu-animation {
-    0% {
-        top: -100px;
-    }
-    100% {
-        top: 0;
-    }
-}
-
-@keyframes arrow-animation {
-    to {
-        bottom: 30px;
     }
 }

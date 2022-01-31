@@ -42,7 +42,7 @@
         <div class="sidebar" id="sidebar">
             <nav>
                 <ul>
-                    <a href="javascript:void(0)" class="closebtn" onclick="OpenMenu()">&#10005;</a>
+                    <a href="javascript:void(0)" class="closebtn" onclick="CloseMenu()">&#10005;</a>
                     <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(0)">Sobre mim</a></li>
                     <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(1)">Conhecimentos</a></li>
                     <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(2)">Projetos</a></li>
@@ -50,7 +50,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="content" id="content">
+        <div class="content" id="content" onclick="CloseMenu()" ontouchmove="CloseMenu()">
             <div class="section home" id="home">
                 <h1 class="tw-animation">Oi, meu nome é Lucas Fischer.</h1>
                 <h1 class="welcome">Bem vindo(a) ao meu site</h1>

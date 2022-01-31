@@ -3,18 +3,24 @@ var Sidebar_Open = false;
 function OpenMenu() {
     if(!Sidebar_Open) {
         document.getElementById("sidebar").style.right = "0";
-        document.getElementById("menu").style.animation = "menu-animation 1s ease 2s backwards";
+        document.getElementById("menu").style.top = "-100px";
         document.getElementById("content").style.filter = "blur(5px)";
         document.getElementById("content").style.opacity = "0.5";
         Sidebar_Open = true;
-    } else {
+    }
+}
+
+function CloseMenu() {
+    if(Sidebar_Open) {
         document.getElementById("sidebar").style.right = "-250px";
-        document.getElementById("menu").style.animation = "menu-animation 1s ease 2s forwards";
+        document.getElementById("menu").style.top = "0";
         document.getElementById("content").style.filter = "none";
         document.getElementById("content").style.opacity = "1";
         Sidebar_Open = false;
     }
 }
+
+var Arrow_Down = false;
 
 window.addEventListener("scroll", () => {
     if(window.scrollY < 20) {
@@ -28,18 +34,26 @@ window.addEventListener("scroll", () => {
     }
     if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         document.getElementById("arrow").style.bottom = "-60px";
+        Arrow_Down = true;
+    } else if(Arrow_Down) {
+        document.getElementById("arrow").style.bottom = "30px";
+        Arrow_Down = false;
     }
     if(Sidebar_Open) {
-        OpenMenu();
+        CloseMenu();
     }
 });
 
 location.href = "#home";
+setTimeout(() => {
+    document.getElementById("menu").style.top = "0";
+    document.getElementById("arrow").style.bottom = "30px";
+}, 4500);
 
 const Locations = ["about", "knowledge", "projects-title", "projects", "contact"];
 
 function Scroll(Link_Number) {
-    OpenMenu();
+    CloseMenu();
     setTimeout(() => {
         location.href = "#"+Locations[Link_Number]+"";
     }, 500);
