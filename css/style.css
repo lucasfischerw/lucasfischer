@@ -307,12 +307,18 @@ h1 {
     gap: min(50px, 4vw);
     position: relative;
     margin: 50px auto auto auto;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, .15);
+    box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
+    height: 55px;
 }
 
 .contact-icons img {
     width: 35px;
     height: auto;
     cursor: pointer;
+    margin: 10px;
 }
 
 .arrow {
