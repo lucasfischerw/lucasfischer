@@ -47,6 +47,7 @@ function Jogar() {
 		if (aberto == true) {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
+			document.getElementById('configurar').style.backgroundColor = "rgba(0, 0, 0, 0)"
 			intervalo = 300
 			setTimeout(function () {
 				document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
@@ -329,10 +330,12 @@ function AbrirConfiguracoes(iniciarJogo) {
 			document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 			document.getElementById('menuConfiguracoes').classList.add("abrirMenu")
 			document.getElementById('menuConfiguracoes').style.display = "inherit"
+			document.getElementById('configurar').style.backgroundColor = "rgb(0, 0, 0)"
 			aberto = true
 		} else {
 			document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 			document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
+			document.getElementById('configurar').style.backgroundColor = "rgba(0, 0, 0, 0)"
 			setTimeout(function () {
 				document.getElementById('menuConfiguracoes').style.display = "none"
 				aberto = false
@@ -456,6 +459,7 @@ function Estatisticas() {
 	if (aberto == true) {
 		document.getElementById('menuConfiguracoes').classList.remove("abrirMenu")
 		document.getElementById('menuConfiguracoes').classList.add("fecharMenu")
+		document.getElementById('configurar').style.backgroundColor = "rgba(0, 0, 0, 0)"
 		setTimeout(function () {
 			document.getElementById('menuConfiguracoes').classList.remove("fecharMenu")
 			document.getElementById('menuConfiguracoes').style.display = "none"
