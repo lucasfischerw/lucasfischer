@@ -33,7 +33,11 @@
         <div class="bg-image" id="bg-image"></div>
         <div class="menu" id="menu">
             <a class="menu-button underline-animate" href="#home">Página Inicial</a>
-            <a class="menu-button mobile" href="javascript:void(0)" onclick="OpenMenu()"><img src="imagens/hamburguer-menu.png"></a>
+            <a class="menu-button mobile" href="javascript:void(0)" onclick="OpenMenu()">
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+            </a>
             <a class="menu-button desktop underline-animate" href="#about">Sobre mim</a>
             <a class="menu-button desktop underline-animate" href="#knowledge">Conhecimentos</a>
             <a class="menu-button desktop underline-animate" href="#projects">Projetos</a>
@@ -43,10 +47,12 @@
             <nav>
                 <ul>
                     <a href="javascript:void(0)" class="closebtn" onclick="CloseMenu()">&#10005;</a>
-                    <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(0)">Sobre mim</a></li>
-                    <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(1)">Conhecimentos</a></li>
-                    <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(3)">Projetos</a></li>
-                    <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(4)">Contato</a></li>
+                    <div class="sidebar-options" id="sidebar-options">
+                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(0)">Sobre mim</a></li>
+                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(1)">Conhecimentos</a></li>
+                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(3)">Projetos</a></li>
+                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(4)">Contato</a></li>
+                    </div>
                 </ul>
             </nav>
         </div>
@@ -119,12 +125,13 @@
             <div class="section contact" id="contact">
                 <h1 data-aos="fade-left">Contato</h1>
                 <div class="contact-icons" data-aos="fade-right">
-                    <a href="https://www.instagram.com/fischer.lucas_/"><img src="imagens/instagram.png"></a>
-                    <a href="mailto:lucasfischerw@gmail.com"><img src="imagens/gmail.png"></a>
-                    <a href="https://www.linkedin.com/in/lucas-fischer-6b5781205/"><img src="imagens/linkedin.png"></a>
-                    <a href="tel:993518371"><img src="imagens/telefone.png"></a>
-                    <a href="https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA"><img src="imagens/youtube.png"></a>
-                    <a href="https://twitter.com/lucasfischerw"><img src="imagens/twitter.png"></a>
+                    <a href="https://www.instagram.com/fischer.lucas_/" data-content="Instagram"><img src="imagens/instagram.png"></a>
+                    <a href="mailto:lucasfischerw@gmail.com" data-content="E-Mail"><img src="imagens/gmail.png"></a>
+                    <a href="https://www.linkedin.com/in/lucas-fischer-6b5781205/" data-content="Linkedin"><img src="imagens/linkedin.png"></a>
+                    <a href="tel:993518371" data-content="Telefone"><img src="imagens/telefone.png"></a>
+                    <a href="https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA" data-content="YouTube"><img src="imagens/youtube.png"></a>
+                    <a href="https://twitter.com/lucasfischerw" data-content="Twitter"><img src="imagens/twitter.png"></a>
+                    <a href="https://twitter.com/lucasfischerw" data-content="Fiverr"><img alt="Fiverr" src="imagens/fiverr.png"></a>
                 </div>
             </div>
             <div class="arrow" id="arrow"><img src="imagens/arrow.png" onclick="Scroll_Arrow()"></div>          

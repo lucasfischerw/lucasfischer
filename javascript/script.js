@@ -6,6 +6,10 @@ function OpenMenu() {
         document.getElementById("menu").style.top = "-100px";
         document.getElementById("content").style.filter = "blur(5px)";
         document.getElementById("content").style.opacity = "0.5";
+        setTimeout(() => {
+            document.getElementById("sidebar-options").style.marginRight = "0";
+            document.getElementById("sidebar-options").style.opacity = "1";
+        }, 200);
         Sidebar_Open = true;
     }
 }
@@ -16,6 +20,10 @@ function CloseMenu() {
         document.getElementById("menu").style.top = "0";
         document.getElementById("content").style.filter = "none";
         document.getElementById("content").style.opacity = "1";
+        setTimeout(() => {
+            document.getElementById("sidebar-options").style.marginRight = "-150px";
+            document.getElementById("sidebar-options").style.opacity = ".4";
+        }, 200);
         Sidebar_Open = false;
     }
 }
