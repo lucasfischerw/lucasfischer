@@ -86,7 +86,7 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100%;
     height: 100px;
     font-family: 'Didact Gothic', sans-serif;
-    transition: .3s height, .3s background-color, .5s top;
+    transition: .3s height, .3s background-color, 1s top;
     z-index: 3;
 }
 
@@ -182,6 +182,10 @@ body::-webkit-scrollbar-thumb:hover {
 h1 {
     font-family: 'Noto Sans Mono', monospace;
     margin: auto;
+    text-align: center;
+}
+
+.tw-animation {
     font-size: min(2em, 5vw);
 }
 
@@ -251,6 +255,8 @@ h1 {
     padding: 30px;
     order: 3;
     box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
+    max-width: 650px;
+    font-size: 1.05em;
 }
 
 @media screen and (min-width: 925px) {
@@ -328,7 +334,7 @@ h1 {
     margin: 10px;
 }
 
-[data-content]:hover::before {
+[data-content]::before {
     content: attr(data-content);
     font-family: 'Didact Gothic', sans-serif;
     padding: 4px 8px;
@@ -341,7 +347,18 @@ h1 {
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, .15);
     box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
-    animation: description-contact .3s ease forwards;
+    transition: opacity .3s ease, bottom .3s ease;
+    opacity: 0;
+    bottom: 100%;
+}
+
+.project::before {
+    right: 0;
+}
+
+[data-content]:hover::before {
+    opacity: 1;
+    bottom: calc(100% + 12px);
 }
 
 .arrow {
@@ -371,7 +388,7 @@ h1 {
 
 @keyframes description-contact {
     from{opacity: .5; bottom: 100%;}
-    to{opacity: 1; bottom: 120%;}
+    to{opacity: 1; bottom: calc(100% + 12px);}
 }
 
 @keyframes seta {

@@ -56,6 +56,9 @@ location.href = "#home";
 setTimeout(() => {
     document.getElementById("menu").style.top = "0";
     document.getElementById("arrow").style.bottom = "30px";
+    setTimeout(() => {
+        document.getElementById("menu").style.transition = ".3s height, .3s background-color, .5s top";
+    }, 1000);
 }, 4500);
 
 const Locations = ["about", "knowledge", "projects-title", "projects", "contact"];
@@ -66,6 +69,7 @@ function Scroll(Link_Number) {
         location.href = "#"+Locations[Link_Number]+"";
     }, 500);
 }
+
 function Scroll_Arrow() {
     for(var i = 0; i < Locations.length; i++) {
         if(document.getElementById(Locations[i]).getBoundingClientRect().top > 200) {
