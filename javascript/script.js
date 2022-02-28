@@ -17,7 +17,7 @@ function OpenMenu() {
 function CloseMenu() {
     if(Sidebar_Open) {
         document.getElementById("sidebar").style.right = "-250px";
-        document.getElementById("menu").style.top = "0";
+        document.getElementById("menu").style.top = "10px";
         document.getElementById("content").style.filter = "none";
         document.getElementById("content").style.opacity = "1";
         setTimeout(() => {
@@ -54,7 +54,7 @@ window.addEventListener("scroll", () => {
 
 location.href = "#home";
 setTimeout(() => {
-    document.getElementById("menu").style.top = "0";
+    document.getElementById("menu").style.top = "10px";
     document.getElementById("arrow").style.bottom = "30px";
     setTimeout(() => {
         document.getElementById("menu").style.transition = ".3s height, .3s background-color, .5s top";
