@@ -381,9 +381,11 @@ h1 {
 .full-screen-pj-title {
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    padding: 10px;
     font-size: 1.25em;
     margin: 10px 0 0 0;
+    padding: 10px;
+    opacity: 0;
+    transition: .3s opacity ease;
 }
 
 .arrow-project {

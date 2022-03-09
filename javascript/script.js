@@ -135,6 +135,7 @@ function Open_Project(Project_Number) {
             setTimeout(() => {
                 document.getElementById("a-project-full-screen").style.opacity = "1";
                 document.getElementById("text-project-full-screen").style.opacity = "1";
+                document.getElementById("full-screen-pj-title").style.opacity = "1";
                 Update_Arrow();
                 document.getElementById("visit-project").style.opacity = "1";
                 document.getElementById("content").addEventListener("click", Fechar_Projeto);
@@ -152,6 +153,7 @@ function Fechar_Projeto() {
         document.getElementById("visit-project").style.opacity = "0";
         document.getElementById("first-arrow").style.opacity = "0";
         document.getElementById("second-arrow").style.opacity = "0";
+        document.getElementById("full-screen-pj-title").style.opacity = "0";
         setTimeout(() => {
             document.getElementById("full-screen-img").style.marginTop = "-50px";
             document.getElementById("project-full-screen").style.top = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().top + "px";
