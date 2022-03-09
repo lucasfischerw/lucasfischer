@@ -50,6 +50,9 @@ window.addEventListener("scroll", () => {
     if(Sidebar_Open) {
         CloseMenu();
     }
+    if(Project_Is_Open) {
+        Fechar_Projeto();
+    }
 });
 
 location.href = "#home";
@@ -76,5 +79,139 @@ function Scroll_Arrow() {
             document.getElementById(Locations[i]).scrollIntoView({ block: 'start',  behavior: 'smooth' });
             break;
         }
+    }
+}
+
+var Project_Open = 0;
+var Project_Is_Open = false;
+var Images_Link = ["gewinner.jpg", "memoria.jpg", "genius.jpg", "apostador.jpg", "tarefas.jpg", "tdah.jpg", "robotica.jpg", "floresta.jpg"];
+var Redirect_Links = ["https://lucasfischer.com.br/gewinner", "https://lucasfischer.com.br/projetos/memoria", "https://lucasfischer.com.br/projetos/genius", "https://lucasfischer.com.br/projetos/apostador", "https://lucasfischer.com.br/projetos/tarefas", "https://lucasfischer.com.br/projetos/tdah", "https://lucasfischerw.github.io/robotica/index.html"];
+var Titles = ["Equipe Gewinner", "Memória", "Genius", "Apostador", "Tarefas", "Ajuda TDAH", "Robótica", "Aventuras de Hypsta"];
+var Descriptions = ["Site desenvolvido por mim para mostrar um pouco da minha trajetória pela Robótica.", "Teste suas habilidades nesse Desafio da Memória de Frutas! Muito fácil? Aumente a dificuldade no menu!", "Coloque sua mente a prova nessa réplica de Genius! Preste atenção na sequência de cores e tente replicar sua ordem.", "Par ou Ímpar? Faça sua aposta e selecione a quantia que deseja apostar. Aí é só torcer para você acertar!", "Projeto desenvolvido durante o EAD para ajudar os alunos na organização escolar. Veja suas tarefas, avaliações e horários.", "Projeto desenvolvido em aula, tendo como objetivo direcionar as pessoas a buscarem ajuda contra o TDAH", "Projeto em desenvolvimento com a equipe de robótica, que visa divulgar e explicar projetos desenvolvidos na oficina.", "Projeto em desenvolvimento. Mais informações em breve!"]
+
+function Update_Arrow() {
+    console.log(Project_Open)
+    if(Project_Open == 0) {
+        document.getElementById("first-arrow").style.opacity = "0.3";
+        document.getElementById("first-arrow").style.cursor = "default";
+    } else {
+        document.getElementById("first-arrow").style.opacity = "1";
+        document.getElementById("first-arrow").style.cursor = "pointer";
+    }
+    if(Project_Open == 7) {
+        document.getElementById("second-arrow").style.opacity = "0.3";
+        document.getElementById("second-arrow").style.cursor = "default";
+    } else {
+        document.getElementById("second-arrow").style.opacity = "1";
+        document.getElementById("second-arrow").style.cursor = "pointer";
+    }
+}
+
+function Open_Project(Project_Number) {
+    if(!Project_Is_Open) {
+        document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Number] + "";
+        document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Number];
+        document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Number];
+        document.getElementById("visit-project").href = Redirect_Links[Project_Number];
+        document.getElementById("project-full-screen").style.transition = ".5s opacity ease";
+        document.getElementById("project-full-screen").style.top = "" + document.getElementById("project-"+ Project_Number +"").getBoundingClientRect().top + "px";
+        document.getElementById("project-full-screen").style.left = "" + document.getElementById("project-"+ Project_Number +"").getBoundingClientRect().left + "px";
+        document.getElementById("content").style.opacity = "0.5";
+        document.getElementById("project-full-screen").style.display = "flex";
+        document.getElementById("menu").style.top = "-100px";
+        Project_Open = Project_Number;
+        setTimeout(() => {
+            document.getElementById("content").style.filter = "blur(5px)";
+            document.getElementById("project-full-screen").style.transition = ".3s left ease, .3s top ease, .3s width ease, .3s height ease, .3s opacity ease, .3s transform ease";
+            document.getElementById("project-full-screen").style.opacity = "1";
+            document.getElementById("full-screen-img").style.width = "350px";
+            document.getElementById("full-screen-img").style.maxWidth = "calc(100% - 120px)";
+            document.getElementById("full-screen-img").style.marginTop = "10px";
+            document.getElementById("project-full-screen").style.left = "50%";
+            document.getElementById("project-full-screen").style.top = "50%";
+            document.getElementById("project-full-screen").style.transform = "translate(-50%, -50%)";
+            document.getElementById("project-full-screen").style.width = "600px";
+            document.getElementById("project-full-screen").style.height = "390px";
+            setTimeout(() => {
+                document.getElementById("a-project-full-screen").style.opacity = "1";
+                document.getElementById("text-project-full-screen").style.opacity = "1";
+                Update_Arrow();
+                document.getElementById("visit-project").style.opacity = "1";
+                document.getElementById("content").addEventListener("click", Fechar_Projeto);
+                Project_Is_Open = true;
+            }, 350);
+        }, 100);
+    }
+}
+
+function Fechar_Projeto() {
+    if(Project_Is_Open) {
+        document.getElementById("content").removeEventListener("click", Fechar_Projeto);
+        document.getElementById("a-project-full-screen").style.opacity = "0";
+        document.getElementById("text-project-full-screen").style.opacity = "0";
+        document.getElementById("visit-project").style.opacity = "0";
+        document.getElementById("first-arrow").style.opacity = "0";
+        document.getElementById("second-arrow").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("full-screen-img").style.marginTop = "-50px";
+            document.getElementById("project-full-screen").style.top = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().top + "px";
+            document.getElementById("project-full-screen").style.left = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().left + "px";
+            document.getElementById("project-full-screen").style.transform = "translate(0, 0)";
+            document.getElementById("project-full-screen").style.width = "280px";
+            document.getElementById("full-screen-img").style.maxWidth = "280px";
+            document.getElementById("project-full-screen").style.height = "185px";
+            document.getElementById("full-screen-img").style.width = "260px";
+            document.getElementById("content").style.filter = "none";
+            document.getElementById("content").style.opacity = "1";
+            document.getElementById("menu").style.top = "10px";
+            setTimeout(() => {
+                document.getElementById("project-full-screen").style.opacity = "0";
+            }, 150);
+            setTimeout(() => {
+                document.getElementById("project-full-screen").style.display = "none";
+                Project_Is_Open = false;
+            }, 300);    
+        }, 50);
+    }
+}
+
+function Next() {
+    if(Project_Open < 7) {
+        Project_Open += 1;
+        // document.getElementById("full-screen-img").style.marginLeft = "-100px";
+        // document.getElementById("full-screen-pj-title").style.marginLeft = "-100px";
+        // document.getElementById("text-project-full-screen").style.marginLeft = "-100px";
+        // document.getElementById("full-screen-img").style.opacity = "0";
+        // document.getElementById("full-screen-pj-title").style.opacity = "0";
+        // document.getElementById("text-project-full-screen").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Open] + "";
+            document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Open];
+            document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
+            document.getElementById("visit-project").href = Redirect_Links[Project_Open];
+            // document.getElementById("full-screen-img").style.marginLeft = "100px";
+            // document.getElementById("full-screen-pj-title").style.marginLeft = "100px";
+            // document.getElementById("text-project-full-screen").style.marginLeft = "100px";
+            // setTimeout(() => {
+            //     document.getElementById("full-screen-img").style.marginLeft = "0";
+            //     document.getElementById("full-screen-pj-title").style.marginLeft = "0";
+            //     document.getElementById("text-project-full-screen").style.marginLeft = "0";
+            //     document.getElementById("full-screen-img").style.opacity = "1";
+            //     document.getElementById("full-screen-pj-title").style.opacity = "1";
+            //     document.getElementById("text-project-full-screen").style.opacity = "1";
+            // }, 350);
+            Update_Arrow();
+        }, 0);
+    }
+}
+
+function Previous() {
+    if(Project_Open > 0) {
+        Project_Open -= 1;
+        document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Open] + "";
+        document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Open];
+        document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
+        document.getElementById("visit-project").href = Redirect_Links[Project_Open];
+        Update_Arrow();
     }
 }

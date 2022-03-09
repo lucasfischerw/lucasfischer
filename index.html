@@ -32,16 +32,16 @@
     <body>
         <div class="bg-image" id="bg-image"></div>
         <div class="menu" id="menu">
-            <a class="menu-button underline-animate" href="#home">Página Inicial</a>
+            <a class="menu-button underline-animate" href="#home" id="button-desktop-0">Página Inicial</a>
             <a class="menu-button mobile" href="javascript:void(0)" onclick="OpenMenu()">
                 <div class="menu-bar"></div>
                 <div class="menu-bar"></div>
                 <div class="menu-bar"></div>
             </a>
-            <a class="menu-button desktop underline-animate" href="#about">Sobre mim</a>
-            <a class="menu-button desktop underline-animate" href="#knowledge">Conhecimentos</a>
-            <a class="menu-button desktop underline-animate" href="#projects">Projetos</a>
-            <a class="menu-button desktop underline-animate" href="#contact">Contato</a>
+            <a class="menu-button desktop underline-animate" href="#about" id="button-desktop-1">Sobre mim</a>
+            <a class="menu-button desktop underline-animate" href="#knowledge" id="button-desktop-2">Conhecimentos</a>
+            <a class="menu-button desktop underline-animate" href="#projects" id="button-desktop-3">Projetos</a>
+            <a class="menu-button desktop underline-animate" href="#contact" id="button-desktop-4">Contato</a>
         </div>
         <div class="sidebar" id="sidebar">
             <nav>
@@ -55,6 +55,15 @@
                     </div>
                 </ul>
             </nav>
+        </div>
+        <div class="project-full-screen" id="project-full-screen">
+            <h1 class="full-screen-pj-title" id="full-screen-pj-title">-</h1>
+            <img id="full-screen-img">
+            <p id="text-project-full-screen">-</p>
+            <a class="visit-project underline-animate" id="visit-project" target="_blank">Visitar Site &rarr;</a>
+            <a class="close-btn-project" id="a-project-full-screen" onclick="Fechar_Projeto()">&#10005;</a>
+            <img class="arrow-project first-arrow" id="first-arrow" src="imagens/arrow-left.png" onclick="Previous()">
+            <img class="arrow-project second-arrow" id="second-arrow" src="imagens/arrow-right.png" onclick="Next()">
         </div>
         <div class="content" id="content" onclick="CloseMenu()" ontouchmove="CloseMenu()">
             <div class="section home" id="home">
@@ -73,52 +82,52 @@
                 <h1 data-aos="fade-right">Alguns dos meus Projetos</h1>
             </div>
             <div class="section projects" id="projects">
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischer.com.br/gewinner/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(0)" id="project-0">
+                    <a target="_blank">
                         <img src="imagens/gewinner.jpg">
                         <h2>Equipe Gewinner</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischer.com.br/projetos/memoria/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(1)" id="project-1">
+                    <a target="_blank">
                         <img src="imagens/memoria.jpg">
                         <h2>Memória</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischer.com.br/projetos/genius/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(2)" id="project-2">
+                    <a target="_blank">
                         <img src="imagens/genius.jpg">
                         <h2>Genius</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischer.com.br/projetos/apostador/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(3)" id="project-3">
+                    <a target="_blank">
                         <img src="imagens/apostador.jpg">
                         <h2>Apostador</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischer.com.br/projetos/tarefas/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(4)" id="project-4">
+                    <a target="_blank">
                         <img src="imagens/tarefas.jpg">
                         <h2>Organização Escolar</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischer.com.br/projetos/tdah/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(5)" id="project-5">
+                    <a target="_blank">
                         <img src="imagens/tdah.jpg">
                         <h2>Ajuda TDAH</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Visitar Projeto  &#8599;">
-                    <a href="https://lucasfischerw.github.io/robotica/index.html" target="_blank">
+                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(6)" id="project-6">
+                    <a target="_blank">
                         <img src="imagens/robotica.jpg">
                         <h2>Robótica Sinodal</h2>
                     </a>
                 </div>
-                <div class="project" data-aos="fade" data-content="Não Disponível &times;">
+                <div class="project" data-aos="fade"data-content="Descrição" onclick="Open_Project(7)" id="project-7">
                     <a>
                         <img src="imagens/floresta.jpg">
-                        <h2>Em breve!</h2>
+                        <h2>Aventuras de Hypsta</h2>
                     </a>
                 </div>
             </div>
