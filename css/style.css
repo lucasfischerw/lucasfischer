@@ -93,7 +93,7 @@ body::-webkit-scrollbar-thumb:hover {
     top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    width: fit-content;
+    width: max-content;
     border-radius: 10px;
     height: 100px;
     font-family: 'Didact Gothic', sans-serif;

@@ -172,7 +172,7 @@ function Fechar_Projeto() {
             setTimeout(() => {
                 document.getElementById("project-full-screen").style.display = "none";
                 Project_Is_Open = false;
-            }, 300);    
+            }, 400);    
         }, 50);
     }
 }
