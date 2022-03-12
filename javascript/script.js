@@ -51,7 +51,7 @@ window.addEventListener("scroll", () => {
         CloseMenu();
     }
     if(Project_Is_Open) {
-        Fechar_Projeto();
+        Fechar_Projeto(false);
     }
 });
 
@@ -82,6 +82,7 @@ function Scroll_Arrow() {
     }
 }
 
+var Possible_To_Change_Project = true;
 var Project_Open = 0;
 var Project_Is_Open = false;
 var Images_Link = ["gewinner.jpg", "memoria.jpg", "genius.jpg", "apostador.jpg", "tarefas.jpg", "tdah.jpg", "robotica.jpg", "floresta.jpg"];
@@ -109,6 +110,7 @@ function Update_Arrow() {
 
 function Open_Project(Project_Number) {
     if(!Project_Is_Open) {
+        Project_Is_Open = true;
         document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Number] + "";
         document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Number];
         document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Number];
@@ -117,7 +119,7 @@ function Open_Project(Project_Number) {
         document.getElementById("project-full-screen").style.top = "" + document.getElementById("project-"+ Project_Number +"").getBoundingClientRect().top + "px";
         document.getElementById("project-full-screen").style.left = "" + document.getElementById("project-"+ Project_Number +"").getBoundingClientRect().left + "px";
         document.getElementById("content").style.opacity = "0.5";
-        document.getElementById("project-full-screen").style.display = "flex";
+        document.getElementById("project-full-screen").style.display = "inline";
         document.getElementById("menu").style.top = "-100px";
         Project_Open = Project_Number;
         setTimeout(() => {
@@ -139,13 +141,12 @@ function Open_Project(Project_Number) {
                 Update_Arrow();
                 document.getElementById("visit-project").style.opacity = "1";
                 document.getElementById("content").addEventListener("click", Fechar_Projeto);
-                Project_Is_Open = true;
             }, 350);
         }, 100);
     }
 }
 
-function Fechar_Projeto() {
+function Fechar_Projeto(Voltar_A_Posicao) {
     if(Project_Is_Open) {
         document.getElementById("content").removeEventListener("click", Fechar_Projeto);
         document.getElementById("a-project-full-screen").style.opacity = "0";
@@ -155,13 +156,15 @@ function Fechar_Projeto() {
         document.getElementById("second-arrow").style.opacity = "0";
         document.getElementById("full-screen-pj-title").style.opacity = "0";
         setTimeout(() => {
-            document.getElementById("full-screen-img").style.marginTop = "-50px";
-            document.getElementById("project-full-screen").style.top = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().top + "px";
-            document.getElementById("project-full-screen").style.left = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().left + "px";
-            document.getElementById("project-full-screen").style.transform = "translate(0, 0)";
+            document.getElementById("full-screen-img").style.marginTop = "-54px";
+            if(Voltar_A_Posicao) {
+                document.getElementById("project-full-screen").style.top = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().top + "px";
+                document.getElementById("project-full-screen").style.left = "" + document.getElementById("project-"+ Project_Open +"").getBoundingClientRect().left + "px";
+                document.getElementById("project-full-screen").style.transform = "translate(0, 0)";
+            }
             document.getElementById("project-full-screen").style.width = "280px";
-            document.getElementById("full-screen-img").style.maxWidth = "280px";
             document.getElementById("project-full-screen").style.height = "185px";
+            document.getElementById("full-screen-img").style.maxWidth = "calc(100% - 20px)";
             document.getElementById("full-screen-img").style.width = "260px";
             document.getElementById("content").style.filter = "none";
             document.getElementById("content").style.opacity = "1";
@@ -172,48 +175,62 @@ function Fechar_Projeto() {
             setTimeout(() => {
                 document.getElementById("project-full-screen").style.display = "none";
                 Project_Is_Open = false;
+                document.getElementById("project-full-screen").style.transform = "translate(0, 0)";
             }, 400);    
         }, 50);
     }
 }
 
 function Next() {
-    if(Project_Open < 7) {
+    if(Project_Open < 7 && Possible_To_Change_Project) {
+        Possible_To_Change_Project = false;
         Project_Open += 1;
-        // document.getElementById("full-screen-img").style.marginLeft = "-100px";
-        // document.getElementById("full-screen-pj-title").style.marginLeft = "-100px";
-        // document.getElementById("text-project-full-screen").style.marginLeft = "-100px";
-        // document.getElementById("full-screen-img").style.opacity = "0";
-        // document.getElementById("full-screen-pj-title").style.opacity = "0";
-        // document.getElementById("text-project-full-screen").style.opacity = "0";
+        document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
+        document.getElementById("project-container").style.marginLeft = "-50px";
+        document.getElementById("project-container").style.opacity = "0";
         setTimeout(() => {
+            document.getElementById("project-container").style.transition = "none";
             document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Open] + "";
             document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Open];
             document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
             document.getElementById("visit-project").href = Redirect_Links[Project_Open];
-            // document.getElementById("full-screen-img").style.marginLeft = "100px";
-            // document.getElementById("full-screen-pj-title").style.marginLeft = "100px";
-            // document.getElementById("text-project-full-screen").style.marginLeft = "100px";
-            // setTimeout(() => {
-            //     document.getElementById("full-screen-img").style.marginLeft = "0";
-            //     document.getElementById("full-screen-pj-title").style.marginLeft = "0";
-            //     document.getElementById("text-project-full-screen").style.marginLeft = "0";
-            //     document.getElementById("full-screen-img").style.opacity = "1";
-            //     document.getElementById("full-screen-pj-title").style.opacity = "1";
-            //     document.getElementById("text-project-full-screen").style.opacity = "1";
-            // }, 350);
+            document.getElementById("project-container").style.marginLeft = "50px";
             Update_Arrow();
-        }, 0);
+            setTimeout(() => {
+                document.getElementById("project-container").style.marginLeft = "0";
+                document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
+                document.getElementById("project-container").style.opacity = "1";
+                setTimeout(() => {
+                    Possible_To_Change_Project = true;
+                }, 250);
+            }, 25);
+        }, 200);
     }
 }
 
 function Previous() {
-    if(Project_Open > 0) {
+    if(Project_Open > 0 && Possible_To_Change_Project) {
+        Possible_To_Change_Project = false;
         Project_Open -= 1;
-        document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Open] + "";
-        document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Open];
-        document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
-        document.getElementById("visit-project").href = Redirect_Links[Project_Open];
-        Update_Arrow();
+        document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
+        document.getElementById("project-container").style.marginLeft = "50px";
+        document.getElementById("project-container").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("project-container").style.transition = "none";
+            document.getElementById("full-screen-img").src = "imagens/" + Images_Link[Project_Open] + "";
+            document.getElementById("full-screen-pj-title").innerHTML = Titles[Project_Open];
+            document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
+            document.getElementById("visit-project").href = Redirect_Links[Project_Open];
+            document.getElementById("project-container").style.marginLeft = "-50px";
+            Update_Arrow();
+            setTimeout(() => {
+                document.getElementById("project-container").style.marginLeft = "0";
+                document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
+                document.getElementById("project-container").style.opacity = "1";
+                setTimeout(() => {
+                    Possible_To_Change_Project = true;
+                }, 250);
+            }, 25);
+        }, 200);
     }
 }

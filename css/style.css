@@ -341,9 +341,15 @@ h1 {
     display: none;
     opacity: 0.2;
     font-family: 'Didact Gothic', sans-serif;
+}
+
+.project-container {
+    width: 100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    transition: margin .2s ease, opacity .2s ease;
 }
 
 .visit-project {
@@ -356,12 +362,7 @@ h1 {
     border-radius: 10px;
     height: auto;
     margin: 0 10px 10px 10px;
-    transition: width .3s ease, height .3s ease, margin .25s ease, opacity .3s ease;
-}
-
-.project-full-screen div {
-    display: flex;
-    gap: 40px;
+    transition: width .3s ease, height .3s ease, margin .25s ease, opacity .3s ease, max-width .3s ease;
 }
 
 .close-btn-project {
