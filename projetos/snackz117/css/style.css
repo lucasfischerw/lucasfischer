@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+}
+
+html, body {
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+body {
+	position: relative;
+    background: rgb(0,0,0);
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(38,17,156,1) 50%, rgba(6,136,166,1) 100%); */
+    z-index: 0;
+    color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    /* background-color: rgba(19, 9, 172, 0.5); */
+}
+
+.welcome-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.welcome-logo {
+    border-radius: 50%;
+    height: 130px;
+    width: auto;
+    margin: 10px 20px;
+}
+
+.welcome-screen h1 {
+    padding: 15px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    background-color: red;
+    width: 100%;
+}
+
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+    background-color: #0b82a7;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+    background-color: #096581;
+}
+
+textarea {
+    height: 100px;
+}
+
+label, .container h1 {
+    color: black;
+}
+
+.container h1 {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin: 15px;
+    width: 50%;
+    font-family: 'Didact Gothic', sans-serif;
+    font-weight: bold;
+}
+
+.flex-contact-name {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.vertical-flex-name {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
