@@ -7,38 +7,48 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
     <body>
-        <div class="section welcome-screen">
-            <div class="menu">
-                <img alt="Logo Image" src="images/GOOD_SCUF_logo.png" class="welcome-logo">
-            </div>
-            <h1>Wilkommen zu</h1>
-            <h1>GOOD SCUF</h1>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">Über Us</a>
+            <a href="#contact">Kontakt</a>
         </div>
-        <div class="section">
+        <div class="section welcome-screen" id="home">
+            <img alt="Logo Image" src="images/GOOD_SCUF_logo.png" class="welcome-logo">
+            <div class="vertical-flex">
+                <h1>Willkommen zu</h1>
+                <h1>GOOD SCUF</h1>
+            </div>
+        </div>
+        <div class="section text-section" id="about">
+            <img src="images/SM-placeholder.png">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc fermentum, dolor nec sollicitudin malesuada, diam orci pulvinar tortor, vitae hendrerit erat arcu feugiat elit. Etiam faucibus diam odio, et auctor diam faucibus quis. Suspendisse ac mauris et mauris porttitor auctor et quis sem. Cras egestas convallis varius. Sed imperdiet, nibh et aliquam varius, libero eros hendrerit ipsum, non convallis lorem magna quis nibh. Praesent suscipit semper tincidunt. Donec massa magna, egestas ut metus a, venenatis consequat lacus. Aliquam erat volutpat. Cras maximus ligula quis neque pharetra, sed consectetur orci vestibulum. Cras sed ipsum dolor. Maecenas sed lacus at mauris porttitor egestas ac sed diam.</p>
+        </div>
+        <div class="section text-section">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc fermentum, dolor nec sollicitudin malesuada, diam orci pulvinar tortor, vitae hendrerit erat arcu feugiat elit. Etiam faucibus diam odio, et auctor diam faucibus quis. Suspendisse ac mauris et mauris porttitor auctor et quis sem. Cras egestas convallis varius. Sed imperdiet, nibh et aliquam varius, libero eros hendrerit ipsum, non convallis lorem magna quis nibh. Praesent suscipit semper tincidunt. Donec massa magna, egestas ut metus a, venenatis consequat lacus. Aliquam erat volutpat. Cras maximus ligula quis neque pharetra, sed consectetur orci vestibulum. Cras sed ipsum dolor. Maecenas sed lacus at mauris porttitor egestas ac sed diam.</p>
+            <img src="images/SM-placeholder.png">
+        </div>
+        <div class="section form-section" id="contact">
             <div class="footer">
                 <div class="container">
-                    <h1>Contact Us</h1>
-                    <form action=”mailto:lucasfischerw@gmail.com” method=”POST” enctype=”multipart/form-data” name=”EmailForm”>
-
+                    <h1>Kontaktiere uns</h1>
+                    <form>
                         <div class="flex-contact-name">
                             <div class="vertical-flex-name">
-                                <label for="fname">First Name</label>
-                                <input type="text" id="fname" name="firstname" placeholder="Name">
+                                <label for="fname">Vorname</label>
+                                <input type="text" id="fname" name="firstname" placeholder="Vorname">
                             </div>
                             <div class="vertical-flex-name">
-                                <label for="lname">Last Name</label>
-                                <input type="text" id="lname" name="lastname" placeholder="Last name">
+                                <label for="lname">Name</label>
+                                <input type="text" id="lname" name="lastname" placeholder="Name">
                             </div>
-                        </div>
-                  
-                        <label for="subject">Subject</label>
-                        <textarea id="subject" name="subject" placeholder="Write something"></textarea>
-                  
-                        <input type="submit" value="Submit">
-                  
+                        </div>              
+                        <label for="subject">Meldung</label>
+                        <textarea id="subject" name="subject" placeholder="Schreibe etwas"></textarea>      
+                        <input type="submit" value="Submit">     
                     </form>
-                  </div>
+                </div>
             </div>
+            <footer class="informations">&copy; Copyright 2022 GOOD SCUF</footer>
         </div>
     </body>
 </html>

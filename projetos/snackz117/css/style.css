@@ -21,11 +21,30 @@ html, body {
 body {
 	position: relative;
     background: rgb(0,0,0);
-    /* background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(38,17,156,1) 50%, rgba(6,136,166,1) 100%); */
     z-index: 0;
     color: white;
     width: 100vw;
     height: 100vh;
+}
+
+.menu {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 15px;
+    z-index: 999;
+}
+
+.menu a {
+    padding: 20px;
+    font-family: 'Didact Gothic', sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
 }
 
 .section {
@@ -34,53 +53,68 @@ body {
     position: relative;
 }
 
-.menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    /* background-color: rgba(19, 9, 172, 0.5); */
-}
-
 .welcome-screen {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     font-family: 'Press Start 2P', cursive;
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: center;
+}
+
+@media(min-width: 650px) {
+    .welcome-screen {
+        flex-direction: row;
+        gap: 50px;
+    }
 }
 
 .welcome-logo {
     border-radius: 50%;
-    height: 130px;
-    width: auto;
-    margin: 10px 20px;
+    height: auto;
+    width: 200px;
+    margin: 10px 150px 10px 20px;
+    opacity: 0;
+    animation: welcome 1s forwards;
+}
+
+@keyframes welcome {
+    from {border-radius: 50%;}
+    to {margin: 10px 20px; opacity: 1;}
+}
+
+.vertical-flex {
+    flex-direction: column;
 }
 
 .welcome-screen h1 {
     padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
 }
 
 .footer {
     position: absolute;
-    bottom: 20px;
-    background-color: red;
+    bottom: 65px;
+    background-color: rgb(53, 53, 53);
     width: 100%;
 }
 
 input[type=text], select, textarea {
-    width: 100%; /* Full width */
-    padding: 12px; /* Some padding */ 
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 4px; /* Rounded borders */
-    box-sizing: border-box; /* Make sure that padding and width stays in place */
-    margin-top: 6px; /* Add a top margin */
-    margin-bottom: 16px; /* Bottom margin */
-    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical
 }
 
-/* Style the submit button with a specific background color etc */
 input[type=submit] {
     background-color: #0b82a7;
     color: white;
@@ -90,13 +124,13 @@ input[type=submit] {
     cursor: pointer;
 }
 
-/* When moving the mouse over the submit button, add a darker green color */
 input[type=submit]:hover {
     background-color: #096581;
 }
 
 textarea {
     height: 100px;
+    resize: none;
 }
 
 label, .container h1 {
@@ -112,10 +146,17 @@ label, .container h1 {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-    margin: 15px;
-    width: 50%;
+    margin: 15px auto;
+    width: 90%;
     font-family: 'Didact Gothic', sans-serif;
     font-weight: bold;
+    transition: width .2s ease;
+}
+
+@media(min-width: 900px) {
+    .container {
+        width: 65%;
+    }
 }
 
 .flex-contact-name {
@@ -128,4 +169,51 @@ label, .container h1 {
     display: flex;
     flex-direction: column;
     width: 50%;
+}
+
+.informations {
+    width: 100%;
+    background-color: rgb(53, 53, 53);
+    position: absolute;
+    bottom: 0;
+    font-family: 'Didact Gothic', sans-serif;
+    padding: 10px;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    padding: 12.5vh 10% 12.5vh 10%;
+    height: auto;
+    min-height: max-content;
+    align-items: center;
+    font-family: "Didact Gothic", sans-serif;
+}
+
+
+.text-section img {
+    width: 450px;
+    height: auto;
+    border-radius: 15px;
+    align-self: center;
+    max-width: 90%;
+}
+
+.text-section p {
+    order: 2;
+}
+
+@media(min-width: 1200px) {
+    .text-section {
+        flex-direction: row;
+    }
+    .text-section p {
+        order: 0;
+    }
+}
+
+.form-section {
+    height: 70%;
+    min-height: 500px;
 }
