@@ -99,7 +99,7 @@ body {
 
 .footer {
     position: absolute;
-    bottom: 65px;
+    bottom: 50px;
     background-color: rgb(53, 53, 53);
     width: 100%;
 }
@@ -175,7 +175,7 @@ label, .container h1 {
     width: 100%;
     background-color: rgb(53, 53, 53);
     position: absolute;
-    bottom: 0;
+    top: 0;
     font-family: 'Didact Gothic', sans-serif;
     padding: 10px;
 }
