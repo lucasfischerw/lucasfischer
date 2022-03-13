@@ -74,7 +74,7 @@ body {
 
 .footer {
     position: absolute;
-    bottom: 65px;
+    bottom: 100px;
     background-color: rgb(53, 53, 53);
     width: 100%;
 }
@@ -150,7 +150,51 @@ label, .container h1 {
     width: 100%;
     background-color: rgb(53, 53, 53);
     position: absolute;
-    top: 0;
+    bottom: 0;
     font-family: 'Didact Gothic', sans-serif;
     padding: 10px;
+}
+
+.back-arrow {
+    width: 40px;
+    height: auto;
+    position: fixed;
+    top: 25px;
+    left: 15px;
+    z-index: 99999;
+}
+
+footer a {
+    font-weight: bold;
+    color: white;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.impressum-content h1 {
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Didact Gothic', sans-serif;
+    position: absolute;
+    top: 150px;
+    width: 100%;
+}
+
+.impressum-content p {
+    font-family: 'Didact Gothic', sans-serif;
+    width: 100%;
+    margin: auto;
+    text-align: justify;
+    position: absolute;
+    top: 250px;
+    padding: 0 10%;
+}
+
+@media(min-width: 400px) {
+    .impressum-content p {
+        padding: 0 20%;
+    }
 }
