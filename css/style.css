@@ -330,7 +330,6 @@ h1 {
 
 .project-full-screen {
     width: 280px;
-    max-width: 90%;
     height: 185px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -358,11 +357,10 @@ h1 {
 
 #full-screen-img {
     width: 350px;
-    max-width: calc(100% - 120px);
     border-radius: 10px;
     height: auto;
     margin: 0 10px 10px 10px;
-    transition: width .3s ease, height .3s ease, margin .25s ease, opacity .3s ease, max-width .3s ease;
+    transition: width .3s ease, height .3s ease, margin .25s ease, opacity .3s ease;
 }
 
 .close-btn-project {

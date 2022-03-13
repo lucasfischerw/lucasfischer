@@ -126,13 +126,13 @@ function Open_Project(Project_Number) {
             document.getElementById("content").style.filter = "blur(5px)";
             document.getElementById("project-full-screen").style.transition = ".3s left ease, .3s top ease, .3s width ease, .3s height ease, .3s opacity ease, .3s transform ease";
             document.getElementById("project-full-screen").style.opacity = "1";
-            document.getElementById("full-screen-img").style.width = "350px";
-            document.getElementById("full-screen-img").style.maxWidth = "calc(100% - 120px)";
+            document.getElementById("full-screen-img").style.width = "min(350px, calc(100% - 120px))";
+            // document.getElementById("full-screen-img").style.maxWidth = "calc(100% - 120px)";
             document.getElementById("full-screen-img").style.marginTop = "10px";
             document.getElementById("project-full-screen").style.left = "50%";
             document.getElementById("project-full-screen").style.top = "50%";
             document.getElementById("project-full-screen").style.transform = "translate(-50%, -50%)";
-            document.getElementById("project-full-screen").style.width = "600px";
+            document.getElementById("project-full-screen").style.width = "min(600px, 90%)";
             document.getElementById("project-full-screen").style.height = "390px";
             setTimeout(() => {
                 document.getElementById("a-project-full-screen").style.opacity = "1";
