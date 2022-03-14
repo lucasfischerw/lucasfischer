@@ -128,30 +128,17 @@
 					var content2 = document.createElement("p");
 					content2.innerHTML = mydata[i].ROMANIAN;
 					document.getElementById("word-line-romain-"+ i +"").appendChild(content2);
-					var img = document.createElement("img");
-					img.setAttribute("src", "Speaker_Icon.svg");
-					img.setAttribute("onclick", "SpeakWordRomain("+ i +")");
-					document.getElementById("word-line-romain-"+ i +"").appendChild(img);
+
 					var pron = document.createElement("p");
 					pron.innerHTML = mydata[i].BrE;
 					document.getElementById("append-pron").appendChild(pron);
 				}
 				document.getElementById("content").style.opacity = "1";
 			}
-			function SpeakWordRomain(wordNumber) {
-                let msg = mydata[wordNumber].ROMANIAN;
-                let speech = new SpeechSynthesisUtterance();
-                speech.lang = "ro-RO";       
-                speech.text = msg;
-                speech.volume = 1;
-                speech.rate = 1;
-                speech.pitch = 1;    
-                window.speechSynthesis.speak(speech);
-            }
             function SpeakWord(wordNumber) {
                 let msg = mydata[wordNumber].Word;
                 let speech = new SpeechSynthesisUtterance();
-                speech.lang = "en-US";       
+                speech.lang = "en-GB";       
                 speech.text = msg;
                 speech.volume = 1;
                 speech.rate = 1;
