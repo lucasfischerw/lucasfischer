@@ -31,8 +31,11 @@
 			<img class="logo" alt="Logo" src="imagens/logo.jpg">
 			<h2 class="titulo">Clippy</h2>
 			<div class="botao" id="tarefas-button" onclick="Tarefas()">Tarefas</div>
+			<img class="menu-icon" onclick="Tarefas()" src="imagens/tarefas.png"/>
 			<div class="botao" id="aulas-button" onclick="Aulas()">Aulas</div>
+			<img class="menu-icon" onclick="Aulas()" src="imagens/horario.png"/>
 			<div class="botao" id="provas-button" onclick="Provas()">Provas</div>
+			<img class="menu-icon" onclick="Provas()" src="imagens/provas.png"/>
 		</div>
 		<div class="tarefas" id="tarefas">
 			<div class="dia">
@@ -160,50 +163,40 @@
 		</div>
 		<div class="provas" id="provas">
 			<div class="descricao_dias">
-				<p class="descricao_cadadia">Domingo</p>
-				<p class="descricao_cadadia">Segunda</p>
-				<p class="descricao_cadadia">Terça</p>
-				<p class="descricao_cadadia">Quarta</p>
-				<p class="descricao_cadadia">Quinta</p>
-				<p class="descricao_cadadia">Sexta</p>
-				<p class="descricao_cadadia">Sábado</p>
+				<p>Segunda</p>
+				<p>Terça</p>
+				<p>Quarta</p>
+				<p>Quinta</p>
+				<p>Sexta</p>
 			</div>
-			<div class="semanas">
-				<div class="semana primeira">
-					<div class="dia_calendario" id="diapassado">29</div>
-					<div class="dia_calendario" id="diapassado">30<div class="prova" id="prova-1">Ciências</div></div>
-					<div class="dia_calendario" id="diapresente">1</div>
-					<div class="dia_calendario" id="diapresente">2</div>
-					<div class="dia_calendario" id="diapresente">3<div class="prova" id="prova-2">Alemão DSD</div></div>
-					<div class="dia_calendario" id="diapresente">4<div class="prova impar" id="prova-3">Sas Ímpar</div></div>
-					<div class="dia_calendario" id="diapresente">5</div>
+			<div class="calendario">
+				<div class="semana">
+					<div class="dia-semana" style="color: #afafaf;">30<div class="prova segunda">Ciências</div></div>
+					<div class="dia-semana">1</div>
+					<div class="dia-semana">2</div>
+					<div class="dia-semana">3<div class="prova quinta">Alemão DSD</div></div>
+					<div class="dia-semana">4<div class="prova impar">SAS Ímpar</div></div>
 				</div>
-				<div class="semana outras">
-					<div class="dia_calendario" id="diapresente">6</div>
-					<div class="dia_calendario" id="diapresente">7<div class="prova" id="prova-4">Geografia</div></div>
-					<div class="dia_calendario" id="diapresente">8</div>
-					<div class="dia_calendario" id="diapresente">9</div>
-					<div class="dia_calendario" id="diapresente">10<div class="prova" id="prova-5">Inglês</div></div>
-					<div class="dia_calendario" id="diapresente">11<div class="prova par" id="prova-6">Sas Par</div></div>
-					<div class="dia_calendario" id="diapresente">12</div>
+				<div class="semana">
+					<div class="dia-semana">7<div class="prova segunda">Geografia</div></div>
+					<div class="dia-semana">8</div>
+					<div class="dia-semana">9</div>
+					<div class="dia-semana">10<div class="prova quinta">Inglês</div></div>
+					<div class="dia-semana">11<div class="prova par">SAS Par</div></div>
 				</div>
-				<div class="semana outras">
-					<div class="dia_calendario" id="diapresente">13</div>
-					<div class="dia_calendario" id="diapresente">14<div class="prova" id="prova-7" onclick="prova()">Português</div></div>
-					<div class="dia_calendario" id="diapresente">15</div>
-					<div class="dia_calendario" id="diapresente">16</div>
-					<div class="dia_calendario" id="diapresente">17<div class="prova" id="prova-8">Matemática</div></div>
-					<div class="dia_calendario" id="diapresente">18</div>
-					<div class="dia_calendario" id="diapresente">19</div>
+				<div class="semana">
+					<div class="dia-semana">14<div class="prova segunda">Português</div></div>
+					<div class="dia-semana">15</div>
+					<div class="dia-semana">16</div>
+					<div class="dia-semana">17<div class="prova quinta">Matemática</div></div>
+					<div class="dia-semana">18</div>
 				</div>
-				<div class="semana outras">
-					<div class="dia_calendario" id="diapresente">20</div>
-					<div class="dia_calendario" id="diapresente">21</div>
-					<div class="dia_calendario" id="diapresente">22</div>
-					<div class="dia_calendario" id="diapresente">23</div>
-					<div class="dia_calendario" id="diapresente">24</div>
-					<div class="dia_calendario" id="diapresente">25</div>
-					<div class="dia_calendario" id="diapresente">26</div>
+				<div class="semana">
+					<div class="dia-semana">21</div>
+					<div class="dia-semana">22</div>
+					<div class="dia-semana">23</div>
+					<div class="dia-semana">24</div>
+					<div class="dia-semana">25</div>
 				</div>
 			</div>
 		</div>
