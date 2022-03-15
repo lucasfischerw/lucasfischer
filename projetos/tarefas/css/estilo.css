@@ -10,24 +10,27 @@
 body {
 	background-color: #FFFFFF;
 	height: 100vh;
+	display: flex;
 }
 
 .sidebar {
-	width: 250px;
+	width: 100px;
 	height: 100%;
 	background-color: #EEEEEE;
 	display: flex;
 	flex-direction: column;
-	position: fixed;
+	/* position: fixed; */
 	left: 0;
 	top: 0;
+	transition: width .3s ease;
 }
 
 .logo {
-	width: 200px;
-	height: 200px;
-	margin: 50px 25px 0 25px;
+	width: 80px;
+	height: 80px;
+	margin: 50px 10px 0 10px;
 	border-radius: 50%;
+	transition: width .3s ease, height .3s ease;
 }
 
 .titulo {
@@ -37,6 +40,7 @@ body {
 	text-align: center;
 	margin-top: 20px;
 	padding: 10px;
+	display: none;
 }
 
 div .botao {
@@ -51,7 +55,12 @@ div .botao {
   	border-width: 5px;
   	border-color: white;
 	border-radius: 15px;
-	transition: 0.15s transform;
+	transition: 0.15s transform, .3s background-color ease;
+	display: none;
+}
+
+#tarefas-button {
+	background-color: white;
 }
 
 .botao:nth-child(1) {
@@ -64,24 +73,37 @@ div .botao {
 }
 
 .tarefas {
-	width: calc(100% - 250px);
-	margin-left: 250px;
+	width: calc(100% - 100px);
 	height: 100%;
 	display: flex;
+	transition: width .3s ease;
+	animation: .3s Animation forwards;
 }
+
 
 .aulas {
 	width: 100%;
 	height: 100%;
 	display: none;
-	background-color: green;
+	animation: .3s Animation forwards;
 }
 
 .provas {
 	width: 100%;
 	height: 100%;
 	display: none;
-	background-color: red;
+	animation: .3s Animation forwards;
+}
+
+@keyframes Animation {
+	from{
+		margin-top: 100px;
+		opacity: 0;
+	}
+	to{
+		margin-top: 0;
+		opacity: 1;
+	}
 }
 
 .titulodia {
@@ -108,4 +130,113 @@ div .botao {
 
 .nometarefa {
 	margin-bottom: 5px;
+}
+
+.barrinha {
+	height: 1.5px;
+	width: 75%;
+	margin-left: 12.5%;
+	background-color: #EEEEEE;
+}
+
+.dia_calendario {
+	border-style: solid;
+	border-width: 3px;
+	border-radius: 5px;
+	border-color: #EEEEEE;
+	width: 100px;
+	height: 100px;
+	margin-left: -3px;
+}
+
+.semana {
+	width: 70vw;
+	margin-left: 5vw;
+	margin-top: 5vh;
+	display: flex;
+}
+
+.semanas {
+	display: initial;
+	height: 95vh;
+	position: absolute;
+	bottom: 0px;
+}
+
+.descricao_dias {
+	display: flex;
+	height: 5vh;
+	margin-left: 5vw;
+	margin-top: 4vh;
+	line-height: 5vh;
+}
+
+.descricao_cadadia {
+	font-family: 'Didact Gothic', sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	width: 10vw;
+	margin-left: -3px;
+	text-align: center;
+}
+
+.primeira {
+	margin-top: 5vh;
+}
+
+.outras {
+	margin-top: -3px;
+}
+
+#diapassado {
+	font-family: 'Didact Gothic', sans-serif;
+	color: #afafaf;
+}
+
+#diapresente {
+	font-family: 'Didact Gothic', sans-serif;
+}
+
+.prova {
+	width: 100%;
+	height: 3.5vh;
+	line-height: 3.5vh;
+	text-align: center;
+	margin-top: 2vh;
+	background-color: #47B447;
+	color: white;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.impar {
+	background-color: rgb(255, 70, 70);
+}
+
+.par {
+	background-color: rgb(40, 137, 217);
+}
+
+@media(min-width: 1000px) {
+	.sidebar {
+		width: 250px;
+	}
+	.logo {
+		width: 200px;
+		height: 200px;
+		margin: 50px 25px 0 25px;
+	}
+	div .botao {
+		display: block;
+	}
+	.titulo {
+		display: block;
+	}
+	.tarefas {
+		width: calc(100% - 250px);
+	}
+}
+
+::selection {
+    background-color: #03a9f4;
 }

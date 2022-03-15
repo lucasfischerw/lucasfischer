@@ -30,9 +30,9 @@
 		<div class="sidebar">
 			<img class="logo" alt="Logo" src="imagens/logo.jpg">
 			<h2 class="titulo">Clippy</h2>
-			<div class="botao" onclick="Tarefas()">Tarefas</div>
-			<div class="botao" onclick="Aulas()">Aulas</div>
-			<div class="botao" onclick="Provas()">Provas</div>
+			<div class="botao" id="tarefas-button" onclick="Tarefas()">Tarefas</div>
+			<div class="botao" id="aulas-button" onclick="Aulas()">Aulas</div>
+			<div class="botao" id="provas-button" onclick="Provas()">Provas</div>
 		</div>
 		<div class="tarefas" id="tarefas">
 			<div class="dia">
@@ -72,10 +72,140 @@
 			</div>
 		</div>
 		<div class="aulas" id="aulas">
-
+			<div class="dia">
+				<p class="titulodia">Segunda</p>
+				<div class="tarefa">
+					<div class="nometarefa">Tec Est</div>
+					<div>&#128197; seg, 07:15</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Terça</p>
+				<div class="tarefa">
+					<div class="nometarefa">Matemática</div>
+					<div>&#128197; ter, 08:05</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Teatro/Artes</div>
+					<div>&#128197; ter, 09:05</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Português</div>
+					<div>&#128197; ter, 10:10</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Geografia</div>
+					<div>&#128197; ter, 13:25</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Biologia</div>
+					<div>&#128197; ter, 14:15</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Química</div>
+					<div>&#128197; ter, 15:10</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Quarta</p>
+				<div class="tarefa">
+					<div class="nometarefa">Inglês</div>
+					<div>&#128197; qua, 09:05</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Alemão</div>
+					<div>&#128197; qua, 11:00</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física-Aula</div>
+					<div>&#128197; sex, 16:50</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Quinta</p>
+				<div class="tarefa">
+					<div class="nometarefa">Tec Est</div>
+					<div>&#128197; seg, 08:05</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">História</div>
+					<div>&#128197; qui, 13:25</div>
+				</div>
+			</div>
+			<div class="dia">
+				<p class="titulodia">Sexta</p>
+				<div class="tarefa">
+					<div class="nometarefa">Português</div>
+					<div>&#128197; sex, 08:05</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Física</div>
+					<div>&#128197; sex, 09:05</div>
+				</div>
+				<div class="barrinha"></div>
+				<div class="tarefa">
+					<div class="nometarefa">Matemática</div>
+					<div>&#128197; sex, 11:00</div>
+				</div>
+			</div>
 		</div>
 		<div class="provas" id="provas">
-
+			<div class="descricao_dias">
+				<p class="descricao_cadadia">Domingo</p>
+				<p class="descricao_cadadia">Segunda</p>
+				<p class="descricao_cadadia">Terça</p>
+				<p class="descricao_cadadia">Quarta</p>
+				<p class="descricao_cadadia">Quinta</p>
+				<p class="descricao_cadadia">Sexta</p>
+				<p class="descricao_cadadia">Sábado</p>
+			</div>
+			<div class="semanas">
+				<div class="semana primeira">
+					<div class="dia_calendario" id="diapassado">29</div>
+					<div class="dia_calendario" id="diapassado">30<div class="prova" id="prova-1">Ciências</div></div>
+					<div class="dia_calendario" id="diapresente">1</div>
+					<div class="dia_calendario" id="diapresente">2</div>
+					<div class="dia_calendario" id="diapresente">3<div class="prova" id="prova-2">Alemão DSD</div></div>
+					<div class="dia_calendario" id="diapresente">4<div class="prova impar" id="prova-3">Sas Ímpar</div></div>
+					<div class="dia_calendario" id="diapresente">5</div>
+				</div>
+				<div class="semana outras">
+					<div class="dia_calendario" id="diapresente">6</div>
+					<div class="dia_calendario" id="diapresente">7<div class="prova" id="prova-4">Geografia</div></div>
+					<div class="dia_calendario" id="diapresente">8</div>
+					<div class="dia_calendario" id="diapresente">9</div>
+					<div class="dia_calendario" id="diapresente">10<div class="prova" id="prova-5">Inglês</div></div>
+					<div class="dia_calendario" id="diapresente">11<div class="prova par" id="prova-6">Sas Par</div></div>
+					<div class="dia_calendario" id="diapresente">12</div>
+				</div>
+				<div class="semana outras">
+					<div class="dia_calendario" id="diapresente">13</div>
+					<div class="dia_calendario" id="diapresente">14<div class="prova" id="prova-7" onclick="prova()">Português</div></div>
+					<div class="dia_calendario" id="diapresente">15</div>
+					<div class="dia_calendario" id="diapresente">16</div>
+					<div class="dia_calendario" id="diapresente">17<div class="prova" id="prova-8">Matemática</div></div>
+					<div class="dia_calendario" id="diapresente">18</div>
+					<div class="dia_calendario" id="diapresente">19</div>
+				</div>
+				<div class="semana outras">
+					<div class="dia_calendario" id="diapresente">20</div>
+					<div class="dia_calendario" id="diapresente">21</div>
+					<div class="dia_calendario" id="diapresente">22</div>
+					<div class="dia_calendario" id="diapresente">23</div>
+					<div class="dia_calendario" id="diapresente">24</div>
+					<div class="dia_calendario" id="diapresente">25</div>
+					<div class="dia_calendario" id="diapresente">26</div>
+				</div>
+			</div>
 		</div>
 		<script type="text/javascript" src="javascript/script.js"></script>
 	</body>
