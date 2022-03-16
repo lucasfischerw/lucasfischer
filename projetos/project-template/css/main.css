@@ -97,7 +97,7 @@ body {
 }
 
 .letter {
-    gap: 15px;
+    gap: 10px;
     padding: 0 15px;
     cursor: pointer;
 }
