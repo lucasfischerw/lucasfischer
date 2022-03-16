@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+	color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+video {
+    border-radius: 10px;
+    margin: 30px;
+}
+
+body {
+    background-color: black;
+}
+
+.upper-menu {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 25px;
+}
+
+.menu-letter {
+    font-size: 50px;
+    border: 10px solid #4D4DFF;
+    border-radius: 10px;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    line-height: 60px;
+    cursor: pointer;
+}
+
+.active-button {
+    background-color: #4D4DFF;
+    width: 100px;
+    height: 100px;
+    line-height: 80px;
+}
+
+.upper-menu img {
+    height: 60px;
+    width: auto;
+}
+
+.main-content {
+    display: flex;
+}
+
+.letter-menu {
+    background-color: #1E1E1E;
+    border-radius: 15px;
+    width: 400px;
+    margin: 15px;
+}
+
+.letter-menu h2 {
+    padding: 20px;
+    color: #4D4DFF;
+    text-align: center;
+}
+
+.words-menu {
+    background-color: #1E1E1E;
+    border-radius: 15px;
+    width: 1200px;
+    margin: 15px;
+    display: flex;
+}
+
+.video-section {
+    width: 300px;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+}
+
+.line {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    padding: 10px;
+}
+
+.letter {
+    display: flex;
+}
+
+.letter {
+    gap: 15px;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.letter h3 {
+    font-family: Arial;
+    line-height: 30px;
+}
+
+.letter img {
+    width: 30px;
+    height: auto;
+}
+
+.section-letter {
+    margin: auto;
+    width: fit-content;
+}
+
+.words-list {
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.word-line {
+    display: grid;
+    grid-template-columns: 225px 225px 225px;
+    padding: 10px 0;
+}
+
+.center {
+    text-align: center;
+}
