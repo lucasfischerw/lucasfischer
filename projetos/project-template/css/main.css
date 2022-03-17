@@ -43,6 +43,17 @@ body {
     cursor: pointer;
 }
 
+.menu-links {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    right: 50px;
+}
+
+.menu-links a {
+    cursor: pointer;
+}
+
 .active-button {
     background-color: #4D4DFF;
     width: 100px;
@@ -57,6 +68,7 @@ body {
 
 .main-content {
     display: flex;
+    place-content: center;
 }
 
 .letter-menu {
@@ -75,7 +87,6 @@ body {
 .words-menu {
     background-color: #1E1E1E;
     border-radius: 15px;
-    width: 1200px;
     margin: 15px;
     display: flex;
 }
@@ -119,6 +130,8 @@ body {
 
 .words-list {
     font-family: 'Didact Gothic', sans-serif;
+    height: 600px;
+    overflow-y: scroll;
 }
 
 .word-line {
@@ -127,6 +140,35 @@ body {
     padding: 10px 0;
 }
 
+.words-list::-webkit-scrollbar {
+    width: 7px;
+    background-color: rgb(0, 0, 0, 0);
+ }
+
+ .words-list::-webkit-scrollbar-thumb {
+    background-color: white;
+    height: 90px;
+    border: 15px rgba(0, 0, 0, 0);
+    border-style: solid none solid none;
+    background-clip: padding-box;
+ }
+
 .center {
-    text-align: center;
+    text-align: left;
+}
+
+.block {
+    display: block;
+}
+
+.word-wrapper {
+    display: flex;
+    line-height: 30px;
+    gap: 10px;
+}
+
+.word-wrapper img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
 }

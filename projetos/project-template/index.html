@@ -6,7 +6,7 @@
         <title>Sample Page 1</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
-    <body>
+    <body onload="LoadWords()">
         <div class="upper-menu">
             <a class="menu-letter active-button">A</a>
             <a class="menu-letter">E</a>
@@ -14,49 +14,51 @@
             <a class="menu-letter">O</a>
             <a class="menu-letter">U</a>
             <a class="menu-letter">Y</a>
-            <img src="images/SM-placeholder.png">
-            <a>Faq</a>
-            <a>About</a>
-            <a>Support</a>
+            <!-- <img src="images/SM-placeholder.png"> -->
+            <div class="menu-links">
+                <a>Faq</a>
+                <a>About</a>
+                <a>Support</a>
+            </div>
         </div>
         <div class="main-content">
             <div class="letter-menu">
                 <h2>Monophtongs</h2>
                 <div class="section-letter">
                     <div class="line">
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(0)">
                             <h3>i</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(1)">
                             <h3>I</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
                     </div>
                     <div class="line">
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(2)">
                             <h3>e</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(3)">
                             <h3>ə</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(4)">
                             <h3>ɔː</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
                     </div>
                     <div class="line">
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(5)">
                             <h3>æ</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(6)">
                             <h3>ɑː</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(7)">
                             <h3>a</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
@@ -65,11 +67,11 @@
                 <h2>Diphtongs</h2>
                 <div class="section-letter">
                     <div class="line">
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(8)">
                             <h3>eɪ</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(9)">
                             <h3>eə</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
@@ -78,17 +80,22 @@
                 <h2>Triphtongs</h2>
                 <div class="section-letter">
                     <div class="line">
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(10)">
                             <h3>eɪə</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter">
+                        <div class="letter" onclick="PlaySound(11)">
                             <h3>eɪɑ</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
                     </div>
                 </div>
                 <h2>Silent</h2>
+                <div class="section-letter">
+                    <div class="letter">
+                        <img src="images/Forbidden_Icon.png">
+                    </div>
+                </div>
             </div>
             <div class="words-menu">
                 <div class="video-section">
@@ -96,49 +103,17 @@
                         <source src="images/ɑ.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="words-list">
+                <div class="block">
                     <div class="word-line">
                         <h2 class="center">Word</h2>
                         <h2 class="center">BRE</h2>
                         <h2 class="center">Translation</h2>
                     </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
-                    <div class="word-line">
-                        <p class="center">Word Placeholder</p>
-                        <p class="center">BRE Placeholder</p>
-                        <p class="center">Translation Placeholder</p>
-                    </div>
+                    <div class="words-list" id="words-list"></div>
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="javascript/words.json"></script>
+        <script src="javascript/main.js"></script>
     </body>
 </html>
