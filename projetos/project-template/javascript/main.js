@@ -2,7 +2,7 @@ var words = JSON.parse(data);
 
 function LoadWords() {
     for (let i = 0; i < words.length; i++) {
-        if(words[i].Word.startsWith("a")) {
+        if(words[i].Word.includes("a")) {
             var wordContainer = document.createElement("div");
             wordContainer.setAttribute("class", "word-line");
             wordContainer.setAttribute("id", "word-line-"+ i +"");

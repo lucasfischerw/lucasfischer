@@ -76,12 +76,14 @@ body {
     border-radius: 15px;
     width: 400px;
     margin: 15px;
+    padding: 0 0 25px 0;
 }
 
 .letter-menu h2 {
     padding: 20px;
-    color: #4D4DFF;
+    color: white;
     text-align: center;
+    padding: 20px;
 }
 
 .words-menu {
@@ -99,18 +101,21 @@ body {
 
 .line {
     display: grid;
-    grid-template-columns: 100px 100px 100px;
+    grid-template-columns: 125px 125px 125px;
     padding: 10px;
-}
-
-.letter {
-    display: flex;
 }
 
 .letter {
     gap: 10px;
     padding: 0 15px;
     cursor: pointer;
+    display: flex;
+    background-color: #4D4DFF;
+    margin: 0 15px;
+    border-radius: 10px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
 }
 
 .letter h3 {
