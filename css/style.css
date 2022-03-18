@@ -204,6 +204,15 @@ body::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, .25);
 }
 
+#hamburguerMenu {
+    transition: background-color .25s ease;
+    border-radius: 10px;
+}
+
+#hamburguerMenu:hover {
+    background-color: rgba(0, 0, 0, .25);
+}
+
 .home h1 {
     margin: auto;
     position: relative;

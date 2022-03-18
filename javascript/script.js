@@ -91,7 +91,6 @@ var Titles = ["Equipe Gewinner", "Memória", "Genius", "Apostador", "Tarefas", "
 var Descriptions = ["Site desenvolvido por mim para mostrar um pouco da minha trajetória pela Robótica.", "Teste suas habilidades nesse Desafio da Memória de Frutas! Muito fácil? Aumente a dificuldade no menu!", "Coloque sua mente a prova nessa réplica de Genius! Preste atenção na sequência de cores e tente replicar sua ordem.", "Par ou Ímpar? Faça sua aposta e selecione a quantia que deseja apostar. Aí é só torcer para você acertar!", "Projeto desenvolvido durante o EAD para ajudar os alunos na organização escolar. Veja suas tarefas, avaliações e horários.", "Projeto desenvolvido em aula, tendo como objetivo direcionar as pessoas a buscarem ajuda contra o TDAH", "Projeto em desenvolvimento com a equipe de robótica, que visa divulgar e explicar projetos desenvolvidos na oficina.", "Projeto em desenvolvimento. Mais informações em breve!"]
 
 function Update_Arrow() {
-    console.log(Project_Open)
     if(Project_Open == 0) {
         document.getElementById("first-arrow").style.opacity = "0.3";
         document.getElementById("first-arrow").style.cursor = "default";
@@ -99,7 +98,7 @@ function Update_Arrow() {
         document.getElementById("first-arrow").style.opacity = "1";
         document.getElementById("first-arrow").style.cursor = "pointer";
     }
-    if(Project_Open == 7) {
+    if(Project_Open == 6) {
         document.getElementById("second-arrow").style.opacity = "0.3";
         document.getElementById("second-arrow").style.cursor = "default";
     } else {

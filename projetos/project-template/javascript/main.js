@@ -138,12 +138,12 @@ function UpdateWords(soundNumber) {
     while (parent.firstChild) {
         parent.firstChild.remove()
     }
-    var printWord = true;
+    var printWord = false;
     for (let index = 0; index < words.length; index++) {
         if(words[index].Word.includes("a")) {
             for (let i = 0; i < doesNotContain[soundNumber].length; i++) {
                 if(words[index].Word.includes(doesNotContain[soundNumber][i])) {
-                    printWord = false;
+                    printWord = true;
                     break;
                 }      
             }
