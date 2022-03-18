@@ -102,7 +102,7 @@ function ChangeImg(imgNumber) {
 var lastAudioPlayed = 0;
 
 function PlaySound(soundNumber) {
-    var audio = new Audio("../content/a/sounds/"+ (soundNumber+1) +".mp3");
+    var audio = new Audio("content/a/sounds/"+ (soundNumber+1) +".mp3");
     audio.play();
     document.getElementById("letter-"+ lastAudioPlayed +"").style.backgroundColor = "#4D4DFF";
     document.getElementById("letter-"+ soundNumber +"").style.backgroundColor = "#ff5722";
