@@ -20,7 +20,8 @@ video {
 }
 
 body {
-    background-color: black;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,31,121,1) 68%, rgba(0,27,255,0.846673703661152) 100%); 
 }
 
 .upper-menu {
@@ -116,6 +117,11 @@ body {
     height: 50px;
     align-items: center;
     justify-content: center;
+    transition: background-color .3s ease;
+}
+
+.letter:hover {
+    background-color: #2626a0;
 }
 
 .letter h3 {
@@ -135,7 +141,7 @@ body {
 
 .words-list {
     font-family: 'Didact Gothic', sans-serif;
-    height: 600px;
+    height: 650px;
     overflow-y: scroll;
 }
 
@@ -166,13 +172,15 @@ body {
     display: block;
 }
 
-.word-wrapper {
+.word-wrapper,
+.bre-wrapper {
     display: flex;
     line-height: 30px;
     gap: 10px;
 }
 
-.word-wrapper img {
+.word-wrapper img,
+.bre-wrapper img {
     width: 30px;
     height: auto;
     cursor: pointer;

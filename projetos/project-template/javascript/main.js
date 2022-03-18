@@ -1,44 +1,88 @@
 var words = JSON.parse(data);
 
+var doesNotContain = [
+    ["ea", "ee", "ei", "ie"],
+    ["e", "ee", "ey"],
+    ["ea"],
+    ["er", "ia", "ie", "ure"],
+    ["oa", "or", "ou"],
+    [],
+    [],
+    [],
+    ["ea", "ei", "ey"],
+    ["ear"],
+    [],
+    []
+];
+
+var graphAndDigraphs = [
+    ["-", "ae"],
+    ["a", "ai"],
+    ["a"],
+    ["a", "ar"],
+    ["a", "al", "ao", "ar", "au", "aw"],
+    ["a"],
+    ["-"],
+    ["-"],
+    ["a", "ai", "aigh", "ay"],
+    ["a", "ai", "air", "are", "ayo"],
+    ["a"],
+    ["-", "ao"]
+];
+
+function WriteWords(i) {
+    var wordContainer = document.createElement("div");
+    wordContainer.setAttribute("class", "word-line");
+    wordContainer.setAttribute("id", "word-line-"+ i +"");
+
+    var wordWrapper = document.createElement("div");
+    wordWrapper.setAttribute("class", "word-wrapper");
+    wordWrapper.setAttribute("id", "word-wrapper-"+ i +"");
+    
+    var wordCreation = document.createElement("p");
+    wordCreation.setAttribute("class", "center");
+    wordCreation.innerHTML = words[i].Word;
+
+    var favoriteIcon = document.createElement("img");
+    favoriteIcon.setAttribute("id", "favorite-icon-"+ i +"");
+    favoriteIcon.setAttribute("onclick", "ChangeImg("+ i +")");
+    if(localStorage.getItem("favorite-icon-"+ i +"") == 1) {
+        favoriteIcon.setAttribute("src", "images/favorite-icon-active.png");
+        favoriteIcon.setAttribute("class", "active");
+    } else {
+        favoriteIcon.setAttribute("src", "images/favorite-icon.png");
+    }
+
+    var breWrapper = document.createElement("div");
+    breWrapper.setAttribute("class", "bre-wrapper");
+    breWrapper.setAttribute("id", "bre-wrapper-"+ i +"");
+
+    var breElement = document.createElement("p");
+    breElement.setAttribute("class", "center");
+    breElement.innerHTML = words[i].BrE;
+
+    var speakerIconBRE = document.createElement("img");
+    speakerIconBRE.setAttribute("onclick", "SpeakWord("+ i +")");
+    speakerIconBRE.setAttribute("src", "images/Speaker_Icon.png");
+
+    var translation = document.createElement("p");
+    translation.setAttribute("class", "center");
+    translation.innerHTML = words[i].ROMANIAN;
+    
+    document.getElementById("words-list").appendChild(wordContainer);
+    document.getElementById("word-line-"+ i +"").appendChild(wordWrapper);
+    document.getElementById("word-wrapper-"+ i +"").appendChild(favoriteIcon);
+    document.getElementById("word-wrapper-"+ i +"").appendChild(wordCreation);
+    document.getElementById("word-line-"+ i +"").appendChild(breWrapper);
+    document.getElementById("bre-wrapper-"+ i +"").appendChild(speakerIconBRE);
+    document.getElementById("bre-wrapper-"+ i +"").appendChild(breElement);
+    document.getElementById("word-line-"+ i +"").appendChild(translation);
+}
+
 function LoadWords() {
     for (let i = 0; i < words.length; i++) {
         if(words[i].Word.includes("a")) {
-            var wordContainer = document.createElement("div");
-            wordContainer.setAttribute("class", "word-line");
-            wordContainer.setAttribute("id", "word-line-"+ i +"");
-
-            var wordWrapper = document.createElement("div");
-            wordWrapper.setAttribute("class", "word-wrapper");
-            wordWrapper.setAttribute("id", "word-wrapper-"+ i +"");
-            
-            var wordCreation = document.createElement("p");
-            wordCreation.setAttribute("class", "center");
-            wordCreation.innerHTML = words[i].Word;
-
-            var favoriteIcon = document.createElement("img");
-            favoriteIcon.setAttribute("id", "favorite-icon-"+ i +"");
-            favoriteIcon.setAttribute("onclick", "ChangeImg("+ i +")");
-            if(localStorage.getItem("favorite-icon-"+ i +"") == 1) {
-                favoriteIcon.setAttribute("src", "images/favorite-icon-active.png");
-                favoriteIcon.setAttribute("class", "active");
-            } else {
-                favoriteIcon.setAttribute("src", "images/favorite-icon.png");
-            }
-
-            var breElement = document.createElement("p");
-            breElement.setAttribute("class", "center");
-            breElement.innerHTML = words[i].BrE;
-
-            var translation = document.createElement("p");
-            translation.setAttribute("class", "center");
-            translation.innerHTML = words[i].ROMANIAN;
-            
-            document.getElementById("words-list").appendChild(wordContainer);
-            document.getElementById("word-line-"+ i +"").appendChild(wordWrapper);
-            document.getElementById("word-wrapper-"+ i +"").appendChild(favoriteIcon);
-            document.getElementById("word-wrapper-"+ i +"").appendChild(wordCreation);
-            document.getElementById("word-line-"+ i +"").appendChild(breElement);
-            document.getElementById("word-line-"+ i +"").appendChild(translation);
+            WriteWords(i);
         }
     }
 }
@@ -55,26 +99,70 @@ function ChangeImg(imgNumber) {
     }
 }
 
-// Store data
-var someData = 'The data that I want to store for later.';
-localStorage.setItem('myDataKey', someData);
-
-// Get data
-var data = localStorage.getItem('myDataKey');
-
-// Remove data
-localStorage.removeItem('myDatakey');
+var lastAudioPlayed = 0;
 
 function PlaySound(soundNumber) {
     var audio = new Audio("../content/a/sounds/"+ (soundNumber+1) +".mp3");
     audio.play();
+    document.getElementById("letter-"+ lastAudioPlayed +"").style.backgroundColor = "#4D4DFF";
+    document.getElementById("letter-"+ soundNumber +"").style.backgroundColor = "#ff5722";
+    lastAudioPlayed = soundNumber;
+    const parent = document.getElementById("graph");
+    while (parent.firstChild) {
+        parent.firstChild.remove();
+    }
+    const parent2 = document.getElementById("digraph");
+    while (parent2.firstChild) {
+        parent2.firstChild.remove();
+    }
+
+    if(graphAndDigraphs[soundNumber] != []) {
+        for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
+            var word = document.createElement("p");
+            word.setAttribute("class", "underline");
+            word.innerHTML = graphAndDigraphs[soundNumber][i];
+            if(graphAndDigraphs[soundNumber][i].length < 2) {
+                document.getElementById("graph").appendChild(word);
+            } else {
+                document.getElementById("digraph").appendChild(word);
+            }
+        }
+    }
+
     UpdateWords(soundNumber);
 }
 
-function UpdateWords() {
-    for (let i = 0; i < words.length; i++) {
-        if(words[i].Word.startsWith("a")) {
-            console.log(words[i].Word);
+
+function UpdateWords(soundNumber) {
+    const parent = document.getElementById("words-list");
+    while (parent.firstChild) {
+        parent.firstChild.remove()
+    }
+    var printWord = true;
+    for (let index = 0; index < words.length; index++) {
+        if(words[index].Word.includes("a")) {
+            for (let i = 0; i < doesNotContain[soundNumber].length; i++) {
+                if(words[index].Word.includes(doesNotContain[soundNumber][i])) {
+                    printWord = false;
+                    break;
+                }      
+            }
+        } else {
+            printWord = false;
+        }
+        if(printWord) {
+            WriteWords(index);
         }
     }
+}
+
+function SpeakWord(wordNumber) {
+    let msg = words[wordNumber].Word;
+    let speech = new SpeechSynthesisUtterance();
+    speech.lang = "en-GB";       
+    speech.text = msg;
+    speech.volume = 1;
+    speech.rate = 1;
+    speech.pitch = 1;    
+    window.speechSynthesis.speak(speech);   
 }

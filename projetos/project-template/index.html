@@ -26,39 +26,39 @@
                 <h2>Monophtongs</h2>
                 <div class="section-letter">
                     <div class="line">
-                        <div class="letter" onclick="PlaySound(0)">
+                        <div class="letter" onclick="PlaySound(0)" id="letter-0">
                             <h3>i</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(1)">
+                        <div class="letter" onclick="PlaySound(1)" id="letter-1">
                             <h3>I</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
                     </div>
                     <div class="line">
-                        <div class="letter" onclick="PlaySound(2)">
+                        <div class="letter" onclick="PlaySound(2)" id="letter-2">
                             <h3>e</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(3)">
+                        <div class="letter" onclick="PlaySound(3)" id="letter-3">
                             <h3>ə</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(4)">
+                        <div class="letter" onclick="PlaySound(4)" id="letter-4">
                             <h3>ɔː</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
                     </div>
                     <div class="line">
-                        <div class="letter" onclick="PlaySound(5)">
+                        <div class="letter" onclick="PlaySound(5)" id="letter-5">
                             <h3>æ</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(6)">
+                        <div class="letter" onclick="PlaySound(6)" id="letter-6">
                             <h3>ɑː</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(7)">
+                        <div class="letter" onclick="PlaySound(7)" id="letter-7">
                             <h3>a</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
@@ -67,11 +67,11 @@
                 <h2>Diphtongs</h2>
                 <div class="section-letter">
                     <div class="line">
-                        <div class="letter" onclick="PlaySound(8)">
+                        <div class="letter" onclick="PlaySound(8)" id="letter-8">
                             <h3>eɪ</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(9)">
+                        <div class="letter" onclick="PlaySound(9)" id="letter-9">
                             <h3>eə</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
@@ -80,11 +80,11 @@
                 <h2>Triphtongs</h2>
                 <div class="section-letter">
                     <div class="line">
-                        <div class="letter" onclick="PlaySound(10)">
+                        <div class="letter" onclick="PlaySound(10)" id="letter-10">
                             <h3>eɪə</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
-                        <div class="letter" onclick="PlaySound(11)">
+                        <div class="letter" onclick="PlaySound(11)" id="letter-11">
                             <h3>eɪɑ</h3>
                             <img src="images/Speaker_Icon.png">
                         </div>
@@ -103,9 +103,13 @@
                         <source src="images/ɑ.mp4" type="video/mp4">
                     </video>
                     <h3>Graph</h3>
-                    <p class="underline">a</p>
+                    <div class="graph" id="graph">
+                        <p class="underline">_</p>
+                    </div>
                     <h3>Digraph</h3>
-                    <p class="underline">ar</p>
+                    <div class="digraph" id="digraph">
+                        <p class="underline">_</p>
+                    </div>
                 </div>
                 <div class="block">
                     <div class="word-line">
