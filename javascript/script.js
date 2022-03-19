@@ -85,27 +85,10 @@ function Scroll_Arrow() {
 var Possible_To_Change_Project = true;
 var Project_Open = 0;
 var Project_Is_Open = false;
-var Images_Link = ["gewinner.jpg", "memoria.jpg", "genius.jpg", "apostador.jpg", "tarefas.jpg", "tdah.jpg", "robotica.jpg", "floresta.jpg"];
-var Redirect_Links = ["https://lucasfischer.com.br/gewinner", "https://lucasfischer.com.br/projetos/memoria", "https://lucasfischer.com.br/projetos/genius", "https://lucasfischer.com.br/projetos/apostador", "https://lucasfischer.com.br/projetos/tarefas", "https://lucasfischer.com.br/projetos/tdah", "https://lucasfischerw.github.io/robotica/index.html"];
-var Titles = ["Equipe Gewinner", "Memória", "Genius", "Apostador", "Tarefas", "Ajuda TDAH", "Robótica", "Aventuras de Hypsta"];
-var Descriptions = ["Site desenvolvido por mim para mostrar um pouco da minha trajetória pela Robótica.", "Teste suas habilidades nesse Desafio da Memória de Frutas! Muito fácil? Aumente a dificuldade no menu!", "Coloque sua mente a prova nessa réplica de Genius! Preste atenção na sequência de cores e tente replicar sua ordem.", "Par ou Ímpar? Faça sua aposta e selecione a quantia que deseja apostar. Aí é só torcer para você acertar!", "Projeto desenvolvido durante o EAD para ajudar os alunos na organização escolar. Veja suas tarefas, avaliações e horários.", "Projeto desenvolvido em aula, tendo como objetivo direcionar as pessoas a buscarem ajuda contra o TDAH", "Projeto em desenvolvimento com a equipe de robótica, que visa divulgar e explicar projetos desenvolvidos na oficina.", "Projeto em desenvolvimento. Mais informações em breve!"]
-
-function Update_Arrow() {
-    if(Project_Open == 0) {
-        document.getElementById("first-arrow").style.opacity = "0.3";
-        document.getElementById("first-arrow").style.cursor = "default";
-    } else {
-        document.getElementById("first-arrow").style.opacity = "1";
-        document.getElementById("first-arrow").style.cursor = "pointer";
-    }
-    if(Project_Open == 6) {
-        document.getElementById("second-arrow").style.opacity = "0.3";
-        document.getElementById("second-arrow").style.cursor = "default";
-    } else {
-        document.getElementById("second-arrow").style.opacity = "1";
-        document.getElementById("second-arrow").style.cursor = "pointer";
-    }
-}
+var Images_Link = ["gewinner.jpg", "memoria.jpg", "genius.jpg", "apostador.jpg", "tarefas.jpg", "tdah.jpg", "robotica.jpg", "countdown.png"];
+var Redirect_Links = ["https://lucasfischer.com.br/gewinner", "https://lucasfischer.com.br/projetos/memoria", "https://lucasfischer.com.br/projetos/genius", "https://lucasfischer.com.br/projetos/apostador", "https://lucasfischer.com.br/projetos/tarefas", "https://lucasfischer.com.br/projetos/tdah", "https://lucasfischerw.github.io/robotica/index.html", "https://lucasfischer.com.br/projetos/countdown"];
+var Titles = ["Equipe Gewinner", "Memória", "Genius", "Apostador", "Tarefas", "Ajuda TDAH", "Robótica", "Contagem Regressiva"];
+var Descriptions = ["Site desenvolvido por mim para mostrar um pouco da minha trajetória pela Robótica.", "Teste suas habilidades nesse Desafio da Memória de Frutas! Muito fácil? Aumente a dificuldade no menu!", "Coloque sua mente a prova nessa réplica de Genius! Preste atenção na sequência de cores e tente replicar sua ordem.", "Par ou Ímpar? Faça sua aposta e selecione a quantia que deseja apostar. Aí é só torcer para você acertar!", "Projeto desenvolvido durante o EAD para ajudar os alunos na organização escolar. Veja suas tarefas, avaliações e horários.", "Projeto desenvolvido em aula, tendo como objetivo direcionar as pessoas a buscarem ajuda contra o TDAH", "Projeto em desenvolvimento com a equipe de robótica, que visa divulgar e explicar projetos desenvolvidos na oficina.", "Projeto desenvolvido para um cliente, tendo como objetivo criar uma contagem regressiva para o último dia de aula de sua turma"]
 
 function Open_Project(Project_Number) {
     if(!Project_Is_Open) {
@@ -126,7 +109,6 @@ function Open_Project(Project_Number) {
             document.getElementById("project-full-screen").style.transition = ".3s left ease, .3s top ease, .3s width ease, .3s height ease, .3s opacity ease, .3s transform ease";
             document.getElementById("project-full-screen").style.opacity = "1";
             document.getElementById("full-screen-img").style.width = "min(350px, calc(100% - 120px))";
-            // document.getElementById("full-screen-img").style.maxWidth = "calc(100% - 120px)";
             document.getElementById("full-screen-img").style.marginTop = "10px";
             document.getElementById("project-full-screen").style.left = "50%";
             document.getElementById("project-full-screen").style.top = "50%";
@@ -137,7 +119,8 @@ function Open_Project(Project_Number) {
                 document.getElementById("a-project-full-screen").style.opacity = "1";
                 document.getElementById("text-project-full-screen").style.opacity = "1";
                 document.getElementById("full-screen-pj-title").style.opacity = "1";
-                Update_Arrow();
+                document.getElementById("first-arrow").style.opacity = "1";
+                document.getElementById("second-arrow").style.opacity = "1";
                 document.getElementById("visit-project").style.opacity = "1";
                 document.getElementById("content").addEventListener("click", Fechar_Projeto);
             }, 350);
@@ -181,9 +164,13 @@ function Fechar_Projeto(Voltar_A_Posicao) {
 }
 
 function Next() {
-    if(Project_Open < 7 && Possible_To_Change_Project) {
+    if(Possible_To_Change_Project) {
         Possible_To_Change_Project = false;
-        Project_Open += 1;
+        if(Project_Open == 7) {
+            Project_Open = 0;
+        } else {
+            Project_Open += 1;
+        }
         document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
         document.getElementById("project-container").style.marginLeft = "-50px";
         document.getElementById("project-container").style.opacity = "0";
@@ -194,7 +181,6 @@ function Next() {
             document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
             document.getElementById("visit-project").href = Redirect_Links[Project_Open];
             document.getElementById("project-container").style.marginLeft = "50px";
-            Update_Arrow();
             setTimeout(() => {
                 document.getElementById("project-container").style.marginLeft = "0";
                 document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
@@ -208,9 +194,13 @@ function Next() {
 }
 
 function Previous() {
-    if(Project_Open > 0 && Possible_To_Change_Project) {
+    if(Possible_To_Change_Project) {
         Possible_To_Change_Project = false;
-        Project_Open -= 1;
+        if(Project_Open == 0) {
+            Project_Open = 7;
+        } else {
+            Project_Open -= 1;
+        }
         document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
         document.getElementById("project-container").style.marginLeft = "50px";
         document.getElementById("project-container").style.opacity = "0";
@@ -221,7 +211,6 @@ function Previous() {
             document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
             document.getElementById("visit-project").href = Redirect_Links[Project_Open];
             document.getElementById("project-container").style.marginLeft = "-50px";
-            Update_Arrow();
             setTimeout(() => {
                 document.getElementById("project-container").style.marginLeft = "0";
                 document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
