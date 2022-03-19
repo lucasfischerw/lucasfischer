@@ -141,7 +141,7 @@ body {
 
 .words-list {
     font-family: 'Didact Gothic', sans-serif;
-    height: 650px;
+    height: 600px;
     overflow-y: scroll;
 }
 
@@ -194,4 +194,15 @@ body {
 .video-section h3 {
     margin: 0 15px;
     color: #4D4DFF;
+}
+
+.show-favorites {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+.show-favorites img {
+    width: 30px;
 }

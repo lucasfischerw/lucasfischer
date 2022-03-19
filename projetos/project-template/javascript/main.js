@@ -115,7 +115,6 @@ function PlaySound(soundNumber) {
     while (parent2.firstChild) {
         parent2.firstChild.remove();
     }
-
     if(graphAndDigraphs[soundNumber] != []) {
         for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
             var word = document.createElement("p");
@@ -128,12 +127,15 @@ function PlaySound(soundNumber) {
             }
         }
     }
-
     UpdateWords(soundNumber);
 }
 
+var favoriteWordsVisible = false;
 
 function UpdateWords(soundNumber) {
+    favoriteWordsVisible = false;
+    document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
+    document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
     const parent = document.getElementById("words-list");
     while (parent.firstChild) {
         parent.firstChild.remove()
@@ -164,5 +166,35 @@ function SpeakWord(wordNumber) {
     speech.volume = 1;
     speech.rate = 1;
     speech.pitch = 1;    
-    window.speechSynthesis.speak(speech);   
+    window.speechSynthesis.speak(speech);
+}
+
+var savedWords = [];
+
+function ShowFavorites() {
+    if(!favoriteWordsVisible) {
+        favoriteWordsVisible = true;
+        savedWords = [];
+        for (let i = 0; i < document.getElementsByClassName("active").length; i++) {
+            savedWords.push(document.getElementsByClassName("active")[i].parentNode.parentNode.id.replace(/[^0-9]/g,''));
+        }
+        const parent = document.getElementById("words-list");
+        while (parent.firstChild) {
+            parent.firstChild.remove();
+        }
+        for (let i = 0; i < savedWords.length; i++) {
+            WriteWords(savedWords[i]);
+        }
+        document.getElementById("favorite-text").innerHTML = "Show All Words";
+        document.getElementById("favorite-icon-button").src = "images/favorite-icon.png";
+    } else {
+        favoriteWordsVisible = false;
+        const parent = document.getElementById("words-list");
+        while (parent.firstChild) {
+            parent.firstChild.remove();
+        }
+        LoadWords();
+        document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
+        document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
+    }
 }
