@@ -53,6 +53,9 @@ window.addEventListener("scroll", () => {
     if(Project_Is_Open) {
         Fechar_Projeto(false);
     }
+    // var x = ((100*(window.scrollY))/document.body.offsetHeight);
+    // console.log(x);
+    // document.getElementById("bg-image").style.filter = "hue-rotate("+4*x+"deg)"
 });
 
 location.href = "#home";
@@ -171,6 +174,7 @@ function Next() {
         } else {
             Project_Open += 1;
         }
+        document.getElementById("second-arrow").style.transform = "scale(0.8)";
         document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
         document.getElementById("project-container").style.marginLeft = "-50px";
         document.getElementById("project-container").style.opacity = "0";
@@ -181,6 +185,7 @@ function Next() {
             document.getElementById("text-project-full-screen").innerHTML = Descriptions[Project_Open];
             document.getElementById("visit-project").href = Redirect_Links[Project_Open];
             document.getElementById("project-container").style.marginLeft = "50px";
+            document.getElementById("second-arrow").style.transform = "scale(1)";
             setTimeout(() => {
                 document.getElementById("project-container").style.marginLeft = "0";
                 document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
@@ -201,6 +206,7 @@ function Previous() {
         } else {
             Project_Open -= 1;
         }
+        document.getElementById("first-arrow").style.transform = "scale(0.8)";
         document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
         document.getElementById("project-container").style.marginLeft = "50px";
         document.getElementById("project-container").style.opacity = "0";
@@ -215,6 +221,7 @@ function Previous() {
                 document.getElementById("project-container").style.marginLeft = "0";
                 document.getElementById("project-container").style.transition = "margin .2s ease, opacity .2s ease";
                 document.getElementById("project-container").style.opacity = "1";
+                document.getElementById("first-arrow").style.transform = "scale(1)";
                 setTimeout(() => {
                     Possible_To_Change_Project = true;
                 }, 250);
@@ -222,3 +229,6 @@ function Previous() {
         }, 200);
     }
 }
+
+var _docHeight = (document.height !== undefined) ? document.height : document.body.offsetHeight;
+var scroll = window.pageYOffset;
