@@ -30,7 +30,7 @@ var graphAndDigraphs = [
 
 var verifyBRE = ["æ", "eɪə"]
 
-function WriteWords(i) {
+function WriteWords(i, underlineLetter, underlineBRE) {
     var wordContainer = document.createElement("div");
     wordContainer.setAttribute("class", "word-line");
     wordContainer.setAttribute("id", "word-line-"+ i +"");
@@ -39,9 +39,16 @@ function WriteWords(i) {
     wordWrapper.setAttribute("class", "word-wrapper");
     wordWrapper.setAttribute("id", "word-wrapper-"+ i +"");
     
-    var wordCreation = document.createElement("p");
+    var wordCreation = document.createElement("span");
     wordCreation.setAttribute("class", "center");
-    wordCreation.innerHTML = words[i].Word;
+    var splitWord = words[i].Word.split(underlineLetter, 2);
+    if(underlineLetter == "" || underlineBRE) {
+        wordCreation.innerHTML = words[i].Word;
+    } else if(splitWord[0] == "") {
+        wordCreation.innerHTML = "<p class='underline-part'>"+ underlineLetter +"</p>" + splitWord[1];
+    } else {
+        wordCreation.innerHTML = splitWord[0] + "<p class='underline-part'>"+ underlineLetter +"</p>" + splitWord[1];
+    }
 
     var favoriteIcon = document.createElement("img");
     favoriteIcon.setAttribute("id", "favorite-icon-"+ i +"");
@@ -57,9 +64,17 @@ function WriteWords(i) {
     breWrapper.setAttribute("class", "bre-wrapper");
     breWrapper.setAttribute("id", "bre-wrapper-"+ i +"");
 
-    var breElement = document.createElement("p");
+    var breElement = document.createElement("span");
     breElement.setAttribute("class", "center");
     breElement.innerHTML = words[i].BrE;
+    var splitBRE = words[i].BrE.split(underlineLetter, 2);
+    if(underlineLetter == "" || !underlineBRE) {
+        breElement.innerHTML = words[i].BrE;
+    } else if(splitBRE[0] == "") {
+        breElement.innerHTML = "<p class='underline-part'>"+ underlineLetter +"</p>" + splitBRE[1];
+    } else {
+        breElement.innerHTML = splitBRE[0] + "<p class='underline-part'>"+ underlineLetter +"</p>" + splitBRE[1];
+    }
 
     var speakerIconBRE = document.createElement("img");
     speakerIconBRE.setAttribute("onclick", "SpeakWord("+ i +")");
@@ -82,7 +97,7 @@ function WriteWords(i) {
 function LoadWords() {
     for (let i = 0; i < words.length; i++) {
         if(words[i].Word.includes("a")) {
-            WriteWords(i);
+            WriteWords(i, "", false);
         }
     }
 }
@@ -122,14 +137,18 @@ function PlaySound(soundNumber) {
     while (parent2.firstChild) {
         parent2.firstChild.remove();
     }
+    document.getElementById("graph-title").style.display = "none";
+    document.getElementById("digraph-title").style.display = "none";
     if(graphAndDigraphs[soundNumber].length > 0) {
         for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
             var word = document.createElement("p");
             word.setAttribute("class", "underline");
             word.innerHTML = graphAndDigraphs[soundNumber][i];
             if(graphAndDigraphs[soundNumber][i].length < 2) {
+                document.getElementById("graph-title").style.display = "block";
                 document.getElementById("graph").appendChild(word);
             } else {
+                document.getElementById("digraph-title").style.display = "block";
                 document.getElementById("digraph").appendChild(word);
             }
         }
@@ -144,9 +163,9 @@ function UpdateWords(soundNumber) {
     document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
     document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
     RemoveWords();
-
-
     var printWord = true;
+    var savedLetterToUnderline = "";
+    var specialWord = false;
     for (let index = 0; index < words.length; index++) {
         if(words[index].Word.includes("a")) {
             if(doesNotContain[soundNumber].length > 0) {
@@ -165,6 +184,12 @@ function UpdateWords(soundNumber) {
                 for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
                     if(words[index].Word.includes(graphAndDigraphs[soundNumber][i]) || ((graphAndDigraphs[soundNumber][i] == verifyBRE[0] || graphAndDigraphs[soundNumber][i] == verifyBRE[2]) && words[index].BrE.includes(graphAndDigraphs[soundNumber][i]))) {
                         printWord = true;
+                        savedLetterToUnderline = graphAndDigraphs[soundNumber][i];
+                        if((graphAndDigraphs[soundNumber][i] == verifyBRE[0] || graphAndDigraphs[soundNumber][i] == verifyBRE[2]) && words[index].BrE.includes(graphAndDigraphs[soundNumber][i])) {
+                            specialWord = true;
+                        } else {
+                            specialWord = false;
+                        }
                         break;
                     } else {
                         printWord = false;
@@ -175,7 +200,7 @@ function UpdateWords(soundNumber) {
             printWord = false;
         }
         if(printWord) {
-            WriteWords(index);
+            WriteWords(index, savedLetterToUnderline, specialWord);
         }
     }
 }
@@ -202,7 +227,7 @@ function ShowFavorites() {
         }
         RemoveWords();
         for (let i = 0; i < savedWords.length; i++) {
-            WriteWords(savedWords[i]);
+            WriteWords(savedWords[i], "", false);
         }
         document.getElementById("favorite-text").innerHTML = "Show All Words";
         document.getElementById("favorite-icon-button").src = "images/favorite-icon.png";

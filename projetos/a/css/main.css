@@ -192,9 +192,17 @@ body {
     margin: 20px 50px;
 }
 
-.video-section h3 {
+.underline-part {
+    text-decoration: underline;
+}
+
+span {
+    display: flex;
+}
+
+.video-section h2 {
     margin: 0 15px;
-    color: #4D4DFF;
+    display: none;
 }
 
 .show-favorites {
