@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: rgb(25,147,205);
+    background: radial-gradient(ellipse farthest-corner at 0 140%, #3c84cc 0%, #316dc2 70%, #4e95d3 70%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 100;
+}
+
+.input,
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    width: fit-content;
+}
+
+.inputs {
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 50px 50px 0 50px;
+}
+
+input[type=text] {
+    width: 400px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input:focus {
+    outline: 2px solid rgba(20, 20, 20, .5);
+}
+
+.contdown-updater {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.contdown-updater h2 {
+    padding: 20px;
+    background-color: black;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, .15);
+    backdrop-filter: blur(5px);
+    box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
+}
+
+.contdown-updater p {
+    text-align: center;
+    padding: 15px;
+}
+
+#title-1 {
+    padding: 20px 20px 0 20px;
+}
+
+.details {
+    font-weight: 100;
+    padding: 0 20px 20px 20px;
+}
+
+.almost-done {
+    position: relative;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: auto;
+    padding-bottom: 20px;
+}
+
+@media(min-width: 930px) {
+    .almost-done {
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        width: 200px;
+        height: auto;
+        transform: none;
+    }
+}
