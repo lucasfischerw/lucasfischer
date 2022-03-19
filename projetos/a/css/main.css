@@ -11,7 +11,7 @@
 	-webkit-tap-highlight-color: transparent;
 	text-decoration: none;
 	color: white;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Didact Gothic', sans-serif;
 }
 
 video {
@@ -70,6 +70,7 @@ body {
 .main-content {
     display: flex;
     place-content: center;
+    min-width: fit-content;
 }
 
 .letter-menu {
@@ -125,7 +126,7 @@ body {
 }
 
 .letter h3 {
-    font-family: Arial;
+    font-family: Arial !important;
     line-height: 30px;
 }
 
@@ -200,7 +201,7 @@ body {
     display: flex;
     align-items: center;
     cursor: pointer;
-    margin-top: 30px;
+    margin: 15px 0;
 }
 
 .show-favorites img {

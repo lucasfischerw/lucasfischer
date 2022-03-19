@@ -3,32 +3,32 @@ var words = JSON.parse(data);
 var doesNotContain = [
     ["ea", "ee", "ei", "ie"],
     ["e", "ee", "ey"],
+    [],
     ["ea"],
     ["er", "ia", "ie", "ure"],
     ["oa", "or", "ou"],
-    [],
-    [],
-    [],
     ["ea", "ei", "ey"],
     ["ear"],
+    [],
     [],
     []
 ];
 
 var graphAndDigraphs = [
-    ["-", "ae"],
+    ["ae"],
     ["a", "ai"],
+    ["æ"],
     ["a"],
     ["a", "ar"],
     ["a", "al", "ao", "ar", "au", "aw"],
-    ["a"],
-    ["-"],
-    ["-"],
     ["a", "ai", "aigh", "ay"],
     ["a", "ai", "air", "are", "ayo"],
-    ["a"],
-    ["-", "ao"]
+    ["eɪə"],
+    ["ao"],
+    ["ia"]
 ];
+
+var verifyBRE = ["æ", "eɪə"]
 
 function WriteWords(i) {
     var wordContainer = document.createElement("div");
@@ -87,6 +87,13 @@ function LoadWords() {
     }
 }
 
+function RemoveWords() {
+    const parent = document.getElementById("words-list");
+    while (parent.firstChild) {
+        parent.firstChild.remove()
+    }
+}
+
 function ChangeImg(imgNumber) {
     if(document.getElementById("favorite-icon-"+ imgNumber +"").classList.contains("active")) {
         document.getElementById("favorite-icon-"+ imgNumber +"").src = "images/favorite-icon.png"
@@ -115,7 +122,7 @@ function PlaySound(soundNumber) {
     while (parent2.firstChild) {
         parent2.firstChild.remove();
     }
-    if(graphAndDigraphs[soundNumber] != []) {
+    if(graphAndDigraphs[soundNumber].length > 0) {
         for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
             var word = document.createElement("p");
             word.setAttribute("class", "underline");
@@ -136,18 +143,33 @@ function UpdateWords(soundNumber) {
     favoriteWordsVisible = false;
     document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
     document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
-    const parent = document.getElementById("words-list");
-    while (parent.firstChild) {
-        parent.firstChild.remove()
-    }
-    var printWord = false;
+    RemoveWords();
+
+
+    var printWord = true;
     for (let index = 0; index < words.length; index++) {
         if(words[index].Word.includes("a")) {
-            for (let i = 0; i < doesNotContain[soundNumber].length; i++) {
-                if(words[index].Word.includes(doesNotContain[soundNumber][i])) {
-                    printWord = true;
-                    break;
-                }      
+            if(doesNotContain[soundNumber].length > 0) {
+                for (let i = 0; i < doesNotContain[soundNumber].length; i++) {
+                    if(words[index].Word.includes(doesNotContain[soundNumber][i])) {
+                        printWord = false;
+                        break;
+                    } else {
+                        printWord = true;
+                    }
+                }
+            } else {
+                printWord = true;
+            }
+            if(printWord) {
+                for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
+                    if(words[index].Word.includes(graphAndDigraphs[soundNumber][i]) || ((graphAndDigraphs[soundNumber][i] == verifyBRE[0] || graphAndDigraphs[soundNumber][i] == verifyBRE[2]) && words[index].BrE.includes(graphAndDigraphs[soundNumber][i]))) {
+                        printWord = true;
+                        break;
+                    } else {
+                        printWord = false;
+                    }
+                }
             }
         } else {
             printWord = false;
@@ -178,10 +200,7 @@ function ShowFavorites() {
         for (let i = 0; i < document.getElementsByClassName("active").length; i++) {
             savedWords.push(document.getElementsByClassName("active")[i].parentNode.parentNode.id.replace(/[^0-9]/g,''));
         }
-        const parent = document.getElementById("words-list");
-        while (parent.firstChild) {
-            parent.firstChild.remove();
-        }
+        RemoveWords();
         for (let i = 0; i < savedWords.length; i++) {
             WriteWords(savedWords[i]);
         }
@@ -189,10 +208,7 @@ function ShowFavorites() {
         document.getElementById("favorite-icon-button").src = "images/favorite-icon.png";
     } else {
         favoriteWordsVisible = false;
-        const parent = document.getElementById("words-list");
-        while (parent.firstChild) {
-            parent.firstChild.remove();
-        }
+        RemoveWords();
         LoadWords();
         document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
         document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
