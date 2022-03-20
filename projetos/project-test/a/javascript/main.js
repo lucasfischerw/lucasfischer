@@ -133,8 +133,8 @@ var favoriteWordsVisible = false;
 
 function UpdateWords(soundNumber) {
     favoriteWordsVisible = false;
-    document.getElementById("letter-"+ lastAudioPlayed +"").style.backgroundColor = "#4D4DFF";
-    document.getElementById("letter-"+ soundNumber +"").style.backgroundColor = "#ff5722";
+    document.getElementById("letter-"+ lastAudioPlayed +"").style.backgroundColor = "transparent";
+    document.getElementById("letter-"+ soundNumber +"").style.backgroundColor = "#811394";
     lastAudioPlayed = soundNumber;
     const parent = document.getElementById("graph");
     while (parent.firstChild) {

@@ -21,50 +21,28 @@ video {
 
 body {
     background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,31,121,1) 68%, rgba(0,27,255,0.846673703661152) 100%); 
+    background: linear-gradient(180deg, #190026 0%, #350050 68%, #86299c 100%); 
 }
 
 .upper-menu {
     width: 100%;
-    height: 200px;
+    height: 150px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
-    padding: 25px;
+    padding: 25px 0;
+    margin: 0 auto;
 }
 
 .menu-letter {
     font-size: 50px;
-    border: 10px solid #4D4DFF;
-    border-radius: 10px;
-    width: 80px;
-    height: 80px;
-    text-align: center;
-    line-height: 60px;
-    cursor: pointer;
-}
-
-.menu-links {
-    display: flex;
-    gap: 20px;
-    position: absolute;
-    right: 50px;
-}
-
-.menu-links a {
-    cursor: pointer;
-}
-
-.active-button {
-    background-color: #4D4DFF;
+    border-radius: 50%;
     width: 100px;
     height: 100px;
-    line-height: 80px;
-}
-
-.upper-menu img {
-    height: 60px;
-    width: auto;
+    text-align: center;
+    line-height: 100px;
+    background-color: #811394;
 }
 
 .main-content {
@@ -91,7 +69,7 @@ body {
 .words-menu {
     background-color: #1E1E1E;
     border-radius: 15px;
-    margin: 15px;
+    margin: 165px 15px 15px 15px;
     display: flex;
 }
 
@@ -103,26 +81,22 @@ body {
 
 .line {
     display: grid;
-    grid-template-columns: 125px 125px 125px;
+    grid-template-columns: 80px 40px 80px 40px 80px 40px;
     padding: 10px;
 }
 
 .letter {
     gap: 10px;
     padding: 0 15px;
-    cursor: pointer;
     display: flex;
-    background-color: #4D4DFF;
-    margin: 0 15px;
-    border-radius: 10px;
+    border: 2px #811394 solid;
+    margin: 0 auto;
+    border-radius: 5px;
     height: 50px;
+    width: 60px;
     align-items: center;
     justify-content: center;
     transition: background-color .3s ease;
-}
-
-.letter:hover {
-    background-color: #2626a0;
 }
 
 .letter h3 {
@@ -130,9 +104,12 @@ body {
     line-height: 30px;
 }
 
-.letter img {
+.letter img,
+.line img {
     width: 30px;
-    height: auto;
+    height: 30px;
+    margin: auto 0;
+    cursor: pointer;
 }
 
 .section-letter {
@@ -183,8 +160,15 @@ body {
 .word-wrapper img,
 .bre-wrapper img {
     width: 30px;
-    height: auto;
+    height: 30px;
+    margin: auto 0;
     cursor: pointer;
+}
+
+.word-wrapper img:nth-child(2n),
+.bre-wrapper img:nth-child(2n) {
+    width: 25px;
+    height: 25px;
 }
 
 .underline {
