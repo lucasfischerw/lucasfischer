@@ -240,3 +240,38 @@ span {
     border-style: solid none solid none;
     background-clip: padding-box;
  }
+
+ .menu-icon {
+     width: 30px;
+     height: 30px;
+     position: absolute;
+     top: 60px;
+     left: 15px;
+     cursor: pointer;
+ }
+
+.sidebar-menu {
+    position: fixed;
+    left: -180px;
+    top: 0;
+    background-color: #171717;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 999;
+    transition: left .3s ease;
+}
+
+.sidebar-menu a {
+    padding: 10px;
+    margin: 10px 50px;
+    cursor: pointer;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    margin: 0 !important;
+}

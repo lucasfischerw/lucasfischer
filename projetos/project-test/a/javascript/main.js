@@ -30,8 +30,6 @@ var graphAndDigraphs = [
     ["a", "ar", "au"]
 ];
 
-var verifyBRE = ["æ", "eɪə"]
-
 function WriteWords(i, underlineLetter, underlineBRE, appendLocation) {
     var wordContainer = document.createElement("div");
     wordContainer.setAttribute("class", "word-line");
@@ -47,7 +45,7 @@ function WriteWords(i, underlineLetter, underlineBRE, appendLocation) {
     if(underlineLetter == "" || underlineBRE) {
         wordCreation.innerHTML = words[i].Word;
     } else if(splitWord[0] == "") {
-        wordCreation.innerHTML = "<p class='underline-part'>"+ underlineLetter +"</p>" + splitWord[1];
+        wordCreation.innerHTML = "<p class='underline-part'>" + underlineLetter + "</p>" + words[i].Word.slice(1);
     } else {
         wordCreation.innerHTML = splitWord[0] + "<p class='underline-part'>"+ underlineLetter +"</p>" + splitWord[1];
     }
@@ -105,7 +103,6 @@ function LoadWords() {
 }
 
 function RemoveWords(removeLocation) {
-    console.log(document.getElementById(removeLocation));
     const parent = document.getElementById(removeLocation);
     while (parent.firstChild) {
         parent.firstChild.remove();
@@ -163,47 +160,52 @@ function UpdateWords(soundNumber) {
             }
         }
     }
-    document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
-    document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
     RemoveWords("words-list");
+    SortWords(soundNumber);
+}
+
+function SortWords(soundNumber) {
     var printWord = true;
-    var savedLetterToUnderline = "";
-    var specialWord = false;
-    for (let index = 0; index < words.length; index++) {
-        if(words[index].Word.includes("a")) {
-            if(doesNotContain[soundNumber].length > 0) {
-                for (let i = 0; i < doesNotContain[soundNumber].length; i++) {
-                    if(words[index].Word.includes(doesNotContain[soundNumber][i])) {
-                        printWord = false;
-                        break;
-                    } else {
-                        printWord = true;
-                    }
-                }
-            } else {
-                printWord = true;
-            }
-            if(printWord) {
-                for (let i = 0; i < graphAndDigraphs[soundNumber].length; i++) {
-                    if(words[index].Word.includes(graphAndDigraphs[soundNumber][i]) || ((graphAndDigraphs[soundNumber][i] == verifyBRE[0] || graphAndDigraphs[soundNumber][i] == verifyBRE[2]) && words[index].BrE.includes(graphAndDigraphs[soundNumber][i]))) {
-                        printWord = true;
-                        savedLetterToUnderline = graphAndDigraphs[soundNumber][i];
-                        if((graphAndDigraphs[soundNumber][i] == verifyBRE[0] || graphAndDigraphs[soundNumber][i] == verifyBRE[2]) && words[index].BrE.includes(graphAndDigraphs[soundNumber][i])) {
-                            specialWord = true;
-                        } else {
-                            specialWord = false;
-                        }
-                        break;
-                    } else {
-                        printWord = false;
-                    }
-                }
-            }
+    console.log(document.getElementById("letter-value-" + soundNumber + "").innerHTML);
+    for (let i = 0; i < words.length; i++) {
+        if(words[i].Word.includes("a")) {
+            printWord = true;
         } else {
             printWord = false;
         }
         if(printWord) {
-            WriteWords(index, savedLetterToUnderline, specialWord, "words-list");
+            if(words[i].BrE.includes(document.getElementById("letter-value-"+soundNumber+"").innerHTML)) {
+                printWord = true;
+            } else {
+                printWord = false;
+            }
+            if(printWord) {
+                if(doesNotContain[soundNumber].length > 0) {
+                    for (let index = 0; index < doesNotContain[soundNumber].length; index++) {
+                        if(words[i].Word.includes(doesNotContain[soundNumber][index])) {
+                            printWord = false;
+                            break;
+                        } else {
+                            printWord = true;
+                        }
+                    }
+                } else {
+                    printWord = true;
+                }
+                if(printWord) {
+                    for (let index = 0; index < graphAndDigraphs[soundNumber].length; index++) {
+                        if(words[i].Word.includes(graphAndDigraphs[soundNumber][index])) {
+                            printWord = true;
+                            break;
+                        } else {
+                            printWord = false;
+                        }
+                    }
+                    if(printWord) {
+                        WriteWords(i, "a", "", "words-list");
+                    }
+                }
+            }
         }
     }
 }
@@ -260,7 +262,6 @@ function parseURLParams() {
         if (!parms.hasOwnProperty(n)) parms[n] = [];
         parms[n].push(nv.length === 2 ? v : null);
     }
-    console.log(parms)
     return parms;
 }
 
@@ -271,4 +272,14 @@ function LoadPage() {
     } catch {
         LoadWords();
     }
+}
+
+function OpenMenu() {
+    document.getElementById("sidebar-menu").style.left = "0"
+    document.getElementById("main-content").style.filter = "blur(10px)";
+}
+
+function CloseMenu() {
+    document.getElementById("sidebar-menu").style.left = "-180px"
+    document.getElementById("main-content").style.filter = "none";
 }
