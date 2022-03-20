@@ -80,9 +80,10 @@ body {
 }
 
 .line {
-    display: grid;
-    grid-template-columns: 80px 40px 80px 40px 80px 40px;
+    display: flex;
+    justify-content: center;
     padding: 10px;
+    gap: 30px;
 }
 
 .letter {
@@ -97,6 +98,11 @@ body {
     align-items: center;
     justify-content: center;
     transition: background-color .3s ease;
+}
+
+.letter-speaker-container {
+    display: flex;
+    gap: 15px;
 }
 
 .letter h3 {
@@ -114,7 +120,7 @@ body {
 
 .section-letter {
     margin: auto;
-    width: fit-content;
+    /* width: fit-content; */
 }
 
 .words-list {
