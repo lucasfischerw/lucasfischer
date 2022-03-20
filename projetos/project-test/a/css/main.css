@@ -97,6 +97,7 @@ body {
     width: 60px;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     transition: background-color .3s ease;
 }
 

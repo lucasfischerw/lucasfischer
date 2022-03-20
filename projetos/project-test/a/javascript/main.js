@@ -3,31 +3,33 @@ var words = JSON.parse(data);
 var doesNotContain = [
     ["ea", "ee", "ei", "ie"],
     ["e", "ee", "ey"],
-    [],
     ["ea"],
     ["er", "ia", "ie", "ure"],
     ["oa", "or", "ou"],
+    [],
+    [],
+    ["ow"]
     ["ea", "ei", "ey"],
     ["ear"],
     [],
     [],
     [],
-    []
 ];
 
 var graphAndDigraphs = [
     ["ae"],
     ["a", "ai"],
-    ["æ"],
     ["a"],
     ["a", "ar"],
     ["a", "al", "ao", "ar", "au", "aw"],
+    ["æ"],
+    ["a", "ar", "au"],
+    ["a", "au"]
     ["a", "ai", "aigh", "ay"],
     ["a", "ai", "air", "are", "ayo"],
     ["eɪə"],
     ["ao"],
     ["ia"],
-    ["a", "ar", "au"]
 ];
 
 function WriteWords(i, underlineLetter, underlineBRE, appendLocation) {
@@ -126,15 +128,14 @@ var lastAudioPlayed = 0;
 function PlaySound(soundNumber) {
     var audio = new Audio("content/a/sounds/"+ (soundNumber+1) +".mp3");
     audio.play();
-    UpdateWords(soundNumber);
 }
 
 var favoriteWordsVisible = false;
 
 function UpdateWords(soundNumber) {
     favoriteWordsVisible = false;
-    document.getElementById("letter-"+ lastAudioPlayed +"").style.backgroundColor = "transparent";
-    document.getElementById("letter-"+ soundNumber +"").style.backgroundColor = "#811394";
+    document.getElementById("letter-" + lastAudioPlayed + "").style.backgroundColor = "transparent";
+    document.getElementById("letter-" + soundNumber + "").style.backgroundColor = "#811394";
     lastAudioPlayed = soundNumber;
     const parent = document.getElementById("graph");
     while (parent.firstChild) {
