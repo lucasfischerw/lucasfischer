@@ -159,14 +159,16 @@ body {
 
 .word-wrapper img,
 .bre-wrapper img {
-    width: 30px;
-    height: 30px;
     margin: auto 0;
     cursor: pointer;
 }
 
-.word-wrapper img:nth-child(2n),
-.bre-wrapper img:nth-child(2n) {
+.word-wrapper img {
+    width: 30px;
+    height: 30px;
+}
+
+.bre-wrapper img {
     width: 25px;
     height: 25px;
 }
