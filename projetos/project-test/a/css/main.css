@@ -112,8 +112,8 @@ body {
 
 .letter img,
 .line img {
-    width: 30px;
-    height: 30px;
+    max-width: 30px;
+    max-height: 30px;
     margin: auto 0;
     cursor: pointer;
 }
@@ -134,19 +134,6 @@ body {
     grid-template-columns: 225px 225px 225px;
     padding: 10px 0;
 }
-
-.words-list::-webkit-scrollbar {
-    width: 7px;
-    background-color: rgb(0, 0, 0, 0);
- }
-
- .words-list::-webkit-scrollbar-thumb {
-    background-color: white;
-    height: 90px;
-    border: 15px rgba(0, 0, 0, 0);
-    border-style: solid none solid none;
-    background-clip: padding-box;
- }
 
 .center {
     text-align: left;
@@ -207,3 +194,49 @@ span {
 .show-favorites img {
     width: 30px;
 }
+
+.favorite-words {
+    background-color: #171717;
+    width: 710px;
+    height: 680px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    border-radius: 15px;
+    display: none;
+    overflow-y: scroll;
+}
+
+.title-favorite {
+    text-align: center;
+    padding: 15px;
+}
+
+.favorite-words a {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+
+#append-words-favorite {
+    width: fit-content;
+    margin: 10px 0 0 auto;
+}
+
+.words-list::-webkit-scrollbar,
+.favorite-words::-webkit-scrollbar {
+    width: 7px;
+    background-color: rgb(0, 0, 0, 0);
+ }
+
+ .words-list::-webkit-scrollbar-thumb,
+ .favorite-words::-webkit-scrollbar-thumb {
+    background-color: white;
+    height: 90px;
+    border: 15px rgba(0, 0, 0, 0);
+    border-style: solid none solid none;
+    background-clip: padding-box;
+ }

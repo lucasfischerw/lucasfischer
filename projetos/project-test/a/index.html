@@ -7,7 +7,12 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body onload="LoadPage()">
-        <div class="main-content">
+        <div class="favorite-words" id="favorite-words">
+            <h2 class="title-favorite">Favorite Words</h2>
+            <a onclick="ShowFavorites()">✕</a>
+            <div id="append-words-favorite"></div>
+        </div>
+        <div class="main-content" id="main-content">
             <div>
                 <div class="upper-menu">
                     <a class="menu-letter">A</a>
@@ -20,13 +25,13 @@
                                 <div class="letter" id="letter-0">
                                     <h3>i:</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png"  onclick="PlaySound(0)">
+                                <img src="images/Speaker.png"  onclick="PlaySound(0)">
                             </div>
                             <div class="letter-speaker-container">
                                 <div class="letter" id="letter-1">
                                     <h3>I</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png" onclick="PlaySound(1)">
+                                <img src="images/Speaker.png" onclick="PlaySound(1)">
                             </div>
                         </div>
                         <div class="line">
@@ -34,19 +39,19 @@
                                 <div class="letter" id="letter-3">
                                     <h3>e</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png" onclick="PlaySound(3)">
+                                <img src="images/Speaker.png" onclick="PlaySound(3)">
                             </div>
                             <div class="letter-speaker-container">
                                 <div class="letter" id="letter-4">
                                     <h3>ə</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png"  onclick="PlaySound(4)">
+                                <img src="images/Speaker.png"  onclick="PlaySound(4)">
                             </div>
                             <div class="letter-speaker-container">
                                 <div class="letter" id="letter-5">
                                     <h3>ɔː</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png" onclick="PlaySound(5)">
+                                <img src="images/Speaker.png" onclick="PlaySound(5)">
                             </div>
                         </div>
                         <div class="line">
@@ -54,19 +59,19 @@
                                 <div class="letter" id="letter-2">
                                     <h3>æ</h3>
                                 </div>
-                                <img onclick="PlaySound(2)" src="images/Speaker_Icon.png">
+                                <img onclick="PlaySound(2)" src="images/Speaker.png">
                             </div>
                             <div class="letter-speaker-container">
-                                <div class="letter" id="letter-2">
+                                <div class="letter" id="letter-11">
                                     <h3>a:</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png">
+                                <img src="images/Speaker.png" onclick="PlaySound(11)">
                             </div>
                             <div class="letter-speaker-container">
                                 <div class="letter" id="letter-2">
                                     <h3>ɒ</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png">
+                                <img src="images/Speaker.png">
                             </div>
                         </div>
                     </div>
@@ -77,13 +82,13 @@
                                 <div class="letter" id="letter-6">
                                     <h3>eɪ</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png" onclick="PlaySound(6)">
+                                <img src="images/Speaker.png" onclick="PlaySound(6)">
                             </div>
                             <div class="letter-speaker-container">
                                 <div class="letter" id="letter-7">
                                     <h3>eə</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png"  onclick="PlaySound(7)">
+                                <img src="images/Speaker.png"  onclick="PlaySound(7)">
                             </div>
                         </div>
                     </div>
@@ -94,13 +99,13 @@
                                 <div class="letter" id="letter-8">
                                     <h3>eɪə</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png" onclick="PlaySound(8)">
+                                <img src="images/Speaker.png" onclick="PlaySound(8)">
                             </div>
                             <div class="letter-speaker-container">
                                 <div class="letter" id="letter-9">
                                     <h3>eɪɑ</h3>
                                 </div>
-                                <img src="images/Speaker_Icon.png" onclick="PlaySound(9)">
+                                <img src="images/Speaker.png" onclick="PlaySound(9)">
                             </div>
                         </div>
                     </div>

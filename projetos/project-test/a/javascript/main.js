@@ -11,6 +11,7 @@ var doesNotContain = [
     ["ear"],
     [],
     [],
+    [],
     []
 ];
 
@@ -25,12 +26,13 @@ var graphAndDigraphs = [
     ["a", "ai", "air", "are", "ayo"],
     ["eɪə"],
     ["ao"],
-    ["ia"]
+    ["ia"],
+    ["a", "ar", "au"]
 ];
 
 var verifyBRE = ["æ", "eɪə"]
 
-function WriteWords(i, underlineLetter, underlineBRE) {
+function WriteWords(i, underlineLetter, underlineBRE, appendLocation) {
     var wordContainer = document.createElement("div");
     wordContainer.setAttribute("class", "word-line");
     wordContainer.setAttribute("id", "word-line-"+ i +"");
@@ -84,7 +86,7 @@ function WriteWords(i, underlineLetter, underlineBRE) {
     translation.setAttribute("class", "center");
     translation.innerHTML = words[i].ROMANIAN;
     
-    document.getElementById("words-list").appendChild(wordContainer);
+    document.getElementById(appendLocation).appendChild(wordContainer);
     document.getElementById("word-line-"+ i +"").appendChild(wordWrapper);
     document.getElementById("word-wrapper-"+ i +"").appendChild(favoriteIcon);
     document.getElementById("word-wrapper-"+ i +"").appendChild(wordCreation);
@@ -97,15 +99,16 @@ function WriteWords(i, underlineLetter, underlineBRE) {
 function LoadWords() {
     for (let i = 0; i < words.length; i++) {
         if(words[i].Word.includes("a")) {
-            WriteWords(i, "", false);
+            WriteWords(i, "", false, "words-list");
         }
     }
 }
 
-function RemoveWords() {
-    const parent = document.getElementById("words-list");
+function RemoveWords(removeLocation) {
+    console.log(document.getElementById(removeLocation));
+    const parent = document.getElementById(removeLocation);
     while (parent.firstChild) {
-        parent.firstChild.remove()
+        parent.firstChild.remove();
     }
 }
 
@@ -162,7 +165,7 @@ function UpdateWords(soundNumber) {
     }
     document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
     document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
-    RemoveWords();
+    RemoveWords("words-list");
     var printWord = true;
     var savedLetterToUnderline = "";
     var specialWord = false;
@@ -200,7 +203,7 @@ function UpdateWords(soundNumber) {
             printWord = false;
         }
         if(printWord) {
-            WriteWords(index, savedLetterToUnderline, specialWord);
+            WriteWords(index, savedLetterToUnderline, specialWord, "words-list");
         }
     }
 }
@@ -220,23 +223,22 @@ var savedWords = [];
 
 function ShowFavorites() {
     if(!favoriteWordsVisible) {
+        document.getElementById("favorite-words").style.display = "initial";
+        document.getElementById("main-content").style.filter = "blur(10px)";
         favoriteWordsVisible = true;
         savedWords = [];
         for (let i = 0; i < document.getElementsByClassName("active").length; i++) {
             savedWords.push(document.getElementsByClassName("active")[i].parentNode.parentNode.id.replace(/[^0-9]/g,''));
         }
-        RemoveWords();
+        RemoveWords("append-words-favorite");
         for (let i = 0; i < savedWords.length; i++) {
-            WriteWords(savedWords[i], "", false);
+            WriteWords(savedWords[i], "", false, "append-words-favorite");
         }
-        document.getElementById("favorite-text").innerHTML = "Show All Words";
-        document.getElementById("favorite-icon-button").src = "images/favorite-icon.png";
     } else {
         favoriteWordsVisible = false;
-        RemoveWords();
-        LoadWords();
-        document.getElementById("favorite-text").innerHTML = "Show Favorite Words";
-        document.getElementById("favorite-icon-button").src = "images/favorite-icon-active.png";
+        RemoveWords("append-words-favorite");
+        document.getElementById("favorite-words").style.display = "none";
+        document.getElementById("main-content").style.filter = "none";
     }
 }
 
