@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-        <title>Sample Page 1</title>
+        <title>Vowels - A</title>
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body onload="LoadPage()" onscroll="CloseMenu()">
@@ -15,10 +15,11 @@
         <img src="images/Hamburger_icon.png" class="menu-icon" onclick="OpenMenu()">
         <div class="sidebar-menu" id="sidebar-menu">
             <a class="close-btn" onclick="CloseMenu()">✕</a>
-            <a>Option 1</a>
-            <a>Option 2</a>
-            <a>Option 3</a>
-            <a>Option 4</a>
+            <a>Home</a>
+            <a>Vowels</a>
+            <a>Consonants</a>
+            <a>Dictionary</a>
+            <a>Phonemic Chart</a>
         </div>
         <div class="main-content" id="main-content">
             <div>
@@ -141,7 +142,10 @@
                     <div class="word-line">
                         <h2 class="center">Word</h2>
                         <h2 class="center">BRE</h2>
-                        <h2 class="center">Translation</h2>
+                        <div class="flex-title">
+                            <h2 class="center">Translation</h2>
+                            <img src="images/flag.png">
+                        </div>
                     </div>
                     <div class="words-list" id="words-list">
                     </div>
