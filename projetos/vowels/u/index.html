@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+        <title>Vowels - U</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    </head>
+    <body onload="LoadPage()" onscroll="CloseMenu()">
+        <div class="favorite-words" id="favorite-words">
+            <h2 class="title-favorite">Favorite Words</h2>
+            <a onclick="ShowFavorites()">✕</a>
+            <div id="append-words-favorite"></div>
+        </div>
+        <img src="images/Hamburger_icon.png" class="menu-icon" onclick="OpenMenu()">
+        <div class="sidebar-menu" id="sidebar-menu">
+            <a class="close-btn" onclick="CloseMenu()">✕</a>
+            <a>Home</a>
+            <a>Vowels</a>
+            <a>Consonants</a>
+            <a>Dictionary</a>
+            <a>Phonemic Chart</a>
+        </div>
+        <div class="main-content" id="main-content">
+            <div>
+                <div class="upper-menu">
+                    <a class="menu-letter">U</a>
+                </div>
+                <div class="letter-menu">
+                    <h2>Monophtongs</h2>
+                    <div class="section-letter">
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-23" onclick="UpdateWords(23)">
+                                    <h3 id="letter-value-23">ʊ</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(23)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-24" onclick="UpdateWords(24)">
+                                    <h3 id="letter-value-24">ʊː</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(24)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-3" onclick="UpdateWords(3)">
+                                    <h3 id="letter-value-3">ə</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(3)">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-14" onclick="UpdateWords(14)">
+                                    <h3 id="letter-value-14">ɜː</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(14)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-25" onclick="UpdateWords(25)">
+                                    <h3 id="letter-value-25">ʌ</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(25)">
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Diphtongs</h2>
+                    <div class="section-letter">
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-16" onclick="UpdateWords(16)">
+                                    <h3 id="letter-value-16">aɪ</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(16)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-38" onclick="UpdateWords(38)">
+                                    <h3 id="letter-value-38">ʊə</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(38)">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-39" onclick="UpdateWords(39)">
+                                    <h3 id="letter-value-39">jʊ</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(39)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-17" onclick="UpdateWords(17)">
+                                    <h3 id="letter-value-17">jʊː</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(17)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-20" onclick="UpdateWords(20)">
+                                    <h3 id="letter-value-20">jə</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(20)">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-40" onclick="UpdateWords(40)">
+                                    <h3 id="letter-value-40">wiː</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(40)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-41" onclick="UpdateWords(41)">
+                                    <h3 id="letter-value-41">wɪ</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(41)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-42" onclick="UpdateWords(42)">
+                                    <h3 id="letter-value-42">we</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(42)">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-43" onclick="UpdateWords(43)">
+                                    <h3 id="letter-value-43">wə</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(43)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-44" onclick="UpdateWords(44)">
+                                    <h3 id="letter-value-44">wɔː</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(44)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-45" onclick="UpdateWords(45)">
+                                    <h3 id="letter-value-45">wɒ</h3>
+                                </div>
+                                <img src="images/Speaker.png"  onclick="PlaySound(45)">
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Triphtongs</h2>
+                    <div class="section-letter">
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-18" onclick="UpdateWords(18)">
+                                    <h3 id="letter-value-18">jʊə</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(18)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-46" onclick="UpdateWords(46)">
+                                    <h3 id="letter-value-46">weɪ</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(46)">
+                            </div>
+                        </div>
+                        <div class="line">
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-47" onclick="UpdateWords(47)">
+                                    <h3 id="letter-value-47">weə</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(47)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-48" onclick="UpdateWords(48)">
+                                    <h3 id="letter-value-48">wəʊ</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(48)">
+                            </div>
+                            <div class="letter-speaker-container">
+                                <div class="letter" id="letter-34" onclick="UpdateWords(34)">
+                                    <h3 id="letter-value-34">waɪ</h3>
+                                </div>
+                                <img src="images/Speaker.png" onclick="PlaySound(34)">
+                            </div>
+                        </div>
+                    </div>
+                    <h2>Tetraphthongs</h2>
+                    <div class="section-letter">
+                        <div class="letter-speaker-container special-container">
+                            <div class="letter special-letter" id="letter-49" onclick="UpdateWords(49)">
+                                <h3 id="letter-value-49">waɪ</h3>
+                            </div>
+                            <img src="images/Speaker.png" onclick="PlaySound(49)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="words-menu">
+                <div class="video-section">
+                    <video width="240" height="240" controls>
+                        <source src="images/ɑ.mp4" type="video/mp4">
+                    </video>
+                    <h2 id="graph-title">Graph</h2>
+                    <div class="graph" id="graph"></div>
+                    <h2 id="digraph-title">Digraph</h2>
+                    <div class="digraph" id="digraph"></div>
+                </div>
+                <div class="block">
+                    <div class="word-line">
+                        <h2 class="center">Word</h2>
+                        <h2 class="center">BRE</h2>
+                        <div class="flex-title">
+                            <h2 class="center">Translation</h2>
+                            <img src="images/flag.png">
+                        </div>
+                    </div>
+                    <div class="words-list" id="words-list">
+                    </div>
+                    <div class="show-favorites" onclick="ShowFavorites()">
+                        <img id="favorite-icon-button" src="images/favorite-icon-active.png">
+                        <p id="favorite-text">Show Favorite Words</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="javascript/graphs.json"></script>
+        <script type="text/javascript" src="javascript/data.json"></script>
+        <script src="javascript/main.js"></script>
+    </body>
+</html>
