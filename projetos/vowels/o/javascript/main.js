@@ -186,6 +186,7 @@ function UpdateWords(buttonNumber) {
             for (let i = 0; i < sortedArray.length; i++) {
                 if(document.getElementById("letter-value-"+buttonNumber+"").innerHTML == sortedArray[i] || (document.getElementById("letter-value-"+buttonNumber+"").innerHTML == "∅" && sortedArray[i] == "mute")) {
                     WriteWords(mainIndex, sortingLetter, sortedArray[i], "words-list");
+                    break;
                 }
             }
         }
@@ -214,10 +215,10 @@ function parseURLParams() {
 }
 
 function LoadPage() {
-    try {
+    if(parseURLParams() != undefined) {
         var soundLoaded = parseURLParams().sound[0];
         UpdateWords(soundLoaded);
-    } catch {
+    } else {
         LoadWords();
     }
 }

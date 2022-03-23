@@ -242,14 +242,14 @@ span {
     background-clip: padding-box;
  }
 
- .menu-icon {
-     width: 30px;
-     height: 30px;
-     position: absolute;
-     top: 60px;
-     left: 15px;
-     cursor: pointer;
- }
+.menu-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    cursor: pointer;
+}
 
 .sidebar-menu {
     position: fixed;
