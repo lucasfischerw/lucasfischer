@@ -135,6 +135,13 @@ function UpdateWords(buttonNumber) {
     while (parent2.firstChild) {
         parent2.firstChild.remove();
     }
+
+    var video = document.getElementById('video');
+    var source = document.getElementById('source');
+    source.setAttribute('src', "../videos/"+ (parseInt(buttonNumber)+1) +".mp4");
+    video.load();
+    video.play();
+
     document.getElementById("graph-title").style.display = "none";
     document.getElementById("digraph-title").style.display = "none";
     for (let i = 0; i < graphsInformation.length; i++) {
