@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body onload="LoadWords()" onscroll="CloseMenu()">
+    <div class="favorite-words" id="favorite-words">
+        <h2 class="title-favorite">Favorite Words</h2>
+        <a onclick="ShowFavorites()">✕</a>
+        <div id="append-words-favorite"></div>
+    </div>
+    <img src="images/Hamburger_icon.png" class="menu-icon" onclick="OpenMenu()">
+    <div class="sidebar-menu" id="sidebar-menu">
+        <a class="close-btn" onclick="CloseMenu()">✕</a>
+        <a>Home</a>
+        <a>Vowels</a>
+        <a>Consonants</a>
+        <a>Dictionary</a>
+        <a>Phonemic Chart</a>
+    </div>
+    <div id="main-content">
+        <h1 class="title-page">Dictionary</h1>
+        <div class="block">
+            <div class="word-line">
+                <h2 class="center">Word</h2>
+                <h2 class="center">BRE</h2>
+                <div class="flex-title">
+                    <h2 class="center">Translation</h2>
+                    <img src="images/flag.png">
+                </div>
+            </div>
+            <div class="words-list" id="words-list">
+            </div>
+            <div class="bottom-flex">
+                <div class="show-favorites" onclick="ShowFavorites()">
+                    <img id="favorite-icon-button" src="images/favorite-icon-active.png">
+                    <p id="favorite-text">Show Favorite Words</p>
+                </div>
+                <div class="pages-menu">
+                    <div class="previous" onclick="Previous()" id="previous">
+                        <img src="images/arrow-left.png">
+                        <p>Previous</p>
+                    </div>
+                    <p>|</p>
+                    <div class="next" onclick="Next()" id="next">
+                        <p>Next</p>
+                        <img src="images/arrow-right.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="javascript/data.json"></script>
+    <script src="javascript/main.js"></script>
+</body>
+</html>
