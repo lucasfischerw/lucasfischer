@@ -9,7 +9,8 @@ function WriteWords(i, underlineLetter, underlineBRE, appendLocation) {
     wordWrapper.setAttribute("id", "word-wrapper-"+ i +"");
     
     var wordCreation = document.createElement("span");
-    wordCreation.setAttribute("class", "center");
+    wordCreation.setAttribute("class", "center pointer-cursor");
+    wordCreation.setAttribute("onclick", "OpenWordPopUp("+i+")");
     wordCreation.innerHTML = words[i].WORDS;
 
     var favoriteIcon = document.createElement("img");
@@ -98,14 +99,20 @@ function Previous() {
     }
 }
 
+var MenuOpened = false;
+
 function OpenMenu() {
     document.getElementById("sidebar-menu").style.left = "0"
     document.getElementById("main-content").style.filter = "blur(10px)";
+    MenuOpened = true;
 }
 
 function CloseMenu() {
-    document.getElementById("sidebar-menu").style.left = "-250px"
-    document.getElementById("main-content").style.filter = "none";
+    if(MenuOpened) {
+        document.getElementById("sidebar-menu").style.left = "-250px"
+        document.getElementById("main-content").style.filter = "none";
+        MenuOpened = false;
+    }
 }
 
 function ChangeImg(imgNumber) {
@@ -167,3 +174,83 @@ document.addEventListener("scroll", function CloseFavorites() {
         ShowFavorites();
     }
 });
+
+function OpenWordPopUp(wordNumber) {
+    document.getElementById("word-popup-menu").style.display = "block";
+    document.getElementById("main-content").style.filter = "blur(10px)";
+
+    RemoveWords("append-words-popup");
+    RemoveWords("append-words-popup-2");
+    RemoveWords("append-words-popup-3");
+    RemoveWords("append-words-popup-4");
+    
+    var wordContainer = document.createElement("div");
+    wordContainer.setAttribute("class", "word-line");
+    wordContainer.setAttribute("id", "word-line-"+ wordNumber +"");
+
+    var wordWrapper = document.createElement("div");
+    wordWrapper.setAttribute("class", "word-wrapper");
+    wordWrapper.setAttribute("id", "word-wrapper-"+ wordNumber +"");
+    
+    var wordCreation = document.createElement("span");
+    wordCreation.setAttribute("class", "center pointer-cursor");
+    wordCreation.innerHTML = words[wordNumber].WORDS;
+
+    var breWrapper = document.createElement("div");
+    breWrapper.setAttribute("class", "bre-wrapper");
+    breWrapper.setAttribute("id", "bre-wrapper-"+ wordNumber +"");
+
+    var breElement = document.createElement("span");
+    breElement.setAttribute("class", "center");
+    breElement.innerHTML = words[wordNumber].BrE;
+    breElement.innerHTML = words[wordNumber].BrE;
+
+    var speakerIconBRE = document.createElement("img");
+    speakerIconBRE.setAttribute("onclick", "SpeakWord("+ wordNumber +")");
+    speakerIconBRE.setAttribute("src", "images/Speaker_Icon.png");
+
+    var translation = document.createElement("p");
+    translation.setAttribute("class", "center");
+    translation.innerHTML = words[wordNumber].Translation;
+
+    var secondContainer = document.createElement("div");
+    secondContainer.setAttribute("class", "word-line");
+    secondContainer.setAttribute("id", "secondContainer-line-"+ wordNumber +"");
+
+    var PartsOfSpeech = document.createElement("div");
+    PartsOfSpeech.innerHTML = words[wordNumber].PartsOfSpeech;
+
+    var thirdContainer = document.createElement("div");
+    thirdContainer.setAttribute("class", "word-line");
+    thirdContainer.setAttribute("id", "thirdContainer-line-"+ wordNumber +"");
+
+    var Synonyms = document.createElement("div");
+    Synonyms.innerHTML = words[wordNumber].Synonyms;
+
+    var fourthContainer = document.createElement("div");
+    fourthContainer.setAttribute("class", "word-line");
+    fourthContainer.setAttribute("id", "fourthContainer-line-"+ wordNumber +"");
+
+    var Antonyms = document.createElement("div");
+    Antonyms.innerHTML = words[wordNumber].Antonyms;
+    
+    document.getElementById("append-words-popup").appendChild(wordContainer);
+    document.getElementById("word-line-"+ wordNumber +"").appendChild(wordWrapper);
+    document.getElementById("word-wrapper-"+ wordNumber +"").appendChild(wordCreation);
+    document.getElementById("word-line-"+ wordNumber +"").appendChild(breWrapper);
+    document.getElementById("bre-wrapper-"+ wordNumber +"").appendChild(speakerIconBRE);
+    document.getElementById("bre-wrapper-"+ wordNumber +"").appendChild(breElement);
+    document.getElementById("word-line-"+ wordNumber +"").appendChild(translation);
+    
+    document.getElementById("append-words-popup-2").appendChild(secondContainer);
+    document.getElementById("secondContainer-line-"+ wordNumber +"").appendChild(PartsOfSpeech);
+    document.getElementById("append-words-popup-3").appendChild(thirdContainer);
+    document.getElementById("thirdContainer-line-"+ wordNumber +"").appendChild(Synonyms);
+    document.getElementById("append-words-popup-4").appendChild(fourthContainer);
+    document.getElementById("fourthContainer-line-"+ wordNumber +"").appendChild(Antonyms);
+}
+
+function CloseWordPopUp() {
+    document.getElementById("word-popup-menu").style.display = "none";
+    document.getElementById("main-content").style.filter = "none";
+}
