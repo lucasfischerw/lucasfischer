@@ -10,7 +10,9 @@ function WriteWords(i, underlineLetter, underlineBRE, appendLocation) {
     
     var wordCreation = document.createElement("span");
     wordCreation.setAttribute("class", "center pointer-cursor");
-    wordCreation.setAttribute("onclick", "OpenWordPopUp("+i+")");
+    if(appendLocation != "append-words-favorite") {
+        wordCreation.setAttribute("onclick", "OpenWordPopUp("+i+")");
+    }
     wordCreation.innerHTML = words[i].WORDS;
 
     var favoriteIcon = document.createElement("img");
