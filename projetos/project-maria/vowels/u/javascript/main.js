@@ -1,5 +1,5 @@
 var words = JSON.parse(data);
-var sortingLetter = "e";
+var sortingLetter = "u";
 var vowels = ["A", "E", "I", "O", "U", "Y"];
 var graphsInformation = JSON.parse(information);
 
@@ -136,13 +136,11 @@ function UpdateWords(buttonNumber) {
     while (parent2.firstChild) {
         parent2.firstChild.remove();
     }
-
     var video = document.getElementById('video');
     var source = document.getElementById('source');
     source.setAttribute('src', "../videos/"+ (parseInt(buttonNumber)+1) +".mp4");
     video.load();
     video.play();
-
     document.getElementById("graph-title").style.display = "none";
     document.getElementById("digraph-title").style.display = "none";
     for (let i = 0; i < graphsInformation.length; i++) {
@@ -240,6 +238,11 @@ function ChangeImg(imgNumber) {
         document.getElementById("favorite-icon-"+ imgNumber +"").src = "images/favorite-icon-active.png"
         document.getElementById("favorite-icon-"+ imgNumber +"").classList.add("active");
         localStorage.setItem("favorite-icon-"+ imgNumber +"", 1);
+    }
+    if(favoriteWordsVisible) {
+        document.querySelector('#words-list').querySelector('#favorite-icon-'+imgNumber+'').classList.remove("active");
+        document.querySelector('#words-list').querySelector('#favorite-icon-'+imgNumber+'').src = "images/favorite-icon.png";
+        document.querySelector('#append-words-favorite').querySelector('#word-line-'+imgNumber+'').remove();
     }
 }
 
