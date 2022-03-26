@@ -117,6 +117,8 @@ function CloseMenu() {
     }
 }
 
+var savedWords = [];
+
 function ChangeImg(imgNumber) {
     if(document.getElementById("favorite-icon-"+ imgNumber +"").classList.contains("active")) {
         document.getElementById("favorite-icon-"+ imgNumber +"").src = "images/favorite-icon.png"
@@ -127,6 +129,11 @@ function ChangeImg(imgNumber) {
         document.getElementById("favorite-icon-"+ imgNumber +"").classList.add("active");
         localStorage.setItem("favorite-icon-"+ imgNumber +"", 1);
     }
+    if(favoriteWordsVisible) {
+        document.querySelector('#words-list').querySelector('#favorite-icon-'+imgNumber+'').classList.remove("active");
+        document.querySelector('#words-list').querySelector('#favorite-icon-'+imgNumber+'').src = "images/favorite-icon.png";
+        document.querySelector('#append-words-favorite').querySelector('#word-line-'+imgNumber+'').remove();
+    }
 }
 
 function RemoveWords(removeLocation) {
@@ -136,7 +143,6 @@ function RemoveWords(removeLocation) {
     }
 }
 
-var savedWords = [];
 var favoriteWordsVisible = false;
 
 function ShowFavorites() {

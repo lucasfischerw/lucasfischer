@@ -241,6 +241,11 @@ function ChangeImg(imgNumber) {
         document.getElementById("favorite-icon-"+ imgNumber +"").classList.add("active");
         localStorage.setItem("favorite-icon-"+ imgNumber +"", 1);
     }
+    if(favoriteWordsVisible) {
+        document.querySelector('#words-list').querySelector('#favorite-icon-'+imgNumber+'').classList.remove("active");
+        document.querySelector('#words-list').querySelector('#favorite-icon-'+imgNumber+'').src = "images/favorite-icon.png";
+        document.querySelector('#append-words-favorite').querySelector('#word-line-'+imgNumber+'').remove();
+    }
 }
 
 var savedWords = [];
