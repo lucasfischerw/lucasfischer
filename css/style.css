@@ -395,7 +395,7 @@ h1 {
     top: 40%;
     cursor: pointer;
     opacity: 0;
-    transition: opacity .3s ease, transform .1s ease;
+    transition: opacity .3s ease, transform .2s ease;
 }
 
 .first-arrow {
