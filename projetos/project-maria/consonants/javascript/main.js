@@ -105,11 +105,11 @@ function ChangeImg(imgNumber, pageNumber, index) {
         if(document.getElementById("specific-content-"+lastActiveButton+"").querySelector("#favorite-icon-"+ imgNumber +"").classList.contains("active")) {
             document.getElementById("specific-content-"+lastActiveButton+"").querySelector("#favorite-icon-"+ imgNumber +"").src = "images/favorite-icon.png"
             document.getElementById("specific-content-"+lastActiveButton+"").querySelector("#favorite-icon-"+ imgNumber +"").classList.remove("active");
-            localStorage.removeItem("favorite-icon-"+ imgNumber +"");
+            localStorage.removeItem("favorite-icon-"+ imgNumber +"-"+pageNumber+"");
         } else {
             document.getElementById("specific-content-"+lastActiveButton+"").querySelector("#favorite-icon-"+ imgNumber +"").src = "images/favorite-icon-active.png"
             document.getElementById("specific-content-"+lastActiveButton+"").querySelector("#favorite-icon-"+ imgNumber +"").classList.add("active");
-            localStorage.setItem("favorite-icon-"+ imgNumber +"", 1);
+            localStorage.setItem("favorite-icon-"+ imgNumber +"-"+pageNumber+"", 1);
         }
     }
 }
@@ -150,3 +150,17 @@ function PlaySound(soundNumber) {
         video.load();
     }
 }
+
+setTimeout(() => {
+    var childs;
+    var pages = document.getElementsByClassName("specific-content");
+    for (let index = 0; index < pages.length; index++) {
+        childs = document.getElementById("specific-content-"+index+"").querySelector("#words-list").getElementsByClassName("word-line");
+        for (let i = 0; i < childs.length; i++) {
+            if(localStorage.getItem("favorite-icon-"+ i +"-"+index+"") == 1) {
+                document.getElementById("specific-content-"+index+"").querySelector("#favorite-icon-"+ i +"").src = "images/favorite-icon-active.png"
+                document.getElementById("specific-content-"+index+"").querySelector("#favorite-icon-"+ i +"").classList.add("active");
+            }
+        }
+    }
+}, 200);
