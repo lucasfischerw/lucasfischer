@@ -28,7 +28,7 @@ function WriteWords(i, underlineLetter, underlineBRE, appendLocation, word, page
 
     var breElement = document.createElement("span");
     breElement.setAttribute("class", "center");
-    breElement.innerHTML = document.getElementById("bre-wrapper-"+i+"").querySelector(".center").innerHTML;
+    breElement.innerHTML = document.getElementById("specific-content-"+page+"").querySelector("#bre-wrapper-"+i+"").querySelector(".center").innerHTML;
 
     var speakerIconBRE = document.createElement("img");
     speakerIconBRE.setAttribute("onclick", "SpeakWord("+ index +")");
@@ -36,7 +36,7 @@ function WriteWords(i, underlineLetter, underlineBRE, appendLocation, word, page
 
     var translation = document.createElement("p");
     translation.setAttribute("class", "center");
-    translation.innerHTML = document.getElementById("word-line-"+i+"").querySelector(".center").innerHTML;
+    translation.innerHTML = document.getElementById("specific-content-"+page+"").querySelector("#word-line-"+i+"").querySelector(".center").innerHTML;
     
     document.getElementById(appendLocation).appendChild(wordContainer);
     document.getElementById("word-line-"+ index +"").appendChild(wordWrapper);
@@ -145,6 +145,8 @@ function PlaySound(soundNumber) {
     audio.play();
     var video = document.getElementById("specific-content-"+lastActiveButton+"").querySelector('#video');
     var source = document.getElementById("specific-content-"+lastActiveButton+"").querySelector('#source');
-    source.setAttribute('src', "video_consonants/"+ audioName +".mp4");
-    video.load();
+    if(!source.src.includes(""+ audioName +".mp4")) {
+        source.setAttribute('src', "video_consonants/"+ audioName +".mp4");
+        video.load();
+    }
 }
