@@ -36,7 +36,7 @@ function WriteWords(i, underlineLetter, underlineBRE, appendLocation, word, page
 
     var translation = document.createElement("p");
     translation.setAttribute("class", "center");
-    translation.innerHTML = document.getElementById("specific-content-"+page+"").querySelector("#word-line-"+i+"").querySelector(".center").innerHTML;
+    translation.innerHTML = document.getElementById("specific-content-"+page+"").querySelector("#word-line-"+i+"").querySelectorAll(".center")[2].innerHTML;
     
     document.getElementById(appendLocation).appendChild(wordContainer);
     document.getElementById("word-line-"+ index +"").appendChild(wordWrapper);
