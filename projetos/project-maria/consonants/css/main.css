@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+video {
+    border-radius: 10px;
+    margin: 0 30px 20px 0;
+}
+
+body {
+    color: white;
+    background: rgb(0,0,0);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #190026 0%, #350050 68%, #86299c 100%); 
+}
+
+.main-container {
+    background-color: #1E1E1E;
+    border-radius: 15px;
+    width: 1200px;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 50px auto 15px auto;
+}
+
+.title-page {
+    font-family: 'Didact Gothic', sans-serif;
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.menu-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    cursor: pointer;
+    z-index: 99;
+}
+
+.sidebar-menu {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    background-color: #171717;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 999;
+    transition: left .3s ease;
+}
+
+.sidebar-menu a {
+    padding: 10px;
+    margin: 10px 50px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    margin: 0 !important;
+}
+
+.upper-menu-selection {
+    width: auto;
+    height: 40px;
+    background-color: #171717;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.menu-button {
+    line-height: 100%;
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: whitesmoke;
+    padding: 10px 15px;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+}
+
+.letter-active {
+    background-color: #76218d;
+    color: white;
+}
+
+.specific-content {
+    height: calc(100% - 40px);
+    padding: 80px 10px 40px 10px;
+    display: none;
+}
+
+#specific-content-0 {
+    display: flex;
+}
+
+.sounds-section {
+    width: 20%;
+    height: 100%;
+}
+
+.sound-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 15px;
+}
+
+.sound-container img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.video-section h2 {
+    margin-top: 20px;
+}
+
+.video-section h3 {
+    margin-top: 5px;
+}
+
+.word-line {
+    display: grid;
+    grid-template-columns: 225px 225px 225px;
+    padding: 10px 0;
+}
+
+.center {
+    text-align: left;
+}
+
+.flex-title {
+    display: flex;
+    gap: 15px;
+}
+
+.flex-title img {
+    height: 35px;
+    width: 35px;
+}
+
+.word-wrapper,
+.bre-wrapper {
+    display: flex;
+    line-height: 30px;
+    gap: 10px;
+}
+
+.word-wrapper img,
+.bre-wrapper img {
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.word-wrapper img {
+    width: 30px;
+    height: 30px;
+}
+
+.bre-wrapper img {
+    width: 25px;
+    height: 25px;
+}
+
+.show-favorites {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.show-favorites img {
+    width: 30px;
+}
+
+.favorite-words {
+    background-color: #171717;
+    width: 710px;
+    height: 680px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    border-radius: 15px;
+    display: none;
+    overflow-y: scroll;
+}
+
+.title-favorite {
+    text-align: center;
+    padding: 15px;
+}
+
+.favorite-words a {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+
+#append-words-favorite {
+    width: fit-content;
+    margin: 10px 0 0 auto;
+}
+
+.words-list::-webkit-scrollbar,
+.favorite-words::-webkit-scrollbar {
+    width: 7px;
+    background-color: rgb(0, 0, 0, 0);
+ }
+
+ .words-list::-webkit-scrollbar-thumb,
+ .favorite-words::-webkit-scrollbar-thumb {
+    background-color: white;
+    height: 90px;
+    border: 15px rgba(0, 0, 0, 0);
+    border-style: solid none solid none;
+    background-clip: padding-box;
+ }
