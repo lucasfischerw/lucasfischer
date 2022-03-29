@@ -69,6 +69,8 @@ body {
     margin: 10px 50px;
     cursor: pointer;
     text-align: center;
+    color: white;
+    text-decoration: none;
 }
 
 .close-btn {

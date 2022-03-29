@@ -243,6 +243,8 @@ span {
     margin: 10px 50px;
     cursor: pointer;
     text-align: center;
+    text-decoration: none;
+    color: white;
 }
 
 .close-btn {
