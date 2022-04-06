@@ -153,9 +153,11 @@ function UpdateWords(buttonNumber) {
                 word.innerHTML = array[index];
                 if(array[index].length < 2) {
                     document.getElementById("graph-title").style.display = "block";
+                    document.getElementById("graph-title").setAttribute("data-content", "In linguistics, a grapheme is the smallest unit of a writing system of any given language.[1] An individual grapheme may or may not carry meaning by itself, and may or may not correspond to a single phoneme of the spoken language.")
                     document.getElementById("graph").appendChild(word);
                 } else {
                     document.getElementById("digraph-title").style.display = "block";
+                    document.getElementById("digraph-title").setAttribute("data-content", 'A digraph or digram (from the Greek: δίς dís, "double" and γράφω gráphō, "to write") is a pair of characters used in the orthography of a language to write either a single phoneme (distinct sound), or a sequence of phonemes that does not correspond to the normal values of the two characters combined.')
                     document.getElementById("digraph").appendChild(word);
                 }
             }
