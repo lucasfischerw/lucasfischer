@@ -22,4 +22,11 @@ function Change() {
 }
 
 //Load default value saved in storage
-document.getElementById(Object.keys(localStorage)[0]).checked = "true";
+for (let i = 0; i < localStorage.length; i++) {
+    for (let index = 0; index < savedIDS.length; index++) {
+        if(Object.keys(localStorage)[i] == savedIDS[index]) {
+            document.getElementById(Object.keys(localStorage)[i]).checked = "true";
+            break;
+        }
+    }
+}
