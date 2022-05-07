@@ -114,3 +114,9 @@ input:focus {
         transform: none;
     }
 }
+
+@media(max-width: 510px) {
+    .contdown-updater {
+        grid-template-columns: 100px 100px;
+    }
+}
