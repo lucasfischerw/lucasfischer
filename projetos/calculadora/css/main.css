@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+}
+
+html, body {
+    overflow-x: hidden;
+	scroll-behavior: smooth;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	position: relative;
+    background: rgb(10,49,64);
+    background: linear-gradient(90deg, rgba(10,49,64,1) 0%, rgba(34,92,115,1) 50%, rgba(75,140,166,1) 100%);
+    z-index: 0;
+    min-height: 100vh;
+}
+
+.main-container-calculator {
+    width: min(400px, 90%);
+    background-color: #1f2120a6;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.visor {
+    width: 95%;
+    height: 70px;
+    margin: 10px 2.5%;
+    border-radius: 10px;
+    background-color: #1f2120a6;
+    position: relative;
+}
+
+.visor p {
+    margin: 8px;
+    text-align: right;
+}
+
+.actual-number {
+    font-size: 22px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.results {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.button {
+    width: 80px;
+    height: 60px;
+    background-color: #3B3B3B;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 60px;
+    position: relative;
+    transition: .15s transform ease;
+}
+
+.button:active {
+    transform: scale(0.9);
+}
+
+.button img {
+    width: 40%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.line {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 15px 0;
+}
