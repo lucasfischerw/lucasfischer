@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+}
+
+a {
+    color: black;
+}
+
+html, body {
+    overflow-x: hidden;
+	scroll-behavior: smooth;
+    font-family: 'Raleway', sans-serif;
+}
+
+.upper-navigation-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    backdrop-filter: blur(10px);
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navigation-buttons a {
+    cursor: pointer;
+}
+
+.main-page {
+    height: 100vh;
+    background-image: url(images/main-background-image-2.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.featured-cars-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 50px 20px;
+}
+
+.featured-cars-section > * {
+    flex: 0 0 min(350px, 100%);
+}
+
+.car-card {
+    background-color: #f1f1f1;
+    text-align: center;
+    height: fit-content;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.car-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.car-card h2 {
+    padding: 10px;
+}
+
+.car-card h4 {
+    color: gray;
+}
+
+.about-us-floating-menu,
+.contact-menu {
+    width: min(800px, 90%);
+    background-color: rgba(255, 255, 255, .8);
+    backdrop-filter: blur(10px);
+    padding: 0px 25px 25px 25px;
+    border-radius: 10px;
+    font-family: 'Didact Gothic', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about-us-floating-menu h1,
+.contact-menu h1 {
+    text-align: center;
+    padding: 10px;
+}
+
+.about-us-floating-menu p {
+    padding-bottom: 10px;
+}
+
+.flex {
+    display: flex;
+    gap: 15px;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: none;
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.informations-main-page {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 7%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.buttons-main-page {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.btn-main-page {
+    padding: 15px 20px;
+    background-color: rgba(255, 255, 255, .8);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+}

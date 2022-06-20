@@ -53,9 +53,6 @@ window.addEventListener("scroll", () => {
     if(Project_Is_Open) {
         Fechar_Projeto(false);
     }
-    // var x = ((100*(window.scrollY))/document.body.offsetHeight);
-    // console.log(x);
-    // document.getElementById("bg-image").style.filter = "hue-rotate("+4*x+"deg)"
 });
 
 location.href = "#home";
@@ -88,10 +85,10 @@ function Scroll_Arrow() {
 var Possible_To_Change_Project = true;
 var Project_Open = 0;
 var Project_Is_Open = false;
-var Images_Link = ["gewinner.jpg", "memoria.jpg", "genius.jpg", "apostador.jpg", "tarefas.jpg", "tdah.jpg", "traveller.jpg", "countdown.png"];
-var Redirect_Links = ["https://lucasfischer.com.br/gewinner", "https://lucasfischer.com.br/projetos/memoria", "https://lucasfischer.com.br/projetos/genius", "https://lucasfischer.com.br/projetos/apostador", "https://lucasfischer.com.br/projetos/tarefas", "https://lucasfischer.com.br/projetos/tdah", "https://lucasfischer.com.br/projetos/gulliver-traveller", "https://lucasfischer.com.br/projetos/countdown"];
-var Titles = ["Equipe Gewinner", "Memória", "Genius", "Apostador", "Tarefas", "Ajuda TDAH", "Gulliver Traveller", "Contagem Regressiva"];
-var Descriptions = ["Site desenvolvido por mim para mostrar um pouco da minha trajetória pela Robótica.", "Teste suas habilidades nesse Desafio da Memória de Frutas! Muito fácil? Aumente a dificuldade no menu!", "Coloque sua mente a prova nessa réplica de Genius! Preste atenção na sequência de cores e tente replicar sua ordem.", "Par ou Ímpar? Faça sua aposta e selecione a quantia que deseja apostar. Aí é só torcer para você acertar!", "Projeto desenvolvido durante o EAD para ajudar os alunos na organização escolar. Veja suas tarefas, avaliações e horários.", "Projeto desenvolvido em aula, tendo como objetivo direcionar as pessoas a buscarem ajuda contra o TDAH", "Projeto desenvolvido para um cliente, que solicitou a criação de um formulário para seu trabalho", "Projeto desenvolvido para um cliente, tendo como objetivo criar uma contagem regressiva para o último dia de aula de sua turma"]
+var Images_Link = ["gewinner.jpg", "memoria.jpg", "genius.jpg", "apostador.jpg", "tarefas.jpg", "tdah.jpg", "traveller.jpg", "countdown.png", "dumpy-fruit.jpg", "calculadora.jpg", "ain-leasing.jpg"];
+var Redirect_Links = ["https://lucasfischer.com.br/gewinner", "https://lucasfischer.com.br/projetos/memoria", "https://lucasfischer.com.br/projetos/genius", "https://lucasfischer.com.br/projetos/apostador", "https://lucasfischer.com.br/projetos/tarefas", "https://lucasfischer.com.br/projetos/tdah", "https://lucasfischer.com.br/projetos/gulliver-traveller", "https://lucasfischer.com.br/projetos/countdown", "https://lucasfischer.com.br/projetos/dumpy-fruit", "https://lucasfischer.com.br/projetos/calculadora", "https://lucasfischer.com.br/projetos/ain-leasing"];
+var Titles = ["Equipe Gewinner", "Memória", "Genius", "Apostador", "Tarefas", "Ajuda TDAH", "Gulliver Traveller", "Contagem Regressiva", "Dumpy Fruit", "Calculadora (dev)", "AIN - Leasing"];
+var Descriptions = ["Site desenvolvido por mim para mostrar um pouco da minha trajetória pela Robótica.", "Teste suas habilidades nesse Desafio da Memória de Frutas! Muito fácil? Aumente a dificuldade no menu!", "Coloque sua mente a prova nessa réplica de Genius! Preste atenção na sequência de cores e tente replicar sua ordem.", "Par ou Ímpar? Faça sua aposta e selecione a quantia que deseja apostar. Aí é só torcer para você acertar!", "Projeto desenvolvido durante o EAD para ajudar os alunos na organização escolar. Veja suas tarefas, avaliações e horários.", "Projeto desenvolvido em aula, tendo como objetivo direcionar as pessoas a buscarem ajuda contra o TDAH", "Projeto desenvolvido para um cliente, que solicitou a criação de um formulário para seu trabalho", "Projeto desenvolvido para um cliente, tendo como objetivo criar uma contagem regressiva para o último dia de aula de sua turma", "Projeto desenvolvido para a divilgação de um servidor de jogos na comunidade do Discord", "Simples calculadora que está sendo desenvolvida para realizar operações matemáticas", "Projeto desenvolvido para um cliente, simulando uma loja de aluguel de carros"]
 
 function Open_Project(Project_Number) {
     if(!Project_Is_Open) {
@@ -169,7 +166,7 @@ function Fechar_Projeto(Voltar_A_Posicao) {
 function Next() {
     if(Possible_To_Change_Project) {
         Possible_To_Change_Project = false;
-        if(Project_Open == 7) {
+        if(Project_Open == 10) {
             Project_Open = 0;
         } else {
             Project_Open += 1;
@@ -202,7 +199,7 @@ function Previous() {
     if(Possible_To_Change_Project) {
         Possible_To_Change_Project = false;
         if(Project_Open == 0) {
-            Project_Open = 7;
+            Project_Open = 10;
         } else {
             Project_Open -= 1;
         }
@@ -229,6 +226,3 @@ function Previous() {
         }, 200);
     }
 }
-
-var _docHeight = (document.height !== undefined) ? document.height : document.body.offsetHeight;
-var scroll = window.pageYOffset;

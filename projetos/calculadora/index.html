@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="main-container-calculator">
+        <div class="visor">
+            <div class="results">
+                <p class="previous-result" id="previous-result"></p>
+                <p class="actual-number" id="actual-number">0</p>
+            </div>
+        </div>
+        <div class="buttons-grid">
+            <div class="line">
+                <h2 class="button">C</h2>
+                <h2 class="button">CE</h2>
+                <h2 class="button" onclick="Delete()"><img src="delete-icon.png"></h2>
+                <h2 class="button" onclick="Operation('/')">/</h2>
+            </div>
+            <div class="line">
+                <h2 class="button" onclick="ClickedNumber(7)">7</h2>
+                <h2 class="button" onclick="ClickedNumber(8)">8</h2>
+                <h2 class="button" onclick="ClickedNumber(9)">9</h2>
+                <h2 class="button" onclick="Operation('*')">X</h2>
+            </div>
+            <div class="line">
+                <h2 class="button" onclick="ClickedNumber(4)">4</h2>
+                <h2 class="button" onclick="ClickedNumber(5)">5</h2>
+                <h2 class="button" onclick="ClickedNumber(6)">6</h2>
+                <h2 class="button" onclick="Operation('-')">-</h2>
+            </div>
+            <div class="line">
+                <h2 class="button" onclick="ClickedNumber(1)">1</h2>
+                <h2 class="button" onclick="ClickedNumber(2)">2</h2>
+                <h2 class="button" onclick="ClickedNumber(3)">3</h2>
+                <h2 class="button" onclick="Operation('+')">+</h2>
+            </div>
+            <div class="line">
+                <h2 class="button">+/-</h2>
+                <h2 class="button" onclick="ClickedNumber(0)">0</h2>
+                <h2 class="button" onclick="ClickedNumber('.')">.</h2>
+                <h2 class="button" onclick="Result()">=</h2>
+            </div>
+        </div>
+    </div>
+    <script src="javascript/main.js"></script>
+</body>
+</html>
