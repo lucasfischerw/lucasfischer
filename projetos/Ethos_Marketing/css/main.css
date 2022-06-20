@@ -1,0 +1,476 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+}
+
+html,
+body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+a {
+    color: black;
+}
+
+img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.upper-menu {
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    position: fixed;
+    z-index: 999;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15em;
+    transition: .25s background-color ease;
+    color: white !important;
+}
+
+.upper-menu a img {
+    height: 100px;
+}
+
+.navigation-items {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    position: relative;
+}
+
+.underline-animate {
+    display: inline-block;
+    position: relative;
+    transition: .25s letter-spacing ease;
+    padding: 5px;
+}
+
+.section {
+    position: relative;
+}
+
+.underline-animate::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 100vw;
+    background-color: #000000;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: .25s transform ease-out, .25s color ease-out;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .underline-animate:hover::after {
+        transform: scaleX(1);
+    }
+    .underline-animate:hover {
+        letter-spacing: 3px;
+    }
+}
+
+.underline-animate:active::after {
+    transform: scaleX(0);
+}
+
+.underline-animate:focus::after,
+.active::after {
+    transform: scaleX(1);
+}
+
+.main-page {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.text-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    padding: 10px 25px;
+    color: black;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.text-section a {
+    padding: 8px 15px;
+    background-color: rgba(0, 0, 0, .4);
+    width: fit-content;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    color: white;
+}
+
+:root {
+    --bar-bg: #212529;
+}
+
+.menu-icon {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.menu-icon .menu-icon__cheeckbox {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    z-index: 2;
+    -webkit-touch-callout: none;
+    position: absolute;
+    opacity: 0;
+}
+
+.menu-icon div {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 22px;
+    height: 12px;
+}
+
+.menu-icon span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--bar-bg, #000);
+    border-radius: 1px;
+    transition: all 0.2s cubic-bezier(0.1, 0.82, 0.76, 0.965);
+}
+
+.menu-icon span:first-of-type {
+    top: 0;
+}
+
+.menu-icon span:last-of-type {
+    bottom: 0;
+}
+
+.menu-icon.active span:first-of-type,
+.menu-icon .menu-icon__cheeckbox:checked+div span:first-of-type {
+    transform: rotate(45deg);
+    top: 5px;
+}
+
+.menu-icon.active span:last-of-type,
+.menu-icon .menu-icon__cheeckbox:checked+div span:last-of-type {
+    transform: rotate(-45deg);
+    bottom: 5px;
+}
+
+.menu-icon.active:hover span:first-of-type,
+.menu-icon.active:hover span:last-of-type,
+.menu-icon:hover .menu-icon__cheeckbox:checked+div span:first-of-type,
+.menu-icon:hover .menu-icon__cheeckbox:checked+div span:last-of-type {
+    width: 22px;
+}
+
+@media (min-width: 1024px) {
+    .menu-icon:hover span:first-of-type {
+        width: 26px;
+    }
+
+    .menu-icon:hover span:last-of-type {
+        width: 12px;
+    }
+}
+
+.desktop {
+    display: none !important;
+}
+
+@media(min-width: 700px) {
+    .desktop {
+        display: inline-block !important;
+    }
+    .menu-icon {
+        display: none;
+    }
+}
+
+.sidebar {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    right: -250px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15em;
+    z-index: 99;
+    gap: 25px;
+    transition: right .25s ease 0s;
+}
+
+.text-welcome {
+    transition: all .25s ease;
+}
+
+.text-welcome:nth-child(2),
+.text-welcome:nth-child(3) {
+    display: none;
+    opacity: 0;
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+
+}
+
+.circles li:nth-child(1) {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+
+.circles li:nth-child(2) {
+    left: 10%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 2s;
+    animation-duration: 12s;
+}
+
+.circles li:nth-child(3) {
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+    left: 40%;
+    width: 60px;
+    height: 60px;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+    left: 65%;
+    width: 20px;
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.circles li:nth-child(6) {
+    left: 75%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+    left: 35%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+    left: 50%;
+    width: 25px;
+    height: 25px;
+    animation-delay: 15s;
+    animation-duration: 45s;
+}
+
+.circles li:nth-child(9) {
+    left: 20%;
+    width: 15px;
+    height: 15px;
+    animation-delay: 2s;
+    animation-duration: 35s;
+}
+
+.circles li:nth-child(10) {
+    left: 85%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 11s;
+}
+
+
+
+@keyframes animate {
+
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+
+.arrow-down {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: Arrow 1.5s infinite;
+}
+
+.arrow-down img {
+    width: 40px;
+    cursor: pointer;
+}
+
+@keyframes Arrow {
+    0%{bottom: 30px;}
+    50%{bottom: 10px;}
+    100%{bottom: 30px;}
+}
+
+.client {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 300px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 20px 0;
+}
+
+.client img {
+    width: 230px;
+    margin: auto;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.about,
+.costumer,
+.job {
+    padding: 100px 25px 0 25px;
+}
+
+.grid-about {
+    display: grid;
+    grid-template-columns: calc(50% - 20px) calc(50% - 20px);
+    gap: 40px;
+    text-align: justify;
+    margin-left: 40px;
+}
+
+.about h1,
+.costumer h1,
+.job h1 {
+    color: #a52a2a;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 100px;
+}
+
+.line {
+    position: absolute;
+    height: calc(100% - 230px);
+    width: 5px;
+}
+
+.about a,
+.job a {
+    color: #a52a2a;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 25px;
+    cursor: pointer;
+    position: absolute;
+    top: 150px;
+    right: 25px;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.contact a img {
+    width: 45px;
+    cursor: pointer;
+}
+
+.contact h2:hover {
+    color: #a52a2a;
+}
+
+.contact div {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    bottom: 100px;
+}
