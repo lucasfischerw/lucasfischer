@@ -273,9 +273,6 @@ img {
     position: absolute;
     display: block;
     list-style: none;
-    width: 20px;
-    height: 20px;
-    background: rgba(0, 0, 0, 0.2);
     animation: animate 25s linear infinite;
     bottom: -150px;
 
@@ -430,22 +427,6 @@ img {
     font-size: 80px;
     font-family: 'DM Sans', sans-serif;
     font-weight: 100;
-}
-
-.line {
-    position: absolute;
-    height: calc(100% - 230px);
-    width: 5px;
-}
-
-.job a {
-    color: #a52a2a;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 25px;
-    cursor: pointer;
-    position: absolute;
-    top: 150px;
-    right: 25px;
 }
 
 .contact {

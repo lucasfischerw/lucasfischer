@@ -27,9 +27,21 @@
     <title>About - Ethos Marketing</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            list-style: none;
+            -webkit-tap-highlight-color: transparent;
+            text-decoration: none;
+        }
+        html,
         body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
             font-family: 'Red Hat Display', sans-serif;
-            padding: 120px 40px;
         }
         h1 {
             font-size: 80px;
@@ -43,6 +55,7 @@
             width: 100vw;
             position: fixed;
             top: 0;
+            z-index: 999999;
             background-color: white;
         }
         .upper-menu img {
@@ -52,33 +65,300 @@
             position: absolute;
             top: 120px;
             z-index: -1;
-            right: 150px;
+            left: 0;
+            transform: translateX(-50%);
         }
         .decoration-2 {
             position: absolute;
             top: 500px;
             z-index: -1;
-            right: 550px;
+            right: -20px;
+        }
+        .decoration-3 {
+            z-index: -1;
+            z-index: 99;
+        }
+        .decoration-3:hover {
+            animation: Rotate 2s infinite;
+        }
+        @keyframes Rotate {
+            from{transform: rotate(0deg);}
+            to{transform: rotate(360deg);}
+        }
+        .section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .second-section {
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 100px 35px;
+            gap: 25px;
+        }
+        @media(min-width: 1280px) {
+            .second-section {
+                flex-direction: row;
+                justify-content: center;
+                gap: 50px;
+            }
+        }
+        .second-section h1 {
+            text-align: center;
+            max-width: 400px;
+            font-size: min(4em, 10vw);
+        }
+        .second-section p {
+            font-size: 1em;
+            max-width: 400px;
+        }
+        .circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+
+        }
+
+        .circles li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+
+        .circles li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+
+        .circles li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+
+        .circles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .circles li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+
+        .circles li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+
+        .circles li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+
+        .circles li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+
+        .circles li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+
+        .circles li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+
+        }
+        .arrow-down {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: Arrow 1.5s infinite;
+        }
+
+        .arrow-down img {
+            width: 40px;
+            cursor: pointer;
+        }
+
+        @keyframes Arrow {
+            0%{bottom: 30px;}
+            50%{bottom: 10px;}
+            100%{bottom: 30px;}
         }
     </style>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
     <div class="upper-menu" id="upper-menu">
         <a href="index.html"><img src="./images/Ethos.png" alt="Logo"></a>
     </div>
-    <form>
-        <h1>Genkendeligt koncept med en moderne tilgang</h1>
-        <p>Vi har formidlet idéer og strategier, før det kom på mode</p>
+    <div class="section">
+        <h1 style="z-index: 99; text-align: center;" data-aos="fade-up">Om Historie</h1>
+        <p style="z-index: 99; text-align: center;" data-aos="fade" data-aos-delay="300">Vi har formidlet idéer og strategier, før det kom på mode</p>
+        <ul class="circles">
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.719 191.702">
+                    <path id="Path_119" data-name="Path 119"
+                        d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                        transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+                    <path id="Path_120" data-name="Path 120"
+                        d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
+                        transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.719 191.702">
+                    <path id="Path_119" data-name="Path 119"
+                        d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                        transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+                    <path id="Path_120" data-name="Path 120"
+                        d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
+                        transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.719 191.702">
+                    <path id="Path_119" data-name="Path 119"
+                        d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                        transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+                    <path id="Path_120" data-name="Path 120"
+                        d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
+                        transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.719 191.702">
+                    <path id="Path_119" data-name="Path 119"
+                        d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                        transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+                    <path id="Path_120" data-name="Path 120"
+                        d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
+                        transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.719 191.702">
+                    <path id="Path_119" data-name="Path 119"
+                        d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                        transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                </svg>
+            </li>
+            <li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+                    <path id="Path_120" data-name="Path 120"
+                        d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
+                        transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
+                </svg>
+            </li>
+        </ul>
+        <div class="arrow-down">
+            <a href="#second-section"><img src="images/arrow-down.png"></a>
+        </div>
+    </div>
+    <div id="second-section" class="section second-section">
+        <h1 data-aos="fade-right">Vores Måde/tilgang</h1>
         <svg class="decoration-1" xmlns="http://www.w3.org/2000/svg" width="193.719" height="191.702" viewBox="0 0 193.719 191.702">
             <path id="Path_119" data-name="Path 119"
                 d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
-                transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                transform="translate(-19166.111 -4987.899)" fill="#BED13D" />
         </svg>
-        <svg class="decoration-2" xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
-            <path id="Path_120" data-name="Path 120"
-                d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
-                transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
+        <svg class="decoration-2" xmlns="http://www.w3.org/2000/svg" width="80" height="191.702" viewBox="0 0 193.719 191.702">
+            <path id="Path_119" data-name="Path 119"
+                d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                transform="translate(-19166.111 -4987.899)" fill="#BED13D" />
         </svg>
-    </form>
+        <div data-aos="fade">
+            <svg class="decoration-3" xmlns="http://www.w3.org/2000/svg" width="120" height="191.702" viewBox="0 0 193.719 191.702">
+                <path id="Path_119" data-name="Path 119"
+                    d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                    transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+            </svg>
+        </div>
+        <p data-aos="fade-left">Vi har omarbejdet det traditionelle marketingshiraki og arbejdsgang, ved at skabe en åben kultur,
+            med marketing- og projektorienteret løsninger for vores kunder. Vores bedste arbejde ser ud og
+            føles anderledes, fordi vi ikke blot sælger, vi leverer værdifulde oplevelser. Vi udnytter årtiers
+            redaktionelt skarpsind til at skabe overbevisende og case-drevet resultater, der gør et varigt
+            aftryk. Fordi gode kunder vender tilbage, har vi derfor kundeoplevelse og kommunikation som
+            kunstart - det er holdbart. Det er en grundlæggende mulighed for at forbinde og opbygge
+            fællesskab med et eftertragtet kundegrundlag.</p>
+    </div>
+    <script src="javascript/main.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
