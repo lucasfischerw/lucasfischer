@@ -31,6 +31,39 @@ img {
     user-select: none;
 }
 
+.loading {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: opacity 1s ease;
+}
+
+.loading svg {
+    position: absolute;
+    left: 0;
+    top: -50px;
+    width: 100vw;
+    height: calc(100vh + 100px);
+    z-index: -1;
+    animation: Loading_Circle 2s infinite;
+}
+
+@keyframes Loading_Circle {
+    0%{transform: scale(1) rotate(0deg);}
+    50%{transform: scale(.98) rotate(5deg);}
+    100%{transform: scale(1) rotate(0deg);}
+}
+
+.main-section-load {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
 .upper-menu {
     background-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(10px);
@@ -122,7 +155,7 @@ img {
 }
 
 .text-section h1 {
-    font-size: 75px;
+    font-size: 85px;
     z-index: 9;
     font-weight: 100;
     text-align: center;
@@ -251,7 +284,7 @@ img {
 }
 
 .text-welcome {
-    transition: opacity .3s ease;
+    transition: opacity .8s ease;
 }
 
 .text-welcome:nth-child(2),
@@ -422,7 +455,7 @@ img {
     padding: 100px 25px 0 25px;
 }
 
-.job h1 {
+.about h1 {
     color: #000000;
     font-size: 80px;
     font-family: 'DM Sans', sans-serif;
@@ -518,19 +551,8 @@ img {
     transform: scale(1, 1);
 }
 
-.loading {
-    height: 100vh;
-    width: 100vw;
-    background-color: white;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999999;
-}
-
 .loading img {
-    width: 250px;
+    width: 350px;
     animation: LogoAnimation 2s infinite;
 }
 
@@ -562,7 +584,7 @@ img {
     text-align: center;
 }
 
-.job p {
+.about p {
     text-align: center;
     padding: 30px;
     max-width: 650px;
@@ -665,4 +687,38 @@ img {
     top: 0;
     left: 0;
     z-index: -1;
+}
+
+.job-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    width: min(90%, 400px);
+    background-color: rgba(228, 228, 228, 0.5);
+    border-radius: 10px;
+    padding: 0 0 20px 0;
+    cursor: pointer;
+    transition: background-color .25s ease;
+}
+
+.job-card:nth-child(1):hover {
+    background-color: #bdd13d84;
+}
+
+.job-card:nth-child(2):hover {
+    background-color: #9f8e7672;
+}
+
+.job-card img {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+
+.job {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
