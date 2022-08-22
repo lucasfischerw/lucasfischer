@@ -46,44 +46,15 @@ var teste = setInterval(() => {
     }, 850);
 }, 6360);
 
-setTimeout(() => {
-    document.getElementsByClassName("text-welcome")[0].style.opacity = "0"
-    setTimeout(() => {
-        document.getElementsByClassName("text-welcome")[0].style.display = "none"
-        document.getElementsByClassName("text-welcome")[1].style.display = "block"
-        setTimeout(() => {
-            document.getElementsByClassName("text-welcome")[1].style.opacity = "1"
-            setTimeout(() => {
-                document.getElementsByClassName("text-welcome")[1].style.opacity = "0"
-                setTimeout(() => {
-                    document.getElementsByClassName("text-welcome")[1].style.display = "none"
-                    document.getElementsByClassName("text-welcome")[2].style.display = "block"
-                    setTimeout(() => {
-                        document.getElementsByClassName("text-welcome")[2].style.opacity = "1"
-                        setTimeout(() => {
-                            document.getElementsByClassName("text-welcome")[2].style.opacity = "0"
-                            setTimeout(() => {
-                                document.getElementsByClassName("text-welcome")[2].style.display = "none"
-                                document.getElementsByClassName("text-welcome")[0].style.display = "block"
-                                setTimeout(() => {
-                                    document.getElementsByClassName("text-welcome")[0].style.opacity = "1"
-                                }, 20);
-                            }, 850);
-                        }, 850);
-                    }, 20);
-                }, 850);
-            }, 850);
-        }, 20);
-    }, 850);
-}, 1260);
-
-
 window.addEventListener("scroll", () => {
     if (window.scrollY < 20) {
         document.getElementById("upper-menu").style.height = "100px";
     } else {
         document.getElementById("upper-menu").style.height = "80px";
     }
+    document.getElementById("contact").style.backgroundColor = "rgba(219, 213, 201, "+ (1-(document.getElementById("contact").getBoundingClientRect().top/window.innerHeight))+")";
+    document.getElementById("gallery").style.backgroundColor = "rgba(219, 213, 201, "+ (1-(document.getElementById("contact").getBoundingClientRect().top/window.innerHeight))+")";
+    document.getElementById("upper-menu").style.backgroundColor = "rgba(219, 213, 201, "+ (1-(document.getElementById("contact").getBoundingClientRect().top/window.innerHeight))+")";
 });
 
 var ImagesSlides = [["./images/slide-1.jpg", "./images/slide-2.jpg"], ["./images/slide-2.jpg", "./images/slide-1.jpg"], ["./images/slide-1.jpg", "./images/slide-2.jpg"]]
@@ -112,4 +83,17 @@ function Previous() {
     document.getElementById("current-slide").innerHTML = "0" + CurrentSlide;
     document.getElementById("title-slides").innerHTML = TextSlides[CurrentSlide - 1][0];
     document.getElementById("text-slides").innerHTML = TextSlides[CurrentSlide - 1][1];
+}
+
+function Load() {
+    setTimeout(() => {
+        document.getElementById("loading").style.opacity = 0;
+        setTimeout(() => {
+            document.getElementById("loading").style.display = "none";
+            document.getElementById("main-section-load").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("main-section-load").style.opacity = "1";
+            }, 150);
+        }, 1000);
+    }, 3000);
 }

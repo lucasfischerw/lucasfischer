@@ -25,86 +25,56 @@
     <meta name="msapplication-TileImage" content="favicon/favicon-144.png">
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
     <title>Contact - Ethos Marketing</title>
+    <link href="css/main.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
-        body {
-            font-family: 'Red Hat Display', sans-serif;
-            padding: 120px 40px;
+        .upper-menu a img {
+            transition: .25s margin ease, .25s opacity ease;
         }
-        input {
-            padding: 8px;
-            border: none;
-            border-bottom: 2px solid rgb(165, 165, 165);
+        .logo:hover {
+            margin: 0 25px;
         }
-        input:focus {
-            outline: none;
-            border-bottom: 2px solid rgb(12, 189, 41);
-        }
-        textarea {
-            resize: none;
-            padding: 8px;
-            border-bottom: 1px solid rgb(165, 165, 165);
-            border-radius: 5px;
-            height: 300px;
-            width: 500px;
-        }
-        .line {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        .upper-menu {
-            height: 100px;
-            width: 100vw;
-            position: fixed;
-            top: 0;
-            background-color: white;
-        }
-        .upper-menu img {
-            height: 100px;
-        }
-        .decoration-1 {
-            position: absolute;
-            top: 120px;
-            z-index: -1;
-            right: 150px;
-        }
-        .decoration-2 {
-            position: absolute;
-            top: 500px;
-            z-index: -1;
-            right: 550px;
+        .home-button:hover .arrow-menu {
+            opacity: 1;
         }
     </style>
 </head>
-<body>
+<body class="main-body-contact">
     <div class="upper-menu" id="upper-menu">
-        <a href="index.html"><img src="./images/Ethos.png" alt="Logo"></a>
+        <a class="home-button" href="index.html">
+            <img class="arrow-menu" src="./images/arrow-down.png">
+            <img class="logo" src="./images/Ethos.png" alt="Logo">
+        </a>
     </div>
     <form>
-        <div class="line">
-            <h1>Hej! Jeg hedder</h1>
-            <input placeholder="Name">
+        <div style="z-index: 2;">
+            <h1 style="text-align: center;">Get In Touch</h1>
+            <div class="line">
+                <h1>Hej! Jeg hedder</h1>
+                <input placeholder="Name">
+            </div>
+            <div class="line">
+                <h1>Og jeg arbejder for</h1>
+                <input placeholder="Company">
+            </div>
+            <div class="line">
+                <h1>Du kan ringe til mig her</h1>
+                <input placeholder="Phone">
+            </div>
+            <div class="line">
+                <h1>Eller skriv en mail til mig her</h1>
+                <input placeholder="Email">
+            </div>
+            <div class="line">
+                <input class="message" placeholder="Message">
+            </div>
+            <a class="underline-animate contact-underline" href="contact.html" style="cursor: pointer;">Send &rarr;</a>
         </div>
-        <div class="line">
-            <h1>Og jeg arbejder for</h1>
-            <input placeholder="Company">
-        </div>
-        <div class="line">
-            <h1>Du kan ringe til mig her</h1>
-            <input placeholder="Phone">
-        </div>
-        <div class="line">
-            <h1>Eller skriv en mail til mig her</h1>
-            <input placeholder="Email">
-        </div>
-        <textarea placeholder="Message"></textarea>
-        <svg class="decoration-1" xmlns="http://www.w3.org/2000/svg" width="193.719" height="191.702" viewBox="0 0 193.719 191.702">
+        <svg class="decoration-contact-1" xmlns="http://www.w3.org/2000/svg" width="193.719" height="191.702" viewBox="0 0 193.719 191.702">
             <path id="Path_119" data-name="Path 119"
                 d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
                 transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
         </svg>
-        <svg class="decoration-2" xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+        <svg class="decoration-contact-2" xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
             <path id="Path_120" data-name="Path 120"
                 d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
                 transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
