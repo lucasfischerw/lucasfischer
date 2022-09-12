@@ -484,3 +484,245 @@ a {
     flex-direction: column;
     gap: 15px;
 }
+
+.index-body {
+    background: rgb(0, 78, 158);
+    background: radial-gradient(circle, rgba(0, 78, 158, 1) 0%, rgba(6, 66, 143, 1) 100%);
+    padding: 0;
+    position: relative;
+}
+
+.upper-munu-home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 10px;
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 99999999;
+    backdrop-filter: blur(10px);
+}
+
+.upper-munu-home img {
+    height: 80px;
+}
+
+.navigation {
+    display: flex;
+    gap: 25px;
+    font-size: 1.25em;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+}
+
+.navigation a {
+    color: white !important;
+}
+
+.main-section-index {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    color: white;
+    padding: 0 25px;
+    height: 100vh;
+    position: relative;
+}
+
+.main-section-index p {
+    font-size: 1.25em;
+    z-index: 99999;
+}
+
+.main-section-index h1 {
+    z-index: 99999;
+}
+
+.main-section-index img {
+    position: absolute;
+    right: 25px;
+    top: 100px;
+    width: 350px;
+    transition: filter .3s ease;
+}
+
+@media(max-width: 1000px) {
+    .main-section-index img {
+        filter: blur(10px) brightness(.5);
+    }
+}
+
+.try-out-button {
+    background-color: #00afe6;
+    width: fit-content;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px 20px;
+    border-radius: 100vw;
+    z-index: 99999;
+    cursor: pointer;
+}
+
+.section h1 {
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    margin: 35px auto;
+}
+
+.intro-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.intro-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+.intro-card img {
+    width: 135px;
+}
+
+iframe {
+    width: min(500px, 95%);
+}
+
+.youtube-video-container {
+    margin: 35px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.section {
+    position: relative;
+}
+
+#service img {
+    position: absolute;
+    width: 250px;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+#service img:nth-child(1) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+}
+
+#service img:nth-child(2) {
+    right: 50%;
+    top: 50%;
+    transform: translate(-50px, -50%);
+}
+
+#service img:nth-child(3) {
+    left: 50%;
+    top: 50%;
+    transform: translate(50px, -50%);
+}
+
+.description-text {
+    color: white;
+    font-size: 1.15em;
+    padding: 0 35px;
+    text-align: center;
+    max-width: 750px;
+    margin: auto;
+}
+
+.try-out-section {
+    padding: 35px;   
+}
+
+.navigation {
+    display: none;
+}
+
+@media(min-width: 530px) {
+    .navigation {
+        display: flex;
+    }
+    .menu-mobile {
+        display: none;
+    }
+}
+
+.menu-mobile a {
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: fixed;
+    top: 100px;
+    right: -200px;
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    z-index: 99999999;
+    backdrop-filter: blur(10px);
+    padding: 0 30px;
+    text-align: center;
+    transition: .3s ease right;
+}
+
+.sidebar a {
+    color: white;
+    font-size: 1.25em;
+    cursor: pointer;
+}
+
+.underline-animate {
+    position: relative;
+    width: fit-content;
+}
+
+.underline-animate::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    border-radius: 100vw;
+    background-color: #fff;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: .25s transform ease-out, .25s color ease-out;
+}
+
+@media(hover: hover) and (pointer: fine) {
+    .underline-animate:hover::after {
+        transform: scaleX(1);
+    }
+}
+
+.underline-animate:active::after {
+    transform: scaleX(0);
+}
+
+.underline-animate:focus::after,
+.active::after {
+    transform: scaleX(1);
+}

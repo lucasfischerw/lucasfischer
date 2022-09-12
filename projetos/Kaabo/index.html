@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaabo</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="/favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="/favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/favicon/favicon-144.png">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <link href="css/aos.css" rel="stylesheet">
+    <script src="javascript/aos.js"></script>
+</head>
+<body class="index-body">
+    <div class="upper-munu-home">
+        <img src="img/png-01.png">
+        <div class="navigation">
+            <a href="#intro" class="underline-animate">Introduction</a>
+            <a href="#service" class="underline-animate">Service</a>
+            <a class="try-out-button" href="sign-in.html">Try Out</a>
+        </div>
+        <div class="menu-mobile">
+            <a id="hamburguer-icon" onclick="OpenMenu()">&#9776;</a>
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <a class="underline-animate">Introduction</a>
+        <a class="underline-animate">Service</a>
+        <a class="underline-animate">Try Out</a>
+    </div>
+    <div class="main-section-index">
+        <h1 data-aos="fade-right">Explore, Connect and See the World!</h1>
+        <p data-aos="fade-right">Try out KAABO now and change the way you explore new adventures</p>
+        <a class="try-out-button" data-aos="fade" data-aos-delay="350" href="sign-in.html">Try Out Now</a>
+        <img data-aos="fade" data-aos-delay="350" src="./img/app-img.png">
+    </div>
+    <div class="section" id="intro">
+        <div>
+            <h1>What we do</h1>
+        </div>
+        <div class="intro-cards-container">
+            <div class="intro-card">
+                <img src="./img/bookmark-icon.png">
+                <h3>Text Title</h3>
+                <p>Description placeholder</p>
+            </div>
+            <div class="intro-card">
+                <img src="./img/bookmark-icon.png">
+                <h3>Text Title</h3>
+                <p>Description placeholder</p>
+            </div>
+            <div class="intro-card">
+                <img src="./img/bookmark-icon.png">
+                <h3>Text Title</h3>
+                <p>Description placeholder</p>
+            </div>
+        </div>
+        <div class="youtube-video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/K4TOrB7at0Y" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="section images" id="service">
+        <img src="./img/app-img.png">
+        <img src="./img/app-img-2.png">
+        <img src="./img/app-img-3.png">
+    </div>
+    <div class="section">
+        <p class="description-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+    <div class="section try-out-section">
+        <a href="sign-in.html">
+            <h1 class="underline-animate">Try it Out Now</h1>
+        </a>
+    </div>
+    <script>
+        AOS.init({ duration: 1000 });
+    </script>
+    <script>
+        var MenuOpen = false;
+        function OpenMenu() {
+            if(!MenuOpen) {
+                document.getElementById("sidebar").style.right = "10px";
+                document.getElementById("hamburguer-icon").innerHTML = "&#10006;"
+                MenuOpen = true;
+            } else {
+                document.getElementById("sidebar").style.right = "-200px";
+                document.getElementById("hamburguer-icon").innerHTML = "&#9776;"
+                MenuOpen = false;
+            }
+        }
+    </script>
+</body>
+</html>
