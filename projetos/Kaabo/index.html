@@ -76,9 +76,12 @@
             </div>
         </div>
         <div class="youtube-video-container" id="youtube-video-container">
-            <video autoplay loop>
+            <video autoplay loop muted id="vid">
                 <source src="./img/Demo Background Sample Video.mp4" type="video/mp4">
             </video>
+            <script>
+                document.getElementById('vid').play();
+            </script>
         </div>
     </div>
     <div class="section images" id="service">
