@@ -595,8 +595,8 @@ a {
     width: 135px;
 }
 
-iframe {
-    width: min(500px, 95%);
+video {
+    width: 100vw;
 }
 
 .youtube-video-container {
