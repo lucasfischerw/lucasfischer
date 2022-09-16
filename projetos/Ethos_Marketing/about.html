@@ -27,6 +27,10 @@
     <title>About - Ethos Marketing</title>
     <link href="css/main.css" rel="stylesheet">
     <style>
+        body {
+            opacity: 0;
+            transition: opacity .5s ease;
+        }
         h1 {
             font-size: 80px;
             max-width: 700px;
@@ -44,13 +48,18 @@
             gap: 15px;
         }
         .second-section {
+            padding: 100px 35px;
+            background: linear-gradient(180deg, rgba(237,233,232,0) 0%, rgba(237,233,232,1) 15%);
+        }
+        .flex-display-section {
+            display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 100px 35px;
+            align-items: center;
             gap: 25px;
         }
         @media(min-width: 1280px) {
-            .second-section {
+            .flex-display-section {
                 flex-direction: row;
                 gap: 50px;
             }
@@ -68,25 +77,42 @@
             transition: .25s margin ease, .25s opacity ease;
         }
         .logo:hover {
-            margin: 0 25px;
+            margin: 0 25px !important;
         }
         .home-button:hover .arrow-menu {
-            opacity: 1;
+            opacity: 1 !important;
+        }
+        #animate-title {
+            transform: scale(0.5);
+            transition: transform 1s ease;
+        }
+        #main-text-animate {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .letter-section {
+            margin: 50px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .signature {
+            text-align: right;
         }
     </style>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body>
+<body onload="Load()">
     <div class="upper-menu" id="upper-menu">
         <a class="home-button" href="index.html">
-            <img class="arrow-menu" src="./images/arrow-down.png">
-            <img class="logo" src="./images/Ethos.png" alt="Logo">
+            <img class="arrow-menu" id="arrow-menu" src="./images/arrow-down.png">
+            <img class="logo" id="logo" src="./images/Ethos.png" alt="Logo">
         </a>
     </div>
     <div class="section">
-        <h1 style="z-index: 99; text-align: center;font-size: 5em;" data-aos="fade-up">Om Historie</h1>
-        <p style="z-index: 99; text-align: center;font-size: 1.5em;" data-aos="fade" data-aos-delay="300">Vi har formidlet idéer og strategier, før det kom på mode</p>
+        <h1 id="animate-title" style="z-index: 99; text-align: center;font-size: 5em;">Om Historie</h1>
+        <p id="main-text-animate" style="z-index: 99; text-align: center;font-size: 1.5em;">Vi har formidlet idéer og strategier, før det kom på mode</p>
         <ul class="circles">
             <li>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 193.719 191.702">
@@ -164,31 +190,41 @@
         </div>
     </div>
     <div id="second-section" class="section second-section">
-        <h1 data-aos="fade-right">Vores Måde/tilgang</h1>
-        <svg class="decoration-about-1" xmlns="http://www.w3.org/2000/svg" width="193.719" height="191.702" viewBox="0 0 193.719 191.702">
-            <path id="Path_119" data-name="Path 119"
-                d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
-                transform="translate(-19166.111 -4987.899)" fill="#BED13D" />
-        </svg>
-        <svg class="decoration-about-2" xmlns="http://www.w3.org/2000/svg" width="80" height="191.702" viewBox="0 0 193.719 191.702">
-            <path id="Path_119" data-name="Path 119"
-                d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
-                transform="translate(-19166.111 -4987.899)" fill="#BED13D" />
-        </svg>
-        <div data-aos="fade">
-            <svg class="decoration-about-3" xmlns="http://www.w3.org/2000/svg" width="120" height="191.702" viewBox="0 0 193.719 191.702">
+        <div class="letter-section" data-aos="fade">
+            <p>"Vi sætter en dyb i at arbejde nuanceret og ud fra en bred pallette af erfaring. Vi er dedikerede og ambitiøse i vores målretninger, og vi er ikke bange for at gå forrest med nytænkende løsninger og initiativer."</p>
+            <p>"Vores team består af dedikerede medarbejdere som ikke lader sig slå ud at udfordringer, men i stedet søger dem. Det betyder at vi hele tiden har fingeren på pulsen og er i stand til at udvikle os i takt med nye tendenser og trends. Du kan derfor være sikker på at vi allerede kender godt til dit marked."</p>
+            <div class="signature">
+                <b>Colleen Rush</b>
+                <p>Founder/Chief Enchilada Officer</p>
+            </div>
+        </div>
+        <div class="flex-display-section">
+            <h1 data-aos="fade-right">Vores Måde/tilgang</h1>
+            <svg class="decoration-about-1" xmlns="http://www.w3.org/2000/svg" width="193.719" height="191.702" viewBox="0 0 193.719 191.702">
                 <path id="Path_119" data-name="Path 119"
                     d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
-                    transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                    transform="translate(-19166.111 -4987.899)" fill="#BED13D" />
             </svg>
+            <svg class="decoration-about-2" xmlns="http://www.w3.org/2000/svg" width="80" height="191.702" viewBox="0 0 193.719 191.702">
+                <path id="Path_119" data-name="Path 119"
+                    d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                    transform="translate(-19166.111 -4987.899)" fill="#BED13D" />
+            </svg>
+            <div data-aos="fade">
+                <svg class="decoration-about-3" xmlns="http://www.w3.org/2000/svg" width="120" height="191.702" viewBox="0 0 193.719 191.702">
+                    <path id="Path_119" data-name="Path 119"
+                        d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                        transform="translate(-19166.111 -4987.899)" fill="#9F8E76" />
+                </svg>
+            </div>
+            <p data-aos="fade-left">Vi har omarbejdet det traditionelle marketingshiraki og arbejdsgang, ved at skabe en åben kultur,
+                med marketing- og projektorienteret løsninger for vores kunder. Vores bedste arbejde ser ud og
+                føles anderledes, fordi vi ikke blot sælger, vi leverer værdifulde oplevelser. Vi udnytter årtiers
+                redaktionelt skarpsind til at skabe overbevisende og case-drevet resultater, der gør et varigt
+                aftryk. Fordi gode kunder vender tilbage, har vi derfor kundeoplevelse og kommunikation som
+                kunstart - det er holdbart. Det er en grundlæggende mulighed for at forbinde og opbygge
+                fællesskab med et eftertragtet kundegrundlag.</p>
         </div>
-        <p data-aos="fade-left">Vi har omarbejdet det traditionelle marketingshiraki og arbejdsgang, ved at skabe en åben kultur,
-            med marketing- og projektorienteret løsninger for vores kunder. Vores bedste arbejde ser ud og
-            føles anderledes, fordi vi ikke blot sælger, vi leverer værdifulde oplevelser. Vi udnytter årtiers
-            redaktionelt skarpsind til at skabe overbevisende og case-drevet resultater, der gør et varigt
-            aftryk. Fordi gode kunder vender tilbage, har vi derfor kundeoplevelse og kommunikation som
-            kunstart - det er holdbart. Det er en grundlæggende mulighed for at forbinde og opbygge
-            fællesskab med et eftertragtet kundegrundlag.</p>
     </div>
     <div class="about-jobs">
         <div data-aos="fade-right">
@@ -302,9 +338,30 @@
             document.getElementById("title-slides").innerHTML = TextSlides[CurrentSlide - 1][0];
             document.getElementById("text-slides").innerHTML = TextSlides[CurrentSlide - 1][1];
         }
+        function Load() {
+            setTimeout(() => {
+                document.body.style.opacity = "1";
+                setTimeout(() => {
+                    document.getElementById("animate-title").style.transform = "scale(1)";
+                    setTimeout(() => {
+                        document.getElementById("main-text-animate").style.opacity = "1";
+                        setTimeout(() => {
+                            document.getElementById("arrow-menu").style.opacity = "1";
+                            document.getElementById("logo").style.margin = "0 0 0 25px";
+                            setTimeout(() => {
+                                document.getElementById("arrow-menu").style.opacity = "0";
+                                document.getElementById("logo").style.margin = "0";
+                            }, 2000);
+                        }, 800);
+                    }, 500);
+                }, 300);
+            }, 700);
+        }
     </script>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 1000
+        });
     </script>
 </body>
 </html>

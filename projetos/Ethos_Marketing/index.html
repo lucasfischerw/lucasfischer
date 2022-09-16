@@ -42,10 +42,10 @@
         <div class="upper-menu" id="upper-menu">
             <a href="index.html"><img src="images/Ethos.png" alt="Logo"></a>
             <div class="navigation-items">
-                <a class="underline-animate desktop" href="about.html">OM HISTORIE</a>
+                <a class="underline-animate desktop" onclick="Redirect('about.html')">OM HISTORIE</a>
                 <a class="underline-animate desktop" href="#costumer">JOBS</a>
                 <a class="underline-animate desktop" href="#gallery">GALLERI</a>
-                <a class="underline-animate desktop" href="contact.html">KONTAKT</a>
+                <a class="underline-animate desktop" onclick="Redirect('contact.html')">KONTAKT</a>
                 <div class="menu-icon">
                     <input class="menu-icon__cheeckbox" type="checkbox" />
                     <div>
@@ -59,13 +59,12 @@
             <a class="underline-animate" href="about.html">OM HISTORIE</a>
             <a class="underline-animate" href="#costumer">JOBS</a>
             <a class="underline-animate" href="#gallery">GALLERI</a>
-            <a class="underline-animate" href="contact.html">KONTAKT</a>
+            <a class="underline-animate" onclick="Redirect('contact.html')">KONTAKT</a>
         </div>
         <div class="main-page section" class="section">
             <div class="text-section">
-                <h1 class="text-welcome">Ethos Marketing</h1>
-                <h1 class="text-welcome">Content that connects</h1>
-                <h1 class="text-welcome">Stories that deliver</h1>
+                <h1 class="text-welcome">Velkommen til Ethos Marketing!</h1>
+                <p class="text-welcome">Vi hjælper dig med salg og marketing af din virksomhed herunder med segmentering, branding- og produktstrategi samt statistik og dashboard.</p>
             </div>
             <ul class="circles">
                 <li>
@@ -180,6 +179,8 @@
                 </div>
             </a>
         </div>
+        <h1 class="jobs-title" data-aos="fade-right">JOBS</h1>
+        <p class="jobs-title-description" data-aos="fade-up">Er du interesseret i at arbejde hos os? Se vores ledige stillinger nedenfor. Nye stillinger bliver løbende tilføjet.</p>
         <div id="costumer" class="section job">
             <div data-aos="fade-right" class="decoration-5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
@@ -199,7 +200,7 @@
                 <a href="job-1.html">
                     <div class="job-card btn-three" id="card-1">
                         <img src="./images/placeholder-img.jpg">
-                        <h1>Job - Page 1</h1>
+                        <h1>Valencia</h1>
                     </div>
                 </a>
             </div>
@@ -207,7 +208,7 @@
                 <a href="job-2.html">
                     <div class="job-card btn-three" id="card-2">
                         <img src="./images/placeholder-img.jpg">
-                        <h1>Job - Page 2</h1>
+                        <h1>Virtuelt</h1>
                     </div>
                 </a>
             </div>
@@ -245,7 +246,7 @@
         </div>
         <div id="contact" class="section contact">
             <h1 data-aos="fade-up" data-aos-anchor-placement="top-bottom" style="font-size: 4em;">Kontakt os.</h1>
-            <h2 data-aos="fade-right" data-aos-anchor-placement="top-bottom" data-aos-delay="250"><a class="underline-animate contact-underline" href="contact.html" style="cursor: pointer;">Spørg om hvad som helst &rarr;</a></h2>
+            <h2 data-aos="fade-right" data-aos-anchor-placement="top-bottom" data-aos-delay="250"><a class="underline-animate contact-underline" onclick="Redirect('contact.html')" style="cursor: pointer;">Spørg om hvad som helst &rarr;</a></h2>
             <div data-aos="fade" data-aos-anchor-placement="top-bottom" data-aos-delay="350">
                 <a><img src="images/instagram.png"></a>
                 <a><img src="images/twitter.png"></a>
@@ -255,9 +256,19 @@
     </div>
     <script src="javascript/main.js"></script>
     <script>
-        setTimeout(() => {
-            AOS.init();
-        }, 4500);
+        if(document.referrer.includes("about") || document.referrer.includes("contact") || document.referrer.includes("job")) {
+            setTimeout(() => {
+                AOS.init({
+                    duration: 1000
+                });
+            }, 500);
+        } else {
+            setTimeout(() => {
+                AOS.init({
+                    duration: 1000
+                });
+            }, 4500);
+        }
     </script>
 </body>
 </html>

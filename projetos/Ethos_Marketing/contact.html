@@ -27,22 +27,26 @@
     <title>Contact - Ethos Marketing</title>
     <link href="css/main.css" rel="stylesheet">
     <style>
+        body {
+            opacity: 0;
+            transition: opacity .5s ease;
+        }
         .upper-menu a img {
             transition: .25s margin ease, .25s opacity ease;
         }
         .logo:hover {
-            margin: 0 25px;
+            margin: 0 25px !important;
         }
         .home-button:hover .arrow-menu {
-            opacity: 1;
+            opacity: 1 !important;
         }
     </style>
 </head>
-<body class="main-body-contact">
+<body onload="Load()" class="main-body-contact">
     <div class="upper-menu" id="upper-menu">
         <a class="home-button" href="index.html">
-            <img class="arrow-menu" src="./images/arrow-down.png">
-            <img class="logo" src="./images/Ethos.png" alt="Logo">
+            <img class="arrow-menu" id="arrow-menu" src="./images/arrow-down.png">
+            <img class="logo" id="logo" src="./images/Ethos.png" alt="Logo">
         </a>
     </div>
     <form>
@@ -80,5 +84,20 @@
                 transform="translate(-19166.115 -4987.899)" fill="#BED13D" />
         </svg>
     </form>
+    <script>
+        function Load() {
+            setTimeout(() => {
+                document.body.style.opacity = "1";
+                setTimeout(() => {
+                    document.getElementById("arrow-menu").style.opacity = "1";
+                    document.getElementById("logo").style.margin = "0 0 0 25px";
+                    setTimeout(() => {
+                        document.getElementById("arrow-menu").style.opacity = "0";
+                        document.getElementById("logo").style.margin = "0";
+                    }, 2000);
+                }, 800);
+            }, 700);
+        }
+    </script>
 </body>
 </html>

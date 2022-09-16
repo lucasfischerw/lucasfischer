@@ -15,37 +15,6 @@ window.onresize = function CloseMenu() {
     sidebarOpn = false;
 }
 
-var teste = setInterval(() => {
-    document.getElementsByClassName("text-welcome")[0].style.opacity = "0"
-    setTimeout(() => {
-        document.getElementsByClassName("text-welcome")[0].style.display = "none"
-        document.getElementsByClassName("text-welcome")[1].style.display = "block"
-        setTimeout(() => {
-            document.getElementsByClassName("text-welcome")[1].style.opacity = "1"
-            setTimeout(() => {
-                document.getElementsByClassName("text-welcome")[1].style.opacity = "0"
-                setTimeout(() => {
-                    document.getElementsByClassName("text-welcome")[1].style.display = "none"
-                    document.getElementsByClassName("text-welcome")[2].style.display = "block"
-                    setTimeout(() => {
-                        document.getElementsByClassName("text-welcome")[2].style.opacity = "1"
-                        setTimeout(() => {
-                            document.getElementsByClassName("text-welcome")[2].style.opacity = "0"
-                            setTimeout(() => {
-                                document.getElementsByClassName("text-welcome")[2].style.display = "none"
-                                document.getElementsByClassName("text-welcome")[0].style.display = "block"
-                                setTimeout(() => {
-                                    document.getElementsByClassName("text-welcome")[0].style.opacity = "1"
-                                }, 20);
-                            }, 850);
-                        }, 850);
-                    }, 20);
-                }, 850);
-            }, 850);
-        }, 20);
-    }, 850);
-}, 6360);
-
 window.addEventListener("scroll", () => {
     if (window.scrollY < 20) {
         document.getElementById("upper-menu").style.height = "100px";
@@ -86,14 +55,40 @@ function Previous() {
 }
 
 function Load() {
-    setTimeout(() => {
-        document.getElementById("loading").style.opacity = 0;
+    console.log(document.referrer)
+    if(document.referrer.includes("about") || document.referrer.includes("contact") || document.referrer.includes("job")) {
+        document.getElementById("loading").style.opacity = 1;
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("main-section-load").style.display = "block";
+        document.getElementById("main-section-load").style.opacity = "1";
         setTimeout(() => {
-            document.getElementById("loading").style.display = "none";
-            document.getElementById("main-section-load").style.display = "block";
+            document.getElementsByClassName("text-welcome")[0].style.transform = "scale(0.75)"
+            document.getElementsByClassName("text-welcome")[1].style.opacity = "1"
+            document.getElementsByClassName("text-welcome")[1].style.marginTop = "0"
+        }, 500);
+    } else {
+        document.getElementById("loading").style.opacity = 1;
+        setTimeout(() => {
+            document.getElementById("loading").style.opacity = 0;
             setTimeout(() => {
-                document.getElementById("main-section-load").style.opacity = "1";
-            }, 150);
-        }, 1000);
-    }, 3000);
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("main-section-load").style.display = "block";
+                setTimeout(() => {
+                    document.getElementById("main-section-load").style.opacity = "1";
+                    setTimeout(() => {
+                        document.getElementsByClassName("text-welcome")[0].style.transform = "scale(0.75)"
+                        document.getElementsByClassName("text-welcome")[1].style.opacity = "1"
+                        document.getElementsByClassName("text-welcome")[1].style.marginTop = "0"
+                    }, 500);
+                }, 150);
+            }, 1000);
+        }, 1700);
+    }
+}
+
+function Redirect(URl) {
+    document.getElementById("main-section-load").style.opacity = "0";
+    setTimeout(() => {
+        location.href = URl;
+    }, 800);
 }

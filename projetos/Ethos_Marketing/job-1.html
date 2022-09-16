@@ -24,54 +24,60 @@
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta name="msapplication-TileImage" content="favicon/favicon-144.png">
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
-    <title>Job 1</title>
+    <title>Valencia</title>
     <link href="css/main.css" rel="stylesheet">
     <style>
+        body {
+            background-color: transparent !important;
+        }
         .upper-menu a img {
             transition: .25s margin ease, .25s opacity ease;
         }
         .logo:hover {
-            margin: 0 25px;
+            margin: 0 25px !important;
         }
         .home-button:hover .arrow-menu {
-            opacity: 1;
+            opacity: 1 !important;
+        }
+        .decoration-line {
+            background-color: #cabcb7;
+            width: 50%;
+            height: 3px;
+            margin: auto;
+            border-radius: 100vw;
+        }
+        .job-text {
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 750px;
         }
     </style>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body>
+<body onload="Load()">
     <div class="upper-menu" id="upper-menu">
         <a class="home-button" href="index.html">
-            <img class="arrow-menu" src="./images/arrow-down.png">
-            <img class="logo" src="./images/Ethos.png" alt="Logo">
+            <img class="arrow-menu" id="arrow-menu" src="./images/arrow-down.png">
+            <img class="logo" id="logo" src="./images/Ethos.png" alt="Logo">
         </a>
     </div>
     <div class="main-section-job">
         <div class="job-page-content">
-            <h1 class="job-title" data-aos="fade-left">Jobs - Section 1</h1>
-            <p class="job-description" data-aos="fade-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis.</p>
-            <div class="job-page-card" data-aos="fade-left" data-aos-delay="150">
-                <img src="./images/placeholder-img.jpg">
-                <div>
-                    <h1>Title</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis. Sed eget mattis augue. Curabitur mollis lacinia pellentesque. Mauris in quam sit amet augue sagittis fermentum nec quis arcu. Donec tincidunt odio magna, at congue nisi scelerisque at. Donec imperdiet aliquam ligula, vel cursus neque venenatis id. Nunc aliquet, est in eleifend aliquet, ipsum est luctus diam, ac molestie eros nisl vel sapien. Quisque sodales pellentesque purus, ac mollis turpis sagittis placerat.</p>
-                </div>
+            <h1 class="job-title" data-aos="fade-left">Valencia</h1>
+            <p class="job-description" data-aos="fade-right">I Valencia kan du få det hele: flotte sandstrande, fængende kultur, ikonisk arkitektur og selvfølgelig sol og varme.</p>
+            <div class="job-text" data-aos="fade" data-aos-delay="300">
+                <p>Leder du efter nye udfordringer, og har du brug for noget luftforandring? Har du erfaring med salg og kundeservice? Så er det måske dig vi leder efter som ny medarbejder. Stillingen befinder sig i Valencia, en af Spaniens største byer. Du får en unik mulighed for at opleve og dyrke den spanske kultur helt tæt på, mens du arbejder fra et af vores kontorer. Du får mulighed for at arbejde selvstændigt, men vil også indgå i et fast team med fokus på sparring og fællesskab.</p>
+                <div class="decoration-line"></div>
+                <p>Som bosat i Valencia får du en fantastisk mulighed for at få den spanske kultur ind under huden. Oplev hvordan menneskene lever deres liv anderledes end vi er vant til i Danmark. Spanierne er gode til at leve deres liv fuldt ud og sætte pris på deres omgivelser og de mennesker omkring dem. Mærk en særlig atmosfære når de lokale sidder ude og spiser i timevis med deres kære og til fiestas.</p>
+                <div class="decoration-line"></div>
+                <p>Med et job som XX i Valencia, får du en unik chance for at omstille dit mindset og blive en del af den farverige spanske kultur. Her vil du få oplevelser udover det sædvanlige med mulighed for at lære nye mennesker at kende som tænker og lever anderledes end dig selv. Du må mærke en helt særlig velkomst og fællesskabsfølelse.</p>
+                <div class="decoration-line"></div>
+                <p>Lyder det som noget for dig? Så kontakt XX på XX.</p>
             </div>
-            <div class="job-page-card" data-aos="fade-right" data-aos-delay="150">
-                <img src="./images/placeholder-img.jpg">
-                <div>
-                    <h1>Title</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis. Sed eget mattis augue. Curabitur mollis lacinia pellentesque. Mauris in quam sit amet augue sagittis fermentum nec quis arcu. Donec tincidunt odio magna, at congue nisi scelerisque at. Donec imperdiet aliquam ligula, vel cursus neque venenatis id. Nunc aliquet, est in eleifend aliquet, ipsum est luctus diam, ac molestie eros nisl vel sapien. Quisque sodales pellentesque purus, ac mollis turpis sagittis placerat.</p>
-                </div>
-            </div>
-            <div class="job-page-card"  data-aos="fade-left" data-aos-delay="150">
-                <img src="./images/placeholder-img.jpg">
-                <div>
-                    <h1>Title</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis. Sed eget mattis augue. Curabitur mollis lacinia pellentesque. Mauris in quam sit amet augue sagittis fermentum nec quis arcu. Donec tincidunt odio magna, at congue nisi scelerisque at. Donec imperdiet aliquam ligula, vel cursus neque venenatis id. Nunc aliquet, est in eleifend aliquet, ipsum est luctus diam, ac molestie eros nisl vel sapien. Quisque sodales pellentesque purus, ac mollis turpis sagittis placerat.</p>
-                </div>
-            </div>
+
         </div>
         <div class="decoration-job-page-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
@@ -96,7 +102,21 @@
         </div>
     </div>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 1000
+        });
+    </script>
+    <script>
+        function Load() {
+            setTimeout(() => {
+                document.getElementById("arrow-menu").style.opacity = "1";
+                document.getElementById("logo").style.margin = "0 0 0 25px";
+                setTimeout(() => {
+                    document.getElementById("arrow-menu").style.opacity = "0";
+                    document.getElementById("logo").style.margin = "0";
+                }, 2000);
+            }, 800);
+        }
     </script>
 </body>
 </html>

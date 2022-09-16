@@ -24,54 +24,62 @@
     <meta name="msapplication-TileColor" content="#FFFFFF">
     <meta name="msapplication-TileImage" content="favicon/favicon-144.png">
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
-    <title>Job 2</title>
+    <title>Virtuelt</title>
     <link href="css/main.css" rel="stylesheet">
     <style>
+        body {
+            background-color: transparent !important;
+        }
         .upper-menu a img {
             transition: .25s margin ease, .25s opacity ease;
         }
         .logo:hover {
-            margin: 0 25px;
+            margin: 0 25px !important;
         }
         .home-button:hover .arrow-menu {
-            opacity: 1;
+            opacity: 1 !important;
+        }
+        .decoration-line {
+            background-color: #cabcb7;
+            width: 50%;
+            height: 3px;
+            margin: auto;
+            border-radius: 100vw;
+        }
+        .job-text {
+            margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 750px;
         }
     </style>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
-<body>
+<body onload="Load()">
     <div class="upper-menu" id="upper-menu">
         <a class="home-button" href="index.html">
-            <img class="arrow-menu" src="./images/arrow-down.png">
-            <img class="logo" src="./images/Ethos.png" alt="Logo">
+            <img class="arrow-menu" id="arrow-menu" src="./images/arrow-down.png">
+            <img class="logo" id="logo" src="./images/Ethos.png" alt="Logo">
         </a>
     </div>
     <div class="main-section-job">
         <div class="job-page-content">
-            <h1 class="job-title" data-aos="fade-left">Jobs - Section 2</h1>
-            <p class="job-description" data-aos="fade-right">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis.</p>
-            <div class="job-page-card"  data-aos="fade-left" data-aos-delay="150">
-                <img src="./images/placeholder-img.jpg">
-                <div>
-                    <h1>Title</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis. Sed eget mattis augue. Curabitur mollis lacinia pellentesque. Mauris in quam sit amet augue sagittis fermentum nec quis arcu. Donec tincidunt odio magna, at congue nisi scelerisque at. Donec imperdiet aliquam ligula, vel cursus neque venenatis id. Nunc aliquet, est in eleifend aliquet, ipsum est luctus diam, ac molestie eros nisl vel sapien. Quisque sodales pellentesque purus, ac mollis turpis sagittis placerat.</p>
-                </div>
+            <h1 class="job-title" data-aos="fade-left">Virtuelt</h1>
+            <p class="job-description" data-aos="fade-right">Drømmer du om at arbejde med salg og kundeservice?</p>
+            <div class="job-text" data-aos="fade" data-aos-delay="300">
+                <p>Hos XX leder vi efter en ny, selvstændig medarbejder til at varetage opgaver og arbejde virtuelt. Vi forventer derfor at du er struktureret og disciplineret til at nå dine mål.</p>
+                <div class="decoration-line"></div>
+                <p>Med et virtuelt arbejde kan du arbejde hjemmefra, og det betyder større fleksibilitet og frihed. Det er en oplagt mulighed for dig der trives godt med at arbejde uden forstyrrelser, som har høj selvstændighed og som også ser fordele i at spare transporttid.</p>
+                <div class="decoration-line"></div>
+                <p>Når man arbejder virtuelt, er der gode rammer for en effektiv og produktiv arbejdsdag. Du har i højere grad selv indflydelse på din organisering af dit arbejde og styrer selv dine fysiske rammer. Du får med et virtuelt arbejde hos os gode muligheder for at styrke din selvdisciplinering samtidig med at arbejde med en fleksibel work/life balance.</p>
+                <div class="decoration-line"></div>
+                <p>Selvom dit arbejde vil foregå virtuelt, vil du stadig være en del af vores team, og vi vil lægge vægt på at få dig integreret i vores fællesskab og i vores værdier.</p>
+                <div class="decoration-line"></div>
+                <p>Kan du se dig selv som vores nye virtuelle medarbejder? Så kontakt os meget gerne på XX.</p>
             </div>
-            <div class="job-page-card" data-aos="fade-right" data-aos-delay="150">
-                <img src="./images/placeholder-img.jpg">
-                <div>
-                    <h1>Title</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis. Sed eget mattis augue. Curabitur mollis lacinia pellentesque. Mauris in quam sit amet augue sagittis fermentum nec quis arcu. Donec tincidunt odio magna, at congue nisi scelerisque at. Donec imperdiet aliquam ligula, vel cursus neque venenatis id. Nunc aliquet, est in eleifend aliquet, ipsum est luctus diam, ac molestie eros nisl vel sapien. Quisque sodales pellentesque purus, ac mollis turpis sagittis placerat.</p>
-                </div>
-            </div>
-            <div class="job-page-card"  data-aos="fade-left" data-aos-delay="150">
-                <img src="./images/placeholder-img.jpg">
-                <div>
-                    <h1>Title</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu interdum tortor, at dictum ipsum. Nullam blandit turpis vitae augue laoreet convallis. Sed eget mattis augue. Curabitur mollis lacinia pellentesque. Mauris in quam sit amet augue sagittis fermentum nec quis arcu. Donec tincidunt odio magna, at congue nisi scelerisque at. Donec imperdiet aliquam ligula, vel cursus neque venenatis id. Nunc aliquet, est in eleifend aliquet, ipsum est luctus diam, ac molestie eros nisl vel sapien. Quisque sodales pellentesque purus, ac mollis turpis sagittis placerat.</p>
-                </div>
-            </div>
+
         </div>
         <div class="decoration-job-page-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
@@ -96,7 +104,21 @@
         </div>
     </div>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 1000
+        });
+    </script>
+    <script>
+        function Load() {
+            setTimeout(() => {
+                document.getElementById("arrow-menu").style.opacity = "1";
+                document.getElementById("logo").style.margin = "0 0 0 25px";
+                setTimeout(() => {
+                    document.getElementById("arrow-menu").style.opacity = "0";
+                    document.getElementById("logo").style.margin = "0";
+                }, 2000);
+            }, 800);
+        }
     </script>
 </body>
 </html>
