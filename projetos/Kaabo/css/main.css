@@ -502,7 +502,6 @@ a {
     align-items: center;
     justify-content: space-between;
     z-index: 99999999;
-    backdrop-filter: blur(10px);
 }
 
 .upper-munu-home img {
