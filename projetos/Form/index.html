@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angebote</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body onload="LoadPage()">
+    <h1 class="title">Angebote für eine Photovoltaikanlage einholen</h1>
+    <div class="advice-email" id="advice-email">
+        <p id="message-log"></p>
+    </div>
+    <div class="question-container" id="question-1">
+        <h1 class="question-title">Wo soll die Photovoltaikanlage installiert werden?</h1>
+        <div class="options-container" id="options-container-1">
+            <a onclick="Select(0)"><img src="img/widget-icon.svg">Steildach</a>
+            <a onclick="Select(1)"><img src="img/widget-icon (1).svg">Flachdach</a>
+            <a onclick="Select(2)"><img src="img/widget-icon (2).svg">Freifläche</a>
+        </div>
+        <a class="next-btn" onclick="NextQuestion()">Weiter</a>
+    </div>
+    <div class="question-container" id="question-2">
+        <h1 class="question-title">Welche Nutzfläche steht für die Photovoltaikanlage zur Verfügung?</h1>
+        <div class="options-container" id="options-container-2">
+            <a onclick="Select(0)"><img src="img/widget-icon (3).svg">Bis 30 m²</a>
+            <a onclick="Select(1)"><img src="img/widget-icon (4).svg">30 - 50 m²</a>
+            <a onclick="Select(2)"><img src="img/widget-icon (5).svg">50 - 100 m²</a>
+            <a onclick="Select(3)"><img src="img/widget-icon (6).svg">Über 100 m²</a>
+        </div>
+        <a class="next-btn" onclick="NextQuestion()">Weiter</a>
+    </div>
+    <div class="question-container" id="question-3">
+        <h1 class="question-title">Haben Sie Interesse an einem Stromspeicher?</h1>
+        <div class="options-container" id="options-container-3">
+            <a onclick="Select(0)"><img src="img/widget-icon (7).svg">Ja</a>
+            <a onclick="Select(1)"><img src="img/widget-icon (8).svg">Nein</a>
+            <a onclick="Select(2)"><img src="img/widget-icon (9).svg">Weiß nicht / Beratung erwünscht</a>
+        </div>
+        <a class="next-btn" onclick="NextQuestion()">Weiter</a>
+    </div>
+    <div class="question-container" id="question-4">
+        <h1 class="question-title">Wann soll das Projekt umgesetzt werden?</h1>
+        <div class="options-container" id="options-container-4">
+            <a onclick="Select(0)"><img src="img/widget-icon (10).svg">Umgehend</a>
+            <a onclick="Select(1)"><img src="img/widget-icon (11).svg">In den nächsten 3 Monaten</a>
+            <a onclick="Select(2)"><img src="img/widget-icon (12).svg">In mehr als 3 Monaten</a>
+        </div>
+        <a class="next-btn" onclick="NextQuestion()">Weiter</a>
+    </div>
+    <div class="question-container" id="question-5">
+        <form id="javascript_form">
+            <h1 class="question-title">Email</h1>
+            <div class="flex-email">
+                <input style="width: min(300px, 50%);" placeholder="example@email.com" type="text" name="subject">
+                <input type="submit" id="js_send" value="Send"/>
+            </div>
+        </form>
+    </div>
+    <script src="./javascript/main.js"></script>
+</body>
+</html>
