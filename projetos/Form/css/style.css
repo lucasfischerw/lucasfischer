@@ -18,7 +18,9 @@ body {
 body {
     font-family: 'Didact Gothic', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+   align-items: center;
+   gap: 25px;
 }
 
 a {
@@ -33,18 +35,15 @@ input {
 
 .title {
     background-color: #022851;
-    height: 100px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    width: 100vw;
     color: white;
     text-align: center;
-    line-height: 100px;
+    line-height: 50px;
+    padding: 25px 10px;
 }
 
 .question-container {
-    margin: 130px 0;
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -121,7 +120,7 @@ input {
 }
 
 .advice-email {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: min(300px, 50vw);
     padding: 12px;
@@ -134,11 +133,11 @@ input {
 .sucess {
     color: green;
     border: 1px solid green;
-    background-color: #3cbd4161;
+    background-color: #b1ffb4;
 }
 
 .fail {
     color: red;
     border: 1px solid red;
-    background-color: #ff000026;
+    background-color: #fd8a8a;
 }
