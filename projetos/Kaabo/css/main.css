@@ -550,7 +550,8 @@ a {
 }
 
 @media(max-width: 1000px) {
-    .main-section-index img {
+    .main-section-index img,
+    .about-us-img-header {
         filter: blur(10px) brightness(.5);
     }
 }
