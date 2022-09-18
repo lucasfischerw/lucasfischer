@@ -596,6 +596,7 @@ a {
 
 video {
     width: 100vw;
+    object-fit: cover;
 }
 
 .youtube-video-container {
@@ -724,4 +725,29 @@ video {
 .underline-animate:focus::after,
 .active::after {
     transform: scaleX(1);
+}
+
+.division div p {
+    font-size: 1.15em;
+    color: white;
+}
+
+.division div {
+    width: min(90%, 500px);
+    text-align: center;
+}
+
+.division img {
+    width: min(90%, 500px);
+    height: 330px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.division {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 45px;
+    padding: 65px 25px;
 }
