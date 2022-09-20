@@ -31,6 +31,7 @@ input {
     border-radius: 5px;
     border: 2px solid #e7e7e4;
     padding: 12px;
+    transition: .35s ease border, .35s ease background-color;
 }
 
 .title {
@@ -139,5 +140,48 @@ input {
 .fail {
     color: red;
     border: 1px solid red;
-    background-color: #fd8a8a;
+    background-color: rgb(251 191 191);
+}
+
+.right-align-flex-img,
+.text-flex-footer {
+    display: flex;
+    gap: 15px;
+}
+
+.right-align-flex-img img {
+    height: 50px;
+}
+
+.footer {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px 10px 0 10px;
+    margin-top: 35px;
+    flex-wrap: wrap;
+    border-top: #e7e7e4 1px solid;
+    text-align: center;
+}
+
+.vertical-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media(min-width: 970px) {
+    .footer {
+        flex-direction: row;
+        gap: 15px;
+        justify-content: space-between;
+    }
+}
+
+.details-footer {
+    color: #757575;
+    margin: 20px auto 0 auto;
+    font-size: .9em;
 }
