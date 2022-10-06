@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    list-style: none;
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+}
+
+html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    background: whitesmoke;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+textarea {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px #d9d9d9 solid;
+    resize: none;
+    width: 450px;
+    height: 200px;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    gap: 25px;
+}
+
+.button {
+    padding: 10px 25px;
+    border: 1px #d9d9d9 solid;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background-color: white;
+    transition: background-color .25s ease, transform .25s ease;
+}
+
+.button:hover {
+    background-color: #f3f3f3;
+}
+
+.button:active {
+    transform: scale(0.98);
+}
+
+.button img {
+    height: 35px;
+}
+
+.advice-copy {
+    color: #007605;
+    border: 1px solid #19be19;
+    background-color: #d7f5d8;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    opacity: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: bottom .5s ease, opacity .5s ease;
+}
+
+.advice-animate {
+    bottom: 50px;
+    opacity: 1;
+    animation: AnimateAdvice .5s ease forwards;
+    animation-delay: 3s;
+}
+
+@keyframes AnimateAdvice {
+    from{bottom: 50px;opacity: 1;}
+    to{bottom: 10px;opacity: 0;}
+}
+
+.tox-statusbar,
+.tox-notifications-container {
+    display: none !important;
+}

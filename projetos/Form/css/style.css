@@ -50,7 +50,7 @@ input {
     flex-direction: column;
     border-radius: 5px;
     border: 2px solid #e7e7e4;
-    width: min(90%, 950px);
+    width: min(90%, 1050px);
     transition: .35s opacity ease, .35s margin-left ease;
 }
 
@@ -108,7 +108,14 @@ input {
 #question-2,
 #question-3,
 #question-4,
-#question-5 {
+#question-5,
+#question-6,
+#question-7,
+#question-8,
+#question-9,
+#question-10,
+#question-11,
+#question-12 {
     opacity: 0;
     display: none;
     margin-left: 300px;
@@ -172,7 +179,7 @@ input {
     align-items: center;
 }
 
-@media(min-width: 970px) {
+@media(min-width: 1080px) {
     .footer {
         flex-direction: row;
         gap: 15px;

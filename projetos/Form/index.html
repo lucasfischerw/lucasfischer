@@ -4,170 +4,371 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angebote</title>
+    <title>PV Angebot einholen</title>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body onload="LoadPage()">
-    <h1 class="title">Angebote für eine Photovoltaikanlage einholen</h1>
+    <h1 class="title">jetzt ein Angebot einholen</h1>
     <div class="advice-email" id="advice-email">
         <p id="message-log"></p>
     </div>
     <div class="question-container" id="question-1">
-        <h1 class="question-title">Wo soll die Photovoltaikanlage installiert werden?</h1>
+        <h1 class="question-title">Wann möchten Sie Ihr Auto verkaufen?</h1>
         <div class="options-container" id="options-container-1">
-            <a onclick="Select(0)"><img src="img/widget-icon.svg">Steildach</a>
-            <a onclick="Select(1)"><img src="img/widget-icon (1).svg">Flachdach</a>
-            <a onclick="Select(2)"><img src="img/widget-icon (2).svg">Freifläche</a>
+            <a onclick="Select(0)"><img src="img/12.png">Umgehend</a>
+            <a onclick="Select(1)"><img src="img/13.png">In den nächsten 4 Monaten</a>
+            <a onclick="Select(2)"><img src="img/14.png">In mehr als 4 Monaten</a>
         </div>
         <a class="next-btn" onclick="NextQuestion()">Weiter</a>
         <div class="footer">
             <div class="text-flex-footer">
                 <div class="vertical-flex">
                     <p>&#9733; &#9733; &#9733; &#9733;</p>
-                    <p>4,6 aus 5548 Bewertungen</p>
+                    <p>4,7 aus 4572 Bewertungen</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128337;</p>
-                    <p>Letzte Anfrage vor 3 Minuten</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128231;</p>
-                    <p>772 Anfragen heute</p>
+                    <p>216 Anfragen heute</p>
                 </div>
             </div>
             <div class="right-align-flex-img">
                 <img src="./img/footer-img-1.png">
-                <img src="./img/footer-img-2.svg">
                 <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
             </div>
         </div>
-        <p class="details-footer">Service der DAA GmbH: Impressum | AGB | Datenschutz</p>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
     </div>
     <div class="question-container" id="question-2">
-        <h1 class="question-title">Welche Nutzfläche steht für die Photovoltaikanlage zur Verfügung?</h1>
+        <h1 class="question-title">Kraftstoffart:</h1>
         <div class="options-container" id="options-container-2">
-            <a onclick="Select(0)"><img src="img/widget-icon (3).svg">Bis 30 m²</a>
-            <a onclick="Select(1)"><img src="img/widget-icon (4).svg">30 - 50 m²</a>
-            <a onclick="Select(2)"><img src="img/widget-icon (5).svg">50 - 100 m²</a>
-            <a onclick="Select(3)"><img src="img/widget-icon (6).svg">Über 100 m²</a>
+            <a onclick="Select(0)"><img src="img/1.png">Diesel</a>
+            <a onclick="Select(1)"><img src="img/2.png">Benzin</a>
+            <a onclick="Select(2)"><img src="img/3.png">Hybrid</a>
+            <a onclick="Select(3)"><img src="img/4.png">Elektro</a>
+            <a onclick="Select(4)"><img src="img/5.png">LPG</a>
+            <a onclick="Select(5)"><img src="img/6.png">CNG</a>
         </div>
         <a class="next-btn" onclick="NextQuestion()">Weiter</a>
         <div class="footer">
             <div class="text-flex-footer">
                 <div class="vertical-flex">
                     <p>&#9733; &#9733; &#9733; &#9733;</p>
-                    <p>4,6 aus 5548 Bewertungen</p>
+                    <p>4,7 aus 4572 Bewertungen</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128337;</p>
-                    <p>Letzte Anfrage vor 3 Minuten</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128231;</p>
-                    <p>772 Anfragen heute</p>
+                    <p>216 Anfragen heute</p>
                 </div>
             </div>
             <div class="right-align-flex-img">
                 <img src="./img/footer-img-1.png">
-                <img src="./img/footer-img-2.svg">
                 <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
             </div>
         </div>
-        <p class="details-footer">Service der DAA GmbH: Impressum | AGB | Datenschutz</p>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
     </div>
     <div class="question-container" id="question-3">
-        <h1 class="question-title">Haben Sie Interesse an einem Stromspeicher?</h1>
-        <div class="options-container" id="options-container-3">
-            <a onclick="Select(0)"><img src="img/widget-icon (7).svg">Ja</a>
-            <a onclick="Select(1)"><img src="img/widget-icon (8).svg">Nein</a>
-            <a onclick="Select(2)"><img src="img/widget-icon (9).svg">Weiß nicht / Beratung erwünscht</a>
+        <h1 class="question-title">Um welche Automarke handelt es sich?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="Audi" type="text" name="marke">
         </div>
-        <a class="next-btn" onclick="NextQuestion()">Weiter</a>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
         <div class="footer">
             <div class="text-flex-footer">
                 <div class="vertical-flex">
                     <p>&#9733; &#9733; &#9733; &#9733;</p>
-                    <p>4,6 aus 5548 Bewertungen</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128337;</p>
-                    <p>Letzte Anfrage vor 3 Minuten</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128231;</p>
-                    <p>772 Anfragen heute</p>
+                    <p>216 Anfragen heute</p>
                 </div>
             </div>
             <div class="right-align-flex-img">
                 <img src="./img/footer-img-1.png">
-                <img src="./img/footer-img-2.svg">
                 <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
             </div>
         </div>
-        <p class="details-footer">Service der DAA GmbH: Impressum | AGB | Datenschutz</p>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
     </div>
     <div class="question-container" id="question-4">
-        <h1 class="question-title">Wann soll das Projekt umgesetzt werden?</h1>
-        <div class="options-container" id="options-container-4">
-            <a onclick="Select(0)"><img src="img/widget-icon (10).svg">Umgehend</a>
-            <a onclick="Select(1)"><img src="img/widget-icon (11).svg">In den nächsten 3 Monaten</a>
-            <a onclick="Select(2)"><img src="img/widget-icon (12).svg">In mehr als 3 Monaten</a>
+        <h1 class="question-title">Um welches Modell handelt es sich?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="A3" type="text" name="marke">
         </div>
-        <a class="next-btn" onclick="NextQuestion()">Weiter</a>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
         <div class="footer">
             <div class="text-flex-footer">
                 <div class="vertical-flex">
                     <p>&#9733; &#9733; &#9733; &#9733;</p>
-                    <p>4,6 aus 5548 Bewertungen</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128337;</p>
-                    <p>Letzte Anfrage vor 3 Minuten</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128231;</p>
-                    <p>772 Anfragen heute</p>
+                    <p>216 Anfragen heute</p>
                 </div>
             </div>
             <div class="right-align-flex-img">
                 <img src="./img/footer-img-1.png">
-                <img src="./img/footer-img-2.svg">
                 <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
             </div>
         </div>
-        <p class="details-footer">Service der DAA GmbH: Impressum | AGB | Datenschutz</p>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
     </div>
     <div class="question-container" id="question-5">
+        <h1 class="question-title">Bitte beschreiben Sie den Typ des Fahrzeugs</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="Benzin Motor" type="text" name="marke">
+        </div>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-6">
+        <h1 class="question-title">Wie viele Kilometer hat das Fahrzeug?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="152" type="number" name="marke">
+        </div>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-7">
+        <h1 class="question-title">Wann ist die Erstzulassung des Fahrzeugs?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="2016" type="text" name="marke">
+        </div>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-8">
+        <h1 class="question-title">Wie viele PS/KW hat das Fahrzeug?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="350" type="text" name="marke">
+        </div>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-9">
+        <h1 class="question-title">Hat das Auto zu beachtende Besonderheiten?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="AC funktioniert nicht" type="text" name="marke">
+        </div>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-10">
+        <h1 class="question-title">Möchten Sie uns sonst noch etwas sagen?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="Einige Stücke sind schon neu" type="text" name="marke">
+        </div>
+        <a class="next-btn" onclick="NextQuestionText()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-11">
+        <h1 class="question-title">Wie lautet Ihre Telefonnummer?</h1>
+        <div class="flex-email">
+            <input style="width: min(300px, 50%);" placeholder="+49160123456" type="text" name="phone">
+        </div>
+        <a class="next-btn" onclick="EmailScreen()">Weiter</a>
+        <div class="footer">
+            <div class="text-flex-footer">
+                <div class="vertical-flex">
+                    <p>&#9733; &#9733; &#9733; &#9733;</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128337;</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
+                </div>
+                <div class="vertical-flex">
+                    <p>&#128231;</p>
+                    <p>216 Anfragen heute</p>
+                </div>
+            </div>
+            <div class="right-align-flex-img">
+                <img src="./img/footer-img-1.png">
+                <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
+            </div>
+        </div>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
+    </div>
+    <div class="question-container" id="question-12">
         <form id="javascript_form">
-            <h1 class="question-title">Email</h1>
+            <h1 class="question-title">Wie lautet Ihre E-Mail-Adresse?</h1>
             <div class="flex-email">
-                <input style="width: min(300px, 50%);" placeholder="example@email.com" type="text" name="subject">
-                <input type="submit" id="js_send" value="Send"/>
+                <input style="width: min(300px, 50%);" placeholder="email@example.com" type="text" name="subject">
+                <input type="submit" id="js_send" value="absenden"/>
             </div>
         </form>
         <div class="footer">
             <div class="text-flex-footer">
                 <div class="vertical-flex">
                     <p>&#9733; &#9733; &#9733; &#9733;</p>
-                    <p>4,6 aus 5548 Bewertungen</p>
+                   <p>4,7 aus 4572 Bewertungen</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128337;</p>
-                    <p>Letzte Anfrage vor 3 Minuten</p>
+                    <p>Letzte Anfrage vor 18 Minuten</p>
                 </div>
                 <div class="vertical-flex">
                     <p>&#128231;</p>
-                    <p>772 Anfragen heute</p>
+                    <p>216 Anfragen heute</p>
                 </div>
             </div>
             <div class="right-align-flex-img">
                 <img src="./img/footer-img-1.png">
-                <img src="./img/footer-img-2.svg">
                 <img src="./img/footer-img-2.png">
+                <img src="./img/footer-img-3.png">
             </div>
         </div>
-        <p class="details-footer">Service der DAA GmbH: Impressum | AGB | Datenschutz</p>
+        <p class="details-footer">Ein Service von domain.com: Impressum | AGB | Datenschutz</p>
     </div>
-    <script src="./javascript/main.js"></script>
+    <script src="./javascript/main.php"></script>
 </body>
 </html>
