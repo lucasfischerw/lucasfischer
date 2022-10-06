@@ -24,7 +24,7 @@ function Copy() {
     var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
     var FinalString = "";
     for (let index = 0; index < innerDoc.getElementsByTagName("p").length; index++) {
-        FinalString += innerDoc.getElementsByTagName("p")[index].textContent + " &#8201;&#8201; ";
+        FinalString += innerDoc.getElementsByTagName("p")[index].textContent + "\n";
     }
     navigator.clipboard.writeText(FinalString);
     document.getElementById("advice-copy").classList.add("advice-animate");
