@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inxson</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <h1 class="title-page">Inxson<p>TM</p></h1>
+        <h2 class="animate-title">Immersive Story Telling</h2>
+        <div class="background"></div>
+        <div class="image-container">
+            <img class="arrow" onclick="StartAnimation()" src="./imgs/arrow.png">
+            <a class="story-link" onclick="Redirect('bronze.html')">
+                <img class="animate-img" src="./imgs/THE BRONZE.png">
+            </a>
+            <a class="story-link" onclick="Redirect('ali-baba.html')">
+                <img class="animate-img" src="./imgs/ALI BABA.jpg">
+            </a>
+            <img class="animate-img" src="./imgs/coming-soon.png">
+            <img class="arrow-2" onclick="Redirect('coming-soon.html')" src="./imgs/arrow.png">
+        </div>
+        <div class="image-container-mobile">
+            <a class="story-link" onclick="Redirect('bronze.html')">
+                <img src="./imgs/THE BRONZE.png">
+            </a>
+            <a class="story-link" onclick="Redirect('ali-baba.html')">
+                <img src="./imgs/ALI BABA.jpg">
+            </a>
+            <a class="story-link" onclick="Redirect('coming-soon.html')">
+                <img src="./imgs/coming-soon.png">
+            </a>
+        </div>
+        <a class="privacy" href="privacy-policy.html">Privacy Policy</a>
+        <script src="./js/main.js"></script>
+    </body>
+</html>
