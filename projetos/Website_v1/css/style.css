@@ -52,7 +52,7 @@ body {
     font-family: 'Poppins', sans-serif;
     transition: color .3s ease;
     z-index: -1;
-    font-size: 180px;
+    font-size: 150px;
     display: flex;
     align-items: flex-end;
 }
