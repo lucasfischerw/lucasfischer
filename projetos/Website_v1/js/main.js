@@ -1,5 +1,9 @@
 function StartAnimation() {
-    document.getElementsByClassName("title-page")[0].style.animation = "AnimationTitle 1s ease forwards";
+    document.getElementsByClassName("title-page")[0].style.transition = "all 1s ease";
+    document.getElementsByClassName("title-page")[0].style.top = "15px";
+    document.getElementsByClassName("title-page")[0].style.left = "15px";
+    document.getElementsByClassName("title-page")[0].style.fontSize = "52.5px";
+    document.getElementsByClassName("title-page")[0].style.transform = "translate(0, 0)";
     document.getElementsByClassName("animate-title")[0].style.animation = "Alias-Animation 1s ease forwards";
     document.getElementsByClassName("image-container")[0].style.animation = "Img-Container-Animation 1s ease forwards";
     for (let index = 0; index < document.getElementsByClassName("animate-img").length; index++) {
