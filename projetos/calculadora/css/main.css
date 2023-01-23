@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 * {
 	margin: 0;
@@ -25,6 +26,7 @@ body {
     background: linear-gradient(90deg, rgba(10,49,64,1) 0%, rgba(34,92,115,1) 50%, rgba(75,140,166,1) 100%);
     z-index: 0;
     min-height: 100vh;
+    user-select: none;
 }
 
 .main-container-calculator {
@@ -32,16 +34,13 @@ body {
     background-color: #1f2120a6;
     backdrop-filter: blur(15px);
     border-radius: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding: 15px 0;
 }
 
 .visor {
-    width: 95%;
+    width: auto;
     height: 70px;
-    margin: 10px 2.5%;
+    margin: 15px 25px;
     border-radius: 10px;
     background-color: #1f2120a6;
     position: relative;
@@ -94,4 +93,24 @@ body {
     gap: 10px;
     justify-content: center;
     margin: 15px 0;
+}
+
+.version {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+}
+
+.main-title {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.main-relative-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }

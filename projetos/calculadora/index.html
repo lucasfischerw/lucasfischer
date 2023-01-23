@@ -5,48 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="favicon/favicon-144.png">
+    <meta name="msapplication-config" content="favicon/browserconfig.xml">
 </head>
 <body>
-    <div class="main-container-calculator">
-        <div class="visor">
-            <div class="results">
-                <p class="previous-result" id="previous-result"></p>
-                <p class="actual-number" id="actual-number">0</p>
+    <div class="main-relative-container">
+        <h1 class="main-title">Calculadora</h1>
+        <div class="main-container-calculator">
+            <div class="visor">
+                <div class="results">
+                    <p class="previous-result" id="previous-result"></p>
+                    <p class="actual-number" id="actual-number">0</p>
+                </div>
             </div>
-        </div>
-        <div class="buttons-grid">
-            <div class="line">
-                <h2 class="button">C</h2>
-                <h2 class="button">CE</h2>
-                <h2 class="button" onclick="Delete()"><img src="delete-icon.png"></h2>
-                <h2 class="button" onclick="Operation('/')">/</h2>
-            </div>
-            <div class="line">
-                <h2 class="button" onclick="ClickedNumber(7)">7</h2>
-                <h2 class="button" onclick="ClickedNumber(8)">8</h2>
-                <h2 class="button" onclick="ClickedNumber(9)">9</h2>
-                <h2 class="button" onclick="Operation('*')">X</h2>
-            </div>
-            <div class="line">
-                <h2 class="button" onclick="ClickedNumber(4)">4</h2>
-                <h2 class="button" onclick="ClickedNumber(5)">5</h2>
-                <h2 class="button" onclick="ClickedNumber(6)">6</h2>
-                <h2 class="button" onclick="Operation('-')">-</h2>
-            </div>
-            <div class="line">
-                <h2 class="button" onclick="ClickedNumber(1)">1</h2>
-                <h2 class="button" onclick="ClickedNumber(2)">2</h2>
-                <h2 class="button" onclick="ClickedNumber(3)">3</h2>
-                <h2 class="button" onclick="Operation('+')">+</h2>
-            </div>
-            <div class="line">
-                <h2 class="button">+/-</h2>
-                <h2 class="button" onclick="ClickedNumber(0)">0</h2>
-                <h2 class="button" onclick="ClickedNumber('.')">.</h2>
-                <h2 class="button" onclick="Result()">=</h2>
+            <div class="buttons-grid">
+                <div class="line">
+                    <h2 class="button" onclick="Clear(1)">C</h2>
+                    <h2 class="button" onclick="Clear(2)">CE</h2>
+                    <h2 class="button" onclick="Delete()"><img src="imgs/delete-icon.png"></h2>
+                    <h2 class="button" onclick="Operation('/')">/</h2>
+                </div>
+                <div class="line">
+                    <h2 class="button" onclick="ClickedNumber(7)">7</h2>
+                    <h2 class="button" onclick="ClickedNumber(8)">8</h2>
+                    <h2 class="button" onclick="ClickedNumber(9)">9</h2>
+                    <h2 class="button" onclick="Operation('*')">X</h2>
+                </div>
+                <div class="line">
+                    <h2 class="button" onclick="ClickedNumber(4)">4</h2>
+                    <h2 class="button" onclick="ClickedNumber(5)">5</h2>
+                    <h2 class="button" onclick="ClickedNumber(6)">6</h2>
+                    <h2 class="button" onclick="Operation('-')">-</h2>
+                </div>
+                <div class="line">
+                    <h2 class="button" onclick="ClickedNumber(1)">1</h2>
+                    <h2 class="button" onclick="ClickedNumber(2)">2</h2>
+                    <h2 class="button" onclick="ClickedNumber(3)">3</h2>
+                    <h2 class="button" onclick="Operation('+')">+</h2>
+                </div>
+                <div class="line">
+                    <h2 class="button" onclick="ChangeSign()">+/-</h2>
+                    <h2 class="button" onclick="ClickedNumber(0)">0</h2>
+                    <h2 class="button" onclick="ClickedNumber('.')">.</h2>
+                    <h2 class="button" onclick="Result()">=</h2>
+                </div>
             </div>
         </div>
     </div>
+    <p class="version">v.1.0</p>
     <script src="javascript/main.js"></script>
 </body>
 </html>
