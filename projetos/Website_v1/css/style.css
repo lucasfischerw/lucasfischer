@@ -52,13 +52,16 @@ body {
     font-family: 'Poppins', sans-serif;
     transition: color .3s ease;
     z-index: -1;
-    font-size: 225px;
     display: flex;
     align-items: flex-end;
 }
 
+.title-page h1 {
+    font-size: 225px;
+}
+
 .title-page p {
-    font-size: .4em;
+    font-size: 14px;
 }
 
 .title-page-content {
@@ -106,6 +109,49 @@ body {
     }
 }
 
+.download-popup {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(5px);
+    box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
+    padding: 20px;
+    width: max-content;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform .3s ease;
+}
+
+.blur {
+    transition: filter .3s ease;
+}
+
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.download-popup h2 {
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.download-popup .flex-popup {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.download-popup .flex-popup img {
+    cursor: pointer;
+    width: 200px;
+}
+
 .image-container {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, .55);
@@ -115,13 +161,13 @@ body {
     gap: 20px;
     position: absolute;
     top: 50%;
-    transform: translate(60%, -50%);
+    transform: translate(85%, -50%);
     right: 0;
     padding: 20px;
 }
 
 .image-container img {
-    width: 250px;
+    width: min(20vw, 325px);
     border-radius: 10px;
     transition: margin .25s ease;
 }
@@ -153,7 +199,7 @@ body {
 
 @keyframes Img-Animation {
     to {
-        width: 275px;
+        width: min(20vw, 375px);
     }
 }
 
@@ -210,7 +256,7 @@ a {
 }
 
 .img-content-page {
-    height: 80vh;
+    height: 70vh;
     border-radius: 10px;
     position: absolute;
     right: 0;
@@ -241,6 +287,7 @@ iframe {
     .img-content-page {
         right: -50px;
         transform: translateX(0);
+        height: 100vh;
     }
 }
 
@@ -263,24 +310,34 @@ iframe {
     text-decoration: none;
     background-color: #d3d3d3;
     width: max-content;
+    padding: 0 10px;
+    height: 60px;
     border-radius: 10px;
-    padding: 10px;
     cursor: pointer;
     position: absolute;
     top: 30px;
     right: 50px;
+    transition: background-color .3s ease;
 }
 
 .download-btn.soon-btn {
     left: 50%;
     transform: translateX(-50%);
     bottom: 70px;
-    height: fit-content;
     top: unset;
+}
+
+.download-btn:hover {
+    background-color: #c7c7c7;
+}
+
+.download-btn:hover img {
+    margin-top: 10px;
 }
 
 .download-btn img {
     width: 35px;
+    transition: margin .3s ease;
 }
 
 .download-btn p,
@@ -288,11 +345,29 @@ h1 p {
     margin-bottom: 0;
 }
 
+.soon-title {
+    z-index: 999;
+    position: absolute;
+    left: 50% !important;
+    top: 30px !important;
+    transform: translateX(-50%) !important;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.soon-title.title-page h1 {
+    font-size: 50px;
+    line-height: 50px;
+}
+
 @media(max-width: 1000px) {
     .download-btn {
         top: 90px;
         left: 50%;
         transform: translateX(-50%);
+    }
+    .title-page h1 {
+        font-size: 52.5px;
     }
     .image-container {
         display: none;
@@ -325,6 +400,20 @@ h1 p {
         animation: none !important;
         opacity: 0;
     }
+        .soon-title {
+            z-index: 999;
+            position: absolute;
+            left: 50% !important;
+            top: 30px !important;
+            transform: translateX(-50%) !important;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+    
+        .soon-title.title-page h1 {
+            font-size: 50px;
+            line-height: 50px;
+        }
 }
 
 .animate-charcter {
@@ -350,4 +439,38 @@ h1 p {
     to {
         background-position: 200% center;
     }
+}
+
+.app-btn {
+    width: 45%;
+    max-width: 160px;
+    color: #fff;
+    margin: 20px 10px;
+    text-align: left;
+    border-radius: 5px;
+    text-decoration: none;
+    font-family: "Lucida Grande", sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.app-btn.blu {
+    background-color: #101010;
+    transition: background-color 0.25s linear;
+}
+
+.app-btn.blu:hover {
+    background-color: #454545;
+}
+
+.app-btn i {
+    width: 20%;
+    text-align: center;
+    font-size: 28px;
+    margin-right: 7px;
+}
+
+.app-btn .big-txt {
+    font-size: 17px;
+    text-transform: capitalize;
 }

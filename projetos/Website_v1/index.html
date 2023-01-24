@@ -8,36 +8,53 @@
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
     </head>
     <body>
-        <h1 class="title-page animate-charcter">INXSON<p>TM</p></h1>
-        <h2 class="animate-title">Immersive Storytelling</h2>
-        <a class="download-btn">
-            <img src="imgs/download-icon.png">
-            <p>Download Now</p>
-        </a>
-        <div class="background"></div>
-        <div class="image-container">
-            <img class="arrow" onclick="StartAnimation()" src="./imgs/arrow.png">
-            <a class="story-link" onclick="Redirect('bronze.html')">
-                <img class="animate-img" src="./imgs/THE BRONZE.png">
-            </a>
-            <a class="story-link" onclick="Redirect('ali-baba.html')">
-                <img class="animate-img" src="./imgs/ALI BABA.jpg">
-            </a>
-            <img class="animate-img" src="./imgs/coming-soon.png">
-            <img class="arrow-2" onclick="Redirect('coming-soon.html')" src="./imgs/arrow.png">
+        <div class="download-popup" id="download-popup">
+            <h2>Download now</h2>
+            <h2 class="close-btn" onclick="PopUp(1)">&times;</h2>
+            <div class="flex-popup">
+                <a href="https://www.apple.com/app-store/">
+                    <img src="./imgs/app-store-logo.png">
+                </a>
+                <a href="https://play.google.com/store">
+                    <img src="./imgs/google-play-logo.png">
+                </a>
+            </div>
         </div>
-        <div class="image-container-mobile">
-            <a class="story-link" onclick="Redirect('bronze.html')">
-                <img src="./imgs/THE BRONZE.png">
+        <div class="blur" id="blur" onclick="PopUp(1)">
+            <a class="title-page animate-charcter">
+                <h1 class="h1-title">INXSON</h1>
+                <p>TM</p>
             </a>
-            <a class="story-link" onclick="Redirect('ali-baba.html')">
-                <img src="./imgs/ALI BABA.jpg">
-            </a>
-            <a class="story-link" onclick="Redirect('coming-soon.html')">
-                <img src="./imgs/coming-soon.png">
-            </a>
+            <h2 class="animate-title">Immersive Storytelling</h2>
+            <div class="download-btn" onclick="PopUp(2)">
+                <img src="imgs/download-icon.png">
+                <p>Download Now</p>
+            </div>
+            <div class="background"></div>
+            <div class="image-container">
+                <img class="arrow" onclick="StartAnimation()" src="./imgs/arrow.png">
+                <a class="story-link" onclick="Redirect('bronze.html')">
+                    <img class="animate-img" src="./imgs/THE BRONZE.png">
+                </a>
+                <a class="story-link" onclick="Redirect('ali-baba.html')">
+                    <img class="animate-img" src="./imgs/ALI BABA.jpg">
+                </a>
+                <img class="animate-img" src="./imgs/coming-soon.png">
+                <img class="arrow-2" onclick="Redirect('coming-soon.html')" src="./imgs/arrow.png">
+            </div>
+            <div class="image-container-mobile">
+                <a class="story-link" onclick="Redirect('bronze.html')">
+                    <img src="./imgs/THE BRONZE.png">
+                </a>
+                <a class="story-link" onclick="Redirect('ali-baba.html')">
+                    <img src="./imgs/ALI BABA.jpg">
+                </a>
+                <a class="story-link" onclick="Redirect('coming-soon.html')">
+                    <img src="./imgs/coming-soon.png">
+                </a>
+            </div>
+            <a class="privacy" href="privacy-policy.html">Privacy Policy</a>
         </div>
-        <a class="privacy" href="privacy-policy.html">Privacy Policy</a>
         <script src="./js/main.js"></script>
     </body>
 </html>

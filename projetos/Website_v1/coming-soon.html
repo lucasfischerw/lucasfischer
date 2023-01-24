@@ -12,15 +12,34 @@
         </style>
     </head>
     <body>
-        <div class="background-soon"></div>
-        <a class="download-btn soon-btn">
-            <img src="imgs/download-icon.png">
-            <p>Download Now</p>
-        </a>
+        <div class="download-popup" id="download-popup">
+            <h2>Download now</h2>
+            <h2 class="close-btn" onclick="PopUp(1)">&times;</h2>
+            <div class="flex-popup">
+                <a href="https://www.apple.com/app-store/">
+                    <img src="./imgs/app-store-logo.png">
+                </a>
+                <a href="https://play.google.com/store">
+                    <img src="./imgs/google-play-logo.png">
+                </a>
+            </div>
+        </div>
+        <div id="blur" class="blur" onclick="PopUp(1)">
+            <div class="background-soon"></div>
+            <a class="title-page animate-charcter soon-title" href="index.html">
+                <h1 class="h1-title">INXSON</h1>
+                <p>TM</p>
+            </a>
+            <div class="download-btn soon-btn" onclick="PopUp(2)">
+                <img src="imgs/download-icon.png">
+                <p>Download Now</p>
+            </div>
+        </div>
         <script>
             setTimeout(() => {
                 document.body.style.opacity = "1"
             }, 250);
         </script>
+        <script src="./js/main.js"></script>
     </body>
 </html>
