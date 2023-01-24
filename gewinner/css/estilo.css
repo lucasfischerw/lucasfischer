@@ -268,7 +268,6 @@ a {
 .galeria {
 	display: flex;
 	flex-wrap: wrap;
-	min-height: 100vh;
 	padding: 10vh 0;
 	width: 90vw;
 	column-gap: 50px;
