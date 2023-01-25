@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luka Tomas</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="upper-menu-wrapper">
+        <div class="upper-menu">
+            <h1>LUKA TOMAS</h1>
+            <div class="navigation">
+                <a href="#home-section"><img src="./imgs/home-icon.png"></a>
+                <a href="#about-section"><img src="./imgs/profile-icon.png"></a>
+                <a href="#carousel-section"><img src="./imgs/carousel-icon.png"></a>
+                <a href="#gallery-section"><img src="./imgs/gallery-icon.png"></a>
+                <a><img src="./imgs/contact-icon.png"></a>
+            </div>
+            <img src="./imgs/logo.jpg">
+        </div>
+    </div>
+    <div class="home-section" id="home-section">
+        <div class="home-content-wrapper">
+            <img src="./imgs/PB080749.png">
+            <div class="home-texts">
+                <h1>LUKA TOMAS</h1>
+                <div class="line-decoration"></div>
+                <div class="description-home">
+                    <p>DIZAJN</p>
+                    <p>&centerdot;</p>
+                    <p>ANIMACIJA</p>
+                    <p>&centerdot;</p>
+                    <p>ILUSTRACIJA</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="extra-text-home">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+    book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+    <div class="about-section" id="about-section">
+        <div class="about-content-wrapper">
+            <img src="./imgs/about-me-photo.jpg">
+            <div class="about-texts">
+                <div class="title-about-flex">
+                    <h2>Ja Sam</h2>
+                    <h1>LUKA TOMAS.</h1>
+                </div>
+                <h3>Bavim se DIZAJNOM, ANIMACIJOM, ILUSTRACIJOM i VIDEO MONTAZOM od 2013. godline.</h3>
+                <p>Ako trebas nekoga da radi s tobom, taj sam!</p>
+            </div>
+        </div>
+    </div>
+    <p class="extra-text-home">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+        been the industry's standard
+        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+        specimen
+        book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+    <div class="carousel-section" id="carousel-section">
+        <h1 class="section-main-title">ISTAKNUTI RADOVI</h1>
+        <div class="carousel-container">
+            <img onclick="PreviousCarousel()" class="previous controls-carousel" src="./imgs/forward-icon.png">
+            <img id="carousel-1" src="./imgs/test.png">
+            <img id="carousel-2" class="main-carousel-image" src="./imgs/festiva_plakat_naziv.png">
+            <img id="carousel-3" src="./imgs/tomasposter.png">
+            <img onclick="NextCarousel()" class="next controls-carousel" src="./imgs/forward-icon.png">
+        </div>
+    </div>
+    <div class="gallery-section" id="gallery-section">
+        <h1 class="section-main-title">GALERIJA</h1>
+        <h2 class="gallery-subtitle">GRAFICKI DIZAJN</h2>
+        <div class="line-gallery">
+            <img id="gallery-1" onclick="FullScreen(1)" src="./imgs/arhitektura_luka_tomas.png">
+            <img id="gallery-2" onclick="FullScreen(2)" src="./imgs/luka_tomas_zamucena2.png">
+            <img id="gallery-3" onclick="FullScreen(3)" src="./imgs/luka-tomas_ulicna.png">
+            <img id="gallery-4" onclick="FullScreen(4)" src="./imgs/festiva_plakat_naziv.png">
+            <img id="gallery-5" onclick="FullScreen(5)" src="./imgs/festiva_plakatFINAL.png">
+            <img id="gallery-6" onclick="FullScreen(6)" src="./imgs/tomasposter.png">
+        </div>
+        <h2 class="gallery-subtitle">ILUSTRACIJA</h2>
+        <div class="line-gallery">
+            <img id="gallery-7" onclick="FullScreen(7)" src="./imgs/2Fort_ blender.png">
+            <img id="gallery-8" onclick="FullScreen(8)" src="./imgs/painting practice.png">
+            <img id="gallery-9" onclick="FullScreen(9)" src="./imgs/sminar_1.png">
+            <img id="gallery-10" onclick="FullScreen(10)" src="./imgs/test.png">
+            <img id="gallery-11" onclick="FullScreen(11)" src="./imgs/Untitled-1.png">
+            <img id="gallery-12" onclick="FullScreen(12)" src="./imgs/Worker_ SFM1.png">
+        </div>
+    </div>
+    <div class="fullscreen-img-container" id="fullscreen-img-container">
+        <img id="fullscreen-img">
+        <h1 onclick="CloseFullScreen()">&times;</h1>
+    </div>
+    <script src="./javascript/main.js"></script>
+</body>
+</html>
