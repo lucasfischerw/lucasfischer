@@ -37,3 +37,31 @@ function PopUp(Input) {
         }, 300);
     }
 }
+
+function SignUp() {
+    document.getElementById("blur").style.filter = "blur(10px)";
+    document.getElementById("sign-popup").style.transform = "translate(-50%, -50%) scale(1)";
+}
+
+function VerifyInput() {
+    setTimeout(() => {
+        if (document.getElementById("input-sign-up").value.includes("@")) {
+            document.getElementById("confirm-sign-button").style.backgroundColor = "#275269"
+            document.getElementById("confirm-sign-button").setAttribute("onclick", "SignUpComplete()");
+        } else {
+            document.getElementById("confirm-sign-button").style.backgroundColor = "#4f5254"
+        }
+    }, 50);
+}
+
+function SignUpComplete() {
+    document.getElementById("thank-you-message").innerHTML = "Thank you for signing up!"
+    document.getElementById("input-sign-up").style.display = "none";
+    document.getElementById("confirm-sign-button").innerHTML = "CLOSE"
+    document.getElementById("confirm-sign-button").setAttribute("onclick", "CloseSignUp()")
+}
+
+function CloseSignUp() {
+    document.getElementById("blur").style.filter = "none";
+    document.getElementById("sign-popup").style.transform = "translate(-50%, -50%) scale(0)";
+}

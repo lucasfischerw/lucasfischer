@@ -36,7 +36,7 @@ body {
 }
 
 .background-soon {
-    background-image: url(../imgs/soon.png);
+    background-image: url(../imgs/soon-mobile.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -115,13 +115,51 @@ body {
     backdrop-filter: blur(5px);
     box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
     padding: 20px;
-    width: max-content;
+    width: min(455px, 90%);
     position: absolute;
     left: 50%;
     top: 50%;
     z-index: 9999;
     transform: translate(-50%, -50%) scale(0);
     transition: transform .3s ease;
+}
+
+.sign-popup {
+    border-radius: 10px;
+    background-color: #D2D2D2;
+    box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
+    padding: 20px;
+    width: min(455px, 90%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform .3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.sign-popup input {
+    border: 1px solid #454545;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: beige;
+    padding: 10px;
+}
+
+.sign-popup a {
+    background-color: #4f5254;
+    color: #FFFFFF !important;
+    padding: 15px 45px;
+    border-radius: 100vw;
+    text-align: center;
+    cursor: pointer;
+    width: fit-content;
 }
 
 .blur {
@@ -145,6 +183,7 @@ body {
     gap: 15px;
     justify-content: center;
     margin-top: 25px;
+    flex-wrap: wrap;
 }
 
 .download-popup .flex-popup img {
@@ -186,7 +225,7 @@ body {
 }
 
 .image-container-mobile img {
-    width: 250px;
+    width: 285px;
     border-radius: 10px;
 }
 
@@ -258,7 +297,7 @@ a {
 .img-content-page {
     height: 70vh;
     border-radius: 10px;
-    position: absolute;
+    position: fixed;
     right: 0;
     transform: translateX(50%);
     bottom: 0;
@@ -287,7 +326,8 @@ iframe {
     .img-content-page {
         right: -50px;
         transform: translateX(0);
-        height: 100vh;
+        width: 60vw;
+        height: auto;
     }
 }
 
@@ -302,6 +342,10 @@ iframe {
 
 .flex-content p {
     font-size: .95em;
+    background-color: #ffffffa2;
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
 }
 
 .download-btn {
@@ -318,13 +362,6 @@ iframe {
     top: 30px;
     right: 50px;
     transition: background-color .3s ease;
-}
-
-.download-btn.soon-btn {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 70px;
-    top: unset;
 }
 
 .download-btn:hover {
@@ -356,8 +393,15 @@ h1 p {
 }
 
 .soon-title.title-page h1 {
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 52.5px;
+    line-height: 63px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.soon-title.title-page p {
+    line-height: 21px;
+    margin-bottom: 10px;
 }
 
 @media(max-width: 1000px) {
@@ -400,20 +444,16 @@ h1 p {
         animation: none !important;
         opacity: 0;
     }
-        .soon-title {
-            z-index: 999;
-            position: absolute;
-            left: 50% !important;
-            top: 30px !important;
-            transform: translateX(-50%) !important;
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-        }
-    
-        .soon-title.title-page h1 {
-            font-size: 50px;
-            line-height: 50px;
-        }
+    .soon-title {
+        z-index: 999;
+        position: absolute;
+        left: 50% !important;
+        top: 30px !important;
+        transform: translateX(-50%) !important;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
 }
 
 .animate-charcter {
@@ -473,4 +513,66 @@ h1 p {
 .app-btn .big-txt {
     font-size: 17px;
     text-transform: capitalize;
+}
+
+.soon-text-description h1:nth-child(1) {
+    color: #C24041;
+}
+
+.soon-text-description h1:nth-child(2) {
+    color: #275269;
+}
+
+.soon-text-description h1:nth-child(3) {
+    color: #F6B451;
+}
+
+.soon-text-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: min(30px, 5vw);
+    text-align: center;
+    width: max-content;
+}
+
+@media(min-width: 650px) {
+    .background-soon {
+        background-image: url(../imgs/soon-pc.png);
+    }
+}
+
+@media(max-width: 649px) {
+    .soon-title {
+        z-index: 999;
+        position: absolute;
+        left: 50% !important;
+        top: 25% !important;
+        transform: translateX(-50%) !important;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .soon-title.title-page h1 {
+        font-size: 52.5px;
+        line-height: 52.5px;
+    }
+}
+
+.sign-up-btn {
+    background-color: #275269;
+    color: #FFFFFF !important;
+    padding: 15px 45px;
+    border-radius: 100vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 70px;
+    top: unset;
+    text-align: center;
+    cursor: pointer;
 }

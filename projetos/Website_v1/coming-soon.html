@@ -12,28 +12,24 @@
         </style>
     </head>
     <body>
-        <div class="download-popup" id="download-popup">
-            <h2>Download now</h2>
-            <h2 class="close-btn" onclick="PopUp(1)">&times;</h2>
-            <div class="flex-popup">
-                <a href="https://www.apple.com/app-store/">
-                    <img src="./imgs/app-store-logo.png">
-                </a>
-                <a href="https://play.google.com/store">
-                    <img src="./imgs/google-play-logo.png">
-                </a>
-            </div>
+        <div class="sign-popup" id="sign-popup">
+            <h3 id="thank-you-message">Enter your email to receive
+            updates when new stories are available</h3>
+            <input id="input-sign-up" onkeydown="VerifyInput()" placeholder="Email">
+            <a id="confirm-sign-button">CONFIRM</a>
         </div>
-        <div id="blur" class="blur" onclick="PopUp(1)">
+        <div id="blur" class="blur" onclick="">
             <div class="background-soon"></div>
             <a class="title-page animate-charcter soon-title" href="index.html">
                 <h1 class="h1-title">INXSON</h1>
                 <p>TM</p>
             </a>
-            <div class="download-btn soon-btn" onclick="PopUp(2)">
-                <img src="imgs/download-icon.png">
-                <p>Download Now</p>
+            <div class="soon-text-description">
+                <h1>MORE STORIES</h1>
+                <h1>COMING</h1>
+                <h1>SOON</h1>
             </div>
+            <p onclick="SignUp()" class="sign-up-btn">SIGN UP</p>
         </div>
         <script>
             setTimeout(() => {
