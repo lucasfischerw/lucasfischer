@@ -38,9 +38,14 @@ function PopUp(Input) {
     }
 }
 
+var SignUpOpened = false;
+
 function SignUp() {
     document.getElementById("blur").style.filter = "blur(10px)";
     document.getElementById("sign-popup").style.transform = "translate(-50%, -50%) scale(1)";
+    setTimeout(() => {
+        SignUpOpened = true;
+    }, 100);
 }
 
 function VerifyInput() {
@@ -62,6 +67,9 @@ function SignUpComplete() {
 }
 
 function CloseSignUp() {
-    document.getElementById("blur").style.filter = "none";
-    document.getElementById("sign-popup").style.transform = "translate(-50%, -50%) scale(0)";
+    if (SignUpOpened) {
+        document.getElementById("blur").style.filter = "none";
+        document.getElementById("sign-popup").style.transform = "translate(-50%, -50%) scale(0)";
+        SignUpOpened = false;
+    }
 }
