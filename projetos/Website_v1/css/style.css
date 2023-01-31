@@ -141,14 +141,15 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    color: #275269 !important;
 }
 
 .sign-popup input {
-    border: 1px solid #454545;
+    border: 1px solid #275269;
     width: 100%;
     height: 50px;
     border-radius: 10px;
-    background-color: beige;
+    background-color: #FFFFFF;
     padding: 10px;
 }
 
