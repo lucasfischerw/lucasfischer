@@ -20,6 +20,12 @@ function Redirect(RedirectLink) {
     }, 600);
 }
 
+function LoadPage() {
+    setTimeout(() => {
+        document.body.style.opacity = 1;
+    }, 100);
+}
+
 var PopUpOpened = false;
 
 function PopUp(Input) {
