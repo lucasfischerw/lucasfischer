@@ -353,7 +353,7 @@ iframe {
     display: flex;
     align-items: center;
     text-decoration: none;
-    background-color: #d3d3d3;
+    background-color: #275269;
     width: max-content;
     padding: 0 10px;
     height: 60px;
@@ -362,26 +362,20 @@ iframe {
     position: absolute;
     top: 30px;
     right: 50px;
+    color: #FFFFFF;
     transition: background-color .3s ease;
 }
 
 .contact-button {
-    background-color: #C24041;
-    text-decoration: none;
-    padding: 15px 45px;
-    border-radius: 100vw;
+    text-decoration: underline;
     cursor: pointer;
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: background-color .3s ease;
-    color: #FFFFFF !important;
-    z-index: 1;
+    right: 170px;
+    bottom: 20px;
 }
 
 .download-btn:hover {
-    background-color: #c7c7c7;
+    background-color: #286d93;
 }
 
 .download-btn:hover img {
@@ -391,6 +385,7 @@ iframe {
 .download-btn img {
     width: 35px;
     transition: margin .3s ease;
+    filter: invert();
 }
 
 .download-btn p,
@@ -610,7 +605,6 @@ h1 p {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 45px;
 }
 
 .contact-form .title-contact-form {
@@ -619,12 +613,21 @@ h1 p {
     flex-direction: column;
     justify-content: center;
     padding: 15px 50px 15px 15px;
-    font-size: 30px;
+    font-size: 35px;
     min-width: 30%;
     color: #F6B451;
     background-color: #FFFFFF;
-    box-shadow: 0 0 0 15px white, 0 0 0 30px rgba(0, 0, 0, .55);
-    border-radius: 10px 0 0 10px;
+    border-radius: 15px 0 0 15px;
+    z-index: 2;
+    position: relative;
+    font-weight: bolder;
+    text-shadow: 1px 1px 7px black;
+}
+
+.title-contact-form-wrapper {
+    background-color: rgba(0, 0, 0, .55);
+    padding: 15px 0 15px 15px;
+    border-radius: 15px 0 0 15px;
 }
 
 .contact-form .contact-informations {
@@ -672,7 +675,7 @@ h1 p {
         display: flex;
     }
     .contact-form .contact-informations {
-        min-width: 50%;
+        min-width: 40%;
     }
 }
 
@@ -689,4 +692,8 @@ h1 p {
     right: 0;
     bottom: 0;
     width: 100vw;
+}
+
+.contact-logo-menu {
+    line-height: 49px;
 }

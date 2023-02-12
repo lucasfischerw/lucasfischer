@@ -14,10 +14,7 @@ function StartAnimation() {
 }
 
 function Redirect(RedirectLink) {
-    document.body.style.opacity = 0;
-    setTimeout(() => {
-        window.location.href = RedirectLink;
-    }, 600);
+    window.location.href = RedirectLink;
 }
 
 function LoadPage() {
