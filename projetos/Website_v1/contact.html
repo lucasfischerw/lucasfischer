@@ -7,14 +7,13 @@
     <title>Contact Us</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body style="display: grid;place-content: center;">
-    <div class="background-decoration"></div>
+<body class="contact-body" style="display: flex;align-items: center;">
+    <img class="contact-decoration" src="./imgs/contact-bg-decoration.png">
+    <a class="title-container animate-charcter" href="index.html">
+        <h1 class="title-page-content">INXSON</h1>
+        <p>TM</p>
+    </a>
     <div class="contact-content-wrapper">
-        <div class="contact-upper">
-            <h1>LET´S TALK</h1>
-            <img src="./imgs/phone-img.png">
-            <p>072-44-4-444844</p>
-        </div>
         <div class="contact-form">
             <div class="title-contact-form">
                 <h1>GET</h1>
@@ -22,22 +21,10 @@
                 <h1>TOUCH</h1>
             </div>
             <div class="contact-informations">
-                <div>
-                    <p>Who are you?</p>
-                    <input placeholder="Type your name here.">
-                </div>
-                <div>
-                    <p>What´s your email address?</p>
-                    <input placeholder="Type your email adress here.">
-                </div>
-                <div>
-                    <p>What´s your phone number?</p>
-                    <input placeholder="Type your telephone number here.">
-                </div>
-                <div>
-                    <p>What´s your Message</p>
-                    <textarea placeholder="Type your Message here"></textarea>
-                </div>
+                <input placeholder="NAME">
+                <input placeholder="EMAIL">
+                <input placeholder="PHONE (OPTIONAL)">
+                <textarea placeholder="MESSAGE"></textarea>
                 <button>SEND</button>
             </div>
         </div>

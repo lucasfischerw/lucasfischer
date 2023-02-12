@@ -26,6 +26,10 @@ function LoadPage() {
     }, 100);
 }
 
+setTimeout(() => {
+    document.body.style.opacity = 1;
+}, 250);
+
 var PopUpOpened = false;
 
 function PopUp(Input) {
