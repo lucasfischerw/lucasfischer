@@ -23,12 +23,12 @@ function Redirect(RedirectLink) {
 function LoadPage() {
     setTimeout(() => {
         document.body.style.opacity = 1;
-    }, 100);
+    }, 500);
 }
 
 setTimeout(() => {
     document.body.style.opacity = 1;
-}, 250);
+}, 1000);
 
 var PopUpOpened = false;
 
