@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link href="css/main.css" rel="stylesheet">
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity .5s ease;
+        }
+        .upper-menu a img {
+            transition: .25s margin ease, .25s opacity ease;
+        }
+        .logo:hover {
+            margin: 0 25px !important;
+        }
+        .home-button:hover .arrow-menu {
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body onload="Load()" class="main-body-contact">
+    <div class="upper-menu" id="upper-menu">
+        <a class="home-button" href="index.html">
+            <img class="arrow-menu" id="arrow-menu" src="./images/arrow-down.png">
+            <img class="logo" id="logo" src="./images/logo.png" alt="Logo">
+        </a>
+    </div>
+    <form>
+        <div style="z-index: 2;">
+            <h1 style="text-align: center;">Get In Touch</h1>
+            <div class="line">
+                <h1>Hey! I am</h1>
+                <input placeholder="Name">
+            </div>
+            <div class="line">
+                <h1>And work for</h1>
+                <input placeholder="Company">
+            </div>
+            <div class="line">
+                <h1>My phone number is</h1>
+                <input placeholder="Phone">
+            </div>
+            <div class="line">
+                <h1>and my Email address is</h1>
+                <input placeholder="Email">
+            </div>
+            <div class="line">
+                <input class="message" placeholder="Message">
+            </div>
+            <a class="underline-animate contact-underline" href="contact.html" style="cursor: pointer;">Send &rarr;</a>
+        </div>
+        <svg class="decoration-contact-1" xmlns="http://www.w3.org/2000/svg" width="193.719" height="191.702" viewBox="0 0 193.719 191.702">
+            <path id="Path_119" data-name="Path 119"
+                d="M19267.7,4987.9c37.133.317,88.76,19.162,90.766,52.857s5.916,93-23.668,114.171-81.672,33.65-113.26,16.885-53.8-54.36-55.342-83.994,17.383-51.423,23.6-68.191S19230.57,4987.587,19267.7,4987.9Z"
+                transform="translate(-19166.111 -4987.899)" fill="#04c5cb" />
+        </svg>
+        <svg class="decoration-contact-2" xmlns="http://www.w3.org/2000/svg" width="95.168" height="94.178" viewBox="0 0 95.168 94.178">
+            <path id="Path_120" data-name="Path 120"
+                d="M19216.023,4987.9c18.244.156,43.605,9.415,44.59,25.967s2.906,45.689-11.625,56.089-40.123,16.531-55.643,8.295-26.428-26.706-27.187-41.264,8.539-25.263,11.594-33.5S19197.781,4987.746,19216.023,4987.9Z"
+                transform="translate(-19166.115 -4987.899)" fill="#3f207b" />
+        </svg>
+    </form>
+    <script>
+        function Load() {
+            setTimeout(() => {
+                document.body.style.opacity = "1";
+                setTimeout(() => {
+                    document.getElementById("arrow-menu").style.opacity = "1";
+                    document.getElementById("logo").style.margin = "0 0 0 25px";
+                    setTimeout(() => {
+                        document.getElementById("arrow-menu").style.opacity = "0";
+                        document.getElementById("logo").style.margin = "0";
+                    }, 2000);
+                }, 800);
+            }, 700);
+        }
+    </script>
+</body>
+</html>
