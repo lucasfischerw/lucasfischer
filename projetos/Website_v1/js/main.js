@@ -80,3 +80,29 @@ function CloseSignUp() {
         SignUpOpened = false;
     }
 }
+
+function MessageContact() {
+    var Error = false;
+    for (let index = 0; index < document.getElementsByClassName("input-value").length; index++) {
+        console.log(document.getElementsByClassName("input-value")[index].value);
+        if(document.getElementsByClassName("input-value")[index].value.length < 1) {
+            Error = true;
+            break;
+        }
+    }
+    if(!Error) {
+        document.getElementById("blur").style.filter = "blur(10px)";
+        document.getElementById("contact-popup").style.transform = "translate(-50%, -50%) scale(1)";
+    } else {
+        document.getElementById("error-contact").style.display = "block"
+    }
+}
+
+function CloseContact() {
+    document.getElementById("blur").style.filter = "none";
+    document.getElementById("contact-popup").style.transform = "translate(-50%, -50%) scale(0)";
+}
+
+function RemoveAlert() {
+    document.getElementById("error-contact").style.display = "none"
+}

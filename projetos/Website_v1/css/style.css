@@ -609,7 +609,7 @@ h1 p {
 
 .contact-form .title-contact-form {
     border-right: none;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 15px 50px 15px 15px;
@@ -632,7 +632,7 @@ h1 p {
 
 .contact-form .contact-informations {
     background-color: #275269;
-    padding: 15px 25px;
+    padding: 55px 25px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -642,6 +642,11 @@ h1 p {
     transition: min-width .25s ease;
     box-shadow: 0 0 0 15px white, 0 0 0 30px rgba(0, 0, 0, .55);
     overflow: hidden;
+}
+
+.contact-form .contact-informations p {
+    color: #F6B451;
+    display: none;
 }
 
 .contact-form .contact-informations input {
@@ -668,11 +673,16 @@ h1 p {
     padding: 10px;
     background-color: #F6B451;
     color: white;
+    cursor: pointer;
+}
+
+.title-contact-form-wrapper {
+    display: none;
 }
 
 @media(min-width: 900px) {
-    .contact-form .title-contact-form {
-        display: flex;
+    .title-contact-form-wrapper {
+        display: block;
     }
     .contact-form .contact-informations {
         min-width: 40%;
@@ -696,4 +706,51 @@ h1 p {
 
 .contact-logo-menu {
     line-height: 49px;
+    font-weight: 500;
+}
+
+@media (max-width: 1000px) {
+    .title-contact-container {
+        position: absolute;
+        left: 50% !important;
+        top: 30px !important;
+        transform: translateX(-50%) !important;
+    }
+
+}
+
+input,
+textarea,
+::placeholder {
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-popup {
+    border-radius: 10px;
+    background-color: #D2D2D2;
+    box-shadow: 5px 5px 8px 1px rgb(0 0 0 / 20%);
+    padding: 20px;
+    width: min(455px, 90%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform .3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: #275269 !important;
+}
+
+.contact-popup a {
+    background-color: #275269;
+    color: #FFFFFF !important;
+    padding: 15px 45px;
+    border-radius: 100vw;
+    text-align: center;
+    cursor: pointer;
+    width: fit-content;
 }
