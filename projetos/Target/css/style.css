@@ -60,17 +60,17 @@ body {
     gap: 15px;
 }
 
-.right-nav-menu p {
+.right-nav-menu a {
     color: #FFFFFF;
     font-size: 1.25em;
     cursor: pointer;
 }
 
-.right-nav-menu a {
+.right-nav-menu .special-link {
     background-color: #b90101;
     padding: 10px 15px;
     border-radius: 10px;
-    color: #fff;
+    color: #fff !important;
 }
 
 .page-links {
@@ -170,24 +170,29 @@ p {
 }
 
 .nav-pages {
-    gap: 15px;
+    position: fixed;
+    gap: 20px;
     display: none;
+    flex-direction: column;
     opacity: 0;
     transform: translateX(100%);
     transition: opacity .5s ease, transform .5s ease;
     overflow: hidden;
     align-items: center;
+    justify-content: center;
+    background: #747474;
+    padding: 0 30px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 99999;
 }
 
 .social-media.pages img {
     filter: brightness(0.3);
 }
 
-p.pages {
-    color: #747474;
-}
-
-.nav-pages.pages p {
+a.pages {
     color: #747474;
 }
 
@@ -246,4 +251,70 @@ iframe {
     text-align: center;
     top: 25vh;
     transform: translate(-50%, -50%);
+}
+
+.social-media {
+    display: none;
+}
+
+@media(min-width: 500px) {
+    .social-media {
+        display: flex;
+    }
+}
+
+.close-btn {
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    color: white;
+    cursor: pointer;
+    font-size: 3em !important;
+}
+
+@media(min-width: 1000px) {
+    .nav-pages {
+        gap: 15px;
+        display: none;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: opacity .5s ease, transform .5s ease;
+        overflow: hidden;
+        align-items: center;
+        position: unset;
+        flex-direction: row;
+        background: transparent;
+        padding: 0;
+    }
+    .nav-pages.pages a {
+        color: #747474;
+    }
+    .close-btn {
+        display: none;
+    }
+}
+
+input.information,
+textarea {
+    padding: 10px 0;
+    border: none;
+    border-bottom: #747474 1px solid;
+    width: min(500px, 90%);
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start !important;
+    gap: 10px;
+    color: #747474;
+    width: min(500px, 100%);
+}
+
+.orcamento .send {
+    padding: 10px 15px;
+    border: none;
+    background-color: #b90101;
+    color: #FFFFFF;
+    border-radius: 10px;
 }
