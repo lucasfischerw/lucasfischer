@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <h1 class="main-title">To-Do List</h1>
+    <section class="signed-out" id="signed-out">
+        <p class="description">Entre na sua conta</p>
+        <div>
+            <input placeholder="Email">
+            <input placeholder="Senha">
+        </div>
+        <button>Entrar</button>
+        <p>- ou -</p>
+        <button id="sign-in-btn">Entrar com Google</button>
+    </section>
+    
+    <section id="signed-in" hidden="true">
+        <div class="profile-info">
+            <img class="profile-img" src="./img/profile.png">
+            <div class="info-container">
+                <p id="text">Name placeholder</p>
+                <button id="sign-out-btn">Sign Out</button>
+            </div>
+        </div>
+        <h1>Pendentes</h1>    
+        <div id="pending"></div>
+        <h1>Completas</h1>    
+        <div id="completed"></div>
+        <div class="add-task">
+            <p id="add-icon">+</p>
+            <div id="add-menu-hidden">
+                <input id="new-task-name" placeholder="Task Name">
+                <input id="new-task-date" type="date">
+                <button onclick="SaveNewTask()" id="new-task-save">Save</button>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="app.js" defer></script>
+</body>
+</html>

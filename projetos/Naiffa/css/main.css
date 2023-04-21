@@ -18,16 +18,15 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     font-family: 'Red Hat Display', sans-serif;
-    background: rgb(0,169,204);
-    background: linear-gradient(140deg, rgba(0,169,204,1) 0%, rgba(78,47,127,1) 100%);
-    color: #FFFFFF;
+    background: #fffffa;
+    color: #000000;
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
 }
 
 a {
-    color: #FFFFFF;
+    color: #000000;
 }
 
 img {
@@ -85,7 +84,7 @@ img {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.15em;
     transition: .25s background-color ease, .25s height ease;
-    color: white !important;
+    color: #000000 !important;
 }
 
 .upper-menu a img {
@@ -125,7 +124,7 @@ img {
 
 @media(hover: hover) and (pointer: fine) {
     .underline-animate:hover {
-        background-color: #00bcd44d;
+        background-color: #003f5c;
     }
 }
 
@@ -151,7 +150,7 @@ img {
     width: 100%;
     gap: 15px;
     padding: 10px 25px;
-    color: #FFF;
+    color: #000000;
     font-family: 'DM Sans', sans-serif;
 }
 
@@ -168,7 +167,7 @@ img {
     width: fit-content;
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    color: white;
+    color: #000000;
 }
 
 :root {
@@ -1065,3 +1064,23 @@ div.flex-objectives-items {
     gap: 15px;
     justify-content: center;
 }
+
+/* @media (prefers-color-scheme: dark) {
+    html,
+    body {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        font-family: 'Red Hat Display', sans-serif;
+        background: #16161a;
+        color: #FFFFFF;
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+    }
+    a {
+        color: #FFFFFF;
+    }
+    .text-section {
+        color: #FFFFFF;
+    }
+} */
