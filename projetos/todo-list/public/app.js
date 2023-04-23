@@ -22,32 +22,16 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
 document.getElementById("sign-in-btn").onclick = () => signInWithPopup(auth, provider);
-
 document.getElementById("sign-out-btn").onclick = () => auth.signOut();
 
 const db = getFirestore(app);
-
 var tasksList = [];
 
-var newCityRef;
-
-async function AddTask() {
-    newCityRef = doc(collection(db, "tasks"));
-    console.log(newCityRef._key.path.segments[1]);
-    await setDoc(newCityRef, {
-        name: "Ada2",
-        date: new Date("JANUARY, 25, 2015"),
-        completed: false,
-        uid: "NlYHGPXgWhN7eDcV3nZS9U632KA3",
-        tid: newCityRef._key.path.segments[1]
-    });
-}
-
 function Update_Shown_List() {
+    //Atualizar listas de tarefas mostradas na tela
     document.getElementById("pending").innerHTML = "";
     document.getElementById("completed").innerHTML = "";
     //Read
-    console.log(tasksList)
     tasksList.forEach((docLoaded, index) => {
         console.log(index)
         var task = document.createElement("div");
@@ -63,8 +47,7 @@ function Update_Shown_List() {
         input.setAttribute("id", docLoaded.tid);
         const washingtonRef = doc(db, "tasks", docLoaded.tid);
         input.onclick = async () => {
-            // Set the "capital" field of the city 'DC'
-            console.log(docLoaded.tid);
+            //Função para mudar estado da tarefa ao clicar no input de concluído
             if (document.getElementById(docLoaded.tid).parentElement.className.includes("completed")) {
                 document.getElementById(docLoaded.tid).parentElement.setAttribute("class", "task");
                 await updateDoc(washingtonRef, {
@@ -83,7 +66,6 @@ function Update_Shown_List() {
         deleteBTN.onclick = async () => {
             await deleteDoc(doc(db, "tasks", docLoaded.tid));
         }
-
 
         if (docLoaded.completed) {
             task.setAttribute("class", "task completed");
@@ -111,11 +93,12 @@ function Update_Shown_List() {
 
 auth.onAuthStateChanged(user => {
     if(user) {
-        //signed in
+        //Carregar página signed in
         document.getElementById("text").innerHTML = user.displayName;
         document.getElementById("signed-out").style.display = "none";
         document.getElementById("signed-in").hidden = false;
         
+        //Esperar updates de tarefas do usuário atual na database
         onSnapshot(query(collection(db, "tasks"), where("uid", "==", user.uid.toString())), (querySnapshot) => {
             tasksList = [];
             console.log(tasksList);
@@ -126,33 +109,19 @@ auth.onAuthStateChanged(user => {
             Update_Shown_List();
         });
 
-        // AddTask()
-
-        //All users tasks
-        onSnapshot(collection(db, "tasks"), (querySnapshot) => {
-            const tasksListTotal = [];
-            querySnapshot.forEach((doc) => {
-                tasksListTotal.push(doc.data());
-            });
-            console.log("All User Tasks: ", tasksListTotal);
-        });
-
+        //Salvar novas tarefas
         document.getElementById("new-task-save").onclick = async () => {
-            newCityRef = doc(collection(db, "tasks"));
-            console.log(newCityRef._key.path.segments[1]);
-            console.log(new Date(document.getElementById("new-task-date").value));
-            await setDoc(newCityRef, {
+            var newTaskRef = doc(collection(db, "tasks"));
+            await setDoc(newTaskRef, {
                 name: document.getElementById("new-task-name").value,
                 date: new Date(document.getElementById("new-task-date").value),
                 completed: false,
-                uid: "NlYHGPXgWhN7eDcV3nZS9U632KA3",
-                tid: newCityRef._key.path.segments[1]
+                uid: user.uid.toString(),
+                tid: newTaskRef._key.path.segments[1]
             });
         }
-        
-
     } else {
-        //signed out
+        //Carregar página Signed Out
         document.getElementById("text").innerHTML = '';
         document.getElementById("signed-out").style.display = "flex";
         document.getElementById("signed-in").hidden = true;
