@@ -6,6 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="favicon/favicon-144.png">
+    <meta name="msapplication-config" content="favicon/browserconfig.xml">
 </head>
 <body>
     <h1 class="main-title">To-Do List</h1>
@@ -28,17 +48,35 @@
                 <button id="sign-out-btn">Sign Out</button>
             </div>
         </div>
-        <h1>Pendentes</h1>    
-        <div id="pending"></div>
-        <h1>Completas</h1>    
-        <div id="completed"></div>
-        <div class="add-task">
+        <div class="pending-container" id="pending-container">
+            <h1>Pendentes</h1>    
+            <div id="pending"></div>
+        </div>
+        <div class="completed-container" id="completed-container">
+            <h1>Completas</h1>
+            <div id="completed"></div>
+        </div>
+        <div id="add-task" class="add-task">
             <p id="add-icon">+</p>
             <div id="add-menu-hidden">
-                <input id="new-task-name" placeholder="Task Name">
+                <div>
+                    <h6>Nova tarefa</h6>
+                    <p class="close-task-menu-btn" id="close-task-menu-btn">&times;</p>
+                </div>
+                <input id="new-task-name" placeholder="Nome" autocomplete="off">
                 <input id="new-task-date" type="date">
-                <button onclick="SaveNewTask()" id="new-task-save">Save</button>
+                <textarea maxlength="99" id="new-task-details" placeholder="Anotações (opcional)"></textarea>
+                <button id="new-task-save">Salvar</button>
             </div>
+        </div>
+        <div id="task-details-overlay" class="task-details-overlay">
+            <div>
+                <h1>Detalhes</h1>
+                <p class="close-task-menu-btn" id="close-task-details-btn">&times;</p>
+            </div>
+            <h1 id="task-details-overlay-title"></h1>
+            <p id="task-details-overlay-date"></p>
+            <p id="task-details-overlay-text"></p>
         </div>
     </section>
     <script type="module" src="app.js" defer></script>

@@ -3,7 +3,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebas
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js"
-import { getFirestore, collection, addDoc, query, getDocs, doc, setDoc, where, onSnapshot, updateDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
+import { getFirestore, collection, doc, setDoc, onSnapshot, updateDoc, deleteDoc, getDoc } from 'https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js'
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,50 +23,53 @@ const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth(app);
 
+//const analytics = getAnalytics(app);
+
 document.getElementById("sign-in-btn").onclick = () => signInWithPopup(auth, provider);
 document.getElementById("sign-out-btn").onclick = () => auth.signOut();
 
 const db = getFirestore(app);
 var tasksList = [];
+var idList = [];
 
-function Update_Shown_List() {
+function Update_Shown_List(userId) {
     //Atualizar listas de tarefas mostradas na tela
     document.getElementById("pending").innerHTML = "";
     document.getElementById("completed").innerHTML = "";
     //Read
     tasksList.forEach((docLoaded, index) => {
-        console.log(index)
         var task = document.createElement("div");
 
         var title = document.createElement("h3");
         title.innerHTML = docLoaded.name;
         
         var date = document.createElement("p");
-        date.innerHTML = docLoaded.date.toDate().toLocaleDateString();
+        date.innerHTML = new Date(docLoaded.date).toLocaleDateString();
 
-        var input = document.createElement("div");
+        var input = document.createElement("p");
         input.setAttribute("class", "checkbox");
-        input.setAttribute("id", docLoaded.tid);
-        const washingtonRef = doc(db, "tasks", docLoaded.tid);
+        input.setAttribute("id", idList[index]);
+
         input.onclick = async () => {
             //Função para mudar estado da tarefa ao clicar no input de concluído
-            if (document.getElementById(docLoaded.tid).parentElement.className.includes("completed")) {
-                document.getElementById(docLoaded.tid).parentElement.setAttribute("class", "task");
-                await updateDoc(washingtonRef, {
+            if (document.getElementById(idList[index]).parentElement.className.includes("completed")) {
+                document.getElementById(idList[index]).parentElement.setAttribute("class", "task");
+                await updateDoc(doc(db, userId, idList[index]), {
                     completed: false
                 });
             } else {
-                document.getElementById(docLoaded.tid).parentElement.setAttribute("class", "task completed");
-                await updateDoc(washingtonRef, {
+                document.getElementById(idList[index]).parentElement.setAttribute("class", "task completed");
+                await updateDoc(doc(db, userId, idList[index]), {
                     completed: true
                 });
             }
         }
 
-        var deleteBTN = document.createElement("button");
-        deleteBTN.innerHTML = "Delete"
+        var deleteBTN = document.createElement("img");
+        deleteBTN.src = "./img/trash-can-icon.png"
+        deleteBTN.setAttribute("class", "delete-btn")
         deleteBTN.onclick = async () => {
-            await deleteDoc(doc(db, "tasks", docLoaded.tid));
+            await deleteDoc(doc(db, userId, idList[index]));
         }
 
         if (docLoaded.completed) {
@@ -73,6 +78,10 @@ function Update_Shown_List() {
         } else {
             task.setAttribute("class", "task");
         }
+
+        var details = document.createElement("p");
+        details.innerHTML = docLoaded.details;
+        details.setAttribute("class", "task-details");
         
         task.appendChild(input);
 
@@ -80,6 +89,7 @@ function Update_Shown_List() {
 
         textDiv.appendChild(title);
         textDiv.appendChild(date);
+        textDiv.appendChild(details);
         task.appendChild(textDiv);
         task.appendChild(deleteBTN);
 
@@ -89,6 +99,31 @@ function Update_Shown_List() {
             document.getElementById("pending").appendChild(task);
         }
     });
+    if (document.getElementById("pending").childElementCount == 0) {
+        document.getElementById("pending-container").style.display = "none"
+    } else {
+        document.getElementById("pending-container").style.display = "block"
+    }
+    if (document.getElementById("completed").childElementCount == 0) {
+        document.getElementById("completed-container").style.display = "none"
+    } else {
+        document.getElementById("completed-container").style.display = "block"
+    }
+
+    for (let task of document.getElementsByClassName("task")) {
+        task.children[1].onclick = async () => {
+            document.getElementById("task-details-overlay").style.display = "flex";
+            var docRef = await getDoc(doc(db, userId, task.firstChild.id));
+            document.getElementById("task-details-overlay-title").innerHTML = docRef.data().name;
+            document.getElementById("task-details-overlay-date").innerHTML = "Data limite: " + new Date(docRef.data().date).toLocaleDateString();
+            if (docRef.data().details == "") {
+                document.getElementById("task-details-overlay-text").innerHTML = "Nenhuma anotação inserida na tarefa";
+            } else {
+                document.getElementById("task-details-overlay-text").innerHTML = "Anotações: " + docRef.data().details;
+            }
+        }
+    }
+
 }
 
 auth.onAuthStateChanged(user => {
@@ -99,26 +134,57 @@ auth.onAuthStateChanged(user => {
         document.getElementById("signed-in").hidden = false;
         
         //Esperar updates de tarefas do usuário atual na database
-        onSnapshot(query(collection(db, "tasks"), where("uid", "==", user.uid.toString())), (querySnapshot) => {
+        onSnapshot(collection(db, user.uid), (querySnapshot) => {
             tasksList = [];
-            console.log(tasksList);
+            idList = [];
             querySnapshot.forEach((doc) => {
+                idList.push(doc.id);
                 tasksList.push(doc.data());
             });
-            console.log("Current User Tasks: ", tasksList);
-            Update_Shown_List();
+            Update_Shown_List(user.uid);
         });
+
+        document.getElementById("add-task").onclick = () => {
+            if (!document.getElementById("add-task").classList.value.includes("show")) {
+                document.getElementById("new-task-date").valueAsDate = new Date();
+                document.getElementById("add-task").classList.add("show");
+            }
+        }
+        document.getElementById("close-task-menu-btn").onclick = () => {
+            setTimeout(() => {
+                document.getElementById("add-task").classList.remove("show");
+            }, 50);
+        }
 
         //Salvar novas tarefas
         document.getElementById("new-task-save").onclick = async () => {
-            var newTaskRef = doc(collection(db, "tasks"));
-            await setDoc(newTaskRef, {
-                name: document.getElementById("new-task-name").value,
-                date: new Date(document.getElementById("new-task-date").value),
-                completed: false,
-                uid: user.uid.toString(),
-                tid: newTaskRef._key.path.segments[1]
-            });
+            if (document.getElementById("new-task-name").value != "") {
+                var dateVar = document.getElementById("new-task-date").value.split('-');
+                await setDoc(doc(collection(db, user.uid)), {
+                    name: document.getElementById("new-task-name").value,
+                    date: new Date(dateVar[0], dateVar[1] - 1, dateVar[2]).toString(),
+                    completed: false,
+                    details: document.getElementById("new-task-details").value
+                });
+                document.getElementById("add-task").classList.remove("show");
+            } else {
+                document.getElementById("new-task-name").style.border = "red 2px solid"
+                document.getElementById("new-task-name").style.backgroundColor = "#4a2020"
+            }
+        }
+
+        document.getElementById("close-task-details-btn").onclick = () => {
+            document.getElementById("task-details-overlay").style.display = "none";
+            document.getElementById("task-details-overlay-title").innerHTML = ""
+            document.getElementById("task-details-overlay-date").innerHTML = ""
+            document.getElementById("task-details-overlay-text").innerHTML = ""
+        }
+
+        document.getElementById("new-task-name").onkeydown = () => {
+            if (document.getElementById("new-task-name").value != "") {
+                document.getElementById("new-task-name").style.border = "2px #212121 solid"
+                document.getElementById("new-task-name").style.backgroundColor = "#212121"
+            }
         }
     } else {
         //Carregar página Signed Out
