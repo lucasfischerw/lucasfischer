@@ -96,7 +96,7 @@ input {
     align-items: center;
     color: #eeeeee;
     transition: background-color .35s ease, color .35s ease;
-    /* animation: TaskAdd .5s ease; */
+    animation: TaskAdd .5s ease;
 }
 
 @keyframes TaskAdd {
@@ -263,6 +263,7 @@ textarea {
     border-radius: 10px;
     padding: 10px;
     color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
 }
 
 #add-menu-hidden div {
@@ -295,7 +296,7 @@ textarea {
 }
 
 .delete-btn:hover {
-    background-color: #3e3b3b;
+    background-color: #181717;
 }
 
 .task-details {

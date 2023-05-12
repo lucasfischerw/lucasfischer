@@ -30,14 +30,13 @@ document.getElementById("sign-out-btn").onclick = () => auth.signOut();
 
 const db = getFirestore(app);
 var tasksList = [];
-var idList = [];
 
 function Update_Shown_List(userId) {
     //Atualizar listas de tarefas mostradas na tela
     document.getElementById("pending").innerHTML = "";
     document.getElementById("completed").innerHTML = "";
     //Read
-    tasksList.forEach((docLoaded, index) => {
+    tasksList.forEach((docLoaded) => {
         var task = document.createElement("div");
 
         var title = document.createElement("h3");
@@ -48,18 +47,18 @@ function Update_Shown_List(userId) {
 
         var input = document.createElement("p");
         input.setAttribute("class", "checkbox");
-        input.setAttribute("id", idList[index]);
+        input.setAttribute("id", docLoaded.tid);
 
         input.onclick = async () => {
             //Função para mudar estado da tarefa ao clicar no input de concluído
-            if (document.getElementById(idList[index]).parentElement.className.includes("completed")) {
-                document.getElementById(idList[index]).parentElement.setAttribute("class", "task");
-                await updateDoc(doc(db, userId, idList[index]), {
+            if (document.getElementById(docLoaded.tid).parentElement.className.includes("completed")) {
+                document.getElementById(docLoaded.tid).parentElement.setAttribute("class", "task");
+                await updateDoc(doc(db, userId, docLoaded.tid), {
                     completed: false
                 });
             } else {
-                document.getElementById(idList[index]).parentElement.setAttribute("class", "task completed");
-                await updateDoc(doc(db, userId, idList[index]), {
+                document.getElementById(docLoaded.tid).parentElement.setAttribute("class", "task completed");
+                await updateDoc(doc(db, userId, docLoaded.tid), {
                     completed: true
                 });
             }
@@ -69,7 +68,7 @@ function Update_Shown_List(userId) {
         deleteBTN.src = "./img/trash-can-icon.png"
         deleteBTN.setAttribute("class", "delete-btn")
         deleteBTN.onclick = async () => {
-            await deleteDoc(doc(db, userId, idList[index]));
+            await deleteDoc(doc(db, userId, docLoaded.tid));
         }
 
         if (docLoaded.completed) {
@@ -136,10 +135,14 @@ auth.onAuthStateChanged(user => {
         //Esperar updates de tarefas do usuário atual na database
         onSnapshot(collection(db, user.uid), (querySnapshot) => {
             tasksList = [];
-            idList = [];
+            var index = 0;
             querySnapshot.forEach((doc) => {
-                idList.push(doc.id);
                 tasksList.push(doc.data());
+                tasksList[index].tid = doc.id;
+                index++;
+            });
+            tasksList.sort(function (a, b) {
+                return new Date(a.date) - new Date(b.date);
             });
             Update_Shown_List(user.uid);
         });
@@ -170,20 +173,6 @@ auth.onAuthStateChanged(user => {
             } else {
                 document.getElementById("new-task-name").style.border = "red 2px solid"
                 document.getElementById("new-task-name").style.backgroundColor = "#4a2020"
-            }
-        }
-
-        document.getElementById("close-task-details-btn").onclick = () => {
-            document.getElementById("task-details-overlay").style.display = "none";
-            document.getElementById("task-details-overlay-title").innerHTML = ""
-            document.getElementById("task-details-overlay-date").innerHTML = ""
-            document.getElementById("task-details-overlay-text").innerHTML = ""
-        }
-
-        document.getElementById("new-task-name").onkeydown = () => {
-            if (document.getElementById("new-task-name").value != "") {
-                document.getElementById("new-task-name").style.border = "2px #212121 solid"
-                document.getElementById("new-task-name").style.backgroundColor = "#212121"
             }
         }
     } else {
