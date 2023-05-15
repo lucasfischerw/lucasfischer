@@ -44,13 +44,21 @@
     </section>
     
     <section id="signed-in" hidden="true">
-        <h1 class="main-title">To-Do List</h1>
-        <div class="profile-info">
-            <img class="profile-img" src="./img/profile.png">
-            <div class="info-container">
-                <p id="text">Name placeholder</p>
-                <button id="sign-out-btn">Sign Out</button>
+        <div id="details-overlay"></div>
+        <div class="header">
+            <h1 class="main-title">To-Do List</h1>
+            <div class="profile-info">
+                <img class="profile-img" src="./img/profile.png">
+                <div class="info-container">
+                    <p id="text">Name placeholder</p>
+                    <button id="sign-out-btn">Sair</button>
+                </div>
             </div>
+        </div>
+        <div class="no-tasks-container" id="no-tasks-container">
+            <img class="no-tasks-img" src="./img/no-tasks.png">
+            <h1>Nenhuma tarefa por aqui :)</h1>
+            <p>Começe adicionando uma nova tarefa no botão abaixo</p>
         </div>
         <div class="pending-container" id="pending-container">
             <h1>Pendentes</h1>

@@ -45,6 +45,8 @@ input {
 .main-title {
     text-align: center;
     margin: 15px;
+    height: 60px;
+    line-height: 60px;
 }
 
 .description {
@@ -81,7 +83,7 @@ input {
 
 #signed-in {
     min-height: 100vh;
-    padding: 20px 15px;
+    padding: 80px 15px 20px 15px;
     transition: filter .5s ease;
 }
 
@@ -341,6 +343,7 @@ textarea {
     gap: 10px;
     word-break: break-word;
     transform-origin: left;
+    z-index: 9999;
     animation: DetailsAnimate .5s ease;
 }
 
@@ -376,4 +379,52 @@ textarea {
     height: 3px;
     background-color: #3b3b3b;
     border-radius: 100vw;
+}
+
+.no-tasks-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    padding: 25px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.no-tasks-img {
+    width: min(90%, 300px);
+    margin: auto;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #212121;
+    z-index: 99;
+}
+
+::selection {
+    background-color: #0682b9;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #3b3b3b;
+    border-radius: 6px;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#details-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    display: none;
 }

@@ -111,6 +111,9 @@ function Update_Shown_List(userId) {
 
     for (let task of document.getElementsByClassName("task")) {
         task.children[1].onclick = async () => {
+            setTimeout(() => {
+                document.getElementById("details-overlay").style.display = "block"
+            }, 500);
             document.getElementById("signed-in").style.filter = "blur(5px) brightness(0.5)"
             var docRef = await getDoc(doc(db, userId, task.firstChild.id));
             document.getElementById("task-details-overlay-title").innerHTML = docRef.data().name;
@@ -122,6 +125,12 @@ function Update_Shown_List(userId) {
             }
             document.getElementById("task-details-overlay").style.display = "flex";
         }
+    }
+
+    if (document.getElementsByClassName("task").length == 0) {
+        document.getElementById("no-tasks-container").style.display = "block"
+    } else {
+        document.getElementById("no-tasks-container").style.display = "none"
     }
 
 }
