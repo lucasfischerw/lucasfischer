@@ -28,8 +28,9 @@
     <meta name="msapplication-config" content="favicon/browserconfig.xml">
 </head>
 <body>
-    <h1 class="main-title">To-Do List</h1>
     <section class="signed-out" id="signed-out">
+        <h1 class="main-title">To-Do List</h1>
+        <div class="sep-line"></div>
         <p class="description">Entre na sua conta</p>
         <div>
             <input placeholder="Email">
@@ -38,11 +39,12 @@
             <p class="sign-in-details">Criar uma conta</p>
         </div>
         <button>Entrar</button>
-        <p>- ou -</p>
+        <div class="sep-line"></div>
         <button id="sign-in-btn">Entrar com Google</button>
     </section>
     
     <section id="signed-in" hidden="true">
+        <h1 class="main-title">To-Do List</h1>
         <div class="profile-info">
             <img class="profile-img" src="./img/profile.png">
             <div class="info-container">
@@ -71,16 +73,16 @@
                 <button id="new-task-save">Salvar</button>
             </div>
         </div>
-        <div id="task-details-overlay" class="task-details-overlay">
-            <div>
-                <h1>Detalhes</h1>
-                <p class="close-task-menu-btn" id="close-task-details-btn">&times;</p>
-            </div>
-            <h1 id="task-details-overlay-title"></h1>
-            <p id="task-details-overlay-date"></p>
-            <p id="task-details-overlay-text"></p>
-        </div>
     </section>
+    <div id="task-details-overlay" class="task-details-overlay">
+        <div>
+            <h2>Detalhes</h2>
+            <p class="close-task-menu-btn" id="close-task-details-btn">&times;</p>
+        </div>
+        <h2 id="task-details-overlay-title"></h2>
+        <p id="task-details-overlay-date"></p>
+        <p id="task-details-overlay-text"></p>
+    </div>
     <script type="module" src="server.js" defer></script>
     <script src="application.js" defer></script>
 </body>

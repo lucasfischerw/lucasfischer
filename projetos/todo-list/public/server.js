@@ -111,7 +111,7 @@ function Update_Shown_List(userId) {
 
     for (let task of document.getElementsByClassName("task")) {
         task.children[1].onclick = async () => {
-            document.getElementById("task-details-overlay").style.display = "flex";
+            document.getElementById("signed-in").style.filter = "blur(5px) brightness(0.5)"
             var docRef = await getDoc(doc(db, userId, task.firstChild.id));
             document.getElementById("task-details-overlay-title").innerHTML = docRef.data().name;
             document.getElementById("task-details-overlay-date").innerHTML = "Data limite: " + new Date(docRef.data().date).toLocaleDateString();
@@ -120,6 +120,7 @@ function Update_Shown_List(userId) {
             } else {
                 document.getElementById("task-details-overlay-text").innerHTML = "Anotações: " + docRef.data().details;
             }
+            document.getElementById("task-details-overlay").style.display = "flex";
         }
     }
 
