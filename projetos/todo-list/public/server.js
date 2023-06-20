@@ -64,6 +64,21 @@ function Update_Shown_List(userId) {
             }
         }
 
+        var editBTN = document.createElement("img");
+        editBTN.src = "./img/edit-icon.png"
+        editBTN.setAttribute("class", "edit-btn")
+        editBTN.onclick = () => {
+            document.getElementById("task-edit-overlay").style.display = "flex";
+            setTimeout(() => {
+                document.getElementById("details-overlay").style.display = "block"
+            }, 500);
+            document.getElementById("signed-in").style.filter = "blur(5px) brightness(0.5)"
+            document.getElementById("edit-task-name").value = docLoaded.name;
+            document.getElementById("edit-task-date").value = new Date(docLoaded.date).toISOString().split('T')[0];
+            document.getElementById("edit-task-details").value = docLoaded.details;
+            document.getElementsByClassName("edit-task-save")[0].setAttribute("id", docLoaded.tid);
+        }
+
         var deleteBTN = document.createElement("img");
         deleteBTN.src = "./img/trash-can-icon.png"
         deleteBTN.setAttribute("class", "delete-btn")
@@ -90,6 +105,7 @@ function Update_Shown_List(userId) {
         textDiv.appendChild(date);
         textDiv.appendChild(details);
         task.appendChild(textDiv);
+        task.appendChild(editBTN);
         task.appendChild(deleteBTN);
 
         if (docLoaded.completed) {
@@ -157,16 +173,17 @@ auth.onAuthStateChanged(user => {
             Update_Shown_List(user.uid);
         });
 
-        document.getElementById("add-task").onclick = () => {
-            if (!document.getElementById("add-task").classList.value.includes("show")) {
-                document.getElementById("new-task-date").valueAsDate = new Date();
-                document.getElementById("add-task").classList.add("show");
-            }
-        }
-        document.getElementById("close-task-menu-btn").onclick = () => {
-            setTimeout(() => {
-                document.getElementById("add-task").classList.remove("show");
-            }, 50);
+        document.getElementsByClassName("edit-task-save")[0].onclick = async () => {
+            console.log(document.getElementsByClassName("edit-task-save")[0].id);
+            var dateVar = document.getElementById("edit-task-date").value.split('-');
+            await updateDoc(doc(db, user.uid, document.getElementsByClassName("edit-task-save")[0].id), {
+                name: document.getElementById("edit-task-name").value,
+                date: new Date(dateVar[0], dateVar[1] - 1, dateVar[2]).toString(),
+                details: document.getElementById("edit-task-details").value
+            });
+            document.getElementById("task-edit-overlay").style.display = "none"
+            document.getElementById("signed-in").style.filter = "none"
+            document.getElementById("details-overlay").style.display = "none"
         }
 
         //Salvar novas tarefas

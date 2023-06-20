@@ -76,7 +76,7 @@ input {
     width: 100%;
     border: none;
     background-color: #212121;
-    padding: 10px;
+    padding: 15px 10px;
     color: white;
     border-radius: 10px;
 }
@@ -200,7 +200,8 @@ input {
     border-radius: 10px;
 }
 
-.add-task input {
+.add-task input,
+.task-edit-overlay input {
     width: 250px;
     border: none;
     background-color: #212121;
@@ -250,7 +251,8 @@ input {
     }
 }
 
-.close-task-menu-btn {
+.close-task-menu-btn,
+.close-task-edit-btn {
     background-color: #b42b00;
     border-radius: 10px;
     height: 30px;
@@ -293,19 +295,20 @@ textarea {
     cursor: default;
 }
 
-.delete-btn {
-    width: 45px;
-    height: 45px;
+.delete-btn,
+.edit-btn {
+    width: 25px;
+    height: 25px;
     margin-left: auto;
     cursor: pointer;
-    padding: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     transition: background-color .25s ease;
 }
 
-.delete-btn:hover {
+/* .delete-btn:hover,
+.edit-btn:hover {
     background-color: #181717;
-}
+} */
 
 .task-details {
     text-overflow: ellipsis;
@@ -329,7 +332,8 @@ textarea {
     font-family: 'Poppins', sans-serif;
 }
 
-.task-details-overlay {
+.task-details-overlay,
+.task-edit-overlay {
     width: min(400px, 90%);
     position: fixed;
     top: 50%;
@@ -347,12 +351,17 @@ textarea {
     animation: DetailsAnimate .5s ease;
 }
 
+.task-edit-overlay {
+    width: min(280px, 90%);
+}
+
 @keyframes DetailsAnimate {
     from {transform: translate(-50%, -30%); opacity: 0;}
     to{transform: translate(-50%, -50%); opacity: 1;}
 }
 
-.task-details-overlay div {
+.task-details-overlay div,
+.task-edit-overlay div {
     display: flex;
     align-items: center;
     justify-content: space-between;

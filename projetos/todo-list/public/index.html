@@ -91,6 +91,16 @@
         <p id="task-details-overlay-date"></p>
         <p id="task-details-overlay-text"></p>
     </div>
+    <div id="task-edit-overlay" class="task-edit-overlay">
+        <div>
+            <h2>Editar</h2>
+            <p class="close-task-edit-btn" id="close-task-edit-btn">&times;</p>
+        </div>
+        <input id="edit-task-name" placeholder="Nome" autocomplete="off">
+        <input id="edit-task-date" type="date">
+        <textarea maxlength="99" id="edit-task-details" placeholder="Anotações (opcional)"></textarea>
+        <button class="edit-task-save">Salvar</button>
+    </div>
     <script type="module" src="server.js" defer></script>
     <script src="application.js" defer></script>
 </body>
