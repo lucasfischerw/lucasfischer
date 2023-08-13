@@ -32,7 +32,7 @@ html, body {
 
 body {
 	position: relative;
-	background-color: rgb(0, 0, 0);
+	background-color: #0b0b0b;
 }
 
 img,
@@ -48,10 +48,10 @@ a {
 }
 
 #secoes {
-	background-image: url(../imagens/fundo.png);
+	/* background-image: url(../imagens/fundo.png);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: cover;
+	background-size: cover; */
 	transition: .5s margin cubic-bezier(0.18, 0.89, 0.32, 1.28), .5s opacity;
 }
 
@@ -79,27 +79,24 @@ a {
 	z-index: 1;
 	font-family: 'Raleway', sans-serif;
 	font-weight: 600;
-	transition: 0.5s top;
+	transition: 0.5s top, 0.5s background-color;
 }
 
 .menu ul {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+	gap: 35px;
+	padding: 0 80px;
 }
 
 .menu a {
 	display: block;
-	padding: 15px 50px;
+	padding: 10px;
 	text-align: center;
-	font-size: 1em;
+	font-size: 1.15em;
 	position: relative;
 	cursor: pointer;
-}
-
-@media(min-height: 120vw) and (hover: none) {
-	.menu a {
-		padding: 30px 50px;
-	}
 }
 
 .sidenav {
@@ -181,73 +178,59 @@ a {
 /*Partes do Site*/
 
 .secao {
-	height: 100vh;
 	width: 100vw;
 	position: relative;
 }
 
 @keyframes titulo {
-	0%{top: 62%; opacity: 0;}
-	100%{top: 50%; transform: translateY(-50%); opacity: 1;}
+	0%{opacity: 0;}
+	100%{opacity: 1;}
 }
 
 .titulo, 
 .tituloPrincipal {
-	text-align: center;
 	font-family: 'Varela Round', sans-serif;
-	position: absolute;
-	width: 100%;
-	font-size: 2em;
-	padding: 15px;
-}
-
-.titulo {
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-.tituloPrincipal {
-	opacity: 0;
-	-webkit-animation: .3s titulo linear 0.35s 1 normal forwards;
-    animation: .3s titulo linear 0.35s 1 normal forwards;
-}
-
-@media (min-width: 800px) {
-	.titulo,
-	.tituloPrincipal {
-		font-size: 2.5em;
-	}
+	font-size: 2.75em;
 }
 
 .equipe {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
 	width: 100vw;
 	text-align: center;
-	align-items: center;
-	min-height: 100vh;
-	padding-bottom: 10vh;
-	column-gap: 50px;
+	padding: 10vh 30px 0 30px;
+	gap: 25px;
+	background-color: #041F60;
 }
 
-.equipe > * {
-	flex: 0 1 350px;
+.equipe div {
+	width: 100%;
+}
+
+.team-grid {
+	order: 1;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+.team-grid > * {
+	flex: 0 1 200px;
 }
 
 .integrante img {
 	border-radius: 100%;
 	width: 150px;
-}
-
-@media (min-width: 1000px) {
-	.integrante img {
-		width: 200px;
-	}
+	height: 150px;
 }
 
 .integrante {
-	width: 100%;
-	margin: 25px auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .nome {
@@ -255,23 +238,25 @@ a {
 	margin: 20px;
 }
 
-.nomePrincipal {
+h1 {
 	font-family: 'Varela Round', sans-serif;
 }
 
-.cargo {
-	margin: 6px;
+h3,
+p {
 	font-family: 'Raleway', sans-serif;
+	line-height: 1.55em;
+	display: inline;
 }
 
 .competicoes,
 .galeria {
 	display: flex;
 	flex-wrap: wrap;
-	padding: 10vh 0;
-	width: 90vw;
+	padding: 30px;
+	width: 100vw;
 	column-gap: 50px;
-	margin: 0 5vw;
+	position: relative;
 }
 
 .competicoes > *,
@@ -318,7 +303,6 @@ a {
 }
 
 .tituloConjunto {
-	padding: 10px;
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -469,4 +453,145 @@ body::-webkit-scrollbar-thumb:hover {
 
 ::selection {
 	background: #43b7e3cf;
+}
+
+/*New Styles*/
+
+.equipe-img {
+	height: 50%;
+	width: auto;
+	position: absolute;
+	right: 50%;
+	transform: translateX(50%);
+	bottom: 0;
+	margin: auto;
+}
+
+@media(min-height: 140vw) {
+	.equipe-img {
+		width: 100vw;
+		height: auto;
+	}
+}
+
+.texto-inicial {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: absolute;
+	top: 120px;
+	left: 50%;
+	transform: translate(-50%, 0);
+	width: 100%;
+	padding: 15px min(80px, 10vw);
+	text-align: center;
+	align-items: center;
+	max-width: 650px;
+}
+
+.mobile {
+	display: none;
+}
+
+@media(min-width: 1200px) {
+	.equipe-img {
+		width: 50%;
+		height: auto;
+		right: 0;
+		transform: translateX(0);
+	}
+	.texto-inicial {
+		width: 50%;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		text-align: left;
+		max-width: 650px;
+		align-items: flex-start;
+	}
+	.opn-btn {
+		display: none;
+	}
+	.mobile {
+		display: block;
+	}
+	.equipe {
+		flex-direction: row;
+	}
+	.team-grid {
+		order: 0;
+	}
+	.equipe div {
+		width: 50%;
+	}
+}
+
+
+.special-color-title {
+	color: #0476D0;
+	font-weight: bold;
+	font-family: 'Varela Round', sans-serif;
+}
+
+a {
+	font-family: 'Raleway', sans-serif;
+	font-size: 1.15em;
+}
+
+.social-media-menu img {
+	width: 40px;
+}
+
+.social-media-menu {
+	display: flex;
+	gap: 20px;
+	background-color: #041f6082;
+	border-radius: 15px;
+	align-items: center;
+	padding: 5px 20px;
+	margin: 15px 0 15px auto;
+}
+
+.upper-svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.bottom-svg {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.texto-inicial a {
+	background-color: #041f6082;
+	border-radius: 15px;
+	padding: 10px 20px;
+	width: fit-content;
+}
+
+.section-text {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	text-align: justify;
+}
+
+.competicao {
+	background-color: #041f6082;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.competitions-header {
+	padding: 30vh 0 5vh 0;
+	position: relative;
+	text-align: center;
+}
+
+#inicial {
+	min-height: 100vh;
 }

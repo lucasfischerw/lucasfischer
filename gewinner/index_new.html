@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Gewinner</title>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="shortcut icon" href="imagens/favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="imagens/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="imagens/favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="imagens/favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="imagens/favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="imagens/favicon/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="imagens/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="imagens/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="imagens/favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="imagens/favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="imagens/favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="imagens/favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="imagens/favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="imagens/favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="imagens/favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="imagens/favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="imagens/favicon/favicon-180.png">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="imagens/favicon-144.png">
+    <meta name="msapplication-config" content="imagens/favicon/browserconfig.xml">
+    <script src="javascript/script.js"></script>
+</head>
+
+<body id="pagina" onscroll="CloseNav()" ontouchmove="CloseNav()">
+    <div class="carregando" id="carregando">
+        <img class="carregandoImg" src="imagens/carregando.gif">
+    </div>
+    <div class="conteudo" id="conteudo">
+        <nav class="menu" id="menu">
+            <ul>
+                <li class="mobile"><a class="btn-mobile" href="javascript:void(0)" onclick="Logo()">Página Inicial</a></li>
+                <li class="mobile"><a class="btn-mobile" href="#equipe">Quem Somos</a></li>
+                <li class="mobile"><a class="btn-mobile" href="#competicoes" onclick="Logo()">Competições</a></li>
+                <li class="opn-btn"><a href="javascript:void(0)" onclick="OpenNav()">&#9776;</a></li>
+                <div class="social-media-menu">
+                    <li><a href="javascript:void(0)"><img src="./imagens/tiktok-logo.png"></a></li>
+                    <li><a href="javascript:void(0)"><img src="./imagens/instagram.png"></a></li>
+                    <li><a href="javascript:void(0)"><img src="./imagens/youtube.png"></a></li>
+                </div>
+            </ul>
+        </nav>
+        <div id="sidebar" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="CloseNav()">&times;</a>
+            <div class="itens" id="itens">
+                <a class="btn-mobile" id="equipe-btn-mobile" onclick="Scroll(Secoes[0])">Equipe</a>
+                <a class="btn-mobile" id="fotos-btn-mobile" onclick="Scroll(Secoes[1])">Galeria</a>
+                <a class="btn-mobile" id="competicoes-btn-mobile" onclick="Scroll(Secoes[2])">Competições</a>
+                <a class="btn-mobile" id="contato-btn-mobile" onclick="Scroll(Secoes[3])">Contato</a>
+            </div>
+        </div>
+        <div id="secoes" onclick="CloseNav()">
+            <div class="secao" id="inicial">
+                <div class="texto-inicial">
+                    <h1 class="tituloPrincipal" id="titulo">Gewinner</h1>
+                    <h3>Equipe Vice-Campeã da <span class="special-color-title">Olimpíada Brasileira de Robótica </span>de 2022 e Bronze na edição de 2021</h3>
+                    <a href="https://web.sinodal.com.br/" target="_blank">Conheça o nosso Colégio &rarr;</a>
+                </div>
+                <!-- <img class="rato" src="imagens/rato.png"> -->
+                <img class="equipe-img" src="imagens/main-background.png">
+                <svg class="bottom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#041F60" fill-opacity="1"
+                        d="M0,192L40,197.3C80,203,160,213,240,229.3C320,245,400,267,480,261.3C560,256,640,224,720,176C800,128,880,64,960,37.3C1040,11,1120,21,1200,37.3C1280,53,1360,75,1400,85.3L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z">
+                    </path>
+                </svg>
+            </div>
+            <div class="equipe" id="equipe">
+                <div class="team-grid">
+                    <div class="integrante">
+                        <img src="./imagens/Andrade.jpg">
+                        <h3>Arthur Andrade</h3>
+                    </div>
+                    <div class="integrante">
+                        <img src="./imagens/Pesi.jpg">
+                        <h3>Arthur Pesi</h3>
+                    </div>
+                    <div class="integrante">
+                        <img src="./imagens/Fischer.jpg">
+                        <h3>Lucas Fischer</h3>
+                    </div>
+                    <div class="integrante">
+                        <img src="./imagens/Theodoro.jpeg">
+                        <h3>Theodoro Friedrich</h3>
+                    </div>
+                    <div class="integrante">
+                        <img src="./imagens/Jorge.jpeg">
+                        <h3>Jorge Jardim</h3>
+                    </div>
+                </div>
+                <div class="section-text">
+                    <h1>Conheça a Equipe</h1>
+                    <p>Somos estudantes da 3ª Série do Ensino Médio. As diferentes experiências, histórias e habilidades nos unem para dese</p>
+                    <p>Unindo nossas habilidades e paixão pela robótica, buscamos constantemente aprimorar nossos conhecimentos e enfrentar
+                    desafios de maneira inovadora. Por meio da colaboração efetiva entre nossos membros, tanto na concepção quanto na construção e
+                    programação de nossos robôs, conseguimos desenvolver soluções engenhosas e funcionais que nos posicionam
+                    competitivamente nas competições de robótica. Nossa equipe valoriza a diversidade de perspectivas e o aprendizado
+                    contínuo.</p>
+                </div>
+            </div>
+            <!-- <div class="galeria" id="galeria">
+                <svg class="upper-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#041F60" fill-opacity="1"
+                        d="M0,160L60,160C120,160,240,160,360,138.7C480,117,600,75,720,90.7C840,107,960,181,1080,192C1200,203,1320,149,1380,122.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
+                    </path>
+                </svg>
+                <div>
+                    <img src="imagens/2017_Marista_1.jpg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2018_Estadual_1.jpeg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2018_Mostratec_1.jpg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2019_Estadual_1.jpg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2019_Marista_1.jpg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2019_Nacional_3.jpg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2021_Estadual_1.jpg" data-aos="fade">
+                </div>
+                <div>
+                    <img src="imagens/2021_Nacional_1.jpg" data-aos="fade">
+                </div>
+            </div> -->
+            <div class="secao competitions-header">
+                <svg class="upper-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#041F60" fill-opacity="1"
+                        d="M0,160L60,160C120,160,240,160,360,138.7C480,117,600,75,720,90.7C840,107,960,181,1080,192C1200,203,1320,149,1380,122.7L1440,96L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
+                    </path>
+                </svg>
+                <h1>Competições que já participamos</h1>
+                <p>Veja a seguir algumas das competições das quais nossa equipe participou durante os últimos 6 anos</p>
+            </div>
+            <div class="competicoes" id="competicoes">
+                <div class="competicao" id="competicao-7" data-aos="fade" onclick="Redirect(0)">
+                    <div class="animar">
+                        <img src="imagens/2017_Marista_1.jpg">
+                        <h2 class="tituloConjunto">Marista 2017</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-0" data-aos="fade" onclick="Redirect(1)">
+                    <div class="animar">
+                        <img src="imagens/2018_Estadual_3.jpg">
+                        <h2 class="tituloConjunto">OBR Estadual 2018</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-7" data-aos="fade" onclick="Redirect(2)">
+                    <div class="animar">
+                        <img src="imagens/2018_Mostratec_3.jpg">
+                        <h2 class="tituloConjunto">Mostratec 2018</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-1" data-aos="fade" onclick="Redirect(3)">
+                    <div class="animar">
+                        <img src="imagens/2018_Nacional_1.jpg">
+                        <h2 class="tituloConjunto">OBR Nacional 2018</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-2" data-aos="fade" onclick="Redirect(4)">
+                    <div class="animar">
+                        <img src="imagens/2019_Estadual_3.jpg">
+                        <h2 class="tituloConjunto">OBR Estadual 2019</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-7" data-aos="fade" onclick="Redirect(5)">
+                    <div class="animar">
+                        <img src="imagens/2019_Marista_1.jpg">
+                        <h2 class="tituloConjunto">Marista 2019</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-3" data-aos="fade" onclick="Redirect(6)">
+                    <div class="animar">
+                        <img src="imagens/2019_Nacional_3.jpg">
+                        <h2 class="tituloConjunto">OBR Nacional 2019</h2>
+                    </div>
+                </div>
+                <div class="competicao" id="competicao-4" data-aos="fade" onclick="Redirect(7)">
+                    <div class="animar">
+                        <img src="imagens/2020_Estadual_1.jpg">
+                        <h2 class="tituloConjunto">OBR Estadual 2020</h2>
+                    </div>
+                </div>
+                <div class="competicao irregular" id="competicao-5" data-aos="fade" onclick="Redirect(8)">
+                    <div class="animar">
+                        <img src="imagens/2020_Nacional_1.jpeg">
+                        <h2 class="tituloConjunto">OBR Nacional 2020</h2>
+                    </div>
+                </div>
+                <div class="competicao irregular" id="competicao-6" data-aos="fade" onclick="Redirect(9)">
+                    <div class="animar">
+                        <img src="imagens/2021_Estadual_3.jpg">
+                        <h2 class="tituloConjunto">OBR Estadual 2021</h2>
+                    </div>
+                </div>
+                <div class="competicao ultima" id="competicao-7" data-aos="fade" onclick="Redirect(10)">
+                    <div class="animar">
+                        <img src="imagens/2021_Nacional_3.jpg">
+                        <h2 class="tituloConjunto">OBR Nacional 2021</h2>
+                    </div>
+                </div>
+                <div class="competicao irregular" id="competicao-6" data-aos="fade" onclick="Redirect(9)">
+                    <div class="animar">
+                        <img src="imagens/2022_Estadual_1.jpg">
+                        <h2 class="tituloConjunto">OBR Estadual 2022</h2>
+                    </div>
+                </div>
+                <div class="competicao ultima" id="competicao-7" data-aos="fade" onclick="Redirect(10)">
+                    <div class="animar">
+                        <img src="imagens/2022_Nacional_1.jpg">
+                        <h2 class="tituloConjunto">OBR Nacional 2022</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="secao" id="contato">
+                <h1 class="subtitulo" id="subtituloContato" data-aos="fade-left" data-aos-duration="1000">Contato</h1>
+                <div class="iconesCotato">
+                    <div class="container-img"><img class="imagemContato" src="imagens/site.png"
+                            onclick="window.open('https://www.lucasfischer.com.br/')" data-aos="fade"></div>
+                    <div class="container-img"><img class="imagemContato" src="imagens/instagram.png"
+                            onclick="window.open('https://www.instagram.com/fischer.lucas_/')" data-aos="fade"></div>
+                    <div class="container-img"><img class="imagemContato" src="imagens/facebook.png"
+                            onclick="window.open('https://www.facebook.com/profile.php?id=100009913897593');"
+                            data-aos="fade"></div>
+                    <div class="container-img"><a class="email" href="mailto:lucasfischerw@gmail.com"><img
+                                class="imagemContato" src="imagens/gmail.png" data-aos="fade"></a></div>
+                    <div class="container-img"><img class="imagemContato" src="imagens/telefone.png"
+                            onclick="window.open('tel:51993518371');" data-aos="fade"></div>
+                    <div class="container-img"><img class="imagemContato" src="imagens/youtube.png"
+                            onclick="window.open('https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA');"
+                            data-aos="fade"></div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <script>
+        if (localStorage.getItem("scrollPosition") == 0) {
+            document.getElementById("carregando").style.opacity = "1";
+        }
+        document.getElementById("pagina").onload = function Carregar() {
+            Carregando();
+            setTimeout(() => {
+                AOS.init({
+                    duration: 650,
+                    once: true
+                });
+            }, 500);
+        }
+    </script>
+    <script src="javascript/aos.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-G11KY17YMD"></script>
+</body>
+
+</html>

@@ -36,7 +36,7 @@ var lastScrollTop = window.pageYOffset;
 function isScrolling() {
 	var st = window.pageYOffset || document.documentElement.scrollTop;
 	if (st > lastScrollTop+0.5) {
-		document.getElementById("menu").style.top = "-90px";
+		document.getElementById("menu").style.top = "-120px";
 	} else {
 		document.getElementById("menu").style.top = "0px";
 		if(window.scrollY < 10) {
@@ -44,7 +44,7 @@ function isScrolling() {
 			document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0)";
 		} else {
 			document.getElementById("menu").style.backdropFilter = "blur(5px)";
-			document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+			document.getElementById("menu").style.backgroundColor = "rgba(0, 0, 0, .8)";
 		}
 	}
 	lastScrollTop = st <= 0 ? 0 : st;
