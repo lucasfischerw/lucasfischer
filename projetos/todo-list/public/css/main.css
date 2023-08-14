@@ -104,12 +104,13 @@ input {
     align-items: center;
     color: #eeeeee;
     transition: background-color .35s ease, color .35s ease;
-    animation: TaskAdd .5s ease;
+    animation: TaskAdd .75s ease;
+    box-shadow: 0px 0px 10px 1px black;
 }
 
 @keyframes TaskAdd {
-    from{width: 0; opacity: 0;}
-    to{width: 100%; opacity: 1;}
+    from{opacity: 0;}
+    to{opacity: 1;}
 }
 
 .task.completed {
@@ -135,6 +136,7 @@ input {
     align-items: center;
     gap: 15px;
     transition: width .5s ease, height .5s ease, border-radius .5s ease;
+    box-shadow: 0px 0px 10px 1px black;
 }
 
 .profile-info:hover {
@@ -192,6 +194,7 @@ input {
     bottom: 15px;
     right: 15px;
     transition: width .5s ease, height .5s ease, border-radius .5s ease;
+    box-shadow: 0px 0px 10px 1px black;
 }
 
 .add-task.show {
@@ -284,11 +287,12 @@ textarea {
 
 .pending-container,
 .completed-container {
-    background-color: #3e3b3b;
+    background-color: #181717;
     padding: 10px 15px;
     border-radius: 10px;
-    margin: 15px 0;
+    margin: 25px 0;
     display: none;
+    box-shadow: 0px 0px 10px 1px black;
 }
 
 #add-icon {
@@ -349,6 +353,7 @@ textarea {
     transform-origin: left;
     z-index: 9999;
     animation: DetailsAnimate .5s ease;
+    box-shadow: 0px 0px 10px 1px black;
 }
 
 .task-edit-overlay {

@@ -174,7 +174,6 @@ auth.onAuthStateChanged(user => {
         });
 
         document.getElementsByClassName("edit-task-save")[0].onclick = async () => {
-            console.log(document.getElementsByClassName("edit-task-save")[0].id);
             var dateVar = document.getElementById("edit-task-date").value.split('-');
             await updateDoc(doc(db, user.uid, document.getElementsByClassName("edit-task-save")[0].id), {
                 name: document.getElementById("edit-task-name").value,
