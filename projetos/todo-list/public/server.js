@@ -188,6 +188,7 @@ auth.onAuthStateChanged(user => {
         //Salvar novas tarefas
         document.getElementById("new-task-save").onclick = async () => {
             if (document.getElementById("new-task-name").value != "") {
+                document.getElementById("new-task-save").innerHTML = "<span class='loader'></span> Salvando"
                 var dateVar = document.getElementById("new-task-date").value.split('-');
                 await setDoc(doc(collection(db, user.uid)), {
                     name: document.getElementById("new-task-name").value,
@@ -196,6 +197,9 @@ auth.onAuthStateChanged(user => {
                     details: document.getElementById("new-task-details").value
                 });
                 document.getElementById("add-task").classList.remove("show");
+                document.getElementById("new-task-name").value = "";
+                document.getElementById("new-task-details").value = "";
+                document.getElementById("new-task-save").innerHTML = "Salvar";
             } else {
                 document.getElementById("new-task-name").style.border = "red 2px solid"
                 document.getElementById("new-task-name").style.backgroundColor = "#4a2020"
