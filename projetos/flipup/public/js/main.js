@@ -93,6 +93,9 @@ function parseURLParams(url) {
 }
 
 window.appendBlade = (file, projectId=undefined) => {
+    if(window.innerWidth < 1100) {
+        closeMobileMenu();
+    }
     var fileName = './blades/' + file + '.html'
     document.querySelector(".content").style.opacity = "0";
     for(var i = 0; i < document.getElementById('menu').getElementsByTagName("a").length; i++) {
@@ -104,10 +107,10 @@ window.appendBlade = (file, projectId=undefined) => {
         document.getElementById('menu').querySelector("#projetos-btn").classList.add('active');
     }
     setTimeout(function() {
-        document.querySelector(".content").innerHTML = ""
+        document.querySelector("#blade-append").innerHTML = ""
         $(function () {
             $.get(fileName, function (data) {
-                $(".content").append(data);
+                $("#blade-append").append(data);
             });
         });
         document.querySelector(".content").style.opacity = "1";
@@ -115,6 +118,11 @@ window.appendBlade = (file, projectId=undefined) => {
             window.history.replaceState(null, null, "?p=" + file+ "&id=" + projectId);
         } else {
             window.history.replaceState(null, null, "?p=" + file);
+            if(file == "prospeccao") {
+                document.getElementById("current-nav").innerHTML = "Prospecção";
+            } else {
+                document.getElementById("current-nav").innerHTML = file.charAt(0).toUpperCase() + file.slice(1);
+            }
         }
     }, 350);
 }
@@ -208,34 +216,6 @@ auth.onAuthStateChanged(async function(user) {
                             document.getElementById('notes-inner').appendChild(note);
                         }
                     }
-                    if(currentProject.albums != undefined && currentProject.albums.length > 0) {
-                        document.getElementById('photos-container').innerHTML = "";
-                        for(var j = 0; j < currentProject.albums.length; j++) {
-                            var album = document.createElement('div');
-                            album.classList.add('photo-album');
-                            var albumTitle = document.createElement('h3');
-                            albumTitle.innerHTML = currentProject.albums[j].name;
-                            album.appendChild(albumTitle);
-                            var albumFlex = document.createElement('div');
-                            albumFlex.classList.add('photos-flex');
-                            for(var i = 0; i < parseInt(currentProject.albums[j].images); i++) {
-                                var image = document.createElement('img');
-                                image.id = "photo-" + j + "-" + i;
-                                albumFlex.appendChild(image);
-                            }
-                            album.appendChild(albumFlex);
-                            document.getElementById('photos-container').appendChild(album);
-                        }
-                        for(var j = 0; j < currentProject.albums.length; j++) {
-                            for(var i = 0; i < parseInt(currentProject.albums[j].images); i++) {
-                                console.log(document.getElementById("photo-" + j + "-" + i))
-                                await getDownloadURL(ref(storage, user.uid + "/" + docsId[projeto] + "/" + (j + 1) + "/" + i))
-                                .then((url) => {
-                                    document.getElementById("photo-" + j + "-" + i).src = url;
-                                });
-                            }
-                        }
-                    }
                     if(currentProject.events != undefined && currentProject.events.length > 0) {
                         document.getElementById('cronograma-values').innerHTML = "";
                         for(var i = 0; i < currentProject.events.length; i++) {
@@ -284,6 +264,35 @@ auth.onAuthStateChanged(async function(user) {
                             contact.appendChild(contactInitials);
                             contact.appendChild(contactInfo);
                             document.getElementById('contatos-values').appendChild(contact);
+                        }
+                    }
+
+                    if(currentProject.albums != undefined && currentProject.albums.length > 0) {
+                        document.getElementById('photos-container').innerHTML = "";
+                        for(var j = 0; j < currentProject.albums.length; j++) {
+                            var album = document.createElement('div');
+                            album.classList.add('photo-album');
+                            var albumTitle = document.createElement('h3');
+                            albumTitle.innerHTML = currentProject.albums[j].name;
+                            album.appendChild(albumTitle);
+                            var albumFlex = document.createElement('div');
+                            albumFlex.classList.add('photos-flex');
+                            for(var i = 0; i < parseInt(currentProject.albums[j].images); i++) {
+                                var image = document.createElement('img');
+                                image.id = "photo-" + j + "-" + i;
+                                albumFlex.appendChild(image);
+                            }
+                            album.appendChild(albumFlex);
+                            document.getElementById('photos-container').appendChild(album);
+                        }
+                        for(var j = 0; j < currentProject.albums.length; j++) {
+                            for(var i = 0; i < parseInt(currentProject.albums[j].images); i++) {
+                                console.log(document.getElementById("photo-" + j + "-" + i))
+                                await getDownloadURL(ref(storage, user.uid + "/" + docsId[projeto] + "/" + (j + 1) + "/" + i))
+                                .then((url) => {
+                                    document.getElementById("photo-" + j + "-" + i).src = url;
+                                });
+                            }
                         }
                     }
 
@@ -384,6 +393,9 @@ auth.onAuthStateChanged(async function(user) {
                 }, 500);
             }
             window.showProjects = async() => {
+                if(projects.length > 0) {
+                    document.getElementById('projects-container').innerHTML = "";
+                }
                 for(var i = 0; i < projects.length; i++) {
                     var bigCard = document.createElement('div');
                     bigCard.classList.add('big-card');
@@ -431,10 +443,10 @@ auth.onAuthStateChanged(async function(user) {
                 }
             }
             var params = parseURLParams(window.location.href);
-            if(params.id) {
+            if(params && params.id) {
                 var index = docsId.indexOf(params.id[0]);
                 loadProject(index);
-            } else if(params.p) {
+            } else if(params && params.p) {
                 appendBlade(params.p[0]);
             } else {
                 appendBlade('dashboard');
@@ -616,4 +628,26 @@ window.showPopUp = (fieldSelected) => {
     }
     document.getElementById('website-overlay').style.display = "flex";
     document.getElementById('main-content-container').style.filter = "blur(5px)";
+}
+
+window.openMobileMenu = () => {
+    document.getElementById('sidebar').style.display = "block";
+    document.getElementById('content').style.filter = "blur(5px)";
+    setTimeout(() => {
+        document.getElementById('content').setAttribute('onclick', 'closeMobileMenu()');
+    }, 200);
+}
+
+window.closeMobileMenu = () => {
+    document.getElementById('sidebar').style.display = "none";
+    document.getElementById('content').style.filter = "none";
+    document.getElementById('content').removeAttribute('onclick');
+}
+
+window.onresize = () => {
+    if(window.innerWidth >= 1100) {
+        document.getElementById('sidebar').style.display = "block";
+    } else {
+        document.getElementById('sidebar').style.display = "none";
+    }
 }

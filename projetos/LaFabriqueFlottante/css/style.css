@@ -115,6 +115,7 @@ a.logo-href {
     margin: 0 2rem;
     border-radius: 100px 100px 0 0;
     font-size: 1.5em;
+    position: relative;
 }
 
 .half-card h1 {
@@ -148,7 +149,7 @@ p.yellow {
 .uneven-flex {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    padding: 4rem 2rem;
+    padding: 4rem min(2rem, 2vw);
     gap: 2rem;
 }
 
@@ -177,7 +178,7 @@ p.yellow {
 
 .section {
     padding: 1rem 2rem;
-
+    position: relative;
 }
 
 .banner-img {
@@ -206,9 +207,16 @@ button {
 
 .personal-images {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 25px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: min(25px, 2vw);
+}
+
+@media(min-width: 600px) {
+    .personal-images {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 }
 
 .blue-container {
@@ -219,6 +227,7 @@ button {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    position: relative;
 }
 
 .personal-images img {
@@ -276,6 +285,7 @@ img.patrocinio {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-top: -200px;
 }
 
 .image-carousel img.selected {
@@ -301,6 +311,11 @@ select {
 
 h1 {
     color: color(srgb 0.1433 0.1533 0.3249);
+}
+
+.blue-container h1 {
+    color: white !important;
+    font-size: 2.3em;
 }
 
 .solution {
@@ -331,7 +346,7 @@ h1 {
 }
 
 .padding {
-    padding: 60px 0;
+    padding: 60px 2rem;
 }
 
 #title {
@@ -362,6 +377,10 @@ h1 {
     border-radius: 10px;
     padding: 10px 0;
     animation: fadein 0.5s;
+}
+
+.main-content {
+    position: relative;
 }
 
 .language:hover #lang-options {
@@ -448,4 +467,18 @@ h1 {
     display: flex;
     gap: 10px;
     align-items: center;
+}
+
+
+.scroll-point {
+    position: absolute;
+    top: -15vh;
+}
+
+.text-align {
+    text-align: center;
+}
+
+.smaller-gap {
+    padding-top: 1rem;
 }

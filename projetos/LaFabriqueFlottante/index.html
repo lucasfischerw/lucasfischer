@@ -10,15 +10,15 @@
 </head>
 <body>
     <div data-aos="fade-down" data-aos-delay="300" class="upper-menu" id="upper-menu">
-        <a class="logo-href" href="index.html">
+        <a class="logo-href" href="#welcome-content">
             <img src="assets/images/logo.png" alt="logo">
         </a>
         <nav class="desktop-nav">
             <ul class="desktop-nav-inner">
-                <li><a class="nav-active desktop" href="index.html">Why develop with us?</a></li>
-                <li><a class="desktop" href="index.html">What are the possibilities?</a></li>
-                <li><a class="desktop" href="index.html">Our team</a></li>
-                <li><a class="desktop" href="index.html">Schedule a call</a></li>
+                <li><a class="nav-active desktop maximaze-impact-nav" href="#maximaze-impact">Why develop with us?</a></li>
+                <li><a class="desktop embrace-solutions-nav" href="#embrace-solutions">What are the possibilities?</a></li>
+                <li><a class="desktop our-team-nav" href="#our-team">Our team</a></li>
+                <li><a class="desktop schedule-nav" href="#schedule">Schedule a call</a></li>
                 <div class="language desktop">
                     <img class="selected-language" src="./assets/images/BR-language.png">
                     <div id="lang-options" class="options">
@@ -32,10 +32,10 @@
         <nav id="mobile-nav" class="mobile-nav">
             <a class="close-mobile" onclick="closeMenu()">&times;</a>
             <ul class="mobile-nav-inner">
-                <li><a class="nav-active" href="index.html">Why develop with us?</a></li>
-                <li><a href="index.html">What are the possibilities?</a></li>
-                <li><a href="index.html">Our team</a></li>
-                <li><a href="index.html">Schedule a call</a></li>
+                <li><a onclick="closeMenu()" class="nav-active" href="#maximaze-impact">Why develop with us?</a></li>
+                <li><a onclick="closeMenu()" href="#embrace-solutions">What are the possibilities?</a></li>
+                <li><a onclick="closeMenu()" href="#our-team">Our team</a></li>
+                <li><a onclick="closeMenu()" href="#schedule">Schedule a call</a></li>
                 <div class="language">
                     <img class="selected-language" src="./assets/images/BR-language.png">
                     <div id="lang-options" class="options">
@@ -46,7 +46,8 @@
             </ul>
         </nav>
     </div>
-    <div data-aos="fade" data-aos-delay="500" class="main-content">
+    <div data-aos="fade" data-aos-delay="500" class="main-content" id="main-content">
+        <div class="scroll-point" id="welcome-content"></div>
         <div class="welcome-section">
             <h1 id="title">Unlimited AI</h1>
             <p>We develop your projects. Accessible to any size of business.</p>
@@ -54,6 +55,7 @@
             <source src="https://www.lafabriqueflottante.com/assets/backvideo.mp4" type="video/mp4">
         </div>
         <div data-aos="fade" class="half-card flex">
+            <div class="scroll-point" id="maximaze-impact"></div>
             <div data-aos-delay="300" data-aos="fade-left">
                 <h1>Maximaze Impact</h1>
                 <p>Our team has</p>
@@ -76,8 +78,8 @@
         </div>
         <img data-aos="fade" data-aos-duration="1000" class="banner" src="assets/images/site-banner-1.png">
         <div data-aos="fade-left" class="card">
-            <h1 data-aos="fade-right" data-aos-delay="300">No matter the SIZE of your idea</h1>
-            <p data-aos="fade-right" data-aos-delay="300">From small entrepreneurs to large corporations.</p>
+            <h1 data-aos="fade-right" data-aos-delay="300" class="text-align">No matter the SIZE of your idea</h1>
+            <p data-aos="fade-right" data-aos-delay="300" class="text-align">From small entrepreneurs to large corporations.</p>
             <div class="image-carousel" id="image-carousel">
                 <img data-aos="fade-up" data-aos-delay="300" id="image-0" src="assets/images/carousel/0.png">
                 <img data-aos="fade-up" data-aos-delay="400" id="image-1" src="assets/images/carousel/1.png">
@@ -88,14 +90,15 @@
                 <img data-aos="fade-up" data-aos-delay="900" id="image-6" src="assets/images/carousel/6.png">
             </div>
             <div class="overlay" data-aos="fade" data-aos-delay="1000">
-                <p>"It was a quick development that fit perfectly within the project budget."</p>
-                <b>Galerie Gardette - Paris, France (2023 - until today)</b>
-                <p>Website development and content maintenance.</p>
-                <p>Project duration: 1 month. React, Javascript, Remix.</p>
-                <a target="_blank" href="https://galeriegardette.com">https://galeriegardette.com</a>
+                <p id="img-title"></p>
+                <b id="date">Galerie Gardette - Paris, France (2023 - until today)</b>
+                <p id="category">Website development and content maintenance.</p>
+                <p id="duration">Project duration: 1 month. React, Javascript, Remix.</p>
+                <a id="link" target="_blank" href="https://galeriegardette.com">https://galeriegardette.com</a>
             </div>
         </div>
-        <div class="section" data-aos="fade-up" data-aos-delay="500">
+        <div class="section" data-aos="fade" data-aos-delay="500">
+            <div class="scroll-point" id="embrace-solutions"></div>
             <h1>Embrace the solutions with AI</h1>
             <div class="solution">
                 <div class="solution-inner">
@@ -113,7 +116,7 @@
                 </div>
                 <button>Generate new Solution</button>
             </div>
-            <div class="flex">
+            <div class="flex smaller-gap">
                 <div class="align-center" data-aos="fade-left" data-aos-delay="300">
                     <h1>Imagine an intelligent chatbot for customer service, with personalized recommendation system?</h1>
                     <button>I want to schedule a call to discuss this idea</button>
@@ -122,6 +125,7 @@
             </div>
         </div>
         <div class="section">
+            <div class="scroll-point" id="schedule"></div>
             <div class="flex">
                 <div class="vertical-flex" data-aos="fade-right" data-aos-delay="300">
                     <h1>Brainstorm with our team</h1>
@@ -145,6 +149,7 @@
         </div>
         <div class="uneven-flex">
             <div class="blue-container" data-aos="fade-right" data-aos-delay="100">
+                <div class="scroll-point" id="our-team"></div>
                 <h1>Some of our minds</h1>
                 <div class="personal-images">
                     <div data-aos="fade-up" data-aos-delay="300">
