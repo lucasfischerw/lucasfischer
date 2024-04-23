@@ -331,14 +331,15 @@ p {
 }
 
 .iconesCotato {
+	padding: 50px 0;
 	height: fit-content;
 	display: grid;
-	position: absolute;
-	bottom: 25vh;
 	row-gap: 50px;
 	width: 80vw;
 	margin: 0 10vw;
 	grid-template-columns: 26.6vw 26.6vw 26.6vw;
+	background-color: #041f6082;
+    border-radius: 15px;
 }
 
 .container-img {
@@ -594,4 +595,11 @@ a {
 
 #inicial {
 	min-height: 100vh;
+}
+
+.subtituloContato {
+	text-align: center;
+	width: 100%;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 2.5em;
 }

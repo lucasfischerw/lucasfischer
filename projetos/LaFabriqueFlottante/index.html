@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Fabrique Flottante</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+    <div data-aos="fade-down" data-aos-delay="300" class="upper-menu" id="upper-menu">
+        <a class="logo-href" href="index.html">
+            <img src="assets/images/logo.png" alt="logo">
+        </a>
+        <nav class="desktop-nav">
+            <ul class="desktop-nav-inner">
+                <li><a class="nav-active desktop" href="index.html">Why develop with us?</a></li>
+                <li><a class="desktop" href="index.html">What are the possibilities?</a></li>
+                <li><a class="desktop" href="index.html">Our team</a></li>
+                <li><a class="desktop" href="index.html">Schedule a call</a></li>
+                <div class="language desktop">
+                    <img class="selected-language" src="./assets/images/BR-language.png">
+                    <div id="lang-options" class="options">
+                        <img src="./assets/images/FR-language.svg">
+                        <img src="./assets/images/ES-language.jpg">
+                    </div>
+                </div>
+                <li><a class="mobile-trigger" onclick="openMenu()"><img src="./assets/images/menu.png"></a></li>
+            </ul>
+        </nav>
+        <nav id="mobile-nav" class="mobile-nav">
+            <a class="close-mobile" onclick="closeMenu()">&times;</a>
+            <ul class="mobile-nav-inner">
+                <li><a class="nav-active" href="index.html">Why develop with us?</a></li>
+                <li><a href="index.html">What are the possibilities?</a></li>
+                <li><a href="index.html">Our team</a></li>
+                <li><a href="index.html">Schedule a call</a></li>
+                <div class="language">
+                    <img class="selected-language" src="./assets/images/BR-language.png">
+                    <div id="lang-options" class="options">
+                        <img src="./assets/images/FR-language.svg">
+                        <img src="./assets/images/ES-language.jpg">
+                    </div>
+                </div>
+            </ul>
+        </nav>
+    </div>
+    <div data-aos="fade" data-aos-delay="500" class="main-content">
+        <div class="welcome-section">
+            <h1 id="title">Unlimited AI</h1>
+            <p>We develop your projects. Accessible to any size of business.</p>
+            <video autoplay muted loop>
+            <source src="https://www.lafabriqueflottante.com/assets/backvideo.mp4" type="video/mp4">
+        </div>
+        <div data-aos="fade" class="half-card flex">
+            <div data-aos-delay="300" data-aos="fade-left">
+                <h1>Maximaze Impact</h1>
+                <p>Our team has</p>
+                <div class="flex-text">
+                    <p class="yellow">20 years</p>
+                    <p>of combined experience</p>
+                </div>
+                <p>Seniors and award-winning developers.</p>
+            </div>
+            <div data-aos-delay="300" data-aos="fade-right">
+                <h1>Minimize Cost</h1>
+                <p>Our developments are</p>
+                <div class="flex-text">
+                    <p class="yellow">30% cheaper</p>
+                    <p>and</p>
+                    <p class="yellow">10% faster</p>
+                </div>
+                <p>than those of a standard European terms.</p>
+            </div>
+        </div>
+        <img data-aos="fade" data-aos-duration="1000" class="banner" src="assets/images/site-banner-1.png">
+        <div data-aos="fade-left" class="card">
+            <h1 data-aos="fade-right" data-aos-delay="300">No matter the SIZE of your idea</h1>
+            <p data-aos="fade-right" data-aos-delay="300">From small entrepreneurs to large corporations.</p>
+            <div class="image-carousel" id="image-carousel">
+                <img data-aos="fade-up" data-aos-delay="300" id="image-0" src="assets/images/carousel/0.png">
+                <img data-aos="fade-up" data-aos-delay="400" id="image-1" src="assets/images/carousel/1.png">
+                <img data-aos="fade-up" data-aos-delay="500" id="image-2" src="assets/images/carousel/2.png">
+                <img data-aos="fade-up" data-aos-delay="600" id="image-3" src="assets/images/carousel/3.png">
+                <img data-aos="fade-up" data-aos-delay="700" id="image-4" src="assets/images/carousel/4.png">
+                <img data-aos="fade-up" data-aos-delay="800" class="selected" id="image-5" src="assets/images/carousel/5.png">
+                <img data-aos="fade-up" data-aos-delay="900" id="image-6" src="assets/images/carousel/6.png">
+            </div>
+            <div class="overlay" data-aos="fade" data-aos-delay="1000">
+                <p>"It was a quick development that fit perfectly within the project budget."</p>
+                <b>Galerie Gardette - Paris, France (2023 - until today)</b>
+                <p>Website development and content maintenance.</p>
+                <p>Project duration: 1 month. React, Javascript, Remix.</p>
+                <a target="_blank" href="https://galeriegardette.com">https://galeriegardette.com</a>
+            </div>
+        </div>
+        <div class="section" data-aos="fade-up" data-aos-delay="500">
+            <h1>Embrace the solutions with AI</h1>
+            <div class="solution">
+                <div class="solution-inner">
+                    <div class="solution-input">
+                        <p>Choose your area</p>
+                        <select name="cars" id="cars">
+                            <option>Customer service</option>
+                            <option>Developer</option>
+                        </select>
+                    </div>
+                    <div class="solution-input">
+                        <p>and</p>
+                        <input type="text" placeholder="Write here your biggest obstacle...">
+                    </div>
+                </div>
+                <button>Generate new Solution</button>
+            </div>
+            <div class="flex">
+                <div class="align-center" data-aos="fade-left" data-aos-delay="300">
+                    <h1>Imagine an intelligent chatbot for customer service, with personalized recommendation system?</h1>
+                    <button>I want to schedule a call to discuss this idea</button>
+                </div>
+                <img class="banner-img" data-aos="fade-right" data-aos-delay="300" src="assets/images/phone-img.png">
+            </div>
+        </div>
+        <div class="section">
+            <div class="flex">
+                <div class="vertical-flex" data-aos="fade-right" data-aos-delay="300">
+                    <h1>Brainstorm with our team</h1>
+                    <p>Schedule a 30 min video call</p>
+                    <select name="cars" id="cars">
+                        <option>Friday 22/03 - 10h30 am (Paris timezone)</option>
+                        <option>Friday 23/03 - 10h30 am (Paris timezone)</option>
+                        <option>Friday 24/03 - 10h30 am (Paris timezone)</option>
+                        <option>Friday 25/03 - 10h30 am (Paris timezone)</option>
+                    </select>
+                    <select name="cars" id="cars">
+                        <option>Je parle Français</option>
+                        <option>Je parle Português</option>
+                    </select>
+                    <input type="text" placeholder="Email">
+                    <textarea placeholder="Explain a little about your company and idea..."></textarea>
+                    <button>Confirm appointment</button>
+                </div>
+                <img class="banner-img" data-aos="fade-left" data-aos-delay="300" src="assets/images/pc-image.png">
+            </div>
+        </div>
+        <div class="uneven-flex">
+            <div class="blue-container" data-aos="fade-right" data-aos-delay="100">
+                <h1>Some of our minds</h1>
+                <div class="personal-images">
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <img src="assets/images/fred-costa.png">
+                        <p>Fred Costa</p>
+                        <p>DEV Full Stack</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="400">
+                        <img src="assets/images/edson-almeida.png">
+                        <p>Edson Almeida</p>
+                        <p>DEV Full Stack Senior</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="500">
+                        <img src="assets/images/victor-santos.png">
+                        <p>Victor Santos</p>
+                        <p>DEV Full Stack</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="600">
+                        <img src="assets/images/raphael-evangelista.png">
+                        <p>Raphael Evangelista</p>
+                        <p>CEO/DEV Full Stack</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="700">
+                        <img src="assets/images/wilton-machado.png">
+                        <p>Wilton Machado</p>
+                        <p>COO</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="800">
+                        <img src="assets/images/cecilia-soares.png">
+                        <p>Cecilia Soares</p>
+                        <p>CAO</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="900">
+                        <img src="assets/images/fred-furtado.png">
+                        <p>Fred Furtado</p>
+                        <p>CAM/PM</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="1000">
+                        <p>and more than 20 developers on standby for new projects in various areas</p>
+                    </div>
+                </div>
+            </div>
+            <div data-aos="fade-left" data-aos-delay="700" class="vertical-flex align">
+                <p>Digital solutions selected and nominated for the</p>
+                <b>main innovation awards</b>
+                <img class="patrocinio" src="assets/images/impact.png">
+                <img class="patrocinio" src="assets/images/facebook.png">
+                <div class="flex patrocinio-container">
+                    <img class="patrocinio" src="assets/images/brasil.png">
+                    <img class="patrocinio" src="assets/images/sim.png">
+                </div>
+                <div class="flex patrocinio-container">
+                    <img class="patrocinio" src="assets/images/sebrae.png">
+                    <img class="patrocinio" src="assets/images/peiex.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="vertical-flex" data-aos="fade-left" data-aos-delay="300">
+            <h1>Stay connected</h1>
+            <p>Subscribe to receive the best <b>technology news</b> and ongoing projects</p>
+            <select name="cars" id="cars">
+                <option>Je parle Français</option>
+                <option>Je parle Português</option>
+            </select>
+            <input type="text" placeholder="Email">
+            <button>Confirm subscription</button>
+        </div>
+        <div class="vertical-flex" data-aos="fade-right" data-aos-delay="300">
+            <h1>Contact us</h1>
+            <p><b>We are around the world.</b><p>Choose your best contact.</p></p>
+            <p>contact@lafabriqueflottante.com</p>
+            <p>France: +33 6 43 62 35 20 (Raphael Evangelista)</br>
+                Spain: ??? (Jan Angelim))</br>
+                Portugal: ?? (Gustavo Pine))</br>
+                Scandinavian countries: ??? (Victor Gallon))</br>
+                Brazil and other places:  + 55 37 9841-1913 (Fred Furtado))</br>
+            </p>
+        </div>
+    </div>
+    <div class="vertical-flex align padding">
+        <img class="small-logo" src="assets/images/logo.png">
+        <h1>Unlimited AI/Blockchain/XR Solutions</h1>
+        <p>LFF DEV is a sister company of the Brazilian 2DLpro, combining tradition and innovation for your business success.</p>
+    </div>
+    <script src="js/script.js"></script>
+    <script>
+        AOS.init();
+      </script>
+</body>
+</html>

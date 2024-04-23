@@ -1,0 +1,485 @@
+<div class="header">
+    <div class="header-nav">
+        <img onclick="appendBlade('dashboard')" src="images/home-icon.png">
+        <p>Projetos / Projeto 1</p>
+    </div>
+    <div class="user-profile">
+        <div class="user-profile-img">
+            <p>MJ</p>
+        </div>
+        <p>Marcus José</p>
+        <svg width="64px" height="64px" viewBox="0 -4.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>arrow_down [#338]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-220.000000, -6684.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M164.292308,6524.36583 L164.292308,6524.36583 C163.902564,6524.77071 163.902564,6525.42619 164.292308,6525.83004 L172.555873,6534.39267 C173.33636,6535.20244 174.602528,6535.20244 175.383014,6534.39267 L183.70754,6525.76791 C184.093286,6525.36716 184.098283,6524.71997 183.717533,6524.31405 C183.328789,6523.89985 182.68821,6523.89467 182.29347,6524.30266 L174.676479,6532.19636 C174.285736,6532.60124 173.653152,6532.60124 173.262409,6532.19636 L165.705379,6524.36583 C165.315635,6523.96094 164.683051,6523.96094 164.292308,6524.36583" id="arrow_down-[#338]"> </path> </g> </g> </g> </g></svg>
+    </div>
+</div>
+<div class="simple-flex">
+    <h1 id="project-title"><p class="loader"></p></h1>
+    <div class="project-status">
+        <p id="projectStatus">Em Projeto</p>
+        <img class="small-edit-icon" src="./images/edit-icon.png">
+    </div>
+</div>
+<div class="project-details-container">
+    <div class="big-card">
+        <div class="image-edit-container">
+            <img id="project-image" src="images/placeholder-img.png">
+            <div class="edit-image-btn" onclick="changeImagePopUp()">
+                <img src="./images/edit-icon.png">
+            </div>
+        </div>
+        <div class="collapsible-title">
+            <div>
+                <img src="images/base.png">
+                <h3>Dados</h3>
+            </div>
+        </div>
+        <div class="project-highlight-atribbutes-dashboard">
+            <p id="metragem"></p>
+            <p id="num-quartos"></p>
+            <p id="num-banheiros"></p>
+            <p id="num-vagas"></p>
+            <p id="tem-elevador"></p>
+        </div>
+        <div class="aditional-info">
+            <p id="project-name"></p>
+            <p id="project-number"></p>
+            <p id="project-adress"></p>
+            <p id="project-condominio"></p>
+            <p id="project-anuncio"></p>
+            <p id="project-valor"></p>
+            <span>Link do anúncio: <a id="project-link" target="_blank"></a></span>
+        </div>
+        <div class="collapsible-title">
+            <div>
+                <img src="images/cronograma.jpeg">
+                <h3>Cronograma</h3>
+            </div>
+            <button class="highlight-button" onclick="addProjectEvent()">Adicionar novo Evento</button>
+        </div>
+        <div class="cronograma-values" id="cronograma-values">
+            <p>Não existem Eventos Marcados</p>
+        </div>
+    </div>
+    <div class="vertical-flex">
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(0)">
+                <div>
+                    <img src="images/viabilidade.jpeg">
+                    <h3>Viabilidade</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content flex-gap">
+                <div class="select-horizontal-menu">
+                    <p class="menu-option-selected">Financiamento</p>
+                    <p>A vista</p>
+                </div>
+                <div class="flex-align-between">
+                    <p>Tempo estimado até a venda: </p>
+                    <p class="highlight-text">5 meses</p>
+                </div>
+                <div class="values-table" id="values-table-0">
+                    <div class="flex-align-between values-title">
+                        <div class="close-simple-flex">
+                            <img src="./images/financiamento.png">
+                            <h3>Financiamento</h3>
+                        </div>
+                        <button class="highlight-button" id="editAtt-button-0" onclick="editprojectFields(0)">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor financiado:</p>
+                        <div class="input-porcentage">
+                            <input id="financiado-porc" class="editable-input porc" readonly value="80%">
+                            <input id="financiado-input" class="editable-input value-change" readonly value="R$239.999,00">
+                        </div>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor de entrada:</p>
+                        <div class="input-porcentage">
+                            <input id="entrada-porc" class="editable-input porc" readonly value="20%">
+                            <input id="entrada-input" class="editable-input value-change" readonly value="R$3.200,00">
+                        </div>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor aprox. das parcelas:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Amortização por parcela:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Taxas bancárias:</p>
+                        <input class="editable-input" readonly value="R$841,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor a ser quitado após a venda:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Total (juros e taxas):</p>
+                        <input class="editable-input" readonly value="R$18.149,00">
+                    </div>
+                </div>
+                <div class="values-table" id="values-table-1">
+                    <div class="flex-align-between values-title">
+                        <div class="close-simple-flex">
+                            <img src="./images/imovel.png">
+                            <h3>Imóvel</h3>
+                        </div>
+                        <button class="highlight-button" id="editAtt-button-1" onclick="editprojectFields(1)">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor de compra:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Despesas (luz e água):</p>
+                        <input class="editable-input" readonly value="R$150,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Condomínio:</p>
+                        <input class="editable-input" readonly value="R$790,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>IPTU (Mês):</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>ITBI:</p>
+                        <div class="input-porcentage">
+                            <input id="itbi-porc" class="editable-input porc" readonly value="20">
+                            <input id="itbi-input" class="editable-input" readonly value="3.200,00">
+                        </div>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Escritura e registro:</p>
+                        <div class="input-porcentage">
+                            <input id="escritura-porc" class="editable-input porc" readonly value="20">
+                            <input id="escritura-input" class="editable-input" readonly value="3.200,00">
+                        </div>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Reforma:</p>
+                        <div class="input-porcentage">
+                            <input id="reforma-porc" class="editable-input porc" readonly value="20">
+                            <input id="reforma-input" class="editable-input" readonly value="3.200,00">
+                        </div>
+                    </div>
+                </div>
+                <div class="values-table" id="values-table-2">
+                    <div class="flex-align-between values-title">
+                        <div class="close-simple-flex">
+                            <img src="./images/venda.png">
+                            <h3>Venda</h3>
+                        </div>
+                        <button class="highlight-button" id="editAtt-button-2" onclick="editprojectFields(2)">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor de venda:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Corretagem:</p>
+                        <div class="input-porcentage">
+                            <input class="editable-input" readonly value="20%">
+                            <input class="editable-input" readonly value="R$3.200,00">
+                        </div>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Lucro Bruto:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>IRPF:</p>
+                        <div class="input-porcentage">
+                            <input class="editable-input" readonly value="20%">
+                            <input class="editable-input" readonly value="R$3.200,00">
+                        </div>
+                    </div>
+                </div>
+                <div class="values-table" id="values-table-3">
+                    <div class="flex-align-between values-title">
+                        <div class="close-simple-flex">
+                            <img src="./images/resultados.png">
+                            <h3>Resultados</h3>
+                        </div>
+                        <button class="highlight-button" id="editAtt-button-3" onclick="editprojectFields(3)">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Investimento total:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Lucro líquido:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>ROI:</p>
+                        <input class="editable-input" readonly value="R$3.200,00">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(1)">
+                <div>
+                    <img src="images/reforma.jpeg">
+                    <h3>Reforma</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content">
+                <div class="values-table">
+                    <h3>Orçamento</h3>
+                    <div class="flex-align-between">
+                        <p>Restante:</p>
+                        <p>R$50.000,00</p>
+                    </div>
+                    <div class="reforma-progress">
+                        <p class="progress-text">65</p>
+                        <p class="progress-indicator"></p>
+                        <p class="default-bg-indicator"></p>
+                    </div>
+                    <div class="custo-reforma">
+                        <h3>Alvenaria</h3>
+                        <div class="custos">
+                            <div class="flex-align-between">
+                                <p>Mão de Obra:</p>
+                                <p>R$5.000,00</p>
+                            </div>
+                            <div class="flex-align-between">
+                                <p>Materias:</p>
+                                <p>R$5.000,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custo-reforma">
+                        <h3>Alvenaria</h3>
+                        <div class="custos">
+                            <div class="flex-align-between">
+                                <p>Mão de Obra:</p>
+                                <p>R$5.000,00</p>
+                            </div>
+                            <div class="flex-align-between">
+                                <p>Materias:</p>
+                                <p>R$5.000,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="custo-reforma">
+                        <h3>Alvenaria</h3>
+                        <div class="custos">
+                            <div class="flex-align-between">
+                                <p>Mão de Obra:</p>
+                                <p>R$5.000,00</p>
+                            </div>
+                            <div class="flex-align-between">
+                                <p>Materias:</p>
+                                <p>R$5.000,00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(2)">
+                <div>
+                    <img src="images/resultados.jpeg">
+                    <h3>Resultados</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content flex-gap">
+                <div class="select-horizontal-menu">
+                    <p class="menu-option-selected">Estimado</p>
+                    <p>Realizado</p>
+                </div>
+                <div class="values-table">
+                    <div class="flex-align-between values-title">
+                        <h3>Dados</h3>
+                        <button class="highlight-button" id="editAtt-button-4" onclick="editprojectFields(4)">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor de venda:</p>
+                        <p>R$495.000,00</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Reforma:</p>
+                        <p>R$29.700,00</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Tempo até venda:</p>
+                        <p>18 meses</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Despesas:</p>
+                        <p>R$13.114,00</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Corretagem:</p>
+                        <p>R$156.310,00</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Lucro bruto:</p>
+                        <p>R$63.123,00</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>IRPF:</p>
+                        <p>R$13.123,00</p>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>ROI:</p>
+                        <p>40,38%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(3)">
+                <div>
+                    <img src="images/estatisticas.jpeg">
+                    <h3>Estatísticas</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content">
+                <h3>Reforma</h3>
+                <div class="big-chart-container">
+                    <canvas width="500" height="500" id="round-chart"></canvas>
+                </div>
+                <h3>Venda</h3>
+                <div class="big-chart-container">
+                    <canvas width="500" height="500" id="horizontal-chart"></canvas>
+                </div>
+                <div class="big-chart-container">
+                    <h3>Compra</h3>
+                    <canvas width="500" height="500" id="horizontal-chart-2"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(4)">
+                <div>
+                    <img src="images/fotos.jpeg">
+                    <h3>Fotos</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content">
+                <div id="photos-container">
+                    <p class="margin-b">Não foram adicionadas fotos</p>
+                </div>
+                <button class="highlight-button" onclick="addPhotoAlbum()">Adicionar novo Álbum</button>
+            </div>
+        </div>
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(5)">
+                <div>
+                    <img src="images/anotacoes.jpeg">
+                    <h3>Anotações</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content">
+                <div class="notes-inner" id="notes-inner">
+                    <p>Não existem anotações adicionadas</p>
+                </div>
+                <button class="highlight-button" onclick="addProjectNote()">Adicionar nova Anotação</button>
+            </div>
+        </div>
+        <div class="collapsible">
+            <div class="collapsible-title" onclick="openProjectDetail(6)">
+                <div>
+                    <img src="images/contatos.jpeg">
+                    <h3>Contatos</h3>
+                </div>
+                <img class="collapsible-arrow" src="./images/menu-icon.png">
+            </div>
+            <div class="collapsible-content">
+                <div id="contatos-values" class="margin-b">
+                    <p>Não Existem contatos adicionados</p>
+                </div>
+                <button class="highlight-button" onclick="addProjectContact()">Adicionar novo Contato</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var ctx = document.getElementById('round-chart');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
+            datasets: [{
+                label: 'Lucro Líquido',
+                data: [400000, 350000, 150000],
+                backgroundColor: [
+                    '#3959f7',
+                    '#d61f69',
+                    '#fec53d'
+                ],
+                hoverOffset: 4
+            }]
+        }, options: {
+            maintainAspectRatio: true,
+            layout: {
+                padding: {
+                    top: 20,
+                    bottom: 20
+                }
+            },
+            cutout: 100,
+        }
+    });
+    ctx = document.getElementById('horizontal-chart');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
+            datasets: [{
+                barThickness: 25,
+                label: 'Lucro Líquido',
+                data: [400000, 350000, 150000],
+                backgroundColor: 'color(srgb 0.101 0.1263 0.4737)',
+                stack: 'Stack 0',
+                borderRadius: 10,
+            }]
+        },options: {
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grace: '1%'
+                },
+            }
+        }
+    });
+    ctx = document.getElementById('horizontal-chart-2');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
+            datasets: [{
+                barThickness: 25,
+                label: 'Lucro Líquido',
+                data: [400000, 350000, 150000],
+                backgroundColor: 'color(srgb 0.101 0.1263 0.4737)',
+                stack: 'Stack 0',
+                borderRadius: 10,
+            }]
+        }, options: {
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    grace: '1%'
+                },
+            }
+        }
+    });
+</script>
+</script>
