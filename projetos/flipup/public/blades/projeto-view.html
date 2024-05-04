@@ -1,8 +1,16 @@
 <div class="simple-flex">
     <h1 id="project-title"><p class="loader"></p></h1>
-    <div class="project-status">
-        <p id="projectStatus">Em Projeto</p>
-        <img class="small-edit-icon" src="./images/edit-icon.png">
+    <div class="dropdown-container">
+        <div onclick="openStatusMenu()" class="project-status">
+            <p id="projectStatus"></p>
+            <img class="small-edit-icon" src="./images/edit-white.png">
+        </div>
+        <div class="dropdown" id="status-dropdown">
+            <p onclick="changeProjectStatus(0)">Prospecção</p>
+            <p onclick="changeProjectStatus(1)">Em obra</p>
+            <p onclick="changeProjectStatus(2)">Anunciado</p>
+            <p onclick="changeProjectStatus(3)">Vendido</p>
+        </div>
     </div>
 </div>
 <div class="project-details-container">
@@ -28,7 +36,6 @@
         </div>
         <div class="aditional-info">
             <p id="project-name"></p>
-            <p id="project-number"></p>
             <p id="project-adress"></p>
             <p id="project-condominio"></p>
             <p id="project-anuncio"></p>
@@ -37,7 +44,7 @@
         </div>
         <div class="collapsible-title">
             <div>
-                <img src="images/cronograma.jpeg">
+                <img src="images/cronograma.png">
                 <h3>Cronograma</h3>
             </div>
             <button class="highlight-button" onclick="addProjectEvent()">Adicionar novo Evento</button>
@@ -50,19 +57,19 @@
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(0)">
                 <div>
-                    <img src="images/viabilidade.jpeg">
+                    <img src="images/viabilidade.png">
                     <h3>Viabilidade</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
             </div>
             <div class="collapsible-content flex-gap">
-                <div class="select-horizontal-menu">
-                    <p class="menu-option-selected">Financiamento</p>
-                    <p>A vista</p>
+                <div id="select-horizontal-menu" class="select-horizontal-menu">
+                    <p onclick="changeProjectSellMode(0)" class="menu-option-selected">Financiamento</p>
+                    <p onclick="changeProjectSellMode(1)">A vista</p>
                 </div>
                 <div class="flex-align-between">
-                    <p>Tempo estimado até a venda: </p>
-                    <p class="highlight-text">5 meses</p>
+                    <p>Tempo estimado até a venda (meses): </p>
+                    <p class="highlight-button">5 meses</p>
                 </div>
                 <div class="values-table" id="values-table-0">
                     <div class="flex-align-between values-title">
@@ -76,35 +83,43 @@
                         <p>Valor financiado:</p>
                         <div class="input-porcentage">
                             <input id="financiado-porc" class="editable-input porc" readonly value="80%">
-                            <input id="financiado-input" class="editable-input value-change" readonly value="R$239.999,00">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem do valor de compra</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input id="financiado-input" class="editable-input value-change" readonly value="0">
                         </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Valor de entrada:</p>
                         <div class="input-porcentage">
                             <input id="entrada-porc" class="editable-input porc" readonly value="20%">
-                            <input id="entrada-input" class="editable-input value-change" readonly value="R$3.200,00">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem do valor de compra</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input onkeydown="calculateInvestment()" id="entrada-input" class="editable-input value-change" readonly value="0">
                         </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Valor aprox. das parcelas:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input id="valor-parcela" class="editable-input" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>Amortização por parcela:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input onkeyup="calculateTotal()" id="amortizacao-parcela" class="editable-input" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>Taxas bancárias:</p>
-                        <input class="editable-input" readonly value="R$841,00">
+                        <input onkeyup="calculateTotal()" id="taxas-bancarias" class="editable-input" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>Valor a ser quitado após a venda:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input onkeydown="calculateInvestment()" id="valor-quitado" class="editable-input" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>Total (juros e taxas):</p>
-                        <input class="editable-input" readonly value="R$18.149,00">
+                        <input onkeydown="calculateInvestment()" id="juros-taxas" class="editable-input auto" readonly value="0">
                     </div>
                 </div>
                 <div class="values-table" id="values-table-1">
@@ -121,35 +136,47 @@
                     </div>
                     <div class="flex-align-between">
                         <p>Despesas (luz e água):</p>
-                        <input class="editable-input" readonly value="R$150,00">
+                        <input onkeydown="calculateInvestment()" id="despesas" class="editable-input" readonly value="R$150,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Condomínio:</p>
-                        <input class="editable-input" readonly value="R$790,00">
+                        <input onkeydown="calculateInvestment()" id="condominio" class="editable-input" readonly value="R$790,00">
                     </div>
                     <div class="flex-align-between">
                         <p>IPTU (Mês):</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input onkeydown="calculateInvestment()" id="iptu" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>ITBI:</p>
                         <div class="input-porcentage">
-                            <input id="itbi-porc" class="editable-input porc" readonly value="20">
-                            <input id="itbi-input" class="editable-input" readonly value="3.200,00">
+                            <input id="itbi-porc" class="editable-input porc" readonly value="0">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input onkeydown="calculateInvestment()" id="itbi-input" class="editable-input value-change" readonly value="0">
                         </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Escritura e registro:</p>
                         <div class="input-porcentage">
-                            <input id="escritura-porc" class="editable-input porc" readonly value="20">
-                            <input id="escritura-input" class="editable-input" readonly value="3.200,00">
+                            <input id="escritura-porc" class="editable-input porc" readonly value="0">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input onkeydown="calculateInvestment()" id="escritura-input" class="editable-input value-change" readonly value="0">
                         </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Reforma:</p>
                         <div class="input-porcentage">
-                            <input id="reforma-porc" class="editable-input porc" readonly value="20">
-                            <input id="reforma-input" class="editable-input" readonly value="3.200,00">
+                            <input id="reforma-porc" class="editable-input porc" readonly value="0">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input onkeydown="calculateInvestment()" id="reforma-input" class="editable-input value-change" readonly value="0">
                         </div>
                     </div>
                 </div>
@@ -163,24 +190,32 @@
                     </div>
                     <div class="flex-align-between">
                         <p>Valor de venda:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input onkeydown="updateLucroBruto()" id="valor-venda" class="editable-input" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>Corretagem:</p>
                         <div class="input-porcentage">
-                            <input class="editable-input" readonly value="20%">
-                            <input class="editable-input" readonly value="R$3.200,00">
+                            <input class="editable-input porc" readonly value="20%">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o valor de venda</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input onkeydown="updateLucroBruto()" id="corretagem" class="editable-input" readonly value="0">
                         </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Lucro Bruto:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input id="lucro-bruto" class="editable-input auto" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>IRPF:</p>
                         <div class="input-porcentage">
-                            <input class="editable-input" readonly value="20%">
-                            <input class="editable-input" readonly value="R$3.200,00">
+                            <input class="editable-input porc" readonly value="20%">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o lucro bruto</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input onkeyup="calculateLucroLiquid()" id="irpf" class="editable-input" readonly value="R$3.200,00">
                         </div>
                     </div>
                 </div>
@@ -190,19 +225,18 @@
                             <img src="./images/resultados.png">
                             <h3>Resultados</h3>
                         </div>
-                        <button class="highlight-button" id="editAtt-button-3" onclick="editprojectFields(3)">Editar</button>
                     </div>
                     <div class="flex-align-between">
                         <p>Investimento total:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input id="investimento-total" class="editable-input auto" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Lucro líquido:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input id="lucro-liquido" class="editable-input auto" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>ROI:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
+                        <input id="roi" class="editable-input porc auto" readonly value="R$3.200,00">
                     </div>
                 </div>
             </div>
@@ -210,69 +244,41 @@
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(1)">
                 <div>
-                    <img src="images/reforma.jpeg">
+                    <img src="images/reforma.png">
                     <h3>Reforma</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
             </div>
             <div class="collapsible-content">
-                <div class="values-table">
-                    <h3>Orçamento</h3>
+                <div class="values-table" id="values-table-4">
+                    <div class="flex-align-between margin-b">
+                        <h3>Orçamento</h3>
+                        <button class="highlight-button" id="editAtt-button-4" onclick="editprojectFields(4)">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Total:</p>
+                        <input id="limite-reforma" onkeyup="updateReformValue()" class="editable-input" readonly value="R$20000">
+                    </div>
                     <div class="flex-align-between">
                         <p>Restante:</p>
-                        <p>R$50.000,00</p>
+                        <input id="remaining-value" class="editable-input auto" readonly value="R$20000">
                     </div>
                     <div class="reforma-progress">
-                        <p class="progress-text">65</p>
-                        <p class="progress-indicator"></p>
+                        <p class="progress-text" id="progress-text">100%</p>
+                        <p class="progress-indicator" id="progress-indicator"></p>
                         <p class="default-bg-indicator"></p>
                     </div>
-                    <div class="custo-reforma">
-                        <h3>Alvenaria</h3>
-                        <div class="custos">
-                            <div class="flex-align-between">
-                                <p>Mão de Obra:</p>
-                                <p>R$5.000,00</p>
-                            </div>
-                            <div class="flex-align-between">
-                                <p>Materias:</p>
-                                <p>R$5.000,00</p>
-                            </div>
-                        </div>
+                    <div id="reform-categories">
+                        <p class="margin-b">Nenhuma categoria adicionada</p>
                     </div>
-                    <div class="custo-reforma">
-                        <h3>Alvenaria</h3>
-                        <div class="custos">
-                            <div class="flex-align-between">
-                                <p>Mão de Obra:</p>
-                                <p>R$5.000,00</p>
-                            </div>
-                            <div class="flex-align-between">
-                                <p>Materias:</p>
-                                <p>R$5.000,00</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custo-reforma">
-                        <h3>Alvenaria</h3>
-                        <div class="custos">
-                            <div class="flex-align-between">
-                                <p>Mão de Obra:</p>
-                                <p>R$5.000,00</p>
-                            </div>
-                            <div class="flex-align-between">
-                                <p>Materias:</p>
-                                <p>R$5.000,00</p>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="highlight-button" onclick="addReformCategory()">Adicionar nova categoria</button>
                 </div>
             </div>
         </div>
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(2)">
                 <div>
-                    <img src="images/resultados.jpeg">
+                    <img src="images/resultados-blue.png">
                     <h3>Resultados</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
@@ -282,42 +288,45 @@
                     <p class="menu-option-selected">Estimado</p>
                     <p>Realizado</p>
                 </div>
-                <div class="values-table">
+                <div class="values-table" id="values-table-5">
                     <div class="flex-align-between values-title">
-                        <h3>Dados</h3>
-                        <button class="highlight-button" id="editAtt-button-4" onclick="editprojectFields(4)">Editar</button>
+                        <div class="close-simple-flex">
+                            <img src="./images/resultados.png">
+                            <h3>Dados</h3>
+                        </div>  
+                        <button class="highlight-button" id="editAtt-button-5" onclick="editprojectFields(5)">Editar</button>
                     </div>
                     <div class="flex-align-between">
                         <p>Valor de venda:</p>
-                        <p>R$495.000,00</p>
+                        <input onkeyup="changeData()" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Reforma:</p>
-                        <p>R$29.700,00</p>
+                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Tempo até venda:</p>
-                        <p>18 meses</p>
+                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Despesas:</p>
-                        <p>R$13.114,00</p>
+                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Corretagem:</p>
-                        <p>R$156.310,00</p>
+                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Lucro bruto:</p>
-                        <p>R$63.123,00</p>
+                        <input id="lucro-bruto2" class="editable-input auto" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>IRPF:</p>
-                        <p>R$13.123,00</p>
+                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>ROI:</p>
-                        <p>40,38%</p>
+                        <input id="roi-2" class="editable-input auto" readonly value="0">
                     </div>
                 </div>
             </div>
@@ -325,7 +334,7 @@
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(3)">
                 <div>
-                    <img src="images/estatisticas.jpeg">
+                    <img src="images/stats-blue.png">
                     <h3>Estatísticas</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
@@ -348,7 +357,7 @@
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(4)">
                 <div>
-                    <img src="images/fotos.jpeg">
+                    <img src="images/fotos.png">
                     <h3>Fotos</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
@@ -363,7 +372,7 @@
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(5)">
                 <div>
-                    <img src="images/anotacoes.jpeg">
+                    <img src="images/anotacoes.png">
                     <h3>Anotações</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
@@ -378,7 +387,7 @@
         <div class="collapsible">
             <div class="collapsible-title" onclick="openProjectDetail(6)">
                 <div>
-                    <img src="images/contatos.jpeg">
+                    <img src="images/contatos-blue.png">
                     <h3>Contatos</h3>
                 </div>
                 <img class="collapsible-arrow" src="./images/menu-icon.png">

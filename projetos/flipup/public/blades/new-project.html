@@ -15,7 +15,8 @@
         <h3>Dados do Imóvel</h3>
         <div class="input-option">
             <label for="project-adress">Endereço</label>
-            <input name="project-adress" id="project-adress" type="text" placeholder="Avenida Brasil, 123 - Ap . 456, Brasil">
+            <input name="project-adress" onfocus="suggestAdress()" onfocusout="closeAdressSugestion()" onkeyup="suggestAdress()" id="project-adress" type="text" placeholder="Avenida Brasil, 123 - Ap . 456, Brasil">
+            <div id="autocomplete-adress">Digite para obter sugestões...</div>
         </div>
         <div class="input-option">
             <label for="project-area">Área (m2)</label>
@@ -71,3 +72,36 @@
         <button class="highlight-button" onclick="validateProject()">Salvar</button>
     </div>
 </div>
+<script type="module">
+    const { Map } = await google.maps.importLibrary("maps");
+    var geocoder = new google.maps.Geocoder();
+    window.suggestAdress = function() {
+        openAdressSugestion();
+        var input = document.getElementById('project-adress').value;
+        geocoder.geocode( { 'address': input}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                document.getElementById('autocomplete-adress').innerHTML = '';
+                for(var k = 0; k < results.length; k++) {
+                    var element = document.createElement('p');
+                    element.innerHTML = results[k].formatted_address;
+                    element.onclick = function() {
+                        document.getElementById('project-adress').value = this.innerHTML;
+                        closeAdressSugestion();
+                    }
+                    document.getElementById('autocomplete-adress').appendChild(element);
+                }
+            } else {
+                document.getElementById('autocomplete-adress').innerHTML = "Digite para obter sugestões...";
+            }
+        });
+    }
+    window.openAdressSugestion = function() {
+        document.getElementById('autocomplete-adress').style.display = 'flex';
+    }
+    window.closeAdressSugestion = function() {
+        setTimeout(() => {
+            document.getElementById('autocomplete-adress').innerHTML = "Digite para obter sugestões...";
+            document.getElementById('autocomplete-adress').style.display = 'none';
+        }, 100);
+    }
+</script>

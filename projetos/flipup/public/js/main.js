@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, GoogleAuthProvider, signInWithRedirect, updateEmail } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"
+import { getAuth, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup, updateEmail } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"
 import { getFirestore, collection, doc, addDoc, onSnapshot, updateDoc, deleteDoc, getDocs } from 'https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js'
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
 import { getStorage, ref,uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-storage.js";
@@ -20,16 +20,22 @@ const db = getFirestore(app);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 const storage = getStorage(app);
+auth.useDeviceLanguage();
 
 function incorrectLogin() {
     document.querySelector("#email").style.border = "1px solid red";
     document.querySelector("#senha").style.border = "1px solid red";
     document.querySelector("#email").style.backgroundColor = "rgb(255, 238, 238)";
     document.querySelector("#senha").style.backgroundColor = "rgb(255, 238, 238)";
+    document.querySelector("#login-error-message").innerHTML = "Email ou senha incorretos";
+    document.querySelector("#submit-login").innerHTML = "Entrar";
+    document.querySelector("#submit-login").classList.remove('loading');
+    document.querySelector("#submit-login").style.pointerEvents = "all";
     document.querySelector("#email").addEventListener('input', function() {
         if(this.value != "") {
             this.style.border = "1px solid #ccc";
             this.style.backgroundColor = "white";
+            document.querySelector("#login-error-message").innerHTML = "";
         } else {
             this.style.border = "1px solid red";
             this.style.backgroundColor = "rgb(255, 238, 238)";
@@ -39,6 +45,7 @@ function incorrectLogin() {
         if(this.value != "") {
             this.style.border = "1px solid #ccc";
             this.style.backgroundColor = "white";
+            document.querySelector("#login-error-message").innerHTML = "";
         } else {
             this.style.border = "1px solid red";
             this.style.backgroundColor = "rgb(255, 238, 238)";
@@ -47,6 +54,9 @@ function incorrectLogin() {
 }
 
 window.signInEmail = () => {
+    document.querySelector("#submit-login").innerHTML = "<div class='btn-loader'></div>Entrar";
+    document.querySelector("#submit-login").classList.add('loading');
+    document.querySelector("#submit-login").style.pointerEvents = "none";
     if(document.querySelector("#email").value != "" && document.querySelector("#senha").value != "") {
         signInWithEmailAndPassword(auth, document.querySelector("#email").value, document.querySelector("#senha").value)
         .then((userCredential) => {
@@ -92,6 +102,15 @@ function parseURLParams(url) {
     return parms;
 }
 
+window.showUserInfo = async() => {
+    setTimeout(async () => {
+        document.getElementById("user-name-complete").innerHTML = auth.currentUser.displayName;
+        document.getElementById("user-email-page").innerHTML = auth.currentUser.email;
+        document.getElementById("user-name-initials-big").innerHTML = auth.currentUser.displayName.match(/(^\S\S?|\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase();
+    }, 200);
+}
+
+
 window.appendBlade = (file, projectId=undefined) => {
     if(window.innerWidth < 1100) {
         closeMobileMenu();
@@ -124,6 +143,9 @@ window.appendBlade = (file, projectId=undefined) => {
                 document.getElementById("current-nav").innerHTML = file.charAt(0).toUpperCase() + file.slice(1);
             }
         }
+        if(file == "conta") {
+            showUserInfo();
+        }
     }, 350);
 }
 
@@ -140,6 +162,13 @@ auth.onAuthStateChanged(async function(user) {
         if (user) {
             document.getElementById("login").style.display = "none";
             document.getElementById("main-content-container").style.display = "block";
+            if(user.displayName == null) {
+                await updateProfile(auth.currentUser, {
+                    displayName: user.email.split('@')[0]
+                });
+            }
+            document.getElementById("user-name-menu").innerHTML = user.displayName;
+            document.getElementById("user-name-initials-menu").innerHTML = user.displayName.match(/(^\S\S?|\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase();;
             window.createProject = async() => {
                 var lastProjectNumber = 0;
                 await getDocs(collection(db, "users", user.uid, "usage")).then((querySnapshot) => {
@@ -149,7 +178,6 @@ auth.onAuthStateChanged(async function(user) {
                 });
                 await addDoc(collection(db, "users", user.uid, "projetos"), {
                     name: document.getElementById('project-name').value,
-                    numero: lastProjectNumber + 1,
                     endereco: document.getElementById('project-adress').value,
                     area: document.getElementById('project-area').value,
                     quartos: document.getElementById('project-quartos').value,
@@ -196,7 +224,6 @@ auth.onAuthStateChanged(async function(user) {
                     }
                     document.getElementById('project-title').innerHTML = currentProject.name;
                     document.getElementById('project-name').innerHTML = "Nome: " + currentProject.name;
-                    document.getElementById('project-number').innerHTML = "Número: " + currentProject.numero;
                     document.getElementById('project-condominio').innerHTML = "Condomínio: R$" + currentProject.condominio;
                     document.getElementById('project-adress').innerHTML = "Endereço: " + currentProject.endereco;
                     document.getElementById('project-anuncio').innerHTML = "Valor do Anúncio: R$" + currentProject.valorAnuncio;
@@ -207,6 +234,106 @@ auth.onAuthStateChanged(async function(user) {
                     .then((url) => {
                         document.getElementById('project-image').src = url;
                     });
+                    window.updateReformValue = () => {
+                        if(currentProject.reformExpenses != undefined) {
+                            var reformExpenses = currentProject.reformExpenses;
+                            var totalExpenses = 0;
+                            for(var i = 0; i < reformExpenses.length; i++) {
+                                totalExpenses += parseInt(reformExpenses[i].value);
+                            }
+                        }
+                        if(parseInt(document.getElementById("limite-reforma").value) - totalExpenses < 0 || document.getElementById("limite-reforma").value == "") {
+                            document.getElementById("remaining-value").value = 0;
+                            document.getElementById("progress-text").innerHTML = ">100%";
+                            document.getElementById("progress-indicator").style.width = "100%";
+                        } else {
+                            document.getElementById("remaining-value").value = parseInt(document.getElementById("limite-reforma").value) - totalExpenses;
+                            document.getElementById("progress-text").innerHTML = parseInt((totalExpenses / parseInt(document.getElementById("limite-reforma").value) * 100)) + "%";
+                            document.getElementById("progress-indicator").style.width = parseInt((totalExpenses / parseInt(document.getElementById("limite-reforma").value) * 100)) + "%";
+                        }
+                    }
+                    var statusMenuOpen = false;
+                    var projectStatus = ["Prospecção", "Em Obra", "Anunciado", "Vendido"];
+                    window.openStatusMenu = () => {
+                        if(statusMenuOpen) {
+                            document.getElementById("status-dropdown").style.display = "none";
+                            statusMenuOpen = false;
+                        } else {
+                            statusMenuOpen = true;
+                            document.getElementById("status-dropdown").style.display = "flex";
+                        }
+                    }
+                    window.changeProjectStatus = async(status) => {
+                        await updateDoc(doc(db, "users", user.uid, "projetos", docsId[projeto]), {
+                            status: status
+                        });
+                        for(var i = 0; i < document.querySelector("#status-dropdown").getElementsByTagName("p").length; i++) {
+                            document.querySelector("#status-dropdown").getElementsByTagName("p")[i].innerHTML = projectStatus[i];
+                        }
+                        document.querySelector("#status-dropdown").getElementsByTagName("p")[status].innerHTML = "&bull; " + projectStatus[status];
+                        document.getElementById("status-dropdown").style.display = "none";
+                        document.getElementById("projectStatus").innerHTML = projectStatus[status];
+                        statusMenuOpen = false;
+                    }
+                    if(currentProject.status != undefined) {
+                        document.getElementById("projectStatus").innerHTML = projectStatus[currentProject.status];
+                        document.querySelector("#status-dropdown").getElementsByTagName("p")[currentProject.status].innerHTML = "&bull; " + projectStatus[currentProject.status];
+                    } else {
+                        document.getElementById("projectStatus").innerHTML = projectStatus[0];
+                        document.querySelector("#status-dropdown").getElementsByTagName("p")[0].innerHTML = "&bull; " + projectStatus[currentProject.status];
+                    }
+                    if(currentProject.change0 != undefined) {
+                        var inputs = document.querySelector("#values-table-0").getElementsByTagName("input");
+                        for(var i = 0; i < inputs.length; i++) {
+                            inputs[i].value = currentProject.change0[i];
+                            if(inputs[i].classList.contains('porc')) {
+                                inputs[i].value += "%";
+                            } else {
+                                inputs[i].value = "R$" + inputs[i].value;
+                            }
+                        }
+                    }
+                    if(currentProject.change1 != undefined) {
+                        var inputs = document.querySelector("#values-table-1").getElementsByTagName("input");
+                        for(var i = 0; i < inputs.length; i++) {
+                            inputs[i].value = currentProject.change1[i];
+                            if(inputs[i].classList.contains('porc')) {
+                                inputs[i].value += "%";
+                            } else {
+                                inputs[i].value = "R$" + inputs[i].value;
+                            }
+                        }
+                    }
+                    if(currentProject.change2 != undefined) {
+                        var inputs = document.querySelector("#values-table-2").getElementsByTagName("input");
+                        for(var i = 0; i < inputs.length; i++) {
+                            inputs[i].value = currentProject.change2[i];
+                            if(inputs[i].classList.contains('porc')) {
+                                inputs[i].value += "%";
+                            } else {
+                                inputs[i].value = "R$" + inputs[i].value;
+                            }
+                        }
+                        document.getElementById("lucro-bruto2").value = "R$" + currentProject.change2[3];
+                    }
+                    if(currentProject.change3 != undefined) {
+                        var inputs = document.querySelector("#values-table-3").getElementsByTagName("input");
+                        for(var i = 0; i < inputs.length; i++) {
+                            inputs[i].value = currentProject.change3[i];
+                            if(inputs[i].classList.contains('porc')) {
+                                inputs[i].value += "%";
+                            } else {
+                                inputs[i].value = "R$" + inputs[i].value;
+                            }
+                        }
+                        document.getElementById("roi-2").value = currentProject.change3[2] + "%";
+                    }
+                    if(currentProject.change4 != undefined) {
+                        document.getElementById('limite-reforma').value = currentProject.change4[0];
+                        updateReformValue();
+                        document.getElementById('limite-reforma').value = "R$" + document.getElementById('limite-reforma').value;
+                        document.getElementById('remaining-value').value = "R$" + document.getElementById('remaining-value').value;
+                    }
                     if(currentProject.notes != undefined) {
                         document.getElementById('notes-inner').innerHTML = "";
                         for(var i = 0; i < currentProject.notes.length; i++) {
@@ -267,6 +394,45 @@ auth.onAuthStateChanged(async function(user) {
                         }
                     }
 
+                    if(currentProject.reformCategories != undefined && currentProject.reformCategories.length > 0) {
+                        document.getElementById('reform-categories').innerHTML = "";
+                        for(var i = 0; i < currentProject.reformCategories.length; i++) {
+                            var category = document.createElement('div');
+                            category.classList.add('custo-reforma');
+                            var categoryName = document.createElement('h3');
+                            categoryName.innerHTML = currentProject.reformCategories[i].name;
+                            var outerDiv = document.createElement('div');
+                            outerDiv.classList.add('close-simple-flex');
+                            var img = document.createElement('img');
+                            img.src = "./images/plus-icon.png";
+                            img.classList.add('add-reforma');
+                            img.setAttribute('onclick', 'addReform(' + i + ')');
+                            var innerDiv = document.createElement('div');
+                            innerDiv.classList.add('custos');
+                            innerDiv.id = "custos-" + i;
+                            outerDiv.appendChild(innerDiv);
+                            outerDiv.appendChild(img);
+                            category.appendChild(categoryName);
+                            category.appendChild(outerDiv);
+                            document.getElementById('reform-categories').appendChild(category);
+                        }
+                    }
+
+                    if(currentProject.reformExpenses != undefined && currentProject.reformExpenses.length > 0) {
+                        for(var i = 0; i < currentProject.reformExpenses.length; i++) {
+                            var reform = document.createElement('div');
+                            reform.classList.add('flex-align-between');
+                            var name = document.createElement('p');
+                            name.innerHTML = currentProject.reformExpenses[i].name + ":";
+                            var value = document.createElement('p');
+                            value.innerHTML = "R$" + currentProject.reformExpenses[i].value;
+                            reform.appendChild(name);
+                            reform.appendChild(value);
+                            document.getElementById('custos-' + currentProject.reformExpenses[i].category).appendChild(reform);
+                        }
+                    }
+
+
                     if(currentProject.albums != undefined && currentProject.albums.length > 0) {
                         document.getElementById('photos-container').innerHTML = "";
                         for(var j = 0; j < currentProject.albums.length; j++) {
@@ -287,7 +453,6 @@ auth.onAuthStateChanged(async function(user) {
                         }
                         for(var j = 0; j < currentProject.albums.length; j++) {
                             for(var i = 0; i < parseInt(currentProject.albums[j].images); i++) {
-                                console.log(document.getElementById("photo-" + j + "-" + i))
                                 await getDownloadURL(ref(storage, user.uid + "/" + docsId[projeto] + "/" + (j + 1) + "/" + i))
                                 .then((url) => {
                                     document.getElementById("photo-" + j + "-" + i).src = url;
@@ -295,13 +460,6 @@ auth.onAuthStateChanged(async function(user) {
                             }
                         }
                     }
-
-                    var valorCompra = currentProject.valorAnuncio.replace(".", "").replace(",", ".");
-                    console.log(valorCompra);
-                    document.getElementById('financiado-input').value = valorCompra * (document.getElementById('financiado-porc').value.replace("%", "") / 100);
-                    document.getElementById('entrada-porc').value = 100 - document.getElementById('financiado-porc').value.replace("%", "");
-                    document.getElementById('entrada-input').value = valorCompra * (document.getElementById('entrada-porc').value.replace("%", "") / 100);
-
 
 
 
@@ -390,6 +548,37 @@ auth.onAuthStateChanged(async function(user) {
                         closePopUp();
                         loadProject(projeto);
                     }
+                    window.saveReformCategory = async() => {
+                        var reformCategories = [];
+                        if(currentProject.reformCategories != undefined) {
+                            reformCategories = currentProject.reformCategories;
+                        }
+                        reformCategories.push({
+                            name: document.getElementById('category-name').value,
+                        });
+                        await updateDoc(doc(db, "users", user.uid, "projetos", docsId[projeto]), {
+                            reformCategories: reformCategories
+                        }, { merge: true });
+                        closePopUp();
+                        loadProject(projeto);
+                    }
+                    window.saveReform = async(category) => {
+                        var reformExpenses = [];
+                        if(currentProject.reformExpenses != undefined) {
+                            reformExpenses = currentProject.reformExpenses;
+                        }
+                        var reform = {
+                            name: document.getElementById('gasto-name').value,
+                            value: document.getElementById('gasto-value').value,
+                            category: category
+                        }
+                        reformExpenses.push(reform);
+                        await updateDoc(doc(db, "users", user.uid, "projetos", docsId[projeto]), {
+                            reformExpenses: reformExpenses
+                        }, { merge: true });
+                        closePopUp();
+                        loadProject(projeto);
+                    }
                 }, 500);
             }
             window.showProjects = async() => {
@@ -442,6 +631,125 @@ auth.onAuthStateChanged(async function(user) {
                     document.getElementById('projects-container').appendChild(bigCard);
                 }
             }
+            var prospectProjects = [];
+            await getDocs(collection(db, "users", user.uid, "prospect")).then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    var project = {
+                        id: doc.id,
+                        name: doc.data().name,
+                        selectedProjects: doc.data().selectedProjects
+                    }
+                    prospectProjects.push(project);
+                });
+            });
+            window.loadProspect = function() {
+                if(prospectProjects.length > 0) {
+                    for(var i = 0; i < prospectProjects.length; i++) {
+                        var container = document.createElement('div');
+                        container.classList.add('projects-group');
+                        var title = document.createElement('h2');
+                        title.innerHTML = prospectProjects[i].name;
+                        var value = document.createElement('p');
+                        value.innerHTML = "Valor Médio: R$" + prospectProjects[i].value + "/m²";
+                        var imageContainer = document.createElement('div');
+                        imageContainer.classList.add('prospeccao-flex');
+                        for(var j = 0; j < prospectProjects[i].selectedProjects.length; j++) {
+                            const image = document.createElement('img');
+                            image.src = "./images/placeholder-img.png";
+                            getDownloadURL(ref(storage, user.uid + "/" + docsId[prospectProjects[i].selectedProjects[j]] + "header"))
+                            .then((url) => {
+                                image.src = url;
+                            });
+                            imageContainer.appendChild(image);
+                        }
+                        container.appendChild(title);
+                        container.appendChild(value);
+                        container.appendChild(imageContainer);
+                        document.getElementById('prospect-projects-container').appendChild(container);
+                    }
+                }
+            }
+            window.initMap = async() => {
+                const { Map } = await google.maps.importLibrary("maps");
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 14,
+                    center: new google.maps.LatLng(37.4419, -122.1419),
+                });
+                for(var i = 0; i < prospectProjects.length; i++) {
+                    for(var j = 0; j < prospectProjects[i].selectedProjects.length; j++) {
+                        console.log(projects[prospectProjects[i].selectedProjects[j]].endereco);
+                        var address = projects[prospectProjects[i].selectedProjects[j]].endereco;
+                        var geocoder = new google.maps.Geocoder();
+                        var marker;
+                        const urlString = "./images/"+ i +"-pin.png";
+                        geocoder.geocode( { 'address': address}, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                for(var k = 0; k < results.length; k++) {
+                                    console.log(results[k]);
+                                }
+                                marker = new google.maps.Marker({
+                                    position: { lat: parseFloat(results[0].geometry.location.lat()), lng: parseFloat(results[0].geometry.location.lng()) },
+                                    map: map,
+                                    icon: {
+                                        url: urlString,
+                                        scaledSize: new google.maps.Size(35, 35)
+                                    }
+                                });
+                                map.setCenter(new google.maps.LatLng(parseFloat(results[0].geometry.location.lat()), parseFloat(results[0].geometry.location.lng())));
+                            }
+                        });
+                    }
+                }
+            }
+            window.saveNewProspect = async() => {
+                var selectedProjects = [];
+                for(var i = 0; i < document.getElementById('prospect-available-projects').getElementsByClassName('prospect-project').length; i++) {
+                    if(document.getElementById('prospect-available-projects').getElementsByClassName('prospect-project')[i].classList.contains('selected')) {
+                        selectedProjects.push(i);
+                    }
+                }
+                await addDoc(collection(db, "users", user.uid, "prospect"), {
+                    name: document.getElementById('prospect-name').value,
+                    value: document.getElementById('prospect-value').value,
+                    selectedProjects: selectedProjects,
+                }).then(function() {
+                    location.reload();
+                });
+            }
+            window.selectProspectProject = (index) => {
+                if(document.getElementById('prospect-available-projects').getElementsByClassName('prospect-project')[index].classList.contains('selected')) {
+                    document.getElementById('prospect-available-projects').getElementsByClassName('prospect-project')[index].classList.remove('selected');
+                } else {
+                    document.getElementById('prospect-available-projects').getElementsByClassName('prospect-project')[index].classList.add('selected');
+                }
+            }
+            window.addNewProspect = () => {
+                showPopUp();
+                document.getElementById('popup-title').innerHTML = "Adicionar Prospecção";
+                document.getElementById('popup-save-changes').setAttribute('onclick', 'saveNewProspect()');
+                document.getElementById('add-new-prospect-form').style.display = "block";
+                if(projects.length > 0) {
+                    for(var i = 0; i < projects.length; i++) {
+                        var container = document.createElement('div');
+                        container.classList.add('prospect-project');
+                        var name = document.createElement('p');
+                        name.innerHTML = projects[i].name;
+                        var selected = document.createElement("h3");
+                        selected.innerHTML = "Selecionado";
+                        var image = document.createElement('img');
+                        image.src = "./images/placeholder-img.png";
+                        getDownloadURL(ref(storage, user.uid + "/" + docsId[i] + "header"))
+                        .then((url) => {
+                            image.src = url;
+                        });
+                        container.setAttribute('onclick', 'selectProspectProject(' + i + ')');
+                        container.appendChild(image);
+                        container.appendChild(selected);
+                        container.appendChild(name);
+                        document.getElementById('prospect-available-projects').appendChild(container);
+                    }
+                }
+            }
             var params = parseURLParams(window.location.href);
             if(params && params.id) {
                 var index = docsId.indexOf(params.id[0]);
@@ -487,6 +795,20 @@ window.openProjectDetail = (detail) => {
         document.getElementsByClassName('collapsible')[detail].style.height = height + 90 + 'px';
         document.getElementsByClassName('collapsible')[detail].getElementsByClassName('collapsible-arrow')[0].style.transform = 'rotate(-180deg)';
     }
+}
+
+window.changeProjectSellMode = (mode) => {
+    if(mode == 1) {
+        document.getElementById("values-table-0").style.display = "none";
+    } else {
+        document.getElementById("values-table-0").style.display = "block";
+    }
+    var height = document.getElementsByClassName('collapsible')[0].getElementsByClassName('collapsible-content')[0].offsetHeight;
+    document.getElementsByClassName('collapsible')[0].style.height = height + 90 + 'px';
+    for(var i = 0; i < document.querySelector("#select-horizontal-menu").getElementsByTagName("p").length; i++) {
+        document.querySelector("#select-horizontal-menu").getElementsByTagName("p")[i].classList.remove('menu-option-selected');
+    }
+    document.querySelector("#select-horizontal-menu").getElementsByTagName("p")[mode].classList.add('menu-option-selected');
 }
 
 //Validate correct information for new project
@@ -550,6 +872,20 @@ window.addPhotoAlbum = () => {
     document.getElementById('add-new-album-form').style.display = "block";
 }
 
+window.addReformCategory = () => {
+    showPopUp();
+    document.getElementById('popup-title').innerHTML = "Adicionar Categoria de Reforma";
+    document.getElementById('popup-save-changes').setAttribute('onclick', 'saveReformCategory()');
+    document.getElementById('add-new-caterogy-form').style.display = "block";
+}
+
+window.addReform = (category) => {
+    showPopUp();
+    document.getElementById('popup-title').innerHTML = "Adicionar Gasto";
+    document.getElementById('popup-save-changes').setAttribute('onclick', 'saveReform('+category+')');
+    document.getElementById('add-new-reform-form').style.display = "block";
+}
+
 window.changeImagePopUp = () => {
     showPopUp();
     document.getElementById('popup-title').innerHTML = "Alterar Imagem";
@@ -560,7 +896,6 @@ window.changeImagePopUp = () => {
 var valorCompra = 500000;
 
 window.updateInputs = (id) => {
-    console.log(id)
     setTimeout(() => {
         document.getElementById(id.split('-')[0] + "-input").value = parseInt(valorCompra * parseFloat(document.getElementById(id).value / 100));
     }, 20);
@@ -580,17 +915,21 @@ window.updatePorcentage = (id) => {
 }
 
 window.saveProjectChanges = async(fieldSelected) => {
-    var inputs = document.querySelector("#values-table-" + fieldSelected + "").getElementsByTagName("input");
-    var values = [];
-    for(var i = 0; i < inputs.length; i++) {
-        values.push(inputs[i].value);
+    for(var j = 0; j < 4; j++) {
+        var inputs = document.querySelector("#values-table-" + j + "").getElementsByTagName("input");
+        var values = [];
+        for(var i = 0; i < inputs.length; i++) {
+            values.push(inputs[i].value.replace("%", "").replace("R$", ""));
+        }
+        await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", docsId[0]), {
+            ['change'+j]: values
+        });
     }
-    await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", docsId[0]), {
-        [fieldSelected]: values
-    });
     document.getElementById("editAtt-button-" + fieldSelected).innerHTML = "Editar";
     document.getElementById("editAtt-button-" + fieldSelected).setAttribute('onclick', 'editprojectFields("' + fieldSelected + '")');
+    var inputs = document.querySelector("#values-table-" + fieldSelected + "").getElementsByTagName("input");
     for(var i = 0; i < inputs.length; i++) {
+        inputs[i].value = inputs[i].value.replace("%", "").replace("R$", "");
         if(inputs[i].classList.contains('porc')) {
             inputs[i].value += "%";
         } else {
@@ -606,16 +945,93 @@ window.editprojectFields = (fieldSelected) => {
     document.getElementById("editAtt-button-" + fieldSelected).innerHTML = "Salvar";
     document.getElementById("editAtt-button-" + fieldSelected).setAttribute('onclick', 'saveProjectChanges("' + fieldSelected + '")');
     for(var i = 0; i < inputs.length; i++) {
-        inputs[i].value = inputs[i].value.replace("%", "");
-        inputs[i].value = inputs[i].value.replace("R$", "");
-        if(inputs[i].classList.contains('porc')) {
-            inputs[i].setAttribute('onkeyup', 'updateInputs("'+inputs[i].id+'")');
-        } else if(inputs[i].classList.contains('value-change')) {
-            inputs[i].setAttribute('onkeyup', 'updatePorcentage("'+inputs[i].id+'")');
+        if(!inputs[i].classList.contains('auto')) {
+            inputs[i].value = inputs[i].value.replace("%", "");
+            inputs[i].value = inputs[i].value.replace("R$", "");
+            if(inputs[i].classList.contains('porc')) {
+                inputs[i].setAttribute('onkeyup', 'updateInputs("'+inputs[i].id+'")');
+            } else if(inputs[i].classList.contains('value-change')) {
+                inputs[i].setAttribute('onkeyup', 'updatePorcentage("'+inputs[i].id+'")');
+            }
+            inputs[i].removeAttribute('readonly');
+            inputs[i].classList.add('active-input');
         }
-        inputs[i].removeAttribute('readonly');
-        inputs[i].classList.add('active-input');
     }
+}
+
+window.updateROI = () => {
+    setTimeout(() => {
+        console.log(parseInt(document.getElementById("lucro-liquido").value.replace("R$", "")));
+        document.getElementById("roi").value = parseFloat((parseInt(document.getElementById("lucro-liquido").value.replace("R$", "")) / parseInt(document.getElementById("investimento-total").value.replace("R$", ""))) * 100).toFixed(2) + "%";
+        document.getElementById("roi-2").value = parseFloat((parseInt(document.getElementById("lucro-liquido").value.replace("R$", "")) / parseInt(document.getElementById("investimento-total").value.replace("R$", ""))) * 100).toFixed(2) + "%";
+    }, 100);
+}
+
+window.calculateLucroLiquid = () => {
+    setTimeout(() => {
+        document.getElementById("lucro-liquido").value = "R$" + (parseInt(document.getElementById("lucro-bruto").value.replace("R$", "")) - parseInt(document.getElementById("irpf").value.replace("R$", "")));
+        updateROI();
+    }, 50);
+}
+
+window.updateLucroBruto = () => {
+    setTimeout(() => {
+        var meses = 5;
+        var calculo = [document.getElementById("valor-venda").value, document.getElementById("entrada-input").value, document.getElementById("juros-taxas").value, document.getElementById("valor-quitado").value, document.getElementById("reforma-input").value, document.getElementById("condominio").value, document.getElementById("despesas").value, document.getElementById("iptu").value, document.getElementById("itbi-input").value, document.getElementById("escritura-input").value, document.getElementById("corretagem").value]
+        for(var i = 0; i < calculo.length; i++) {
+            if(calculo[i] == "") {
+                calculo[i] = 0;
+            } else {
+                calculo[i] = calculo[i].replace("R$", "");
+                calculo[i] = parseInt(calculo[i]);
+            }
+        }
+        document.getElementById("lucro-bruto").value = "R$" + parseInt(calculo[0] - calculo[1] - calculo[2] - calculo[3] - calculo[4] - (calculo[5] * meses) - (calculo[6] * meses) - (calculo[7] * meses) - calculo[8] - calculo[9] - calculo[10]);
+        document.getElementById("lucro-bruto2").value = "R$" + parseInt(calculo[0] - calculo[1] - calculo[2] - calculo[3] - calculo[4] - (calculo[5] * meses) - (calculo[6] * meses) - (calculo[7] * meses) - calculo[8] - calculo[9] - calculo[10]);
+        calculateLucroLiquid();
+    }, 50);
+}
+
+window.changeData = () => {
+    setTimeout(() => {
+        document.getElementById("valor-venda").value = "R$" + document.getElementById("values-table-5").getElementsByTagName("input")[0].value;
+        document.getElementById("reforma-input").value = "R$" + document.getElementById("values-table-5").getElementsByTagName("input")[1].value;
+        document.getElementById("despesas").value = "R$" + document.getElementById("values-table-5").getElementsByTagName("input")[3].value;
+        document.getElementById("corretagem").value = "R$" + document.getElementById("values-table-5").getElementsByTagName("input")[4].value;
+        document.getElementById("irpf").value = "R$" + document.getElementById("values-table-5").getElementsByTagName("input")[6].value;
+    }, 20);
+}
+
+window.calculateInvestment = () => {
+    updateLucroBruto();
+    setTimeout(() => {
+        var calculo = [document.getElementById("entrada-input").value, document.getElementById("juros-taxas").value, document.getElementById("itbi-input").value, document.getElementById("escritura-input").value, document.getElementById("reforma-input").value, document.getElementById("despesas").value, document.getElementById("iptu").value, document.getElementById("condominio").value]
+        for(var i = 0; i < calculo.length; i++) {
+            if(calculo[i] == "") {
+                calculo[i] = 0;
+            } else {
+                calculo[i] = calculo[i].replace("R$", "");
+                calculo[i] = parseInt(calculo[i]);
+            }
+        }
+        document.getElementById("investimento-total").value = "R$" + parseInt(calculo[0] + calculo[1] + calculo[2] + calculo[3] + calculo[4] + (calculo[5] * 5) + (calculo[6] * 5) + (calculo[7] * 5));
+        updateROI();
+    }, 50);
+}
+
+window.calculateTotal = () => {
+    var tempoAteVenda = 5;
+    var calculo = [document.getElementById("financiado-input").value, document.getElementById("amortizacao-parcela").value, document.getElementById("valor-parcela").value, document.getElementById("taxas-bancarias").value];
+    for(var i = 0; i < calculo.length; i++) {
+        if(calculo[i] == "") {
+            calculo[i] = 0;
+        } else {
+            calculo[i] = calculo[i].replace("R$", "");
+            calculo[i] = parseInt(calculo[i]);
+        }
+    }
+    document.getElementById("valor-quitado").value = calculo[0] - (calculo[1] * tempoAteVenda);
+    document.getElementById("juros-taxas").value = "R$" + parseInt((tempoAteVenda * (calculo[2] - calculo[1])) + calculo[3]);
 }
 
 
@@ -651,3 +1067,5 @@ window.onresize = () => {
         document.getElementById('sidebar').style.display = "none";
     }
 }
+
+window.googleSignIn = () => {signInWithPopup(auth, provider).then((result) => {}).catch((error) => {console.log(error)})};

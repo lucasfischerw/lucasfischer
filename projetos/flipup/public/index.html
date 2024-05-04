@@ -33,7 +33,10 @@
                 <div class="input-option">
                     <p>Senha</p>
                     <input type="password" id="senha">
-                    <a class="view-more-button margin-b">Esqueceu a Senha?</a>
+                    <div>
+                        <p id="login-error-message"></p>
+                        <a class="view-more-button margin-b">Esqueceu a Senha?</a>
+                    </div>
                 </div>
                 <button class="highlight-button" onclick="signInEmail()" id="submit-login">Entrar</button>
                 <div class="close-simple-flex">
@@ -92,13 +95,19 @@
                 </div>
                 <div class="user-profile">
                     <div class="user-profile-img">
-                        <p>MJ</p>
+                        <p id="user-name-initials-menu">US</p>
                     </div>
-                    <p>Marcus José</p>
+                    <p id="user-name-menu">Usuário</p>
                     <svg width="64px" height="64px" viewBox="0 -4.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>arrow_down [#338]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-220.000000, -6684.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M164.292308,6524.36583 L164.292308,6524.36583 C163.902564,6524.77071 163.902564,6525.42619 164.292308,6525.83004 L172.555873,6534.39267 C173.33636,6535.20244 174.602528,6535.20244 175.383014,6534.39267 L183.70754,6525.76791 C184.093286,6525.36716 184.098283,6524.71997 183.717533,6524.31405 C183.328789,6523.89985 182.68821,6523.89467 182.29347,6524.30266 L174.676479,6532.19636 C174.285736,6532.60124 173.653152,6532.60124 173.262409,6532.19636 L165.705379,6524.36583 C165.315635,6523.96094 164.683051,6523.96094 164.292308,6524.36583" id="arrow_down-[#338]"> </path> </g> </g> </g> </g></svg>
                     <div class="user-selection-options">
-                        <a>Conta</a>
-                        <a onclick="leave()">Sair</a>
+                        <div onclick="appendBlade('conta')" class="close-simple-flex">
+                            <img src="./images/account.png">
+                            <a>Conta</a>
+                        </div>
+                        <div onclick="leave()" class="close-simple-flex">
+                            <img src="./images/leave.png">
+                            <a>Sair</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,6 +164,36 @@
                 <div class="input-option">
                     <p>Anotação</p>
                     <textarea id="note" placeholder="Lembrar de atualizar valor do IPTU"></textarea>
+                </div>
+            </form>
+            <form id="add-new-caterogy-form">
+                <div class="input-option">
+                    <p>Nome da Categoria</p>
+                    <input type="text" id="category-name" placeholder="Nome da Categoria">
+                </div>
+            </form>
+            <form id="add-new-reform-form">
+                <div class="input-option">
+                    <p>Nome do Gasto</p>
+                    <input type="text" id="gasto-name" placeholder="Nome do Gasto">
+                </div>
+                <div class="input-option">
+                    <p>Valor</p>
+                    <input type="number" id="gasto-value" placeholder="Valor do Gasto">
+                </div>
+            </form>
+            <form id="add-new-prospect-form">
+                <div class="input-option">
+                    <p>Nome do Grupo</p>
+                    <input type="text" id="prospect-name" placeholder="Nome do Grupo">
+                </div>
+                <div class="input-option">
+                    <p>Valor médio (m²)</p>
+                    <input type="text" id="prospect-value" placeholder="Valor médio do Grupo">
+                </div>
+                <div>
+                    <p class="margin-b">Selecionar Projetos para adicionar ao grupo</p>
+                    <div id="prospect-available-projects" class="margin-b"></div>
                 </div>
             </form>
             <button class="highlight-button save-button" id="popup-save-changes">Salvar</button>

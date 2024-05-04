@@ -1,72 +1,12 @@
-<h1 class="margin-b">Prospecção</h1>
+<div class="flex-align-between">
+    <h1 class="margin-b">Prospecção</h1>
+    <button class="highlight-button" onclick="addNewProspect()">Nova Prospecção</button>
+</div>
 <div id="map"></div>
-<div class="projects-group">
-    <h2>Grupo 1</h2>
-    <p>Valor Médio: R$4.585/m2</p>
-    <div class="prospeccao-flex">
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-    </div>
-</div>
-<div class="projects-group">
-    <h2>Grupo 2</h2>
-    <p>Valor Médio: R$4.585/m2</p>
-    <div class="prospeccao-flex">
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-        <div>
-            <img src="./images/project.jpg">
-        </div>
-    </div>
-</div>
+<div id="prospect-projects-container"></div>
 <script>
-    async function initMap() {
-        // Request needed libraries.
-        const { Map } = await google.maps.importLibrary("maps");
-       
-        var geocoder = new google.maps.Geocoder();
-        var address = "Rua América, 646, São Leopoldo, RS, Brasil";
-        geocoder.geocode( { 'address': address}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 14,
-                    center: { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() },
-                });
-                const marker = new google.maps.Marker({
-                    position: { lat: parseFloat(results[0].geometry.location.lat()), lng: parseFloat(results[0].geometry.location.lng()) },
-                    map,
-                    icon: {
-                        url: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                    }
-                    
-                });
-            }
-        });
-    }
-
-    initMap();
-
+    loadProspect();
+    setTimeout(() => {
+        initMap();
+    }, 1000);
 </script>
