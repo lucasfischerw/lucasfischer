@@ -7,6 +7,13 @@
     <meta name="keywords" content="FlipUp, Projeto, Dashboard, Prospecção, Resultados">
     <meta name="author" content="FlipUp">
     <title>FlipUp</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+    <link rel="manifest" href="./images/site.webmanifest">
+    <link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,6 +25,7 @@
 </head>
 <body>
     <div id="loader-container">
+        <img src="images/logo.png">
         <div class="loader"></div>
     </div>
     <div id="login">
@@ -27,16 +35,16 @@
                 <h1>Bem Vindo</h1>
                 <p>Preencha os dados para continuar</p>
                 <div class="input-option">
+                    <input placeholder=" " type="text" id="email">
                     <p>Email</p>
-                    <input type="text" id="email">
                 </div>
                 <div class="input-option">
+                    <input placeholder=" " type="password" id="senha">
                     <p>Senha</p>
-                    <input type="password" id="senha">
-                    <div>
-                        <p id="login-error-message"></p>
-                        <a class="view-more-button margin-b">Esqueceu a Senha?</a>
-                    </div>
+                </div>
+                <div>
+                    <p id="login-error-message"></p>
+                    <a class="view-more-button margin-b" href="reset-password.html">Esqueceu a Senha?</a>
                 </div>
                 <button class="highlight-button" onclick="signInEmail()" id="submit-login">Entrar</button>
                 <div class="close-simple-flex">
@@ -55,7 +63,7 @@
                 </button>
                 <div class="close-simple-flex">
                     <p>Não tem conta?</p>
-                    <a class="view-more-button margin-b">Cadastre-se</a>
+                    <a class="view-more-button margin-b" href="create-account.html">Cadastre-se</a>
                 </div>
             </div>
         </div>
@@ -66,7 +74,7 @@
             <div class="simple-flex">
                 <img onclick="closeMobileMenu()" class="hamburguer close" src="./images/menu.png">
                 <div class="logo">
-                    <img src="images/logo.png" alt="logo">
+                    <img onclick="appendBlade('dashboard')" src="images/logoMenu.png" alt="logo">
                 </div>
             </div>
             <div id="menu" class="menu">
@@ -122,84 +130,98 @@
             </div>
             <form id="save-event-form">
                 <div class="input-option">
+                    <input id="nome-evento" type="text" placeholder=" ">
                     <p>Nome do Evento</p>
-                    <input id="nome-evento" type="text" placeholder="Nome do Evento">
                 </div>
                 <div class="input-option">
                     <label>Data do Evento</label>
-                    <input id="data-evento" type="date" placeholder="Data do Evento">
+                    <input id="data-evento" type="date">
                 </div>
             </form>
             <form id="save-new-image-form">
                 <div class="input-option">
-                    <p>Escolha o arquivo de Imagem</p>
+                    <label>Escolha o arquivo de Imagem</label>
                     <input id="image-file" type="file">
                 </div>
             </form>
             <form id="save-new-contact-form">
                 <div class="input-option">
+                    <input placeholder=" " id="contact-name" type="text">
                     <p>Nome do Contato</p>
-                    <input placeholder="Marcus José" id="contact-name" type="text">
                 </div>
                 <div class="input-option">
-                    <p>Cargo/Profissão do Contato</p>
-                    <input placeholder="Engenheiro" id="contact-job" type="text">
+                    <input placeholder=" " id="contact-job" type="text">
+                    <p>Cargo/Profissão</p>
                 </div>
                 <div class="input-option">
-                    <p>Número do Contato</p>
-                    <input placeholder="99 99999 9999" id="contact-number" type="number">
+                    <input placeholder=" " id="contact-number" type="number">
+                    <p>Número de Telefone</p>
                 </div>
             </form>
             <form id="add-new-album-form">
                 <div class="input-option">
-                    <p>Selecionar pasta de fotos</p>
+                    <label>Selecionar pasta de fotos</label>
                     <input type="file" id="photo-album-input" webkitdirectory directory multiple>
                 </div>
                 <div class="input-option">
+                    <input type="text" id="album-name" placeholder=" ">
                     <p>Nome do Album</p>
-                    <input type="text" id="album-name" placeholder="Nome do Album">
                 </div>
             </form>
             <form id="add-new-note-form">
                 <div class="input-option">
-                    <p>Anotação</p>
+                    <label>Anotação</label>
                     <textarea id="note" placeholder="Lembrar de atualizar valor do IPTU"></textarea>
                 </div>
             </form>
             <form id="add-new-caterogy-form">
                 <div class="input-option">
+                    <input type="text" id="category-name" placeholder=" ">
                     <p>Nome da Categoria</p>
-                    <input type="text" id="category-name" placeholder="Nome da Categoria">
                 </div>
             </form>
             <form id="add-new-reform-form">
                 <div class="input-option">
+                    <input type="text" id="gasto-name" placeholder=" ">
                     <p>Nome do Gasto</p>
-                    <input type="text" id="gasto-name" placeholder="Nome do Gasto">
                 </div>
                 <div class="input-option">
+                    <input type="text" id="gasto-value" placeholder=" ">
                     <p>Valor</p>
-                    <input type="number" id="gasto-value" placeholder="Valor do Gasto">
                 </div>
             </form>
             <form id="add-new-prospect-form">
                 <div class="input-option">
+                    <input type="text" id="prospect-name" placeholder=" ">
                     <p>Nome do Grupo</p>
-                    <input type="text" id="prospect-name" placeholder="Nome do Grupo">
-                </div>
-                <div class="input-option">
-                    <p>Valor médio (m²)</p>
-                    <input type="text" id="prospect-value" placeholder="Valor médio do Grupo">
                 </div>
                 <div>
-                    <p class="margin-b">Selecionar Projetos para adicionar ao grupo</p>
+                    <p class="margin-b" id="no-selected-projects">Selecionar Projetos para adicionar ao grupo</p>
                     <div id="prospect-available-projects" class="margin-b"></div>
                 </div>
             </form>
+            <form id="delete-project-form">
+                <div style="margin-top: 15px;">
+                    <p>Você tem certeza que deseja excluir esse projeto?</p>
+                    <p class="margin-b">Essa ação não pode ser desfeita.</p>
+                </div>
+            </form>
+            <form id="edit-project-reform-form">
+                <div class="input-option">
+                    <input type="text" id="category-name-edit" placeholder=" ">
+                    <p>Nome da Categoria</p>
+                </div>
+                <div id="edit-project-reform-form-elements"></div>
+            </form>
+            <p class="margin-b no-visible-cards-warning" id="popup-text"></p>
             <button class="highlight-button save-button" id="popup-save-changes">Salvar</button>
         </div>
     </div>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="./js/get-chart-values.js"></script>
+    <script type="module" src="./js/load-dashboard-info.js"></script>
+    <script type="module" src="./js/prospect-loader.js"></script>
+    <script type="module" src="./js/update-value-tables.js"></script>
     <!---<->script type="module" src="js/firebase.js"></script>-->
 </body>
 </html>

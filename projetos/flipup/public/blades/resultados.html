@@ -1,5 +1,6 @@
 <h1 class="margin-b">Resultados Gerais</h1>
-<div class="vertical-flex">
+<p class='no-visible-cards-warning' id="no-graphs-visible">Nenhum projeto criado no momento. Começe criando um projeto na página de criação.</p>
+<div class="vertical-flex" id="graphs-page-container">
     <div class="cards-container big">
         <div class="big-chart">
             <h3>Lucro líquido por Projeto</h3>
@@ -12,59 +13,71 @@
                 <div class="chart-card">
                     <h3>Lucro Líquido</h3>
                     <div class="round-chart-container">
-                        <canvas id="lucro-liq"></canvas>
+                        <div>
+                            <p>Mínimo</p>
+                            <h4 id="lucro-liq-min"></h4>
+                        </div>
                         <div>
                             <p>MÉDIA</p>
-                            <h3>R$209,97 mil</h3>
+                            <h2 id="lucro-liq-media"></h2>
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Mín R$79,65 mil</p>
-                        <p>Máx R$394,78 mil</p>
+                        <div>
+                            <p>Máximo</p>
+                            <h4 id="lucro-liq-max"></h4>
+                        </div>
                     </div>
                 </div>
                 <div class="chart-card">
                     <h3>Rentabilidade</h3>
                     <div class="round-chart-container">
-                        <canvas id="rent"></canvas>
+                        <div>
+                            <p>Mínimo</p>
+                            <h4 id="rent-min"></h4>
+                        </div>
                         <div>
                             <p>MÉDIA</p>
-                            <h3>40,55%</h3>
+                            <h2 id="rent-media"></h2>
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Mín 23,43%</p>
-                        <p>Máx 75,97%</p>
+                        <div>
+                            <p>Máximo</p>
+                            <h4 id="rent-max"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="cards-container small">
                 <div class="chart-card">
-                    <h3>Tempo de vendas (dias)</h3>
+                    <h3>Tempo de venda</h3>
                     <div class="round-chart-container">
-                        <canvas id="vendas"></canvas>
+                        <div>
+                            <p>Mínimo</p>
+                            <h4 id="vendas-min"></h4>
+                        </div>
                         <div>
                             <p>MÉDIA</p>
-                            <h3>172,50</h3>
+                            <h2 id="vendas-media"></h2>
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Mín 102,5 dias</p>
-                        <p>Máx 204,4 dias</p>
+                        <div>
+                            <p>Máximo</p>
+                            <h4 id="vendas-max"></h4>
+                        </div>
                     </div>
                 </div>
                 <div class="chart-card">
-                    <h3>Valor de Reforma (m2)</h3>
+                    <h3>Gasto de Reforma</h3>
                     <div class="round-chart-container">
-                        <canvas id="reforma"></canvas>
+                        <div>
+                            <p>Mínimo</p>
+                            <h4 id="reforma-min"></h4>
+                        </div>
                         <div>
                             <p>MÉDIA</p>
-                            <h3>R$777,07 mil</h3>
+                            <h2 id="reforma-media"></h2>
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Mín R$79,65 mil</p>
-                        <p>Máx R$394,78 mil</p>
+                        <div>
+                            <p>Máximo</p>
+                            <h4 id="reforma-max"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,237 +91,14 @@
             </div>
         </div>
         <div class="big-chart">
-            <h3>Lucro Líquido por Projeto</h3>
+            <h3>Composição do valor de Venda</h3>
             <div class="big-chart-container">
-                <canvas width="500" height="500" id="round-chart"></canvas>
+                <canvas id="horizontal-chart"></canvas>
             </div>
         </div>
     </div>
-    <div class="wide-chart">
-        <h3>Composiação dos Projetos</h3>
-        <div class="wide-chart-container">
-            <canvas id="horizontal-chart"></canvas>
-        </div>
-    </div>
 </div>
-<script>
-    var ctx = document.getElementById('lucro-liq');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#3959f7',
-                    'color(display-p3 0.9529 0.9686 1)'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false,
-        }
-    });
-    ctx = document.getElementById('rent');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#49d991',
-                    '#e1faed'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false
-        }
-    });
-    ctx = document.getElementById('vendas');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#fec53d',
-                    '#f5f0e4'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false
-        }
-    });
-    ctx = document.getElementById('reforma');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#d61f69',
-                    '#feedf4'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false
-        }
-    });
-    ctx = document.getElementById('mixed-chart');
-    new Chart(ctx, {
-        data: {
-            datasets: [{
-                type: 'bar',
-                label: 'Lucro Líquido',
-                data: [25, 60, 50],
-                barThickness: 40,
-                borderRadius: 10,
-                backgroundColor: 'color(srgb 0.2555 0.3638 1)'
-            }, {
-                type: 'line',
-                label: 'Rentabilidade',
-                data: [25, 60, 50],
-                borderColor: 'color(srgb 1 0.5582 0.7773)',
-                backgroundColor: 'color(srgb 1 0.5582 0.7773)',
-            }],
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3']
-        } ,options: {
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    top: 20
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grace: '5%'
-                },
-            }
-        }
-    });
 
-    ctx = document.getElementById('stacked-chart');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            datasets: [{
-                label: 'Compra',
-                data: [20, 20, 10],
-                backgroundColor: 'color(srgb 0.2555 0.3638 1)',
-                stack: 'Stack 0',
-                borderRadius: 10,
-            }, {
-                label: 'Venda',
-                data: [20, 40, 40],
-                backgroundColor: 'color(srgb 0.7614 0.8417 0.9981)',
-                stack: 'Stack 1',
-                borderRadius: 10,
-            },{
-                label: 'Lucro Líquido',
-                data: [20, 40, 50],
-                backgroundColor: 'color(display-p3 0.2706 0.6078 0.9725)',
-                stack: 'Stack 2',
-                borderRadius: 10,
-            }],
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3']
-        }, options: {
-            layout: {
-                padding: {
-                    top: 20
-                }
-            },
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grace: '5%'
-                },
-            }
-        }
-    });
-    ctx = document.getElementById('round-chart');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [400000, 350000, 150000],
-                backgroundColor: [
-                    '#3959f7',
-                    '#d61f69',
-                    '#fec53d'
-                ],
-                hoverOffset: 4
-            }]
-        }, options: {
-            maintainAspectRatio: true,
-            layout: {
-                padding: {
-                    top: 20,
-                    bottom: 20
-                }
-            },
-            cutout: 100,
-        }
-    });
-    ctx = document.getElementById('horizontal-chart');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
-            datasets: [{
-                barThickness: 25,
-                label: 'Valor de Compra',
-                data: [400000, 350000, 150000],
-                backgroundColor: 'color(srgb 0.7614 0.8417 0.9981)',
-                stack: 'Stack 0',
-            },{
-                barThickness: 25,
-                label: 'Gastos Totais',
-                data: [400000, 350000, 150000],
-                backgroundColor: 'color(srgb 0.2555 0.3638 1)',
-                stack: 'Stack 0',
-            }, {
-                barThickness: 25,
-                label: 'Lucro Líquido',
-                data: [400000, 350000, 150000],
-                backgroundColor: 'color(srgb 0.101 0.1263 0.4737)',
-                stack: 'Stack 0',
-                borderRadius: 10,
-            }]
-        },options: {
-            maintainAspectRatio: false,
-            indexAxis: 'y',
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    grace: '1%'
-                },
-            }
-        }
-    });
+<script>
+    generateGraphs();
 </script>

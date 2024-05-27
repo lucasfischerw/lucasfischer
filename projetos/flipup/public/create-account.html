@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlipUp">
+    <meta name="keywords" content="FlipUp, Projeto, Dashboard, Prospecção, Resultados">
+    <meta name="author" content="FlipUp">
+    <title>FlipUp</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="new-user">
+        <div class="login-form">
+            <img src="./images/logo.png">
+            <div class="vertical-flex">
+                <h1>Criar Conta</h1>
+                <p>Preencha os dados para continuar</p>
+                <div class="input-option">
+                    <input placeholder=" " type="text" id="email">
+                    <p>Email</p>
+                </div>
+                <div class="input-option">
+                    <input placeholder=" " type="password" id="senha">
+                    <p>Senha</p>
+                </div>
+                <div class="input-option">
+                    <input placeholder=" " type="password" id="senha-confirmacao">
+                    <p>Confirmar senha</p>
+                </div>
+                <p id="login-error-message"></p>
+                <button class="highlight-button" id="submit-new-user">Criar Conta</button>
+                <div class="close-simple-flex">
+                    <p>Já tem conta?</p>
+                    <a class="view-more-button margin-b" href="index.html">Entre aqui</a>
+                </div>
+            </div>
+        </div>
+        <img src="images/background.jpeg" class="login-banner">
+    </div>
+    <script type="module" src="./js/create-user.js"></script>
+</body>
+</html>

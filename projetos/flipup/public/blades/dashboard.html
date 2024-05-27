@@ -4,28 +4,28 @@
         <div class="small-card">
             <div>
                 <p>Total Investido</p>
-                <h2>0</h2>
+                <h3 id="investimento-total"></h3>
             </div>
             <img src="images/rentabilidade.png">
         </div>
         <div class="small-card">
             <div>
                 <p>Lucro total obtido</p>
-                <h2>0</h2>
+                <h3 id="lucro-total"></h3>
             </div>
             <img src="images/lucro.png">
         </div>
         <div class="small-card">
             <div>
-                <p>Rentabilidade total</p>
-                <h2>0</h2>
+                <p>Rentabilidade média</p>
+                <h3 id="rentabilidade-media"></h3>
             </div>
             <img src="images/rent-total.png">
         </div>
         <div class="small-card">
             <div>
                 <p>Houseflipping realizados</p>
-                <h2>0</h2>
+                <h3 id="house-flip-count"></h3>
             </div>
             <img src="images/houseflipping.png">
         </div>
@@ -36,42 +36,15 @@
 
     <div class="cards-container big margin-b">
         <div class="vertical-flex">
-            <h2>Prospecção</h2>
-            <div class="big-card">
-                <img src="images/project.jpg">
-                <h2>Projeto 1</h2>
-                <div class="project-highlight-atribbutes-dashboard">
-                    <p>68m2</p>
-                    <p>2 quartos</p>
-                    <p>1 banheiro</p>
-                    <p>1 vaga</p>
-                </div>
-                <div class="project-adress-dashboard">
-                    <p>Avenida Brasil, 123 - Ap . 456, Brasil</p>
-                    <p>CEP 12345-678, Brasil BR</p>
-                </div>
-                <button class="highlight-button">Ver detalhes</button>
-            </div>
-            <a class="view-more-button" href="javascript:void(0)" onclick="appendBlade('prospeccao')"><span>Ver lista completa</span><img src="images/arrow-right-icon.png"></a>
-        </div>
-        <div class="vertical-flex">
             <h2>Projetos recentes</h2>
-            <div class="big-card">
-                <img src="images/project.jpg">
-                <h2>Projeto 1</h2>
-                <div class="project-highlight-atribbutes-dashboard">
-                    <p>68m2</p>
-                    <p>2 quartos</p>
-                    <p>1 banheiro</p>
-                    <p>1 vaga</p>
-                </div>
-                <div class="project-adress-dashboard">
-                    <p>Avenida Brasil, 123 - Ap . 456, Brasil</p>
-                    <p>CEP 12345-678, Brasil BR</p>
-                </div>
-                <button class="highlight-button">Ver detalhes</button>
+            <div id="last-viewed-project">
             </div>
-            <a class="view-more-button" href="javascript:void(0)" onclick="appendBlade('projetos')"><span>Ver lista completa</span><img src="images/arrow-right-icon.png"></a>
+            <a class="view-more-button" href="javascript:void(0)" onclick="appendBlade('projetos')"><span>Acessar projetos</span><img src="images/arrow-right-icon.png"></a>
+        </div>
+        <div id="prospect-dashboard-view" class="vertical-flex">
+            <h2>Prospecção</h2>
+            <div id="last-prospect-project"></div>
+            <a class="view-more-button" href="javascript:void(0)" onclick="appendBlade('prospeccao')"><span>Acessar prospecção</span><img src="images/arrow-right-icon.png"></a>
         </div>
     </div>
     <h2 class="margin-b">Resultados Gerais</h2>
@@ -79,146 +52,74 @@
         <div class="chart-card">
             <h3>Lucro Líquido</h3>
             <div class="round-chart-container">
-                <canvas id="lucro-liq"></canvas>
+                <div>
+                    <p>Mínimo</p>
+                    <h4 id="lucro-liq-min"></h4>
+                </div>
                 <div>
                     <p>MÉDIA</p>
-                    <h3>R$209,97 mil</h3>
+                    <h2 id="lucro-liq-media"></h2>
                 </div>
-            </div>
-            <div class="flex-align-between">
-                <p>Mín R$79,65 mil</p>
-                <p>Máx R$394,78 mil</p>
+                <div>
+                    <p>Máximo</p>
+                    <h4 id="lucro-liq-max"></h4>
+                </div>
             </div>
         </div>
         <div class="chart-card">
             <h3>Rentabilidade</h3>
             <div class="round-chart-container">
-                <canvas id="rent"></canvas>
+                <div>
+                    <p>Mínimo</p>
+                    <h4 id="rent-min"></h4>
+                </div>
                 <div>
                     <p>MÉDIA</p>
-                    <h3>40,55%</h3>
+                    <h2 id="rent-media"></h2>
                 </div>
-            </div>
-            <div class="flex-align-between">
-                <p>Mín 23,43%</p>
-                <p>Máx 75,97%</p>
+                <div>
+                    <p>Máximo</p>
+                    <h4 id="rent-max"></h4>
+                </div>
             </div>
         </div>
         <div class="chart-card">
-            <h3>Tempo de vendas (dias)</h3>
+            <h3>Tempo de venda</h3>
             <div class="round-chart-container">
-                <canvas id="vendas"></canvas>
+                <div>
+                    <p>Mínimo</p>
+                    <h4 id="vendas-min"></h4>
+                </div>
                 <div>
                     <p>MÉDIA</p>
-                    <h3>172,50</h3>
+                    <h2 id="vendas-media"></h2>
                 </div>
-            </div>
-            <div class="flex-align-between">
-                <p>Mín 102,5 dias</p>
-                <p>Máx 204,4 dias</p>
+                <div>
+                    <p>Máximo</p>
+                    <h4 id="vendas-max"></h4>
+                </div>
             </div>
         </div>
         <div class="chart-card">
-            <h3>Valor de Reforma (m2)</h3>
+            <h3>Gasto de Reforma</h3>
             <div class="round-chart-container">
-                <canvas id="reforma"></canvas>
+                <div>
+                    <p>Mínimo</p>
+                    <h4 id="reforma-min"></h4>
+                </div>
                 <div>
                     <p>MÉDIA</p>
-                    <h3>R$777,07 mil</h3>
+                    <h2 id="reforma-media"></h2>
                 </div>
-            </div>
-            <div class="flex-align-between">
-                <p>Mín R$79,65 mil</p>
-                <p>Máx R$394,78 mil</p>
+                <div>
+                    <p>Máximo</p>
+                    <h4 id="reforma-max"></h4>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
-
 <script>
-   var ctx = document.getElementById('lucro-liq');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#3959f7',
-                    'color(display-p3 0.9529 0.9686 1)'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false,
-        }
-    });
-    ctx = document.getElementById('rent');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#49d991',
-                    '#e1faed'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false
-        }
-    });
-    ctx = document.getElementById('vendas');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#fec53d',
-                    '#f5f0e4'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false
-        }
-    });
-    ctx = document.getElementById('reforma');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [50, 50],
-                backgroundColor: [
-                    '#d61f69',
-                    '#feedf4'
-                ],
-                hoverOffset: 4
-            }]
-        },
-        options: {
-            rotation: -90,
-            circumference: 180,
-            cutout: 35,
-            maintainAspectRatio: false
-        }
-    });
+    updateDashboardInfo();
 </script>

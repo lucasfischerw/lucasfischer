@@ -1,21 +1,21 @@
-<div class="simple-flex">
+<div class="flex-align-between">
     <h1 id="project-title"><p class="loader"></p></h1>
-    <div class="dropdown-container">
-        <div onclick="openStatusMenu()" class="project-status">
-            <p id="projectStatus"></p>
-            <img class="small-edit-icon" src="./images/edit-white.png">
-        </div>
-        <div class="dropdown" id="status-dropdown">
-            <p onclick="changeProjectStatus(0)">Prospecção</p>
-            <p onclick="changeProjectStatus(1)">Em obra</p>
-            <p onclick="changeProjectStatus(2)">Anunciado</p>
-            <p onclick="changeProjectStatus(3)">Vendido</p>
-        </div>
-    </div>
+    <button class="highlight-button-danger" onclick="confirmDeleteProject()">Excluir Projeto</button>
 </div>
-<div class="project-details-container">
+<div class="project-details-container" id="project-details-container">
     <div class="big-card">
         <div class="image-edit-container">
+            <div class="dropdown-container">
+                <div onclick="openStatusMenu()" class="project-status">
+                    <p id="projectStatus"></p>
+                </div>
+                <div class="dropdown" id="status-dropdown">
+                    <p onclick="changeProjectStatus(0)">Prospecção</p>
+                    <p onclick="changeProjectStatus(1)">Em obra</p>
+                    <p onclick="changeProjectStatus(2)">Anunciado</p>
+                    <p onclick="changeProjectStatus(3)">Vendido</p>
+                </div>
+            </div>
             <img id="project-image" src="images/placeholder-img.png">
             <div class="edit-image-btn" onclick="changeImagePopUp()">
                 <img src="./images/edit-icon.png">
@@ -63,182 +63,193 @@
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
             </div>
             <div class="collapsible-content flex-gap">
-                <div id="select-horizontal-menu" class="select-horizontal-menu">
-                    <p onclick="changeProjectSellMode(0)" class="menu-option-selected">Financiamento</p>
-                    <p onclick="changeProjectSellMode(1)">A vista</p>
-                </div>
-                <div class="flex-align-between">
-                    <p>Tempo estimado até a venda (meses): </p>
-                    <p class="highlight-button">5 meses</p>
-                </div>
-                <div class="values-table" id="values-table-0">
-                    <div class="flex-align-between values-title">
-                        <div class="close-simple-flex">
-                            <img src="./images/financiamento.png">
-                            <h3>Financiamento</h3>
-                        </div>
-                        <button class="highlight-button" id="editAtt-button-0" onclick="editprojectFields(0)">Editar</button>
+                    <div id="select-horizontal-menu" class="select-horizontal-menu margin-b">
+                        <p onclick="changeProjectSellMode(0)" class="menu-option-selected">Financiamento</p>
+                        <p onclick="changeProjectSellMode(1)">A vista</p>
                     </div>
                     <div class="flex-align-between">
-                        <p>Valor financiado:</p>
-                        <div class="input-porcentage">
-                            <input id="financiado-porc" class="editable-input porc" readonly value="80%">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem do valor de compra</p>
-                                <img src="./images/info.png">
+                        <p>Tempo estimado até a venda:</p>
+                        <div class="month-dropdown-container">
+                            <p class="highlight-button" id="timeToSellMonths">5 meses</p>
+                            <div class="month-dropdown" id="month-dropdown-upper"></div>
+                        </div>
+                    </div>
+                <div id="first-table" class="overflowing-tables">
+                    <div class="values-table" id="values-table-0">
+                        <div class="flex-align-between values-title">
+                            <div class="close-simple-flex">
+                                <img src="./images/financiamento.png">
+                                <h3>Financiamento</h3>
                             </div>
-                            <input id="financiado-input" class="editable-input value-change" readonly value="0">
+                            <button class="highlight-button editAtt-button" id="editAtt-button-0">Editar</button>
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Valor de entrada:</p>
-                        <div class="input-porcentage">
-                            <input id="entrada-porc" class="editable-input porc" readonly value="20%">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem do valor de compra</p>
-                                <img src="./images/info.png">
+                        <div class="flex-align-between">
+                            <p>Valor financiado:</p>
+                            <div class="input-porcentage">
+                                <input id="financiado-porc" class="editable-input porc" readonly value="80%">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem do valor de compra</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input id="financiado-input" class="editable-input value-change update-total-fees-and-tax" readonly value="0">
                             </div>
-                            <input onkeydown="calculateInvestment()" id="entrada-input" class="editable-input value-change" readonly value="0">
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Valor aprox. das parcelas:</p>
-                        <input id="valor-parcela" class="editable-input" readonly value="0">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Amortização por parcela:</p>
-                        <input onkeyup="calculateTotal()" id="amortizacao-parcela" class="editable-input" readonly value="0">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Taxas bancárias:</p>
-                        <input onkeyup="calculateTotal()" id="taxas-bancarias" class="editable-input" readonly value="0">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Valor a ser quitado após a venda:</p>
-                        <input onkeydown="calculateInvestment()" id="valor-quitado" class="editable-input" readonly value="0">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Total (juros e taxas):</p>
-                        <input onkeydown="calculateInvestment()" id="juros-taxas" class="editable-input auto" readonly value="0">
-                    </div>
-                </div>
-                <div class="values-table" id="values-table-1">
-                    <div class="flex-align-between values-title">
-                        <div class="close-simple-flex">
-                            <img src="./images/imovel.png">
-                            <h3>Imóvel</h3>
-                        </div>
-                        <button class="highlight-button" id="editAtt-button-1" onclick="editprojectFields(1)">Editar</button>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Valor de compra:</p>
-                        <input class="editable-input" readonly value="R$3.200,00">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Despesas (luz e água):</p>
-                        <input onkeydown="calculateInvestment()" id="despesas" class="editable-input" readonly value="R$150,00">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Condomínio:</p>
-                        <input onkeydown="calculateInvestment()" id="condominio" class="editable-input" readonly value="R$790,00">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>IPTU (Mês):</p>
-                        <input onkeydown="calculateInvestment()" id="iptu" class="editable-input" readonly value="R$3.200,00">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>ITBI:</p>
-                        <div class="input-porcentage">
-                            <input id="itbi-porc" class="editable-input porc" readonly value="0">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
-                                <img src="./images/info.png">
+                        <div class="flex-align-between">
+                            <p>Valor de entrada:</p>
+                            <div class="input-porcentage">
+                                <input id="entrada-porc" class="editable-input porc" readonly value="20%">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem do valor de compra</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input id="entrada-input" class="editable-input value-change update-gross-profit" readonly value="0">
                             </div>
-                            <input onkeydown="calculateInvestment()" id="itbi-input" class="editable-input value-change" readonly value="0">
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Escritura e registro:</p>
-                        <div class="input-porcentage">
-                            <input id="escritura-porc" class="editable-input porc" readonly value="0">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
-                                <img src="./images/info.png">
-                            </div>
-                            <input onkeydown="calculateInvestment()" id="escritura-input" class="editable-input value-change" readonly value="0">
+                        <div class="flex-align-between">
+                            <p>Valor aprox. das parcelas:</p>
+                            <input id="valor-parcela" class="editable-input update-total-fees-and-tax" readonly value="0">
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Reforma:</p>
-                        <div class="input-porcentage">
-                            <input id="reforma-porc" class="editable-input porc" readonly value="0">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
-                                <img src="./images/info.png">
-                            </div>
-                            <input onkeydown="calculateInvestment()" id="reforma-input" class="editable-input value-change" readonly value="0">
+                        <div class="flex-align-between">
+                            <p>Amortização por parcela:</p>
+                            <input id="amortizacao-parcela" class="editable-input update-total-fees-and-tax" readonly value="0">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Taxas bancárias:</p>
+                            <input id="taxas-bancarias" class="editable-input update-total-fees-and-tax" readonly value="0">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Valor a ser quitado após a venda:</p>
+                            <input id="valor-quitado" class="editable-input auto update-gross-profit" readonly value="0">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Total (juros e taxas):</p>
+                            <input id="juros-taxas" class="editable-input auto" readonly value="0">
                         </div>
                     </div>
                 </div>
-                <div class="values-table" id="values-table-2">
-                    <div class="flex-align-between values-title">
-                        <div class="close-simple-flex">
-                            <img src="./images/venda.png">
-                            <h3>Venda</h3>
-                        </div>
-                        <button class="highlight-button" id="editAtt-button-2" onclick="editprojectFields(2)">Editar</button>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Valor de venda:</p>
-                        <input onkeydown="updateLucroBruto()" id="valor-venda" class="editable-input" readonly value="0">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Corretagem:</p>
-                        <div class="input-porcentage">
-                            <input class="editable-input porc" readonly value="20%">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem sobre o valor de venda</p>
-                                <img src="./images/info.png">
+                    <div class="values-table" id="values-table-1">
+                        <div class="flex-align-between values-title">
+                            <div class="close-simple-flex">
+                                <img src="./images/imovel.png">
+                                <h3>Imóvel</h3>
                             </div>
-                            <input onkeydown="updateLucroBruto()" id="corretagem" class="editable-input" readonly value="0">
+                            <button class="highlight-button editAtt-button" id="editAtt-button-1">Editar</button>
                         </div>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Lucro Bruto:</p>
-                        <input id="lucro-bruto" class="editable-input auto" readonly value="0">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>IRPF:</p>
-                        <div class="input-porcentage">
-                            <input class="editable-input porc" readonly value="20%">
-                            <div class="overlay-info">
-                                <p class="overlay-info-text">Porcentagem sobre o lucro bruto</p>
-                                <img src="./images/info.png">
+                        <div class="flex-align-between">
+                            <p>Valor de compra:</p>
+                            <input id="valor-compra" class="editable-input" readonly value="R$3.200,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Despesas (luz e água):</p>
+                            <input id="despesas" class="editable-input update-gross-profit" readonly value="R$150,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Condomínio:</p>
+                            <input id="condominio" class="editable-input update-gross-profit" readonly value="R$790,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>IPTU (Mês):</p>
+                            <input id="iptu" class="editable-input update-gross-profit" readonly value="R$3.200,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>ITBI:</p>
+                            <div class="input-porcentage">
+                                <input id="itbi-porc" class="editable-input porc" readonly value="0">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input id="itbi-input" class="editable-input value-change update-gross-profit" readonly value="0">
                             </div>
-                            <input onkeyup="calculateLucroLiquid()" id="irpf" class="editable-input" readonly value="R$3.200,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Escritura e registro:</p>
+                            <div class="input-porcentage">
+                                <input id="escritura-porc" class="editable-input porc" readonly value="0">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input id="escritura-input" class="editable-input value-change update-gross-profit" readonly value="0">
+                            </div>
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Reforma:</p>
+                            <div class="input-porcentage">
+                                <input id="reforma-porc" class="editable-input porc" readonly value="0">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem sobre o valor de compra</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input onkeyup="syncronizeReformValue()" id="reforma-input" class="editable-input value-change update-gross-profit" readonly value="0">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="values-table" id="values-table-3">
-                    <div class="flex-align-between values-title">
-                        <div class="close-simple-flex">
-                            <img src="./images/resultados.png">
-                            <h3>Resultados</h3>
+                    <div class="values-table" id="values-table-2">
+                        <div class="flex-align-between values-title">
+                            <div class="close-simple-flex">
+                                <img src="./images/venda.png">
+                                <h3>Venda</h3>
+                            </div>
+                            <button class="highlight-button editAtt-button" id="editAtt-button-2">Editar</button>
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Valor de venda:</p>
+                            <input id="valor-venda" class="editable-input update-gross-profit update-lower-inputs" readonly value="0">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Corretagem:</p>
+                            <div class="input-porcentage">
+                                <input id="corretagem-porc" class="editable-input porc" readonly value="20%">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem sobre o valor de venda</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input id="corretagem-input" class="editable-input value-change update-gross-profit update-lower-inputs" readonly value="0">
+                            </div>
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Lucro Bruto:</p>
+                            <input id="lucro-bruto" class="editable-input auto" readonly value="0">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>IRPF:</p>
+                            <div class="input-porcentage">
+                                <input id="irpf-porc" class="editable-input" readonly value="20%">
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Porcentagem sobre o lucro bruto</p>
+                                    <img src="./images/info.png">
+                                </div>
+                                <input id="irpf-input" class="editable-input value-change update-lower-inputs auto" readonly value="R$3.200,00">
+                            </div>
                         </div>
                     </div>
-                    <div class="flex-align-between">
-                        <p>Investimento total:</p>
-                        <input id="investimento-total" class="editable-input auto" readonly value="R$3.200,00">
+                    <div class="values-table" id="values-table-3">
+                        <div class="flex-align-between values-title">
+                            <div class="close-simple-flex">
+                                <img src="./images/resultados.png">
+                                <h3>Resultados</h3>
+                            </div>
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Investimento total:</p>
+                            <input id="investimento-total" class="editable-input auto" readonly value="R$3.200,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <p>Lucro líquido:</p>
+                            <input id="lucro-liquido" class="editable-input auto" readonly value="R$3.200,00">
+                        </div>
+                        <div class="flex-align-between">
+                            <div class="close-simple-flex">
+                                <p>ROI:</p>
+                                <div class="overlay-info">
+                                    <p class="overlay-info-text">Retorno sobre o capital investido</p>
+                                    <img src="./images/info.png">
+                                </div>
+                            </div>
+                            <input id="roi" class="editable-input porc auto" readonly value="R$3.200,00">
+                        </div>
                     </div>
-                    <div class="flex-align-between">
-                        <p>Lucro líquido:</p>
-                        <input id="lucro-liquido" class="editable-input auto" readonly value="R$3.200,00">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>ROI:</p>
-                        <input id="roi" class="editable-input porc auto" readonly value="R$3.200,00">
-                    </div>
-                </div>
             </div>
         </div>
         <div class="collapsible">
@@ -250,14 +261,9 @@
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
             </div>
             <div class="collapsible-content">
-                <div class="values-table" id="values-table-4">
+                <div class="values-table">
                     <div class="flex-align-between margin-b">
                         <h3>Orçamento</h3>
-                        <button class="highlight-button" id="editAtt-button-4" onclick="editprojectFields(4)">Editar</button>
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Total:</p>
-                        <input id="limite-reforma" onkeyup="updateReformValue()" class="editable-input" readonly value="R$20000">
                     </div>
                     <div class="flex-align-between">
                         <p>Restante:</p>
@@ -266,13 +272,13 @@
                     <div class="reforma-progress">
                         <p class="progress-text" id="progress-text">100%</p>
                         <p class="progress-indicator" id="progress-indicator"></p>
-                        <p class="default-bg-indicator"></p>
+                        <p class="default-bg-indicator" id="default-bg-indicator"></p>
                     </div>
-                    <div id="reform-categories">
-                        <p class="margin-b">Nenhuma categoria adicionada</p>
-                    </div>
-                    <button class="highlight-button" onclick="addReformCategory()">Adicionar nova categoria</button>
                 </div>
+                <div id="reform-categories">
+                    <p class="margin-b">Nenhuma categoria adicionada</p>
+                </div>
+                <button class="highlight-button" onclick="addReformCategory()">Adicionar nova categoria</button>
             </div>
         </div>
         <div class="collapsible">
@@ -285,48 +291,84 @@
             </div>
             <div class="collapsible-content flex-gap">
                 <div class="select-horizontal-menu">
-                    <p class="menu-option-selected">Estimado</p>
-                    <p>Realizado</p>
+                    <p onclick="showFinalResults(0)">Estimado</p>
+                    <p onclick="showFinalResults(1)" id="toggle-final-results-btn">Realizado</p>
                 </div>
-                <div class="values-table" id="values-table-5">
+                <div class="values-table" id="values-table-4">
                     <div class="flex-align-between values-title">
                         <div class="close-simple-flex">
                             <img src="./images/resultados.png">
                             <h3>Dados</h3>
                         </div>  
-                        <button class="highlight-button" id="editAtt-button-5" onclick="editprojectFields(5)">Editar</button>
+                        <button class="highlight-button editAtt-button" id="editAtt-button-4">Editar</button>
                     </div>
                     <div class="flex-align-between">
                         <p>Valor de venda:</p>
-                        <input onkeyup="changeData()" class="editable-input" readonly value="R$3.200,00">
+                        <input id="valor-venda2" class="editable-input update-upper-inputs" readonly value="0">
                     </div>
                     <div class="flex-align-between">
                         <p>Reforma:</p>
-                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
+                        <input id="reforma-input2" class="editable-input update-upper-inputs" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Tempo até venda:</p>
-                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
-                    </div>
-                    <div class="flex-align-between">
-                        <p>Despesas:</p>
-                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
+                        <div class="month-dropdown-container">
+                            <input id="tempo-ate-venda" class="editable-input meses dropdown-input" readonly value="0">
+                            <div class="month-dropdown" id="month-dropdown"></div>
+                        </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Corretagem:</p>
-                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
+                        <input id="corretagem-input2" class="editable-input update-upper-inputs" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>Lucro bruto:</p>
-                        <input id="lucro-bruto2" class="editable-input auto" readonly value="R$3.200,00">
+                        <input id="lucro-bruto2" class="editable-input auto update-upper-inputs" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>IRPF:</p>
-                        <input id="lucro-liquido" class="editable-input" readonly value="R$3.200,00">
+                        <input id="irpf-input2" class="editable-input auto" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>ROI:</p>
-                        <input id="roi-2" class="editable-input auto" readonly value="0">
+                        <input id="roi-2" class="editable-input porc auto" readonly value="0">
+                    </div>
+                </div>
+                <div class="values-table final-results-table" id="values-table-5">
+                    <div class="flex-align-between values-title">
+                        <div class="close-simple-flex">
+                            <img src="./images/resultados.png">
+                            <h3>Dados Finais</h3>
+                        </div>  
+                        <button class="highlight-button editAtt-button" id="editAtt-button-5">Editar</button>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Valor de venda:</p>
+                        <input id="valor-final" class="editable-input isolated-inputs" readonly value="-">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Reforma:</p>
+                        <input id="reforma-final" class="editable-input isolated-inputs" readonly value="-">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Tempo até venda (dias):</p>
+                        <input id="tempo-ate-venda-final" class="editable-input isolated-inputs special-days-input" readonly value="-">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Corretagem:</p>
+                        <input id="corretagem-final" class="editable-input isolated-inputs" readonly value="-">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Lucro bruto:</p>
+                        <input id="lucro-final" class="editable-input isolated-inputs" readonly value="-">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>IRPF:</p>
+                        <input id="irpf-final" class="editable-input isolated-inputs" readonly value="-">
+                    </div>
+                    <div class="flex-align-between">
+                        <p>ROI:</p>
+                        <input id="roi-final" class="editable-input porc isolated-inputs" readonly value="-">
                     </div>
                 </div>
             </div>
@@ -341,14 +383,14 @@
             </div>
             <div class="collapsible-content">
                 <h3>Reforma</h3>
-                <div class="big-chart-container">
+                <div class="big-chart-container align-center" id="round-chart-project-container">
                     <canvas width="500" height="500" id="round-chart"></canvas>
                 </div>
                 <h3>Venda</h3>
-                <div class="big-chart-container">
+                <div class="big-chart-container" id="horizontal-chart-project-container">
                     <canvas width="500" height="500" id="horizontal-chart"></canvas>
                 </div>
-                <div class="big-chart-container">
+                <div class="big-chart-container" id="horizontal-chart2-project-container">
                     <h3>Compra</h3>
                     <canvas width="500" height="500" id="horizontal-chart-2"></canvas>
                 </div>
@@ -378,7 +420,7 @@
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
             </div>
             <div class="collapsible-content">
-                <div class="notes-inner" id="notes-inner">
+                <div class="notes-inner margin-b" id="notes-inner">
                     <p>Não existem anotações adicionadas</p>
                 </div>
                 <button class="highlight-button" onclick="addProjectNote()">Adicionar nova Anotação</button>
@@ -401,81 +443,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    var ctx = document.getElementById('round-chart');
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
-            datasets: [{
-                label: 'Lucro Líquido',
-                data: [400000, 350000, 150000],
-                backgroundColor: [
-                    '#3959f7',
-                    '#d61f69',
-                    '#fec53d'
-                ],
-                hoverOffset: 4
-            }]
-        }, options: {
-            maintainAspectRatio: true,
-            layout: {
-                padding: {
-                    top: 20,
-                    bottom: 20
-                }
-            },
-            cutout: 100,
-        }
-    });
-    ctx = document.getElementById('horizontal-chart');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
-            datasets: [{
-                barThickness: 25,
-                label: 'Lucro Líquido',
-                data: [400000, 350000, 150000],
-                backgroundColor: 'color(srgb 0.101 0.1263 0.4737)',
-                stack: 'Stack 0',
-                borderRadius: 10,
-            }]
-        },options: {
-            maintainAspectRatio: false,
-            indexAxis: 'y',
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    grace: '1%'
-                },
-            }
-        }
-    });
-    ctx = document.getElementById('horizontal-chart-2');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Projeto 1', 'Projeto 2', 'Projeto 3'],
-            datasets: [{
-                barThickness: 25,
-                label: 'Lucro Líquido',
-                data: [400000, 350000, 150000],
-                backgroundColor: 'color(srgb 0.101 0.1263 0.4737)',
-                stack: 'Stack 0',
-                borderRadius: 10,
-            }]
-        }, options: {
-            maintainAspectRatio: false,
-            indexAxis: 'y',
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    grace: '1%'
-                },
-            }
-        }
-    });
-</script>
-</script>

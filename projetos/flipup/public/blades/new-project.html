@@ -1,6 +1,6 @@
 <h1>Novo Projeto</h1>
 <div class="form" id="new-project-form">
-    <div>
+    <div class="new-project-column-container">
         <h3>Informações Gerais</h3>
         <div class="input-option">
             <label for="project-name">Nome do Projeto</label>
@@ -8,10 +8,11 @@
         </div>
         <div class="input-option">
             <label for="project-photo">Foto de Capa</label>
-            <input type="file" name="project-photo" id="image-file">
+            <input class="optional" type="file" name="project-photo" id="image-file">
         </div>
+        <img id="teste-img">
     </div>
-    <div class="border-left">
+    <div class="new-project-column-container">
         <h3>Dados do Imóvel</h3>
         <div class="input-option">
             <label for="project-adress">Endereço</label>
@@ -19,16 +20,16 @@
             <div id="autocomplete-adress">Digite para obter sugestões...</div>
         </div>
         <div class="input-option">
-            <label for="project-area">Área (m2)</label>
-            <input name="project-area" id="project-area" type="number" placeholder="205">
+            <label for="project-area">Área (m²)</label>
+            <input name="project-area" id="project-area" type="text" placeholder="107m²">
         </div>
         <div class="input-option">
             <label for="project-quartos">Número de Quartos</label>
-            <input name="project-quartos" id="project-quartos" type="number" placeholder="3">
+            <input class="optional" name="project-quartos" id="project-quartos" type="text" placeholder="3">
         </div>
         <div class="input-option">
             <label for="project-banheiros">Número de banheiros</label>
-            <input name="project-banheiros" id="project-banheiros" type="number" placeholder="5">
+            <input class="optional" name="project-banheiros" id="project-banheiros" type="text" placeholder="1">
         </div>
         <div class="input-option">
             <legend>Tem Elevador?</legend>
@@ -40,25 +41,25 @@
                 <input name="elevador" type="radio" id="elevator-no">
                 <label for="elevador">Não</label>
             </div>
+            <div>
+                <input name="elevador" type="radio" id="elevator-not-informed">
+                <label for="elevador">Não informado</label>
+            </div>
         </div>
         <div class="input-option">
             <label for="project-vagas">Número de Vagas</label>
-            <input name="project-vagas" id="project-vagas" type="number" placeholder="2">
+            <input class="optional" name="project-vagas" id="project-vagas" type="text" placeholder="2">
         </div>
         <div class="input-option">
             <label for="project-condominio">Valor do Condomínio</label>
-            <input name="project-condominio" id="project-condominio" type="number" placeholder="1900">
+            <input class="optional" name="project-condominio" id="project-condominio" type="text" placeholder="R$900,00">
         </div>
     </div>
-    <div class="border-left">
+    <div class="new-project-column-container">
         <h3>Dados do Anúncio</h3>
         <div class="input-option">
             <label for="project-anuncio">Valor do Anúncio</label>
-            <input name="project-anuncio" id="project-anuncio" type="number" placeholder="565.952,00">
-        </div>
-        <div class="input-option">
-            <label for="project-metro">Valor por m2</label>
-            <input name="project-metro" id="project-metro" type="number" placeholder="2000,00">
+            <input name="project-anuncio" id="project-anuncio" type="text" placeholder="R$565.952,00">
         </div>
         <div class="input-option">
             <label for="project-link">Link do Anúncio</label>
@@ -69,7 +70,10 @@
             <textarea name="project-notes" id="project-notes" placeholder="Outras anotações"></textarea>
         </div>
         <p id="error-message"></p>
-        <button class="highlight-button" onclick="validateProject()">Salvar</button>
+        <div class="close-simple-flex">
+            <button class="highlight-button" id="save-new-project-btn" onclick="validateProject()">Salvar</button>
+            <button class="gray-cancel-button" onclick="appendBlade('dashboard')">Cancelar</button>
+        </div>
     </div>
 </div>
 <script type="module">
