@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webcam to OpenCV.js</title>
+  <script async src="opencv.js" onload="onOpenCvReady();"></script>
+</head>
+<body>
+  <!-- Show video for debugging -->
+  <video id="video" autoplay playsinline style="display: block;"></video>
+  <canvas id="hiddenCanvas" style="display:none;"></canvas>
+  <canvas id="outputCanvas" style="display: block;"></canvas>
+
+  <script>
+    async function onOpenCvReady() {
+      console.log('OpenCV.js is ready');
+
+      try {
+        // Access the webcam stream
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+
+        // Ensure the video is playing before capturing frames
+        video.addEventListener('playing', () => {
+          const hiddenCanvas = document.getElementById('hiddenCanvas');
+          const hiddenContext = hiddenCanvas.getContext('2d');
+          const outputCanvas = document.getElementById('outputCanvas');
+
+          hiddenCanvas.width = video.videoWidth;
+          hiddenCanvas.height = video.videoHeight;
+          outputCanvas.width = video.videoWidth;
+          outputCanvas.height = video.videoHeight;
+
+          // Function to capture frames and process with OpenCV.js
+          function captureFrame() {
+            hiddenContext.drawImage(video, 0, 0, hiddenCanvas.width, hiddenCanvas.height);
+
+            // Get image data from hidden canvas
+            const imageData = hiddenContext.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height);
+
+            // Convert to OpenCV Mat
+            let mat = cv.matFromImageData(imageData);
+
+            // Process the frame using OpenCV.js (example: convert to HSV)
+            let hsvMat = new cv.Mat();
+            cv.cvtColor(mat, hsvMat, cv.COLOR_RGBA2HSV);
+
+            // Convert HSV to RGBA for display
+            let displayMat = new cv.Mat();
+            cv.cvtColor(hsvMat, displayMat, cv.COLOR_HSV2RGBA);
+
+            // Display the processed frame on the output canvas using cv.imshow
+            cv.imshow('outputCanvas', displayMat);
+
+            // Clean up
+            mat.delete();
+            hsvMat.delete();
+            displayMat.delete();
+
+            // Capture the next frame
+            requestAnimationFrame(captureFrame);
+          }
+
+          // Start capturing frames
+          captureFrame();
+        });
+      } catch (error) {
+        console.error('Error accessing webcam:', error);
+      }
+    }
+  </script>
+</body>
+</html>

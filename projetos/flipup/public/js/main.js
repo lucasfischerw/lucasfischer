@@ -104,6 +104,8 @@ window.showUserInfo = async() => {
         document.getElementById("user-name-complete").innerHTML = auth.currentUser.displayName;
         document.getElementById("user-email-page").innerHTML = auth.currentUser.email;
         document.getElementById("user-name-initials-big").innerHTML = auth.currentUser.displayName.match(/(^\S\S?|\b\S)?/g).join("").match(/(^\S|\S$)?/g).join("").toUpperCase();
+        document.getElementById("buy-subscription-btn").innerHTML = "Assinar";
+        document.getElementById("buy-subscription-btn").removeAttribute("disabled");
     }, 200);
 }
 
@@ -664,6 +666,88 @@ auth.onAuthStateChanged(async function(user) {
     setTimeout(async () => {
         document.getElementById("loader-container").style.display = "none";
         if (user) {
+            //Stripe handle
+            var stripe = Stripe('pk_test_51PL7unI3KN8Sdb14bDtuu9RoLxaeVHvR8Pnt2R10UPfYQaNEb3D1VYnT0LugSSYnIvvum28Tr3q3PzVoKskP2pyX00KWy0C3m6');
+            async function checkSubscription(email) {
+                try {
+                const response = await fetch('https://api.stripe.com/v1/customers', {
+                    method: 'GET',
+                    headers: {
+                    'Authorization': 'Bearer sk_test_51PL7unI3KN8Sdb143kTGNotsZRj66t7ZKXxQTTRoiIYLQqSaYW7lT70E5Z4o9B1AQtcjseE99SeVoFaxxQKN75PL00ElO6GZeE',
+                    'Content-Type': 'application/json'
+                    }
+                });
+            
+                const customers = await response.json();
+                const customer = customers.data.find(customer => customer.email === email);
+            
+                if (!customer) {
+                    console.log('Customer not found');
+                    return;
+                }
+            
+                const subscriptionsResponse = await fetch(`https://api.stripe.com/v1/subscriptions?customer=${customer.id}`, {
+                    method: 'GET',
+                    headers: {
+                    'Authorization': 'Bearer sk_test_51PL7unI3KN8Sdb143kTGNotsZRj66t7ZKXxQTTRoiIYLQqSaYW7lT70E5Z4o9B1AQtcjseE99SeVoFaxxQKN75PL00ElO6GZeE',
+                    'Content-Type': 'application/json'
+                    }
+                });
+            
+                const subscriptions = await subscriptionsResponse.json();
+                const activeSubscription = subscriptions.data.find(subscription => subscription.status === 'active');
+            
+                if (activeSubscription) {
+                    console.log('User has an active subscription:', activeSubscription);
+                    await deleteSubscription(activeSubscription.id);
+                } else {
+                    console.log('User does not have an active subscription');
+                }
+                } catch (error) {
+                    console.error('Error checking subscription:', error);
+                }
+
+                //Function to delete subscription
+                async function deleteSubscription(subscriptionId) {
+                    try {
+                    const response = await fetch(`https://api.stripe.com/v1/subscriptions/${subscriptionId}`, {
+                        method: 'DELETE',
+                        headers: {
+                        'Authorization': 'Bearer sk_test_51PL7unI3KN8Sdb143kTGNotsZRj66t7ZKXxQTTRoiIYLQqSaYW7lT70E5Z4o9B1AQtcjseE99SeVoFaxxQKN75PL00ElO6GZeE',
+                        'Content-Type': 'application/json'
+                        }
+                    });
+                    const deletedSubscription = await response.json();
+                        console.log('Deleted subscription:', deletedSubscription);
+                    } catch (error) {
+                        console.error('Error deleting subscription:', error);
+                    }
+                }
+            }
+
+            checkSubscription(user.email);
+            
+            window.buySubscription = () => {
+                document.getElementById("buy-subscription-btn").innerHTML = "<div class='btn-loader'></div>Assinar";
+                document.getElementById("buy-subscription-btn").setAttribute("disabled", "true");
+                stripe.redirectToCheckout({
+                    lineItems: [
+                        {
+                            price: 'price_1PLBmLI3KN8Sdb14PdfBshdl',
+                            quantity: 1
+                        }
+                    ],
+                    mode: "subscription",
+                    customerEmail: user.email,
+                    successUrl: "https://flipup.app.br/?p=conta",
+                    cancelUrl: "https://flipup.app.br/?p=conta"
+                }).then(function(result) {
+                    document.getElementById("buy-subscription-btn").innerHTML = "Assinar";
+                    document.getElementById("buy-subscription-btn").removeAttribute("disabled");
+                    console.log(result);
+                });
+            };
+
             var projects = await updateDownloadedProjects();
             document.getElementById("login").style.display = "none";
             document.getElementById("main-content-container").style.display = "block";
@@ -1384,4 +1468,51 @@ window.getRawValue = (value) => {
     }
 
     return value;
+}
+
+window.stripeLoadReady = () => {
+    var stripe = Stripe('pk_test_51PL7unI3KN8Sdb14bDtuu9RoLxaeVHvR8Pnt2R10UPfYQaNEb3D1VYnT0LugSSYnIvvum28Tr3q3PzVoKskP2pyX00KWy0C3m6');
+    async function checkSubscription(email) {
+        try {
+        const response = await fetch('https://api.stripe.com/v1/customers', {
+            method: 'GET',
+            headers: {
+            'Authorization': 'Bearer sk_test_51PL7unI3KN8Sdb143kTGNotsZRj66t7ZKXxQTTRoiIYLQqSaYW7lT70E5Z4o9B1AQtcjseE99SeVoFaxxQKN75PL00ElO6GZeE',
+            'Content-Type': 'application/json'
+            }
+        });
+    
+        const customers = await response.json();
+        const customer = customers.data.find(customer => customer.email === email);
+    
+        if (!customer) {
+            console.log('Customer not found');
+            return;
+        }
+    
+        const subscriptionsResponse = await fetch(`https://api.stripe.com/v1/subscriptions?customer=${customer.id}`, {
+            method: 'GET',
+            headers: {
+            'Authorization': 'Bearer sk_test_51PL7unI3KN8Sdb143kTGNotsZRj66t7ZKXxQTTRoiIYLQqSaYW7lT70E5Z4o9B1AQtcjseE99SeVoFaxxQKN75PL00ElO6GZeE',
+            'Content-Type': 'application/json'
+            }
+        });
+    
+        const subscriptions = await subscriptionsResponse.json();
+        const activeSubscription = subscriptions.data.find(subscription => subscription.status === 'active');
+    
+        if (activeSubscription) {
+            console.log('User has an active subscription:', activeSubscription);
+        } else {
+            console.log('User does not have an active subscription');
+        }
+        } catch (error) {
+        console.error('Error checking subscription:', error);
+        }
+    }
+    
+    document.getElementById('check-subscription-btn').addEventListener('click', () => {
+        const email = document.getElementById('email').value;
+        checkSubscription(email);
+    });
 }
