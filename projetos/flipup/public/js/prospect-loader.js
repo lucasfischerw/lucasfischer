@@ -29,7 +29,8 @@ window.updateLoadedProspectProjects = async () => {
                 id: doc.id,
                 name: doc.data().name,
                 groupValue: doc.data().groupValue,
-                selectedProjects: doc.data().selectedProjects
+                selectedProjects: doc.data().selectedProjects,
+                color: doc.data().color
             }
             prospectProjects.push(project);
         });
@@ -42,8 +43,10 @@ var lastMouseX = 0;
 var lastMouseY = 0;
 
 function handleDrag(e) {
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
+    if(e.clientX != 0 && e.clientY != 0) {
+        lastMouseX = e.clientX;
+        lastMouseY = e.clientY;
+    }
     boundingRects = [];
     for(var i = 0; i < groups.length; i++) {
         boundingRects.push(groups[i].getBoundingClientRect());
@@ -63,7 +66,7 @@ async function handleDragEnd(e) {
     for(var i = 0; i < groups.length; i++) {
         if(lastMouseX >= boundingRects[i].left && lastMouseX <= boundingRects[i].right && lastMouseY >= boundingRects[i].top && lastMouseY <= boundingRects[i].bottom) {
             selectedGroup = i;
-        } 
+        }
     }
     var alreadySelected = false;
     for(var i = 0; i < prospectProjects[selectedGroup].selectedProjects.length; i++) {
@@ -96,7 +99,7 @@ async function handleDragEnd(e) {
         }
     }
     valorMedio = valorMedio/prospectProjects[selectedGroup].selectedProjects.length;
-    document.getElementById("prospect-" + selectedGroup).getElementsByTagName('p')[0].innerHTML = "Valor Médio: " + getFormatedValue(valorMedio, "R$").split("R$")[1] + " R$/m²";
+    document.getElementById("prospect-" + selectedGroup).getElementsByTagName('p')[0].innerHTML = "Valor Médio: " + getFormatedValue(valorMedio, "R$") + "/m²";
     await updateDoc(doc(db, "users", auth.currentUser.uid, "prospect", prospectProjects[selectedGroup].id), {
         selectedProjects: prospectProjects[selectedGroup].selectedProjects,
         groupValue: valorMedio
@@ -106,8 +109,6 @@ async function handleDragEnd(e) {
 }
 
 window.dragProject = (projectId, currentProject) => {
-    console.log(groups, boundingRects)
-    console.log(projectId, currentProject);
     document.addEventListener('drag', handleDrag);
     document.addEventListener('dragend', handleDragEnd);
 }
@@ -132,11 +133,19 @@ window.saveEditedProspect = async (id) => {
                     }
                 }
             }
+            var colors = document.getElementById("prospect-colors").querySelectorAll('div');
+            var selectedColor = 0;
+            for(var i = 0; i < colors.length; i++) {
+                if(colors[i].innerHTML != "") {
+                    selectedColor = i + 1;
+                }
+            }
             valorMedio = valorMedio/selectedProjects.length;
             await updateDoc(doc(db, "users", auth.currentUser.uid, "prospect", id), {
                 name: document.getElementById('prospect-name').value,
                 groupValue: valorMedio,
                 selectedProjects: selectedProjects,
+                color: selectedColor,
             }).then(function() {
                 closePopUp();
                 loadProspect();
@@ -147,7 +156,7 @@ window.saveEditedProspect = async (id) => {
 
 window.editProspect = async (id) => {
     showPopUp();
-    document.getElementById('popup-title').innerHTML = "Editar Prospecção";
+    document.getElementById('popup-title').innerHTML = "Editar Grupo";
     document.getElementById('popup-save-changes').setAttribute('onclick', 'saveEditedProspect("' + id + '")');
     document.getElementById('add-new-prospect-form').style.display = "block";
     var projects = await updateDownloadedProjects();
@@ -217,6 +226,14 @@ window.loadProspect = async function() {
     }
     projects = correctProjects;
     for(var i = 0; i < projects.length; i++) {
+        var imageContainer = document.createElement('div');
+        imageContainer.classList.add('prospect-project-div-container');
+        var header = document.createElement('div');
+        header.classList.add('flex-align-between', 'prospect-project-header');
+        var price = document.createElement('p');
+        price.innerHTML = "<img src='./images/venda.png'>" + getFormatedValue(projects[i].valorAnuncio, "R$");
+        var pricePerMeter = document.createElement('p');
+        pricePerMeter.innerHTML = "<img src='./images/price-square-meter.png'>" + getFormatedValue(projects[i].valorMetro, "R$") + "/m²";
         const image = document.createElement('img');
         image.id = projects[i].id;
         image.setAttribute('draggable', 'true');
@@ -231,7 +248,20 @@ window.loadProspect = async function() {
         } catch(e) {
             image.src = "./images/placeholder-img.png";
         }
-        document.getElementById('all-available-projects').appendChild(image);
+        var area = document.createElement('p');
+        area.innerHTML = projects[i].area + "m²";
+        area.classList.add('prospect-area');
+        var redirect = document.createElement('img');
+        redirect.src = "./images/redirect-icon.png";
+        redirect.classList.add('redirect-icon-prospect');
+        redirect.setAttribute('onclick', "loadProject('" + projects[i].id + "')");
+        imageContainer.appendChild(image);
+        header.appendChild(price);
+        header.appendChild(pricePerMeter);
+        imageContainer.appendChild(header);
+        imageContainer.appendChild(area);
+        imageContainer.appendChild(redirect);
+        document.getElementById('all-available-projects').appendChild(imageContainer);
     }
     if(projects.length == 0) {
         document.getElementById('all-available-projects').innerHTML = "<p class='no-visible-cards-warning'>Nenhum projeto definido como prospecção no momento. Começe criando um novo projeto ou altere o status de um projeto já existente.</p>";
@@ -242,7 +272,7 @@ window.loadProspect = async function() {
     if(prospectProjects.length > 0) {
         for(var i = 0; i < prospectProjects.length; i++) {
             var container = document.createElement('div');
-            container.classList.add('projects-group');
+            container.classList.add('projects-group', 'group-color-'+ prospectProjects[i].color + '');
             container.id = "prospect-" + i;
             var header = document.createElement('div');
             header.classList.add('flex-align-between');
@@ -265,7 +295,7 @@ window.loadProspect = async function() {
                 });
             });
             var value = document.createElement('p');
-            value.innerHTML = "Valor Médio: " + getFormatedValue(prospectProjects[i].groupValue, "R$").split("R$")[1] + " R$/m²";
+            value.innerHTML = "Valor Médio: " + getFormatedValue(prospectProjects[i].groupValue, "R$") + "/m²";
             var imageContainer = document.createElement('div');
             imageContainer.classList.add('prospeccao-flex');
             for(var j = 0; j < prospectProjects[i].selectedProjects.length; j++) {
@@ -302,15 +332,19 @@ window.initMap = async() => {
         center: new google.maps.LatLng(37.4419, -122.1419),
     });
     var projects = await updateDownloadedProjects();
+    var addedProjects = [];
     for(var i = 0; i < prospectProjects.length; i++) {
         const element = document.getElementById("prospect-" + i);
         for(var j = 0; j < prospectProjects[i].selectedProjects.length; j++) {
             for(var k = 0; k < projects.length; k++) {
                 if(projects[k].id === prospectProjects[i].selectedProjects[j]) {
+                    if(!addedProjects.includes(projects[k].id)) {
+                        addedProjects.push(projects[k].id);
+                    }
                     var address = projects[k].endereco;
                     var geocoder = new google.maps.Geocoder();
                     var marker;
-                    const urlString = "./images/"+ (i%4) +"-pin.png";
+                    const urlString = "./images/"+ (prospectProjects[i].color % 10) +"-pin.png";
                     geocoder.geocode( { 'address': address}, function(results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
                             marker = new google.maps.Marker({
@@ -336,6 +370,28 @@ window.initMap = async() => {
             }
         }
     }
+    for(var i = 0; i < projects.length; i++) {
+        if(!addedProjects.includes(projects[i].id)) {
+            var address = projects[i].endereco;
+            var geocoder = new google.maps.Geocoder();
+            var marker;
+            const urlString = "./images/0-pin.png";
+            geocoder.geocode( { 'address': address}, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    marker = new google.maps.Marker({
+                        position: { lat: parseFloat(results[0].geometry.location.lat()), lng: parseFloat(results[0].geometry.location.lng()) },
+                        map: map,
+                        icon: {
+                            url: urlString,
+                            scaledSize: new google.maps.Size(35, 35)
+                        },
+                        animation:google.maps.Animation.DROP
+                    });
+                    map.setCenter(new google.maps.LatLng(parseFloat(results[0].geometry.location.lat()), parseFloat(results[0].geometry.location.lng())));
+                }
+            });
+        }
+    }
 }
 
 window.saveNewProspect = async() => {
@@ -359,10 +415,18 @@ window.saveNewProspect = async() => {
                 }
             }
             valorMedio = valorMedio/selectedProjects.length;
+            var colors = document.getElementById("prospect-colors").querySelectorAll('div');
+            var selectedColor = 0;
+            for(var i = 0; i < colors.length; i++) {
+                if(colors[i].innerHTML != "") {
+                    selectedColor = i + 1;
+                }
+            }
             await addDoc(collection(db, "users", auth.currentUser.uid, "prospect"), {
                 name: document.getElementById('prospect-name').value,
                 groupValue: valorMedio,
                 selectedProjects: selectedProjects,
+                color: selectedColor,
             }).then(function() {
                 closePopUp();
                 loadProspect();
@@ -420,4 +484,12 @@ window.addNewProspect = async () => {
             document.getElementById('prospect-available-projects').appendChild(container);
         }
     }
+}
+
+window.selectProspectColor = (id) => {
+    var colors = document.getElementById("prospect-colors").querySelectorAll('div');
+    for(var i = 0; i < colors.length; i++) {
+        colors[i].innerHTML = "";
+    }
+    colors[id - 1].innerHTML = "&#x2713;";
 }

@@ -17,12 +17,11 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://js.stripe.com/v3/" async></script>
     <script>
         (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
           key: "AIzaSyDOkggNfb9ze6KbQivdseYS-wfYz1j7SCA"
         });
-      </script>
+    </script>
 </head>
 <body>
     <div id="loader-container">
@@ -33,7 +32,7 @@
         <div class="login-form">
             <img src="./images/logo.png">
             <div class="vertical-flex">
-                <h1>Bem Vindo</h1>
+                <h1>Bem-Vindo</h1>
                 <p>Preencha os dados para continuar</p>
                 <div class="input-option">
                     <input placeholder=" " type="text" id="email">
@@ -88,8 +87,8 @@
                     <li><a id="resultados-btn" href="javascript:void(0)" onclick="appendBlade('resultados')"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 19L12 11" stroke="#000000" stroke-width="4" stroke-linecap="round"></path> <path d="M7 19L7 15" stroke="#000000" stroke-width="4" stroke-linecap="round"></path> <path d="M17 19V6" stroke="#000000" stroke-width="4" stroke-linecap="round"></path> </g></svg>Resultados</a></li>
                     <p>CONFIGURAÇÕES</p>
                     <li><a id="conta-btn" href="javascript:void(0)" onclick="appendBlade('conta')"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>Conta</a></li>
-                    <li><a><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.00195 17H5.60636C4.34793 17 3.71872 17 3.58633 16.9023C3.4376 16.7925 3.40126 16.7277 3.38515 16.5436C3.37082 16.3797 3.75646 15.7486 4.52776 14.4866C5.32411 13.1835 6.00031 11.2862 6.00031 8.6C6.00031 7.11479 6.63245 5.69041 7.75766 4.6402C8.88288 3.59 10.409 3 12.0003 3C13.5916 3 15.1177 3.59 16.2429 4.6402C17.3682 5.69041 18.0003 7.11479 18.0003 8.6C18.0003 11.2862 18.6765 13.1835 19.4729 14.4866C20.2441 15.7486 20.6298 16.3797 20.6155 16.5436C20.5994 16.7277 20.563 16.7925 20.4143 16.9023C20.2819 17 19.6527 17 18.3943 17H15.0003M9.00195 17L9.00031 18C9.00031 19.6569 10.3435 21 12.0003 21C13.6572 21 15.0003 19.6569 15.0003 18V17M9.00195 17H15.0003" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>Notificações</a></li>
-                    <li><a><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11043)"> <circle cx="12" cy="11.9999" r="9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></circle> <rect x="12" y="16" width="0.01" height="0.01" stroke="#000000" stroke-width="3.75" stroke-linejoin="round"></rect> <path d="M10.5858 7.58572C10.9754 7.1961 11.4858 7.00083 11.9965 6.99994C12.5095 6.99904 13.0228 7.1943 13.4142 7.58572C13.8047 7.97625 14 8.48809 14 8.99994C14 9.51178 13.8047 10.0236 13.4142 10.4141C13.0228 10.8056 12.5095 11.0008 11.9965 10.9999L12 11.9999" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11043"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>Central de Ajuda</a></li>
+                    <!-- <li><a><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9.00195 17H5.60636C4.34793 17 3.71872 17 3.58633 16.9023C3.4376 16.7925 3.40126 16.7277 3.38515 16.5436C3.37082 16.3797 3.75646 15.7486 4.52776 14.4866C5.32411 13.1835 6.00031 11.2862 6.00031 8.6C6.00031 7.11479 6.63245 5.69041 7.75766 4.6402C8.88288 3.59 10.409 3 12.0003 3C13.5916 3 15.1177 3.59 16.2429 4.6402C17.3682 5.69041 18.0003 7.11479 18.0003 8.6C18.0003 11.2862 18.6765 13.1835 19.4729 14.4866C20.2441 15.7486 20.6298 16.3797 20.6155 16.5436C20.5994 16.7277 20.563 16.7925 20.4143 16.9023C20.2819 17 19.6527 17 18.3943 17H15.0003M9.00195 17L9.00031 18C9.00031 19.6569 10.3435 21 12.0003 21C13.6572 21 15.0003 19.6569 15.0003 18V17M9.00195 17H15.0003" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>Notificações</a></li>
+                    <li><a><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11043)"> <circle cx="12" cy="11.9999" r="9" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></circle> <rect x="12" y="16" width="0.01" height="0.01" stroke="#000000" stroke-width="3.75" stroke-linejoin="round"></rect> <path d="M10.5858 7.58572C10.9754 7.1961 11.4858 7.00083 11.9965 6.99994C12.5095 6.99904 13.0228 7.1943 13.4142 7.58572C13.8047 7.97625 14 8.48809 14 8.99994C14 9.51178 13.8047 10.0236 13.4142 10.4141C13.0228 10.8056 12.5095 11.0008 11.9965 10.9999L12 11.9999" stroke="#000000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11043"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>Central de Ajuda</a></li> -->
                 </ul>
             </div>
         </div>
@@ -120,8 +119,15 @@
                     </div>
                 </div>
             </div>
+            <div id="trial-warning" class="margin-b">
+                <p id="warning-close">&times;</p>
+            </div>
             <div id="blade-append"></div>
         </div>
+    </div>
+    <div class="photo-view" id="photo-view-container">
+        <img id="photo-view" src="" alt="Imagem de Projeto">
+        <h1 id="close-image-view-btn">&times;</h1>
     </div>
     <div class="website-overlay" id="website-overlay">
         <div class="overlay-popup">
@@ -161,13 +167,15 @@
             </form>
             <form id="add-new-album-form">
                 <div class="input-option">
-                    <label>Selecionar pasta de fotos</label>
-                    <input type="file" id="photo-album-input" webkitdirectory directory multiple>
-                </div>
-                <div class="input-option">
                     <input type="text" id="album-name" placeholder=" ">
                     <p>Nome do Album</p>
                 </div>
+                <div class="input-option">
+                    <label>Selecionar uma ou mais fotos</label>
+                    <input type="file" id="photo-album-input" accept="image/*" multiple>
+                </div>
+                <p>Pré-visualização</p>
+                <div id="photo-album-preview"></div>
             </form>
             <form id="add-new-note-form">
                 <div class="input-option">
@@ -196,6 +204,19 @@
                     <input type="text" id="prospect-name" placeholder=" ">
                     <p>Nome do Grupo</p>
                 </div>
+                <p class="margin-b">Selecionar cor do grupo</p>
+                <div id="prospect-colors" class="margin-b">
+                    <div onclick="selectProspectColor(1)">&#x2713;</div>
+                    <div onclick="selectProspectColor(2)"></div>
+                    <div onclick="selectProspectColor(3)"></div>
+                    <div onclick="selectProspectColor(4)"></div>
+                    <div onclick="selectProspectColor(5)"></div>
+                    <div onclick="selectProspectColor(6)"></div>
+                    <div onclick="selectProspectColor(7)"></div>
+                    <div onclick="selectProspectColor(8)"></div>
+                    <div onclick="selectProspectColor(9)"></div>
+                    <div onclick="selectProspectColor(10)"></div>
+                </div>
                 <div>
                     <p class="margin-b" id="no-selected-projects">Selecionar Projetos para adicionar ao grupo</p>
                     <div id="prospect-available-projects" class="margin-b"></div>
@@ -214,6 +235,59 @@
                 </div>
                 <div id="edit-project-reform-form-elements"></div>
             </form>
+            <form id="aboutFlipUp-form">
+                <img src="images/logo.png" alt="logo">
+                <p class="gray margin-b text-align-center">Versão 1.0</p>
+                <p class="gray margin-t margin-b">No FlipUp, facilitamos o processo de house flipping, oferecendo uma plataforma abrangente e intuitiva para gerenciar todas as etapas dos seus projetos imobiliários. Desde o registro detalhado de imóveis, incluindo fotos, vídeos e documentos importantes, até a análise minuciosa da viabilidade com cálculos precisos de custos e estimativas de valor pós-reforma, tudo é feito de maneira integrada. Além disso, você pode avaliar os resultados dos seus investimentos através de gráficos e relatórios detalhados, comparando o desempenho de diferentes projetos para tomar decisões informadas e estratégicas. Com o FlipUp, todas as ferramentas que você precisa para maximizar seus lucros estão em um único lugar. Experimente o FlipUp e eleve o nível dos seus investimentos imobiliários!</p>
+            </form>
+            <form id="account-info-popUp">
+                <div class="input-option">
+                    <input type="text" id="account-name" placeholder=" ">
+                    <p>Nome e Sobrenome</p>
+                </div>
+                <div class="input-option margin-t">
+                    <input type="text" id="account-email" placeholder=" ">
+                    <p>Editar Email</p>
+                </div>
+            </form>
+            <form id="edit-password-popUp">
+                <div class="input-option">
+                    <input type="password" id="old-password" placeholder=" ">
+                    <p>Senha antiga</p>
+                </div>
+                <div class="input-option">
+                    <input type="password" id="new-password" placeholder=" ">
+                    <p>Nova Senha</p>
+                </div>
+                <div class="input-option">
+                    <input type="password" id="confirm-password" placeholder=" ">
+                    <p>Confirmar Nova Senha</p>
+                </div>
+            </form>
+            <form id="active-plan-popup" class="margin-t">
+                <div class="flex-align-between margin-b">
+                    <p>Data de início</p>
+                    <h3 id="plan-begin-date"></h3>
+                </div>
+                <div class="flex-align-between margin-b">
+                    <p>Data de renovação</p>
+                    <h3 id="plan-renew-date"></h3>
+                </div>
+                <div class="flex-align-between margin-b">
+                    <p>Valor da Assinatura</p>
+                    <h3 id="plan-price"></h3>
+                </div>
+                <p class="gray margin-b" style="font-size: 14px;">A forma de pagamento só poderá ser alterada após o período de inscrição atual finalizar. Você pode cancelar a assinatura a qualquer momento. A assinatura será cancelada automaticamente depois de 3 tentativas de cobrança sem sucesso.</p>
+                <div onclick="confirmSubscriptionDelete()" class="close-simple-flex cancel-subscription-btn">
+                    <img src="./images/red-trash-icon.png">
+                    <p>Cancelar Assinatura</p>
+                </div>
+            </form>
+            <form id="confirm-subscription-delete-form">
+                <p class="margin-t margin-b gray">Você tem certeza que deseja cancelar sua assinatura? Essa ação acarretará no cancelamento imediato de todos os benefícios e o FlipUp voltará para o modo de teste. Se você já usou todos os dias de teste, o acesso a plataforma será bloqueado. Seus projetos, resultados e dados serão mantidos. Caso deseje, reative a sua assinatura a qualquer momento e volte a aproveitar os benefícios.</p>
+                <input style="width: 20px !important;" type="checkbox" id="confirm-subscription-delete-checkbox">
+                <label for="confirm-subscription-delete-checkbox">Confirmo que desejo cancelar minha assinatura</label>
+            </form>
             <p class="margin-b no-visible-cards-warning" id="popup-text"></p>
             <button class="highlight-button save-button" id="popup-save-changes">Salvar</button>
         </div>
@@ -223,6 +297,6 @@
     <script type="module" src="./js/load-dashboard-info.js"></script>
     <script type="module" src="./js/prospect-loader.js"></script>
     <script type="module" src="./js/update-value-tables.js"></script>
-    <!---<->script type="module" src="js/firebase.js"></script>-->
+    <script src="https://js.stripe.com/v3/" async></script>
 </body>
 </html>

@@ -43,15 +43,15 @@ window.updateDashboardInfo = async () => {
         var rentabilidadeMedia = 0;
         var houseFlipCount = 0;
         for(let i = 0; i < projects.length; i++) {
-            investimentoTotal += parseFloat(projects[i].gastoTotal);
-            lucroTotal += parseFloat(projects[i].lucroLiquido);
-            rentabilidadeMedia += parseFloat(projects[i].rentabilidade);
             if(projects[i].status === 3) {
+                investimentoTotal += parseFloat(projects[i].gastoTotal);
+                lucroTotal += parseFloat(projects[i].lucroLiquidoFinal);
+                rentabilidadeMedia += parseFloat(projects[i].rentabilidadeFinal);
                 houseFlipCount++;
             }
         }
-        if(projects.length != 0) {
-            rentabilidadeMedia = rentabilidadeMedia/projects.length;
+        if(houseFlipCount > 0) {
+            rentabilidadeMedia = rentabilidadeMedia/houseFlipCount;
         }
         document.getElementById("investimento-total").innerHTML = getFormatedValue(investimentoTotal, "R$");
         document.getElementById("lucro-total").innerHTML = getFormatedValue(lucroTotal, "R$");
@@ -64,28 +64,11 @@ window.updateDashboardInfo = async () => {
         var project = projects[0];
         showProject(project, "last-viewed-project");
     }
-    // var prospectProjects = [];
-    // await getDocs(collection(db, "users", auth.currentUser.uid, "prospect")).then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //         var project = {
-    //             id: doc.id,
-    //             name: doc.data().name,
-    //             groupValue: doc.data().groupValue,
-    //             selectedProjects: doc.data().selectedProjects
-    //         }
-    //         prospectProjects.push(project);
-    //     });
-    // });
     if(prospectProjects.length == 0) {
         document.getElementById("last-prospect-project").innerHTML = "<p class='no-visible-cards-warning'>Nenhum projeto em prospecção no momento. Quando o status de um projeto for definido como prospecção, ele aparecerá aqui.</p>";
     } else {
         var project = prospectProjects[0];
         showProject(project, "last-prospect-project");
-        // await getDoc(doc(db, "users", auth.currentUser.uid, "projetos", projectId)).then((doc) => {
-        //     project = doc.data();
-        //     project.id = doc.id;
-        //     showProject(project, "last-prospect-project");
-        // });
     }
     var chartValues = await updateGraphValues();
     createHalfDoughnutChart("lucro-liq", "#3959f7", "color(display-p3 0.9529 0.9686 1)", chartValues.halfChart1.values[1], chartValues.halfChart1.values[0], chartValues.halfChart1.values[2]);

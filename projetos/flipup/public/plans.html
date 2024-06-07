@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlipUp">
+    <meta name="keywords" content="FlipUp, Projeto, Dashboard, Prospecção, Resultados">
+    <meta name="author" content="FlipUp">
+    <title>FlipUp</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+    <link rel="manifest" href="./images/site.webmanifest">
+    <link rel="mask-icon" href="./images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <script type="module" defer src="./js/subscription.js"></script>
+    <script src="https://js.stripe.com/v3/" defer onload="stripeReady()"></script>
+</head>
+<body>
+    <div id="new-user">
+        <div class="login-form">
+            <a href="./index.html"><img src="./images/logo.png"></a>
+            <div class="vertical-flex">
+                <h1>Planos Disponíveis</h1>
+                <p class="gray">Obrigado pelo seu interesse no FlipUp! Faça upgrade do seu plano para usufruir de todos os benefícios 
+                    oferecidos pela plataforma. Selecione o plano que melhor atende às suas necessidades e continue aproveitando
+                </p>
+                </p>
+                <div>
+                    <div onclick="buySubscriptionFlipUp(0)" class="payment-plan-card-detailed">
+                        <div class="flex-align-between">
+                            <h2>FlipUp Premium Mensal</h2>
+                            <img src="./images/menu-icon.png">
+                        </div>
+                        <div class="close-simple-flex">
+                            <h3>R$29,00</h3>
+                            <p class="gray">/mês</p>
+                        </div>
+                    </div>
+                    <div onclick="buySubscriptionFlipUp(1)" class="payment-plan-card-detailed">
+                        <div class="flex-align-between">
+                            <h2>FlipUp Premium Anual</h2>
+                            <img src="./images/menu-icon.png">
+                        </div>
+                        <div class="close-simple-flex">
+                            <h3>R$299,00</h3>
+                            <p class="gray">/ano</p>
+                        </div>
+                        <p class="green">&check; Economize 20%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="images/background.jpeg" class="login-banner">
+    </div>
+</body>
+</html>

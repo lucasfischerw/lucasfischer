@@ -26,6 +26,7 @@
                 <img src="images/base.png">
                 <h3>Dados</h3>
             </div>
+            <button class="highlight-button" id="edit-special-fields-project">Editar</button>
         </div>
         <div class="project-highlight-atribbutes-dashboard">
             <p id="metragem"></p>
@@ -35,12 +36,30 @@
             <p id="tem-elevador"></p>
         </div>
         <div class="aditional-info">
-            <p id="project-name"></p>
-            <p id="project-adress"></p>
-            <p id="project-condominio"></p>
-            <p id="project-anuncio"></p>
-            <p id="project-valor"></p>
-            <span>Link do anúncio: <a id="project-link" target="_blank"></a></span>
+            <div class="flex-align-between">
+                <p>Nome:</p>
+                <input readonly class="special-editable-input" id="project-name">
+            </div>
+            <div class="flex-align-between">
+                <p>Endereço:</p>
+                <input readonly class="special-editable-input" id="project-adress">
+            </div>
+            <div class="flex-align-between">
+                <p>Condomínio:</p>
+                <input readonly class="special-editable-input" id="project-condominio">
+            </div>
+            <div class="flex-align-between">
+                <p>Valor do Anúncio:</p>
+                <input readonly class="special-editable-input" id="project-anuncio">
+            </div>
+            <div class="flex-align-between">
+                <p>Valor por metro:</p>
+                <input readonly class="special-editable-input" id="project-valor">
+            </div>
+            <div class="flex-align-between">
+                <p>Link do anúncio:</p>
+                <input readonly class="special-editable-input" id="project-link">
+            </div>
         </div>
         <div class="collapsible-title">
             <div>
@@ -278,7 +297,7 @@
                 <div id="reform-categories">
                     <p class="margin-b">Nenhuma categoria adicionada</p>
                 </div>
-                <button class="highlight-button" onclick="addReformCategory()">Adicionar nova categoria</button>
+                <button class="highlight-button" style="margin-top: 15px;" onclick="addReformCategory()">Adicionar nova categoria</button>
             </div>
         </div>
         <div class="collapsible">
@@ -347,8 +366,14 @@
                         <input id="valor-final" class="editable-input isolated-inputs" readonly value="-">
                     </div>
                     <div class="flex-align-between">
-                        <p>Reforma:</p>
-                        <input id="reforma-final" class="editable-input isolated-inputs" readonly value="-">
+                        <div class="close-simple-flex">
+                            <p>Reforma:</p>
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Valor referente ao total gasto na aba "Reforma"</p>
+                                <img src="./images/info.png">
+                            </div>
+                        </div>
+                        <input id="reforma-final" class="auto editable-input isolated-inputs" readonly value="-">
                     </div>
                     <div class="flex-align-between">
                         <p>Tempo até venda (dias):</p>
@@ -356,19 +381,37 @@
                     </div>
                     <div class="flex-align-between">
                         <p>Corretagem:</p>
-                        <input id="corretagem-final" class="editable-input isolated-inputs" readonly value="-">
+                        <div class="input-porcentage">
+                            <input id="corretagem-final-porc-isolado" class="editable-input porc" readonly value="6%">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o valor de venda</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input id="corretagem-final" class="editable-input isolated-inputs" readonly value="0">
+                        </div>
                     </div>
                     <div class="flex-align-between">
                         <p>Lucro bruto:</p>
-                        <input id="lucro-final" class="editable-input isolated-inputs" readonly value="-">
+                        <input id="lucro-final" class="editable-input isolated-inputs auto" readonly value="-">
                     </div>
                     <div class="flex-align-between">
                         <p>IRPF:</p>
-                        <input id="irpf-final" class="editable-input isolated-inputs" readonly value="-">
+                        <div class="input-porcentage">
+                            <input id="irpf-final-porc-isolado" class="editable-input porc" readonly value="15%">
+                            <div class="overlay-info">
+                                <p class="overlay-info-text">Porcentagem sobre o lucro bruto</p>
+                                <img src="./images/info.png">
+                            </div>
+                            <input id="irpf-final" class="editable-input isolated-inputs" readonly value="R$3.200,00">
+                        </div>
+                    </div>
+                    <div class="flex-align-between">
+                        <p>Lucro líquido:</p>
+                        <input id="lucro-liquido-final" class="editable-input isolated-inputs auto" readonly value="R$3.200,00">
                     </div>
                     <div class="flex-align-between">
                         <p>ROI:</p>
-                        <input id="roi-final" class="editable-input porc isolated-inputs" readonly value="-">
+                        <input id="roi-final" class="editable-input porc isolated-inputs auto" readonly value="-">
                     </div>
                 </div>
             </div>
@@ -382,17 +425,23 @@
                 <img class="collapsible-arrow" src="./images/menu-icon.png">
             </div>
             <div class="collapsible-content">
-                <h3>Reforma</h3>
-                <div class="big-chart-container align-center" id="round-chart-project-container">
-                    <canvas width="500" height="500" id="round-chart"></canvas>
+                <div class="close-simple-flex" id="round-project-charts-container">
+                    <div>
+                        <h3 class="text-align-center margin-b">Reforma</h3>
+                        <div class="round-chart-project-container" id="round-chart-project-container">
+                            <canvas id="round-chart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-align-center margin-b">Investimento Total</h3>
+                        <div class="round-chart-project-container" id="round-chart-project-container2">
+                            <canvas id="round-chart2"></canvas>
+                        </div>
+                    </div>
                 </div>
-                <h3>Venda</h3>
+                <h3 class="margin-t">Venda</h3>
                 <div class="big-chart-container" id="horizontal-chart-project-container">
                     <canvas width="500" height="500" id="horizontal-chart"></canvas>
-                </div>
-                <div class="big-chart-container" id="horizontal-chart2-project-container">
-                    <h3>Compra</h3>
-                    <canvas width="500" height="500" id="horizontal-chart-2"></canvas>
                 </div>
             </div>
         </div>

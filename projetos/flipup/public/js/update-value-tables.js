@@ -37,27 +37,50 @@ window.saveProjectChanges = async (fieldSelected) => {
         }
         inputs[i].setAttribute('readonly', 'true');
         inputs[i].classList.remove('active-input');
+        inputs[i].blur();
     }
     document.getElementById("editAtt-button-" + fieldSelected).innerHTML = "<div class='btn-loader'></div>Salvando";
     document.getElementById("editAtt-button-" + fieldSelected).setAttribute("disabled", "true");
     await getDoc(doc(db, "users", auth.currentUser.uid, "projetos", parseURLParams(window.location.href).id.toString())).then(async(docRetrieved) => {
         currentProject = docRetrieved.data();
-        var gastoTotal = parseFloat(currentProject.totalReformExpenses) + parseFloat(getRawValue(document.getElementById("itbi-input").value)) + parseFloat(getRawValue(document.getElementById("escritura-input").value)) + parseFloat(getRawValue(document.getElementById("escritura-input").value)) + (parseFloat(getRawValue(document.getElementById("despesas").value)) * tempoAteVenda) + (parseFloat(getRawValue(document.getElementById("iptu").value)) * tempoAteVenda) + (parseFloat(getRawValue(document.getElementById("condominio").value)) * tempoAteVenda) + parseFloat(getRawValue(document.getElementById("corretagem-input").value)) + parseFloat(getRawValue(document.getElementById("irpf-input").value)) + parseFloat(getRawValue(document.getElementById("juros-taxas").value));
-        var rentabilidade = 0;
-        var lucroLiquido = 0;
-        if(currentProject.status == 3) {
-            rentabilidade = getRawValue(document.getElementById("roi-final").value);
-            lucroLiquido = getRawValue(document.getElementById("lucro-liquido").value);
-        }
+        var gastoTotal = getTotalProjectExpenses(projectSellMode);
         await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", parseURLParams(window.location.href).id.toString()), {
             projectCustomValues: values,
             tempoAteVenda: getRawValue(document.getElementById("tempo-ate-venda").value),
             valorCompra: getRawValue(document.getElementById("valor-compra").value),
-            lucroLiquido: lucroLiquido,
-            rentabilidade: rentabilidade,
+            lucroLiquidoFinal: getRawValue(document.getElementById("lucro-liquido-final").value),
+            rentabilidadeFinal: getRawValue(document.getElementById("roi-final").value),
             valorAnuncio: getRawValue(document.getElementById("valor-venda").value),
-            gastoTotal: gastoTotal
+            gastoTotal: gastoTotal,
+            lucroBrutoFinal: getRawValue(document.getElementById("lucro-final").value),
+            gastoReformaFinal: getRawValue(document.getElementById("reforma-final").value),
+            tempoAteVendaFinal: getRawValue(document.getElementById("tempo-ate-venda-final").value)
         }).then(async () => {
+            const inputValues = document.querySelectorAll(".special-editable-input");
+            document.getElementById("edit-special-fields-project").innerHTML = "<div class='btn-loader'></div>Salvando";
+            var values = [];
+            for(var i = 0; i < inputValues.length; i++) {
+                values.push(inputValues[i].value)
+            }
+            document.getElementById("project-title").innerHTML = values[0];
+            await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", parseURLParams(window.location.href).id.toString()), {
+                name: values[0],
+                endereco: values[1],
+                condominio: getRawValue(values[2]),
+                valorAnuncio: getRawValue(values[3]),
+                valorMetro: getRawValue(values[4]),
+                linkAnuncio: values[5],
+            }).then(() => {
+                for(var i = 0; i < inputValues.length; i++) {
+                    inputValues[i].setAttribute("readonly", "true");
+                    inputValues[i].classList.remove("active-input");
+                    if(i >= 2 && i <= 4) {
+                        inputValues[i].value = getFormatedValue(getRawValue(values[i]), "R$");
+                    }
+                }
+                document.getElementById("edit-special-fields-project").innerHTML = "Editar";
+                document.getElementById("edit-special-fields-project").setAttribute("onclick", "editCustomProjectParameters()");
+            });
             setTimeout(() => {
                 const buttons = document.querySelectorAll(".editAtt-button");
                 for(var i = 0; i < buttons.length; i++) {
@@ -65,9 +88,7 @@ window.saveProjectChanges = async (fieldSelected) => {
                     buttons[i].innerHTML = "Editar";
                     buttons[i].removeAttribute("disabled");
                 }
-                // document.getElementById("editAtt-button-" + fieldSelected).innerHTML = "Editar";
-                // document.getElementById("editAtt-button-" + fieldSelected).setAttribute("onclick", "editProjectFields("+fieldSelected+")");
-                // document.getElementById("editAtt-button-" + fieldSelected).removeAttribute("disabled");
+                updateValuesChartStats(projectSellMode);
             }, 200);
         });
     });
@@ -118,15 +139,24 @@ var projectFirstLoad = false;
 function updateGrossProfit() {
     setTimeout(() => {
         var calculationInputsId = ["valor-venda", "valor-compra", "itbi-input", "escritura-input", "reforma-input", "corretagem-input", "juros-taxas"];
-        var calculation = [0];
+        var calculation = [0,0,0,0,0,0,0];
         for(var i = 0; i < calculationInputsId.length; i++) {
             calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
         }
         if(projectSellMode != 0) {
-            calculation[6] = 0;
+            calculationInputsId = ["valor-venda", "investimento-total", "corretagem-input"];
+            calculation = [0,0,0,0,0,0,0];
+            for(var i = 0; i < calculationInputsId.length; i++) {
+                calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
+            }
+            console.log(calculation);
         }
         document.getElementById("lucro-bruto").value = getFormatedValue(parseFloat(calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5] - calculation[6]).toFixed(2), "R$");
         document.getElementById("lucro-bruto2").value = getFormatedValue(parseFloat(calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5] - calculation[6]).toFixed(2), "R$");
+        if(projectFirstLoad == true) {
+            document.getElementById("irpf-input").value = getFormatedValue(parseFloat((calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5]) * 0.15).toFixed(2), "R$");
+            document.getElementById("irpf-input2").value = getFormatedValue(parseFloat((calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5]) * 0.15).toFixed(2), "R$");
+        }
         calculateLiquidProfit();
         updateROI();
     }, 50);
@@ -223,15 +253,27 @@ window.syncronizeReformValue = () => {
 }
 
 window.calculateIRPF = () => {
-    var calculationInputsId = ["valor-venda", "valor-compra", "itbi-input", "escritura-input", "reforma-input", "corretagem-input"];
-    var calculation = [0];
-    for(var i = 0; i < calculationInputsId.length; i++) {
-        calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
+    if(projectSellMode == 0) {
+        var calculationInputsId = ["valor-venda", "valor-quitado", "entrada-input", "taxas-bancarias", "valor-parcela", "itbi-input", "escritura-input", "reforma-input", "corretagem-input"];
+        var calculation = [0];
+        for(var i = 0; i < calculationInputsId.length; i++) {
+            calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
+        }
+        var inputValue = getRawValue(document.getElementById("irpf-porc").value);
+        var floatValue = getFormatedValue((calculation[0] - calculation[1] - calculation[2] - calculation[3] - (calculation[4] * tempoAteVenda) - calculation[5] - calculation[6] - calculation[7] - calculation[8]) * (inputValue / 100), "R$");
+        document.getElementById("irpf-input").value = getFormatedValue(getRawValue(floatValue), "R$");
+        document.getElementById("irpf-input2").value = getFormatedValue(getRawValue(floatValue), "R$");
+    } else {
+        var calculationInputsId = ["valor-venda", "valor-compra", "itbi-input", "escritura-input", "reforma-input", "corretagem-input"];
+        var calculation = [0];
+        for(var i = 0; i < calculationInputsId.length; i++) {
+            calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
+        }
+        var inputValue = getRawValue(document.getElementById("irpf-porc").value);
+        var floatValue = getFormatedValue((calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5]) * (inputValue / 100), "R$");
+        document.getElementById("irpf-input").value = getFormatedValue(getRawValue(floatValue), "R$");
+        document.getElementById("irpf-input2").value = getFormatedValue(getRawValue(floatValue), "R$");
     }
-    var inputValue = getRawValue(document.getElementById("irpf-porc").value);
-    var floatValue = getFormatedValue((calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5]) * (inputValue / 100), "R$");
-    document.getElementById("irpf-input").value = getFormatedValue(getRawValue(floatValue), "R$");
-    document.getElementById("irpf-input2").value = getFormatedValue(getRawValue(floatValue), "R$");
     calculateLiquidProfit();
     updateROI();
 }
@@ -262,6 +304,7 @@ window.handleProjectFirstLoad = () => {
         await getDoc(doc(db, "users", auth.currentUser.uid, "projetos", parseURLParams(window.location.href).id.toString())).then(async(docRetrieved) => {
             currentProject = docRetrieved.data();
             if(currentProject.justCreated == true) {
+                document.querySelector(".content").style.opacity = "0";
                 projectFirstLoad = true;
                 updateTotalFeesAndTax();
                 updateGrossProfit();
@@ -294,13 +337,49 @@ window.handleProjectFirstLoad = () => {
                         valorAnuncio: getRawValue(document.getElementById("valor-venda").value),
                         gastoTotal: gastoTotal
                     });
+                    await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", docRetrieved.id), {
+                        justCreated: false
+                    });
+                    projectFirstLoad = false;
+                    setTimeout(() => {
+                        loadProject(parseURLParams(window.location.href).id.toString());
+                    },150);
                 }, 500);
-                await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", docRetrieved.id), {
-                    justCreated: false
-                });
             }
         });
     }, 250);
+}
+
+window.updateFinalValuesCalculation = () => {
+    setTimeout(() => {
+        var calculationInputsId = ["valor-final", "valor-compra", "itbi-input", "escritura-input", "reforma-final", "corretagem-final", "juros-taxas"];
+        var calculation = [0];
+        for(var i = 0; i < calculationInputsId.length; i++) {
+            calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
+        }
+        if(projectSellMode != 0) {
+            calculation[6] = 0;
+        }
+        var lucroFinal = parseFloat(calculation[0] - calculation[1] - calculation[2] - calculation[3] - calculation[4] - calculation[5] - calculation[6]);
+        document.getElementById("lucro-final").value = getFormatedValue(lucroFinal.toFixed(2), "R$");
+        document.getElementById("lucro-liquido-final").value = getFormatedValue(lucroFinal - parseFloat(getRawValue(document.getElementById("irpf-final").value)), "R$");
+        var calculationInputsId = ["entrada-input", "valor-parcela", "taxas-bancarias", "despesas", "condominio", "iptu", "itbi-input", "escritura-input", "reforma-final"];
+        var calculation = [0];
+        for(var i = 0; i < calculationInputsId.length; i++) {
+            calculation[i] = parseFloat(getRawValue(document.getElementById(calculationInputsId[i]).value));
+        }
+        if(projectSellMode != 0) {
+            calculation[0] = parseFloat(getRawValue(document.getElementById("valor-compra").value));
+            calculation[1] = 0;
+            calculation[2] = 0;
+        }
+        var investimentoTotal = parseFloat(calculation[0] + (calculation[1] * tempoAteVenda) + calculation[2] + (calculation[3] * tempoAteVenda) + (calculation[4] * tempoAteVenda) + (calculation[5] * tempoAteVenda) + calculation[6] + calculation[7] + calculation[8]);
+        if(investimentoTotal > 0) {
+            document.getElementById("roi-final").value = getFormatedValue(parseFloat((lucroFinal / investimentoTotal) * 100).toFixed(2), "%");
+        }
+        document.getElementById("corretagem-final-porc-isolado").value = getFormatedValue((parseFloat(getRawValue(document.getElementById("corretagem-final").value)) / parseFloat(getRawValue(document.getElementById("valor-final").value))) * 100, "%");
+        document.getElementById("irpf-final-porc-isolado").value = getFormatedValue((parseFloat(getRawValue(document.getElementById("irpf-final").value)) / parseFloat(getRawValue(document.getElementById("lucro-final").value))) * 100, "%");
+    }, 25);
 }
 
 window.addProjectButtonsListeners = () => {
@@ -320,6 +399,17 @@ window.addProjectButtonsListeners = () => {
                 } else {
                     inputs[i].setAttribute('oninput', 'calculateIRPF()');
                 }
+            }
+            if(!inputs[i].classList.contains('auto')) {
+                inputs[i].addEventListener("keydown", (event) => {
+                    if(event.key == "Enter") {
+                        if(event.target.parentNode.parentNode.classList.contains('values-table')) {
+                            saveProjectChanges(event.target.parentNode.parentNode.id.split("-")[2]);
+                        } else {
+                            saveProjectChanges(event.target.parentNode.parentNode.parentNode.id.split("-")[2]);
+                        }
+                    }
+                });
             }
         }
         await getDoc(doc(db, "users", auth.currentUser.uid, "projetos", parseURLParams(window.location.href).id.toString())).then((doc) => {
@@ -420,13 +510,91 @@ window.addProjectButtonsListeners = () => {
                 document.getElementById(currentId).value = getFormatedValue(getRawValue(document.getElementById(currentId.split("2")[0]).value), "R$"); 
             });
         }
-    }, 100);
+
+        document.getElementById("edit-special-fields-project").setAttribute("onclick", "editCustomProjectParameters()");
+        window.editCustomProjectParameters = () => {
+            const inputs = document.querySelectorAll(".special-editable-input");
+            for(var i = 0; i < inputs.length; i++) {
+                inputs[i].removeAttribute("readonly");
+                inputs[i].classList.add("active-input");
+            }
+            document.getElementById("edit-special-fields-project").innerHTML = "Salvar";
+            document.getElementById("edit-special-fields-project").setAttribute("onclick", "saveCustomProjectParameters()");
+        }
+
+        window.saveCustomProjectParameters = async() => {
+            const inputValues = document.querySelectorAll(".special-editable-input");
+            document.getElementById("edit-special-fields-project").innerHTML = "<div class='btn-loader'></div>Salvando";
+            var values = [];
+            for(var i = 0; i < inputValues.length; i++) {
+                values.push(inputValues[i].value)
+            }
+            document.getElementById("project-title").innerHTML = values[0];
+            await updateDoc(doc(db, "users", auth.currentUser.uid, "projetos", parseURLParams(window.location.href).id.toString()), {
+                name: values[0],
+                endereco: values[1],
+                condominio: getRawValue(values[2]),
+                valorAnuncio: getRawValue(values[3]),
+                valorMetro: getRawValue(values[4]),
+                linkAnuncio: values[5],
+            }).then(() => {
+                for(var i = 0; i < inputValues.length; i++) {
+                    inputValues[i].setAttribute("readonly", "true");
+                    inputValues[i].classList.remove("active-input");
+                    if(i >= 2 && i <= 4) {
+                        inputValues[i].value = getFormatedValue(getRawValue(values[i]), "R$");
+                    }
+                }
+                document.getElementById("edit-special-fields-project").innerHTML = "Editar";
+                document.getElementById("edit-special-fields-project").setAttribute("onclick", "editCustomProjectParameters()");
+            });
+            document.getElementById("condominio").value = getFormatedValue(getRawValue(values[2]), "R$");
+            document.getElementById("valor-venda").value = getFormatedValue(getRawValue(values[3]), "R$");
+            document.getElementById("valor-venda2").value = getFormatedValue(getRawValue(values[3]), "R$");
+            updateTotalFeesAndTax();
+            updateGrossProfit();
+            calculateInvestment();
+            calculateIRPF();
+            calculateLiquidProfit();
+            updateROI();
+            setTimeout(() => {
+                saveProjectChanges(0);
+            });
+        }
+
+        document.getElementById("corretagem-final-porc-isolado").addEventListener("keyup", () => {
+            document.getElementById("corretagem-final").value = getFormatedValue(parseFloat(getRawValue(document.getElementById("valor-final").value)) * (parseFloat(getRawValue(document.getElementById("corretagem-final-porc-isolado").value))/100), "R$");
+        });
+        document.getElementById("corretagem-final").addEventListener("keyup", () => {
+            document.getElementById("corretagem-final-porc-isolado").value = getFormatedValue((parseFloat(getRawValue(document.getElementById("corretagem-final").value)) / parseFloat(getRawValue(document.getElementById("valor-final").value))) * 100, "%");
+        });
+        document.getElementById("irpf-final-porc-isolado").addEventListener("keyup", () => {
+            document.getElementById("irpf-final").value = getFormatedValue(parseFloat(getRawValue(document.getElementById("lucro-final").value)) * (parseFloat(getRawValue(document.getElementById("irpf-final-porc-isolado").value))/100), "R$");
+        });
+        document.getElementById("irpf-final").addEventListener("keyup", () => {
+            document.getElementById("irpf-final-porc-isolado").value = getFormatedValue((parseFloat(getRawValue(document.getElementById("irpf-final").value)) / parseFloat(getRawValue(document.getElementById("lucro-final").value))) * 100, "%");
+        });
+        document.getElementById("condominio").addEventListener("keyup", () => {
+            document.getElementById("project-condominio").value = getFormatedValue(getRawValue(document.getElementById("condominio").value), "R$");
+        });
+        document.getElementById("valor-venda").addEventListener("keyup", () => {
+            document.getElementById("project-anuncio").value = getFormatedValue(getRawValue(document.getElementById("valor-venda").value), "R$");
+        });
+
+        var calculationInputsId = ["valor-final", "valor-compra", "itbi-input", "escritura-input", "reforma-final", "corretagem-final", "juros-taxas"];
+        for(var i = 0; i < calculationInputsId.length; i++) {
+            document.getElementById(calculationInputsId[i]).addEventListener("keyup", updateFinalValuesCalculation);
+        }
+
+    }, 250);
 }
 
 window.handleChangeInSellMode = (mode) => {
     projectSellMode = mode;
+    calculateIRPF();
     updateGrossProfit();
     calculateInvestment();
+    updateValuesChartStats(projectSellMode);
 }
 
 window.showFinalResults = (mode) => {
@@ -439,4 +607,6 @@ window.showFinalResults = (mode) => {
         document.getElementById("values-table-5").style.display = "block";
         document.getElementById("toggle-final-results-btn").classList.add("menu-option-selected");
     }
+    document.getElementsByClassName('collapsible')[2].classList.remove('collapsible-open');
+    openProjectDetail(2);
 }

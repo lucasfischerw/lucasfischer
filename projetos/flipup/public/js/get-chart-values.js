@@ -41,36 +41,21 @@ window.createSimpleBarChart = (data, labels) => {
     });
 }
 window.createHalfDoughnutChart = (ctx, bgColor1, bgColor2, media, min, max) => {
-    // new Chart(document.getElementById(ctx), {
-    //     type: 'doughnut',
-    //     data: {
-    //         datasets: [{
-    //             label: 'Média',
-    //             data: [50, 50],
-    //             backgroundColor: [
-    //                 bgColor1,
-    //                 bgColor2
-    //             ],
-    //             hoverOffset: 4
-    //         }]
-    //     },
-    //     options: {
-    //         rotation: -90,
-    //         circumference: 180,
-    //         cutout: 35,
-    //         maintainAspectRatio: false,
-    //         events: []
-    //     }
-    // });
     var type = "R$";
     if(ctx == "rent") {
         type = "%";
     } else if(ctx == "vendas") {
         type = "dias";
     }
-    document.getElementById(ctx + "-media").innerHTML = getFormatedValue(media, type);
-    document.getElementById(ctx + "-min").innerHTML = getFormatedValue(min, type);
-    document.getElementById(ctx + "-max").innerHTML = getFormatedValue(max, type);
+    if(type == "R$") {
+        document.getElementById(ctx + "-media").innerHTML = getFormatedValue(media, type).split(",")[0];
+        document.getElementById(ctx + "-min").innerHTML = getFormatedValue(min, type).split(",")[0];
+        document.getElementById(ctx + "-max").innerHTML = getFormatedValue(max, type).split(",")[0];
+    } else {
+        document.getElementById(ctx + "-media").innerHTML = getFormatedValue(media, type);
+        document.getElementById(ctx + "-min").innerHTML = getFormatedValue(min, type);
+        document.getElementById(ctx + "-max").innerHTML = getFormatedValue(max, type);
+    }
 }
 window.createStackedChart = (ctx, dataCompra, dataVenda, dataLucroLiq, labels) => {
     new Chart(document.getElementById(ctx), {
@@ -129,7 +114,7 @@ window.createHorizontalChart = (ctx, dataCompra, dataGastos, dataLucro, labels) 
                 stack: 'Stack 0',
             }, {
                 barThickness: 25,
-                label: 'Lucro Líquido',
+                label: 'Lucro Bruto Realizado',
                 data: dataLucro,
                 backgroundColor: 'color(srgb 0.101 0.1263 0.4737)',
                 stack: 'Stack 0',
@@ -165,26 +150,31 @@ window.updateGraphValues = async function() {
     var reforma = [];
     await getDocs(collection(db, "users", auth.currentUser.uid, "projetos")).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            projects.push(doc.data());
+            if(doc.data().status == 3) {
+                projects.push(doc.data());
+            }
         });
 
         for(let i = 0; i < projects.length; i++) {
             projects.sort();
-            chartValues.mixedChart.data.push(projects[i].lucroLiquido);
+            var gastoTotal = parseFloat(getRawValue(projects[i].projectCustomValues[6])) + parseFloat(getRawValue(projects[i].projectCustomValues[14])) + 
+            parseFloat(getRawValue(projects[i].projectCustomValues[16])) + ((parseFloat(getRawValue(projects[i].projectCustomValues[11])) + parseFloat(getRawValue(projects[i].projectCustomValues[12]))) * Math.ceil(parseFloat(getRawValue(projects[i].projectCustomValues[38]))/30)) +
+            parseFloat(getRawValue(projects[i].projectCustomValues[40]));
+            chartValues.mixedChart.data.push(projects[i].lucroLiquidoFinal);
             chartValues.mixedChart.labels.push(projects[i].name);
             chartValues.stackedChart.labels.push(projects[i].name);
             chartValues.stackedChart.data[0].push(projects[i].valorCompra);
             chartValues.stackedChart.data[1].push(projects[i].valorAnuncio);
-            chartValues.stackedChart.data[2].push(projects[i].lucroLiquido);
+            chartValues.stackedChart.data[2].push(projects[i].lucroLiquidoFinal);
             chartValues.horizontalChart.labels.push(projects[i].name);
             chartValues.horizontalChart.data[0].push(projects[i].valorCompra);
-            chartValues.horizontalChart.data[1].push(projects[i].gastoTotal);
-            chartValues.horizontalChart.data[2].push(projects[i].lucroLiquido);
+            chartValues.horizontalChart.data[1].push(gastoTotal);
+            chartValues.horizontalChart.data[2].push(projects[i].lucroBrutoFinal);
             
-            lucroLiq.push(parseFloat(projects[i].lucroLiquido));
-            rentabilidade.push(parseFloat(projects[i].rentabilidade));
-            dias.push(parseFloat(projects[i].tempoAteVenda) * 30);
-            reforma.push(parseFloat(projects[i].totalReformExpenses));
+            lucroLiq.push(parseFloat(projects[i].lucroLiquidoFinal));
+            rentabilidade.push(parseFloat(projects[i].rentabilidadeFinal));
+            dias.push(parseFloat(projects[i].tempoAteVendaFinal));
+            reforma.push(parseFloat(projects[i].gastoReformaFinal));
         }
         
         if(projects.length != 0) {
