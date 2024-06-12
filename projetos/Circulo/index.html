@@ -1,73 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Webcam to OpenCV.js</title>
-  <script async src="opencv.js" onload="onOpenCvReady();"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuleza</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/classic.min.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Show video for debugging -->
-  <video id="video" autoplay playsinline style="display: block;"></video>
-  <canvas id="hiddenCanvas" style="display:none;"></canvas>
-  <canvas id="outputCanvas" style="display: block;"></canvas>
+    <div id="main-content-wrapper">
+        <div class="flex-title">
+            <svg id="config-button" class="config-button" width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12.7848 0.449982C13.8239 0.449982 14.7167 1.16546 14.9122 2.15495L14.9991 2.59495C15.3408 4.32442 17.1859 5.35722 18.9016 4.7794L19.3383 4.63233C20.3199 4.30175 21.4054 4.69358 21.9249 5.56605L22.7097 6.88386C23.2293 7.75636 23.0365 8.86366 22.2504 9.52253L21.9008 9.81555C20.5267 10.9672 20.5267 13.0328 21.9008 14.1844L22.2504 14.4774C23.0365 15.1363 23.2293 16.2436 22.7097 17.1161L21.925 18.4339C21.4054 19.3064 20.3199 19.6982 19.3382 19.3676L18.9017 19.2205C17.1859 18.6426 15.3408 19.6754 14.9991 21.405L14.9122 21.845C14.7167 22.8345 13.8239 23.55 12.7848 23.55H11.2152C10.1761 23.55 9.28331 22.8345 9.08781 21.8451L9.00082 21.4048C8.65909 19.6754 6.81395 18.6426 5.09822 19.2205L4.66179 19.3675C3.68016 19.6982 2.59465 19.3063 2.07505 18.4338L1.2903 17.1161C0.770719 16.2436 0.963446 15.1363 1.74956 14.4774L2.09922 14.1844C3.47324 13.0327 3.47324 10.9672 2.09922 9.8156L1.74956 9.52254C0.963446 8.86366 0.77072 7.75638 1.2903 6.8839L2.07508 5.56608C2.59466 4.69359 3.68014 4.30176 4.66176 4.63236L5.09831 4.77939C6.81401 5.35722 8.65909 4.32449 9.00082 2.59506L9.0878 2.15487C9.28331 1.16542 10.176 0.449982 11.2152 0.449982H12.7848ZM12 15.3C13.8225 15.3 15.3 13.8225 15.3 12C15.3 10.1774 13.8225 8.69998 12 8.69998C10.1774 8.69998 8.69997 10.1774 8.69997 12C8.69997 13.8225 10.1774 15.3 12 15.3Z"></path> </g></svg>
+            <h1>Circuleza</h1>
+            <label class="theme-toggle" title="Toggle theme">
+                <input type="checkbox" id="dark-mode-toggle"/>
+                <span class="theme-toggle-sr">Toggle theme</span>
+                <svg
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                width="40px"
+                height="40px"
+                fill="currentColor"
+                stroke-linecap="round"
+                class="theme-toggle__classic"
+                viewBox="0 0 32 32">
+                <clipPath id="theme-toggle__classic__cutout">
+                    <path d="M0-5h30a1 1 0 0 0 9 13v24H0Z" />
+                </clipPath>
+                <g clip-path="url(#theme-toggle__classic__cutout)">
+                    <circle cx="16" cy="16" r="9.34" />
+                    <g stroke="currentColor" stroke-width="1.5">
+                    <path d="M16 5.5v-4" />
+                    <path d="M16 30.5v-4" />
+                    <path d="M1.5 16h4" />
+                    <path d="M26.5 16h4" />
+                    <path d="m23.4 8.6 2.8-2.8" />
+                    <path d="m5.7 26.3 2.9-2.9" />
+                    <path d="m5.8 5.8 2.8 2.8" />
+                    <path d="m23.4 23.4 2.9 2.9" />
+                    </g>
+                </g>
+                </svg>
+            </label>
+        </div>
+        <div class="flex-outputs">
+            <video id="hiddenVideo" width="640" height="480" autoplay></video>
+            <canvas id="outputCanvas" width="640" height="480"></canvas>
+        </div>
+    </div>
 
-  <script>
-    async function onOpenCvReady() {
-      console.log('OpenCV.js is ready');
+    <div class="website-popup" id="website-popup">
+        <div class="popup-title">
+            <h2>Configurações</h2>
+            <h1 id="close-popup-btn">&times;</h1>
+        </div>
+        <div class="close-simple-flex section-subtitle-container">
+            <div class="sep-line"></div>
+            <p class="config-section-subtitle">Pontuação</p>
+            <div class="sep-line"></div>
+        </div>
+        <div class="input-option">
+            <p>Dificuldade</p>
+            <div class="close-simple-flex">
+                <input type="range" id="difficulty" min="0" max="100" value="50">
+                <p id="difficultyLabel">50</p>
+            </div>
+        </div>
+        <div class="close-simple-flex section-subtitle-container">
+            <div class="sep-line"></div>
+            <p class="config-section-subtitle">Configurações da identificação</p>
+            <div class="sep-line"></div>
+        </div>
+        <canvas id="maskOutput"></canvas>
+        <div class="input-option">
+            <p>Valor RGB Mínimo</p>
+            <div class="close-simple-flex">
+                <input type="range" id="minValue" min="0" max="255" value="0">
+                <p id="minValueLabel">0</p>
+            </div>
+        </div>
+        <div class="input-option">
+            <p>Valor RGB Máximo</p>
+            <div class="close-simple-flex">
+                <input type="range" id="maxValue" min="0" max="255" value="150">
+                <p id="maxValueLabel">150</p>
+            </div>
+        </div>
+        <div class="input-option">
+            <p>Área mínima do circulo</p>
+            <div class="close-simple-flex">
+                <input type="range" id="minArea" min="0" max="10000" value="1500">
+                <p id="minAreaLabel">150</p>
+            </div>
+        </div>
+        <div class="input-option">
+            <p>Área máxima do circulo</p>
+            <div class="close-simple-flex">
+                <input type="range" id="maxArea" min="0" max="10000" value="10000">
+                <p id="maxAreaLabel">10000</p>
+            </div>
+        </div>
+        <div class="input-option">
+            <p>Área máxima do circulo</p>
+            <div class="close-simple-flex">
+                <input type="range" id="maxArea" min="0" max="10000" value="10000">
+                <p id="maxAreaLabel">10000</p>
+            </div>
+        </div>
+    </div>
 
-      try {
-        // Access the webcam stream
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        const video = document.getElementById('video');
-        video.srcObject = stream;
-
-        // Ensure the video is playing before capturing frames
-        video.addEventListener('playing', () => {
-          const hiddenCanvas = document.getElementById('hiddenCanvas');
-          const hiddenContext = hiddenCanvas.getContext('2d');
-          const outputCanvas = document.getElementById('outputCanvas');
-
-          hiddenCanvas.width = video.videoWidth;
-          hiddenCanvas.height = video.videoHeight;
-          outputCanvas.width = video.videoWidth;
-          outputCanvas.height = video.videoHeight;
-
-          // Function to capture frames and process with OpenCV.js
-          function captureFrame() {
-            hiddenContext.drawImage(video, 0, 0, hiddenCanvas.width, hiddenCanvas.height);
-
-            // Get image data from hidden canvas
-            const imageData = hiddenContext.getImageData(0, 0, hiddenCanvas.width, hiddenCanvas.height);
-
-            // Convert to OpenCV Mat
-            let mat = cv.matFromImageData(imageData);
-
-            // Process the frame using OpenCV.js (example: convert to HSV)
-            let hsvMat = new cv.Mat();
-            cv.cvtColor(mat, hsvMat, cv.COLOR_RGBA2HSV);
-
-            // Convert HSV to RGBA for display
-            let displayMat = new cv.Mat();
-            cv.cvtColor(hsvMat, displayMat, cv.COLOR_HSV2RGBA);
-
-            // Display the processed frame on the output canvas using cv.imshow
-            cv.imshow('outputCanvas', displayMat);
-
-            // Clean up
-            mat.delete();
-            hsvMat.delete();
-            displayMat.delete();
-
-            // Capture the next frame
-            requestAnimationFrame(captureFrame);
-          }
-
-          // Start capturing frames
-          captureFrame();
-        });
-      } catch (error) {
-        console.error('Error accessing webcam:', error);
-      }
-    }
-  </script>
+    <script src="https://docs.opencv.org/4.x/opencv.js" onload="onOpenCvReady()" async></script>
+    <script src="script.js"></script>
 </body>
 </html>

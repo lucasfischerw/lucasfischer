@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	list-style: none;
+	-webkit-tap-highlight-color: transparent;
+	text-decoration: none;
+}
+
+html, body {
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+h1 {
+    font-family: "Mulish", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+body {
+	position: relative;
+    z-index: 0;
+    font-family: 'Didact Gothic', sans-serif;
+    background-color: #f7f7f7;
+    padding: 15px 10px;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+#hiddenVideo {
+    display: none;
+}
+
+canvas {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark {
+    background-color: #1a1a1a;
+    color: #f7f7f7;
+}
+
+body.dark canvas {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+#maskOutput {
+    width: 100%;
+}
+
+.flex-outputs {
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+}
+
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+}
+
+.flex-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px 30px 15px;
+}
+
+.flex-title svg {
+    transform-origin: center center;
+   transition: transform 0.25s;
+}
+
+.flex-title svg:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+}
+
+.flex-title svg:active,
+.flex-title svg:focus {
+    transform: scale(1);
+}
+
+.config-button {
+    width: 40px;
+    height: 40px;
+    fill: #000000;
+    transition: fill 0.5s;
+}
+
+body.dark .config-button {
+    fill: #f7f7f7;
+}
+
+.popup-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.website-popup {
+    display: none;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    z-index: 1;
+    width: min(90%, 500px);
+    transform-origin: top left;
+    position: fixed;
+    padding: 10px 20px;
+    overflow: auto;
+    max-height: 90vh;
+    transition: background-color 0.5s;
+}
+
+body.dark .website-popup {
+    background-color: #1a1a1a;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes popup-appear {
+    0% {
+        transform: scale(0.1) translate(0, 0);
+        top: 10px;
+        left: 25px;
+        opacity: 0.1;
+    }
+    100% {
+        transform: scale(1) translate(-50%, -50%);
+        opacity: 1;
+        top: 50%;
+        left: 50%;
+    }
+}
+
+@keyframes popup-disappear {
+    0% {
+        transform: scale(1) translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.05) translate(0, 0);
+        top: 10px;
+        left: 25px;
+        opacity: 0.5;
+    }
+}
+
+#close-popup-btn {
+    line-height: .8em;
+}
+
+#close-popup-btn:hover {
+    cursor: pointer;
+}
+
+input[type="range"] {
+    appearance: none;
+    width: 100%;
+    height: 15px;
+    background: #d3d3d3;
+    border-radius: 100vw;
+    outline: none;
+}
+
+.input-option {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.close-simple-flex {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.sep-line {
+    width: 100%;
+    height: 2px;
+    background-color: #d3d3d3;
+    transition: background-color 0.5s;
+}
+
+body.dark .sep-line {
+    background-color: #797979;
+}
+
+.config-section-subtitle {
+    color: #797979;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+body.dark .config-section-subtitle {
+    color: #d3d3d3;
+}
+
+.section-subtitle-container {
+    margin: 10px 0;
+}
+
+#main-content-wrapper {
+    transition: filter 0.5s ease;
+}
