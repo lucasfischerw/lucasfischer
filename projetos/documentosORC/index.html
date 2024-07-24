@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de documentos OCR | SGI 360</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.6.172/build/pdf.min.js"></script>
+    <script type="module">
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.6.172/build/pdf.worker.js";
+
+        let language = "por";
+
+        var generatedText = "";
+
+        const readFile = (file) => {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.addEventListener("loadend", (event) =>
+                    resolve(new Uint8Array(event.target.result))
+                );
+                reader.readAsArrayBuffer(file);
+            });
+        };
+
+        const convertToImage = async (pdf) => {
+            const container = document.getElementById("pages-preview");
+            const images = [];
+            for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+                const page = await pdf.getPage(pageNumber);
+                const viewport = page.getViewport({ scale: 1.5 });
+                const canvas = document.createElement("canvas");
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                container.appendChild(canvas);
+                await page.render({
+                    canvasContext: canvas.getContext("2d"),
+                    viewport: viewport,
+                }).promise;
+                images.push(canvas.toDataURL("image/png"));
+            }
+            return images;
+        };
+
+        const convertToText = async (images) => {
+            const worker = await Tesseract.createWorker();
+            await worker.loadLanguage(language);
+            await worker.initialize(language);
+
+            const container = document.getElementById("results");
+            for (const image of images) {
+                const {
+                    data: { text },
+                } = await worker.recognize(image);
+                const section = document.createElement("section");
+                const pre = document.createElement("pre");
+                pre.appendChild(document.createTextNode(text));
+                generatedText += text;
+                section.appendChild(pre);
+                container.appendChild(section);
+            }
+
+            await worker.terminate();
+        };
+
+        const loadFile = async (file) => pdfjsLib.getDocument({ data: file }).promise;
+
+        function preprocessImage(img) {
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext("2d");
+
+            // Draw the image on the canvas
+            ctx.drawImage(img, 0, 0);
+
+            // Convert to grayscale
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                data[i] = data[i + 1] = data[i + 2] = avg;
+            }
+            ctx.putImageData(imageData, 0, 0);
+
+            // Optionally, apply binarization or other filters here
+
+            return canvas.toDataURL("image/png");
+        }
+
+        async function returnCanvasImage(file) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.onload = () => {
+                    const processedDataUrl = preprocessImage(img);
+
+                    // Create a new image element with the processed data URL
+                    const processedImg = new Image();
+                    processedImg.src = processedDataUrl;
+                    processedImg.onload = () => {
+                        const canvas = document.createElement("canvas");
+                        canvas.width = processedImg.width;
+                        canvas.height = processedImg.height;
+                        const ctx = canvas.getContext("2d");
+                        ctx.drawImage(processedImg, 0, 0);
+
+                        // Append the canvas to the container to display the image
+                        const container = document.getElementById("pages-preview");
+                        container.appendChild(canvas);
+
+                        resolve([canvas.toDataURL("image/png")]);
+                    };
+                };
+                img.onerror = () => {
+                    resolve([]);
+                };
+            });
+        }
+
+        function extractData(text) {
+    const data = {
+        medico: extractMedico(text),
+        paciente: extractField(text, /Nome:\s*([^\n\r]+?)(?=\s*(Convenio|CPF|Idade|Data:))/i),
+        dataDeExpedicao: extractField(text, /Data:\s*(\d{2}\/\d{2}\/\d{4})/),
+        diasFaltosos: extractDiasFaltosos(text),
+        crm: extractField(text, /CRM\s*([\w\s\d\/]+)/i)
+    };
+    return data;
+}
+
+function extractField(text, regex) {
+    const match = text.match(regex);
+    return match ? match[1].trim() : 'X';
+}
+
+function extractMedico(text) {
+    // Regex para capturar o nome do médico
+    const match = text.match(/(?:Dr\.|Dra\.|Dr(a)?\s|Nome:\s*|(?:Conselho\/UF:|Especialidade:|Versio:)?\s*)([^\n\r]+?)(?:\s*(?:CRM|Conselho\/UF:|Especialidade:|Versio:|$))/i);
+    if (match) {
+        let result = match[2].trim();
+        // Remove prefixos desnecessários como "(a)"
+        result = result.replace(/^\(a\)\s*/, '').replace(/^[^\w]+/, '');
+        return result;
+    }
+    return 'X';
+}
+
+function extractDiasFaltosos(text) {
+    // Regex para capturar os dias faltosos em diferentes formatos
+    const match = text.match(/(?:dias? de afastamento|Tempo de isolamento desde o inicio de sintomas|necessita de|afastamento):?\s*(\d+)\s*(?:dias?|dia)?/i);
+    return match ? match[1].trim() : 'X';
+}
+
+        const convertFile = async (file) => {
+            const fileInput = document.getElementById("file-input");
+            const filename = fileInput.files[0].name;
+            const ext = filename.substring(filename.lastIndexOf('.') + 1, filename.length) || filename;
+
+            let images;
+
+            if (ext !== 'pdf') {
+                images = await returnCanvasImage(fileInput.files[0]);
+            } else {
+                const pdf = await loadFile(file);
+                images = await convertToImage(pdf);
+            }
+
+            await convertToText(images);
+
+            var data = extractData(generatedText);
+
+            document.getElementById("medico").value = data.medico;
+            document.getElementById("paciente").value = data.paciente;
+            document.getElementById("data").value = data.dataDeExpedicao;
+            document.getElementById("dias").value = data.diasFaltosos;
+            document.getElementById("crm").value = data.crm;
+
+            document.querySelector(".inputs").style.display = "flex";
+        };
+
+        const fileInput = document.getElementById("file-input");
+        fileInput.addEventListener("change", async () => {
+            document.getElementById("results").innerHTML = "";
+            document.getElementById("pages-preview").innerHTML = "";
+            document.getElementById("loading").style.display = "flex";
+            generatedText = "";
+            document.getElementById("medico").value = "";
+            document.getElementById("paciente").value = "";
+            document.getElementById("data").value = "";
+            document.getElementById("dias").value = "";
+            document.getElementById("crm").value = "";
+
+            await convertFile(await readFile(fileInput.files[0]));
+            document.getElementById("loading").style.display = "none";
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <img src="images/menu.png">
+        <img src="images/logo.png">
+    </div>
+    <div class="content">
+        <h4>Validador de documentos OCR - Atestado médico</h4>
+        <label class="input-custom-option">
+            Faça upload de um arquivo PDF ou imagem
+            <label for="file-input" class="custom-file-input">
+                <span>Selecionar arquivo</span>
+                <input multiple id="file-input" type="file" />
+            </label>
+        </label>
+        <div id="container">
+            <div id="pages-preview"></div>
+            <div>
+                <div id="loading">
+                    <div class="loader"></div>
+                    <p>Extraindo texto</p>
+                </div>
+                <div id="results"></div>
+                <div class="inputs">
+                    <label class="input-custom-option">
+                        Medico
+                        <input placeholder="X" id="medico">
+                    </label>
+                    <label class="input-custom-option">
+                        Paciente
+                        <input placeholder="X" id="paciente">
+                    </label>
+                    <label class="input-custom-option">
+                        Data de Expedição
+                        <input placeholder="X" id="data">
+                    </label>
+                    <label class="input-custom-option">
+                        Dias Faltosos
+                        <input placeholder="X" id="dias">
+                    </label>
+                    <label class="input-custom-option">
+                        CRM
+                        <input placeholder="X" id="crm">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
