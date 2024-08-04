@@ -1,170 +1,426 @@
 <!DOCTYPE html>
-<html lang="pt">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-        <title>Lucas Fischer</title>
-        <link rel="shortcut icon" href="imagens/faviconMain/favicon.ico">
-		<link rel="icon" sizes="16x16 32x32 64x64" href="imagens/faviconMain/favicon.ico?">
-		<link rel="icon" type="image/png" sizes="196x196" href="imagens/faviconMain/favicon-192.png?">
-		<link rel="icon" type="image/png" sizes="160x160" href="imagens/faviconMain/favicon-160.png?">
-		<link rel="icon" type="image/png" sizes="96x96" href="imagens/faviconMain/favicon-96.png?">
-		<link rel="icon" type="image/png" sizes="64x64" href="imagens/faviconMain/favicon-64.png?">
-		<link rel="icon" type="image/png" sizes="32x32" href="imagens/faviconMain/favicon-32.png?">
-		<link rel="icon" type="image/png" sizes="16x16" href="imagens/faviconMain/favicon-16.png?">
-		<link rel="apple-touch-icon" href="imagens/faviconMain/favicon-57.png?">
-		<link rel="apple-touch-icon" sizes="114x114" href="imagens/faviconMain/favicon-114.png?">
-		<link rel="apple-touch-icon" sizes="72x72" href="imagens/faviconMain/favicon-72.png?">
-		<link rel="apple-touch-icon" sizes="144x144" href="imagens/faviconMain/favicon-144.png?">
-		<link rel="apple-touch-icon" sizes="60x60" href="imagens/faviconMain/favicon-60.png?">
-		<link rel="apple-touch-icon" sizes="120x120" href="imagens/faviconMain/favicon-120.png?">
-		<link rel="apple-touch-icon" sizes="76x76" href="imagens/faviconMain/favicon-76.png?">
-		<link rel="apple-touch-icon" sizes="152x152" href="imagens/faviconMain/favicon-152.png?">
-		<link rel="apple-touch-icon" sizes="180x180" href="imagens/faviconMain/favicon-180.png?">
-		<meta name="msapplication-TileColor" content="#FFFFFF">
-		<meta name="msapplication-TileImage" content="imagens/faviconMain/favicon-144.png">
-		<meta name="msapplication-config" content="imagens/faviconMain/browserconfig.xml">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/aos.css">
-        <script src="javascript/script.js"></script>
-        <script src="javascript/aos.js"></script>
-    </head>
-    <body>
-        <div class="bg-image" id="bg-image"></div>
-        <div class="menu" id="menu">
-            <a class="menu-button underline-animate" href="#home" id="button-desktop-0">Página Inicial</a>
-            <a class="menu-button mobile" href="javascript:void(0)" onclick="OpenMenu()" id="hamburguerMenu">
-                <div class="menu-bar"></div>
-                <div class="menu-bar"></div>
-                <div class="menu-bar"></div>
-            </a>
-            <a class="menu-button desktop underline-animate" href="#about" id="button-desktop-1">Sobre mim</a>
-            <a class="menu-button desktop underline-animate" href="#knowledge" id="button-desktop-2">Conhecimentos</a>
-            <a class="menu-button desktop underline-animate" href="#projects" id="button-desktop-3">Projetos</a>
-            <a class="menu-button desktop underline-animate" href="#contact" id="button-desktop-4">Contato</a>
-        </div>
-        <div class="sidebar" id="sidebar">
-            <nav>
-                <ul>
-                    <a href="javascript:void(0)" class="closebtn" onclick="CloseMenu()">&#10005;</a>
-                    <div class="sidebar-options" id="sidebar-options">
-                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(0)">Sobre mim</a></li>
-                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(1)">Conhecimentos</a></li>
-                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(3)">Projetos</a></li>
-                        <li><a class="underline-animate" id="mobile-btn" onclick="Scroll(4)">Contato</a></li>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Lucas Fischer</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./assets/favicon/site.webmanifest">
+</head>
+<body>
+    <div class="blur">
+        <div class="top-gradient"></div>
+        <nav>
+            <ul>
+                <li><a href="#"><h1 class="animate-charcter">LF</h1></a></li>
+            </ul>
+            <ul class="fade-orange-bg">
+                <li><a href="#about-scroll-point">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <ul>
+                <div class="lang-dropdown">
+                    <div class="content-flex" onclick="showLanguageMenu()">
+                        <p>EN</p>
+                        <svg id="svg-language-menu" viewBox="0 -4.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>arrow_down [#338]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-220.000000, -6684.000000)" fill="#ccc5b9"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M164.292308,6524.36583 L164.292308,6524.36583 C163.902564,6524.77071 163.902564,6525.42619 164.292308,6525.83004 L172.555873,6534.39267 C173.33636,6535.20244 174.602528,6535.20244 175.383014,6534.39267 L183.70754,6525.76791 C184.093286,6525.36716 184.098283,6524.71997 183.717533,6524.31405 C183.328789,6523.89985 182.68821,6523.89467 182.29347,6524.30266 L174.676479,6532.19636 C174.285736,6532.60124 173.653152,6532.60124 173.262409,6532.19636 L165.705379,6524.36583 C165.315635,6523.96094 164.683051,6523.96094 164.292308,6524.36583" id="arrow_down-[#338]"> </path> </g> </g> </g> </g></svg>
                     </div>
-                </ul>
-            </nav>
+                    <div class="dropdown-content">
+                        <p>EN</p>
+                        <p>PT</p>
+                        <p>DE</p>
+                    </div>
+                </div>
+            </ul>
+        </nav>
+        <main>
+            <div class="section home-section">
+                <div class="horizontal-flex">
+                    <img class="profile-image-welcome-section" src="assets/images/Designer-16.jpeg">
+                    <div class="vertical-flex">
+                        <h1>Hi, I am Lucas Fischer</h1>
+                        <p id="welcome-section-description-text">Web Developer</p>
+                        <div class="sep-line"></div>
+                        <div class="content-flex">
+                            <a href="https://www.linkedin.com/in/lucasfischerw/" target="_blank" class="contact-btn-wrapper"><img class="contact-btn" src="assets/images/linkedin.png"></a>
+                            <a href="https://github.com/lucasfischerw" target="_blank" class="contact-btn-wrapper"><img class="contact-btn" src="assets/images/github.png"></a>
+                            <a href="https://www.instagram.com/lucasfischerw/" target="_blank" class="contact-btn-wrapper"><img class="contact-btn" src="assets/images/instagram.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="about-scroll-point"></div>
+                <!-- <div class="transition-line"></div> -->
+            </div>
+            <div id="about" class="section horizontal-flex" style="background-color: #b74010;">
+                <div class="translucid-gray-card vertical-flex" data-aos="fade-down" data-aos-anchor-placement="center-bottom">
+                    <h2>About Me</h2>
+                    <div class="sep-line"></div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/calendar.png">
+                        <p>19 Years Old</p>
+                    </div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/university.png">
+                        <p>Systems Analysis and Development</p>
+                    </div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/map.png">
+                        <p>São Leopoldo, RS, Brasil</p>
+                    </div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/map.png">
+                        <p>I speak Portuguese, English and German</p>
+                    </div>
+                    <div class="sep-line auto-margin-top"></div>
+                    <div class="content-flex">
+                        <button class="open-popup">Learn More</button>
+                        <button id="resume-btn">View Resume</button>
+                    </div>
+                </div>
+                <div class="translucid-gray-card vertical-flex" data-aos="fade" data-aos-anchor-placement="center-bottom">
+                    <h2>My Experience</h2>
+                    <div class="sep-line"></div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/project.png">
+                        <p>70+ Completed Projects</p>
+                    </div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/code.png">
+                        <p>9 awards in competitions involving coding problems</p>
+                    </div>
+                    <div class="text-with-icon">
+                        <img src="assets/images/star.png">
+                        <p>Only 5 star reviews in Web Development Projects Worldwide</p>
+                    </div>
+                    <div class="sep-line auto-margin-top"></div>
+                    <div class="content-flex">
+                        <button class="open-popup">Learn More</button>
+                    </div>
+                </div>
+                <div class="translucid-gray-card vertical-flex" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+                    <h2>Coding Skills</h2>
+                    <div class="sep-line"></div>
+                    <div class="skills-flex">
+                        <img src="assets/images/c.png">
+                        <img src="assets/images/cpp.png">
+                        <img src="assets/images/csharp.png">
+                        <img src="assets/images/python.png">
+                        <img src="assets/images/html.png">
+                        <img src="assets/images/css.png">
+                        <img src="assets/images/js.png">
+                        <img src="assets/images/firebase.png">
+                        <img src="assets/images/opencv.png">
+                        <img src="assets/images/NET_Core_Logo.png">
+                    </div>
+                    <div class="sep-line auto-margin-top"></div>
+                    <div class="content-flex">
+                        <button class="open-popup">Learn More</button>
+                        <button class="load-projects-btn">Go to Projects</button>
+                    </div>
+                </div>
+            </div>
+            <div id="projects" class="section vertical-flex">
+                <h1 data-aos="fade">Projects</h1>
+                <p data-aos="fade">"Well done is better than well said." Take a look at some projects I've done!</p>
+                <div data-aos="fade" class="sep-line"></div>
+                <div class="project" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom">
+                    <div class="project-container">
+                        <img src="assets/images/FlipUp.png">
+                        <div class="project-detail">
+                            <div class="flex-justify-between">
+                                <h3>FlipUp</h3>
+                                <div class="visit-site-btn">
+                                    <a href="https://flipup.app.br" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                                </div>
+                            </div>
+                            <div class="sep-line"></div>
+                            <p>A platform for managing and comparing house-flipping projects. It includes a dashboard, interactive graphs, and automatic profit calculations to assist users in tracking and analyzing their investments.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project" data-aos="fade-left" data-aos-anchor-placement="bottom-bottom">
+                    <div class="project-container">
+                        <div class="project-detail">
+                            <div class="flex-justify-between">
+                                <div class="visit-site-btn">
+                                    <a href="https://lucasfischer.com.br/projetos/Circulo/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                                </div>
+                                <h3>Círculo Perfeito</h3>
+                            </div>
+                            <div class="sep-line"></div>
+                            <p>A website that uses computer vision to evaluate the accuracy of hand-drawn circles. Users can draw a circle on paper, show it to the camera, and receive a score from 0 to 100 based on its precision.</p>
+                        </div>
+                        <img src="assets/images/Circuleza.png">
+                    </div>
+                </div>
+                <div class="project" data-aos="fade-right" data-aos-anchor-placement="bottom-bottom">
+                    <div class="project-container">
+                        <img src="assets/images/Inxson.png">
+                        <div class="project-detail">
+                            <div class="flex-justify-between">
+                                <h3>Inxson</h3>
+                                <div class="visit-site-btn">
+                                    <a href="https://flipup.app.br" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                                </div>
+                            </div>
+                            <div class="sep-line"></div>
+                            <p>An award-winning website that teaches kids through immersive storytelling. It uses 3D surround sound to engage children with interesting stories in an innovative way.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="project" data-aos="fade-left" data-aos-anchor-placement="bottom-bottom">
+                    <div class="project-container">
+                        <div class="project-detail">
+                            <div class="flex-justify-between">
+                                <h3>Gewinner</h3>
+                                <div class="visit-site-btn">
+                                    <a href="https://lucasfischer.com.br/gewinner/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                                </div>
+                            </div>
+                            <div class="sep-line"></div>
+                            <p>A Website I made to showcase my story in our Robotics Team during High School. Here you can find interesting info about our Robots and Codebase.</p>
+                        </div>
+                        <img src="assets/images/Gewinner.png">
+                    </div>
+                </div>
+                <button class="load-projects-btn">View More Projects</button>
+            </div>
+            <div class="section vertical-flex" id="contact">
+                <h1>Contact</h1>
+                <p>Interessted in my work? Any questions?</p>
+                <p>Feel free to reach out to me on these platforms!</p>
+                <p>I love to share my history and help other people :)</p>
+                <div class="content-flex">
+                    <a href="https://www.linkedin.com/in/lucasfischerw/" target="_blank" class="contact-btn-wrapper"><img class="contact-btn" src="assets/images/linkedin.png"></a>
+                    <a href="https://github.com/lucasfischerw" target="_blank" class="contact-btn-wrapper"><img class="contact-btn" src="assets/images/github.png"></a>
+                    <a href="https://www.instagram.com/lucasfischerw/" target="_blank" class="contact-btn-wrapper"><img class="contact-btn" src="assets/images/instagram.png"></a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="all-projects">
+        <div class="nav-projects">
+            <div class="content-flex" onclick="goBackHome()">
+                <svg fill="#ccc5b9" width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g data-name="Layer 2"> <g data-name="arrow-ios-back"> <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"></rect> <path d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"></path> </g> </g> </g></svg>
+                <p>Go Back to Home</p>
+            </div>
         </div>
-        <div class="project-full-screen" id="project-full-screen">
-            <div class="project-container" id="project-container">
-                <h1 class="full-screen-pj-title" id="full-screen-pj-title">-</h1>
-                <img alt="Project Image" id="full-screen-img">
-                <p id="text-project-full-screen">-</p>
-            </div>
-            <a class="visit-project underline-animate" id="visit-project" target="_blank">Visitar Site &rarr;</a>
-            <a class="close-btn-project" id="a-project-full-screen" onclick="Fechar_Projeto(true)">&#10005;</a>
-            <img alt="Left Arrow" class="arrow-project first-arrow" id="first-arrow" src="imagens/arrow-left.png" onclick="Previous()">
-            <img alt="Right Arrow" class="arrow-project second-arrow" id="second-arrow" src="imagens/arrow-right.png" onclick="Next()">
+        <h1>Public Projects</h1>
+        <div class="year">
+            <h2>2024</h2>
+            <div class="sep-line"></div>
         </div>
-        <div class="content" id="content" onclick="CloseMenu()" ontouchmove="CloseMenu()">
-            <div class="section home" id="home">
-                <h1 class="tw-animation">Oi, meu nome é Lucas Fischer.</h1>
-                <h1 class="welcome">Bem vindo(a) ao meu site</h1>
-            </div>
-            <div class="section about" id="about">
-                <img alt="Personal Photo" src="imagens/20211120_180016.jpg" data-aos="fade-right">
-                <h3 data-aos="fade-left">Sou um estudante do Ensino Médio inspirado pela tecnologia. Sou programador da Equipe de Robótica Gewinner, na qual já conquistei 7 pódios durante competições. Adoro não apenas programação, mas também compartilhar um pouco do conhecimento que tenho. Vejo a tecnologia como uma ferramenta que ajuda as pessoas hoje e tem potencial de mudar o amanhã.</h3>
-            </div>
-            <div class="section knowledge" id="knowledge">
-                <h3 data-aos="fade-right">Aos 11 anos tive meu primeiro contato com programação, aprendendo os fundamentos básicos através de uma linguagem de programação visual. Ao passar dos anos fui introduzido a linguagens de programação mais complexas, como HTML, css, Javascript, C, C# e Python, as quais uso em diversos projetos hoje. Fico curioso e animado para o que 2022 e adiante reservam no mundo da programação!</h3>
-                <img alt="Programming Photo" src="imagens/sobre.jpg" data-aos="fade-left">
-            </div>
-            <div class="section" id="projects-title">
-                <h1 data-aos="fade-right">Alguns dos meus Projetos</h1>
-            </div>
-            <div class="section projects" id="projects">
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(0)" id="project-0">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/gewinner.jpg">
-                        <h2>Equipe Gewinner</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(1)" id="project-1">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/memoria.jpg">
-                        <h2>Memória</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(2)" id="project-2">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/genius.jpg">
-                        <h2>Genius</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade"data-content="Descrição" onclick="Open_Project(3)" id="project-3">
-                    <a>
-                        <img alt="Project Image" src="imagens/calculadora.jpg">
-                        <h2>Calculadora</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade"data-content="Descrição" onclick="Open_Project(4)" id="project-4">
-                    <a>
-                        <img alt="Project Image" src="imagens/todo-list.jpg">
-                        <h2>To-Do List</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(5)" id="project-5">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/apostador.jpg">
-                        <h2>Apostador</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(6)" id="project-6">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/tarefas.jpg">
-                        <h2>Organização Escolar</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(7)" id="project-7">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/traveller.jpg">
-                        <h2>Gulliver Traveller</h2>
-                    </a>
-                </div>
-                <div class="project" data-aos="fade" data-content="Descrição" onclick="Open_Project(8)" id="project-8">
-                    <a target="_blank">
-                        <img alt="Project Image" src="imagens/marketing.jpg">
-                        <h2>Ethos Marketing</h2>
-                    </a>
+        <div class="content-flex">
+            <div class="project">
+                <div class="project-container">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <h3>FlipUp</h3>
+                            <div class="visit-site-btn">
+                                <a href="https://flipup.app.br" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A platform for managing and comparing house-flipping projects. It includes a dashboard, interactive graphs, and automatic profit calculations to assist users in tracking and analyzing their investments.</p>
+                    </div>
+                    <img src="assets/images/FlipUp.png">
                 </div>
             </div>
-            <div class="section contact" id="contact">
-                <h1 data-aos="fade-left">Contato</h1>
-                <div class="contact-icons" data-aos="fade-right">
-                    <a href="https://www.instagram.com/fischer.lucas_/" data-content="Instagram" target="_blank"><img alt="Instagram" src="imagens/instagram.png"></a>
-                    <a href="mailto:lucasfischerw@gmail.com" data-content="E-Mail"><img alt="Gmail" src="imagens/gmail.png"></a>
-                    <a href="https://www.linkedin.com/in/lucas-fischer-6b5781205/" data-content="Linkedin" target="_blank"><img alt="LinkedIn" src="imagens/linkedin.png"></a>
-                    <a href="https://www.youtube.com/channel/UC0ukw_MNVFE8hRK55J8CnKA" data-content="YouTube" target="_blank"><img alt="Youtube" src="imagens/youtube.png"></a>
-                    <a href="https://twitter.com/lucasfischerw" data-content="Twitter" target="_blank"><img alt="Twitter" src="imagens/twitter.png"></a>
-                    <a href="https://www.fiverr.com/lucasfischer875?up_rollout=true" data-content="Fiverr" target="_blank"><img alt="Fiverr" src="imagens/fiverr.png"></a>
-                    <a href="https://github.com/lucasfischerw" data-content="GitHub" target="_blank"><img alt="GitHub" src="imagens/github.png"></a>
+            <div class="project">
+                <div class="project-container">
+                    <img src="assets/images/Circuleza.png">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/projetos/Circulo/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                            <h3>Círculo Perfeito</h3>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A website that uses computer vision to evaluate the accuracy of hand-drawn circles. Users can draw a circle on paper, show it to the camera, and receive a score from 0 to 100 based on its precision.</p>
+                    </div>
                 </div>
             </div>
-            <div class="arrow" id="arrow"><img id="Navigation Arrow" src="imagens/arrow.png" onclick="Scroll_Arrow()"></div>          
         </div>
-        <script>
-            AOS.init({
-                duration: 800
-            });
-        </script>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-G11KY17YMD"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() { dataLayer.push(arguments); }
-			gtag('js', new Date());
-
-			gtag('config', 'G-G11KY17YMD');
-		</script>
-    </body>
+        <div class="year">
+            <h2>2023</h2>
+            <div class="sep-line"></div>
+        </div>
+        <div class="content-flex">
+            <div class="content-flex">
+                <div class="project">
+                    <div class="project-container">
+                        <div class="project-detail">
+                            <div class="flex-justify-between">
+                                <h3>To-Do List</h3>
+                                <div class="visit-site-btn">
+                                    <a href="https://lucasfischer.com.br/projetos/todo-list/public/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                                </div>
+                            </div>
+                            <div class="sep-line"></div>
+                            <p>A personal project developed to learn cloud database management. Users can log into their accounts and efficiently organize their data.</p>
+                        </div>
+                        <img src="assets/images/ToDo.png">
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-container">
+                        <img src="assets/images/gincana.png">
+                        <div class="project-detail">
+                            <div class="flex-justify-between">
+                                <div class="visit-site-btn">
+                                    <a href="https://gincana-sinodal.web.app" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                                </div>
+                                <h3>Gincana Sinodal</h3>
+                            </div>
+                            <div class="sep-line"></div>
+                            <p>A website that uses computer vision to evaluate the accuracy of hand-drawn circles. Users can draw a circle on paper, show it to the camera, and receive a score from 0 to 100 based on its precision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="year">
+            <h2>2022</h2>
+            <div class="sep-line"></div>
+        </div>
+        <div class="content-flex">
+            <div class="project">
+                <div class="project-container">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <h3>Gewinner</h3>
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/gewinner/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A Website I made to showcase my story in our Robotics Team during High School. Here you can find interesting info about our Robots and Codebase.</p>
+                    </div>
+                    <img src="assets/images/Gewinner.png">
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-container">
+                    <img src="assets/images/marketing.jpg">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <h3>Ethos Marketing</h3>
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/projetos/Ethos_Marketing/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A project developed for a client to promote their business. This website demonstrates the effective use of minimalism and smooth animations to create an engaging and refined user experience.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="year">
+            <h2>2021</h2>
+            <div class="sep-line"></div>
+        </div>
+        <div class="content-flex">
+            <div class="project">
+                <div class="project-container">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <h3>Inxson</h3>
+                            <div class="visit-site-btn">
+                                <a href="https://inxson.com" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>An award-winning website that teaches kids through immersive storytelling. It uses 3D surround sound to engage children with interesting stories in an innovative way.</p>
+                    </div>
+                    <img src="assets/images/Inxson.png">
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-container">
+                    <img src="assets/images/calculadora.jpg">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/projetos/calculadora/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                            <h3>Calculator</h3>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A simple calculator, inspired by modern and minimalist web designs that are trending in the moment. Perform any basic operation and the view the result intuitively.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="year">
+            <h2>2020</h2>
+            <div class="sep-line"></div>
+        </div>
+        <div class="content-flex">
+            <div class="project">
+                <div class="project-container">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/projetos/memoria/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                            <h3>Memory</h3>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A memory game I developed, with multiple difficulties and features. If you find a specific card pair in the first 3 attempts you get a bonus! The goal is to complete the game in the least number of attempts possible. </p>
+                    </div>
+                    <img src="assets/images/memoria.jpg">
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-container">
+                    <img src="assets/images/genius.jpg">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/projetos/genius/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                            <h3>Genius</h3>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A genius game replica I developed, as I was learning the principles of coding. Are you able to focus and keep memory of the entire sequence of colors? The goal is to get the maximum number of colors in the sequence right.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-flex">
+            <div class="project">
+                <div class="project-container">
+                    <div class="project-detail">
+                        <div class="flex-justify-between">
+                            <div class="visit-site-btn">
+                                <a href="https://lucasfischer.com.br/projetos/apostador/" target="_blank"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M20 4L12 12M20 4V8.5M20 4H15.5M19 12.5V16.8C19 17.9201 19 18.4802 18.782 18.908C18.5903 19.2843 18.2843 19.5903 17.908 19.782C17.4802 20 16.9201 20 15.8 20H7.2C6.0799 20 5.51984 20 5.09202 19.782C4.71569 19.5903 4.40973 19.2843 4.21799 18.908C4 18.4802 4 17.9201 4 16.8V8.2C4 7.0799 4 6.51984 4.21799 6.09202C4.40973 5.71569 4.71569 5.40973 5.09202 5.21799C5.51984 5 6.07989 5 7.2 5H11.5" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></a>
+                            </div>
+                            <h3>Apostador</h3>
+                        </div>
+                        <div class="sep-line"></div>
+                        <p>A website developed to learn JavaScript principles. Users start with R$50,00 and aim to maximize this amount. In each round, users choose a bet (Even/Odd) and the amount to wager. The system then generates a random number to determine if the user wins or loses.</p>
+                    </div>
+                    <img src="assets/images/apostador.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="popup">
+        <div class="popup-header">
+            <h1 id="popup-title"></h1>
+            <h1 onclick="closePopup()" id="close-popup-btn">&times;</h1>
+        </div>
+        <div id="popup-text"></div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
 </html>

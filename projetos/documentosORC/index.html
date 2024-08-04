@@ -118,39 +118,44 @@
                 };
             });
         }
-
         function extractData(text) {
     const data = {
-        medico: extractMedico(text),
-        paciente: extractField(text, /Nome:\s*([^\n\r]+?)(?=\s*(Convenio|CPF|Idade|Data:))/i),
-        dataDeExpedicao: extractField(text, /Data:\s*(\d{2}\/\d{2}\/\d{4})/),
-        diasFaltosos: extractDiasFaltosos(text),
-        crm: extractField(text, /CRM\s*([\w\s\d\/]+)/i)
+        Medico: extractMedico(text),
+        Paciente: extractPaciente(text),
+        Data: extractField(text, /Data:\s*(\d{2}\/\d{2}\/\d{4})/),
+        DiasFaltosos: extractDiasFaltosos(text),
+        CRM: extractField(text, /CRM\s*([\w\s\d\/]+)/i)
     };
     return data;
 }
 
 function extractField(text, regex) {
     const match = text.match(regex);
-    return match ? match[1].trim() : 'X';
+    return match && match[1] ? match[1].trim() : 'X';
 }
 
 function extractMedico(text) {
-    // Regex para capturar o nome do médico
-    const match = text.match(/(?:Dr\.|Dra\.|Dr(a)?\s|Nome:\s*|(?:Conselho\/UF:|Especialidade:|Versio:)?\s*)([^\n\r]+?)(?:\s*(?:CRM|Conselho\/UF:|Especialidade:|Versio:|$))/i);
-    if (match) {
+    // Regex para capturar o nome do médico e o CRM separado
+    const match = text.match(/(?:Dr\.|Dra\.|Dr(a)?\.|Nome:\s*)\s*([^\n\r]+?)\s*(?:Conselho\/UF:|CRM|Especialidade|Versio:|$)/i);
+    if (match && match[2]) {
         let result = match[2].trim();
-        // Remove prefixos desnecessários como "(a)"
-        result = result.replace(/^\(a\)\s*/, '').replace(/^[^\w]+/, '');
+        // Remove prefixos desnecessários
+        result = result.replace(/^\(a\)\s*/, '').replace(/^[^\w\s]+/, '');
         return result;
     }
     return 'X';
 }
 
+function extractPaciente(text) {
+    // Regex para capturar o nome do paciente
+    const match = text.match(/(?:Sr\.|Sra\.|Sr(a)?\.)?\s*,?\s*([^\n\r]+?)\s*(?=\s*(Convenio|CPF|Idade|Data:|Conselho|Especialidade|Versio|$))/i);
+    return match && match[1] ? match[1].trim() : 'X';
+}
+
 function extractDiasFaltosos(text) {
     // Regex para capturar os dias faltosos em diferentes formatos
     const match = text.match(/(?:dias? de afastamento|Tempo de isolamento desde o inicio de sintomas|necessita de|afastamento):?\s*(\d+)\s*(?:dias?|dia)?/i);
-    return match ? match[1].trim() : 'X';
+    return match && match[1] ? match[1].trim() : 'X';
 }
 
         const convertFile = async (file) => {
@@ -171,11 +176,11 @@ function extractDiasFaltosos(text) {
 
             var data = extractData(generatedText);
 
-            document.getElementById("medico").value = data.medico;
-            document.getElementById("paciente").value = data.paciente;
-            document.getElementById("data").value = data.dataDeExpedicao;
-            document.getElementById("dias").value = data.diasFaltosos;
-            document.getElementById("crm").value = data.crm;
+            document.getElementById("medico").value = data.Medico;
+            document.getElementById("paciente").value = data.Paciente;
+            document.getElementById("data").value = data.Data;
+            document.getElementById("dias").value = data.DiasFaltosos;
+            document.getElementById("crm").value = data.CRM;
 
             document.querySelector(".inputs").style.display = "flex";
         };
