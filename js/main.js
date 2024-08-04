@@ -114,7 +114,12 @@ document.querySelectorAll('button.load-projects-btn').forEach(button => {
         document.querySelector('.blur').style.transform = 'translateX(-100%)';
         document.querySelector('html').style.overflow = 'hidden';
         document.querySelector('.all-projects').style.transform = 'translateX(0)';
+        history.pushState(null, null, 'projects');
     });
+});
+
+window.addEventListener('popstate', () => {
+    goBackHome();
 });
 
 function goBackHome() {
