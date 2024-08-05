@@ -119,7 +119,11 @@ document.querySelectorAll('button.load-projects-btn').forEach(button => {
 });
 
 window.addEventListener('popstate', () => {
+    document.querySelector('.all-projects').style.transition = 'none';
     goBackHome();
+    setTimeout(() => {
+        document.querySelector('.all-projects').style.transition = 'transform 0.5s ease';
+    }, 100);
 });
 
 function goBackHome() {
