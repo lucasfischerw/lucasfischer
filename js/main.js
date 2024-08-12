@@ -132,3 +132,36 @@ function goBackHome() {
     document.querySelector('.all-projects').style.transform = 'translateX(100%)';
     document.querySelector('html').style.overflow = 'auto';
 }
+
+var sidebarOpen = false;
+
+function openSidebar() {
+    document.querySelector('.sidebar').style.left = '0';
+    document.querySelector('.blur').style.filter = 'blur(5px)';
+    setTimeout(() => {
+        sidebarOpen = true;
+    }, 500);
+}
+
+function closeSidebar() {
+    document.querySelector('.sidebar').style.left = '-100%';
+    document.querySelector('.blur').style.filter = 'none';
+    setTimeout(() => {
+        sidebarOpen = false;
+    }, 500);
+}
+
+document.querySelector('.blur').addEventListener('click', () => {
+    if (sidebarOpen) {
+        closeSidebar();
+    }
+});
+
+var buttonsSidebar = document.querySelectorAll('.sidebar .sidebar-btn-scroll');
+
+buttonsSidebar.forEach(button => {
+    button.addEventListener('click', () => {
+        closeSidebar();
+        document.querySelector(button.getAttribute('data-target')).scrollIntoView({behavior: 'smooth'});
+    });
+});

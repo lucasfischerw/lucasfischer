@@ -134,6 +134,7 @@ nav ul {
 
 nav ul li {
     list-style: none;
+    cursor: pointer;
 }
 
 nav ul li a {
@@ -159,6 +160,43 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    width: min(250px, 90%);
+    z-index: 9999;
+    background-color: rgb(31, 31, 30);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    transition: left .5s ease;
+}
+
+.sidebar li {
+    font-weight: bold;
+    font-size: 1.1em;
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    transition: background-color .25s;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.sidebar li a {
+    color: #fffcf2;
+}
+
+.sidebar li:hover {
+    background-color: #b74010;
+    cursor: pointer;
+}
+
 .top-gradient {
     background: rgb(37,36,34);
     background: linear-gradient(180deg, rgba(37,36,34,1) 0%, rgba(37,36,34,0) 100%);
@@ -173,6 +211,7 @@ nav ul li a:hover::after {
 .fade-orange-bg {
     padding: 15px 25px;
     border-radius: 15px;
+    align-items: center;
     transition: background-color .5s, border-radius .5s;
 }
 
@@ -519,7 +558,8 @@ nav img {
     background-color: #171717;
 }
 
-#close-popup-btn {
+#close-popup-btn,
+#close-sidebar-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -533,8 +573,15 @@ nav img {
     transition: background-color .25s;
 }
 
-#close-popup-btn:hover {
+#close-popup-btn:hover,
+#close-sidebar-btn:hover {
     background-color: #2d2d2d;
+}
+
+#close-sidebar-btn {
+    position: absolute;
+    top: 25px;
+    right: 15px;
 }
 
 #popup-text {
@@ -599,6 +646,12 @@ nav img {
     text-align: center;
 }
 
+.btn-bar {
+    height: 2px;
+    background-color: #fffcf2;
+    width: 100%;
+}
+
 @keyframes opacity {
     0% {
         opacity: 0;
@@ -625,6 +678,14 @@ nav img {
     }
 }
 
+.mobile-btn {
+    display: none;
+}
+
+.desktop-btn {
+    display: block;
+}
+
 @media screen and (max-width: 800px) {
     .project-container {
         flex-direction: column;
@@ -643,5 +704,11 @@ nav img {
     }
     .content-flex .project {
         min-width: 100px;
+    }
+    .mobile-btn {
+        display: block;
+    }
+    .desktop-btn {
+        display: none;
     }
 }

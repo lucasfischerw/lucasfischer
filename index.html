@@ -12,6 +12,14 @@
     <link rel="manifest" href="./assets/favicon/site.webmanifest">
 </head>
 <body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1 id="close-sidebar-btn" onclick="closeSidebar()">×</h1>
+        </div>
+        <li data-target="#about-scroll-point" class="sidebar-btn-scroll"><a>About</a></li>
+        <li data-target="#projects" class="sidebar-btn-scroll"><a>Projects</a></li>
+        <li data-target="#contact" class="sidebar-btn-scroll"><a>Contact</a></li>
+    </div>
     <div class="blur">
         <div class="top-gradient"></div>
         <nav>
@@ -19,11 +27,12 @@
                 <li><a href="#"><h1 class="animate-charcter">LF</h1></a></li>
             </ul>
             <ul class="fade-orange-bg">
-                <li><a href="#about-scroll-point">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="desktop-btn"><a href="#about-scroll-point">About</a></li>
+                <li class="desktop-btn"><a href="#projects">Projects</a></li>
+                <li class="desktop-btn"><a href="#contact">Contact</a></li>
+                <li onclick="openSidebar()" class="mobile-btn"><svg width="32px" height="32px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6H20M4 12H14M4 18H9" stroke="#fffcf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></li>
             </ul>
-            <ul>
+            <ul class="desktop-btn">
                 <div class="lang-dropdown">
                     <div class="content-flex" onclick="showLanguageMenu()">
                         <p>EN</p>
