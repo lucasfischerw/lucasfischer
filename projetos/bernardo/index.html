@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernardo's Enterprise</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Bernardo's Enterprise</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Sobre Nós</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Desenvolvendo Soluções Digitais</h2>
+            <p>Criamos softwares e sites personalizados para atender às necessidades do seu negócio.</p>
+            <a href="#contact" class="btn">Fale Conosco</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="service-list">
+                <div class="service-item">
+                    <h3>Desenvolvimento de Software</h3>
+                    <p>Soluções personalizadas para automatizar e otimizar seus processos.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Criação de Sites</h3>
+                    <p>Design moderno e responsivo para destacar sua marca na web.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Consultoria em TI</h3>
+                    <p>Orientação especializada para transformar sua ideia em realidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Sobre Nós</h2>
+            <p>A Bernardo's Enterprise é uma empresa especializada em desenvolvimento de software e criação de sites. Nosso objetivo é oferecer soluções tecnológicas que impulsionem o crescimento dos nossos clientes.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contato</h2>
+            <form id="contactForm">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Mensagem:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Bernardo's Enterprise. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
