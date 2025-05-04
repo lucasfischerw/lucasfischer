@@ -127,7 +127,7 @@ async function initialize() {
                 angle = 90 + angle;
             }
 
-            const errorPorcent = (smallestCenterDistance) / (src.cols / 2) * 100;
+            const errorPorcent = (cx - (src.cols / 2)) / (src.cols / 2) * 100;
 
             // Show error value as well
             document.getElementById("error").innerText = `Error: ${errorPorcent.toFixed(2)}%`;
@@ -141,7 +141,7 @@ async function initialize() {
 
 
         // Show the result
-        cv.imshow("canvas-output", masked_image);
+        cv.imshow("canvas-output", cropped);
 
         // Schedule the next frame
         let delay = 1000 / FPS - (Date.now() - begin);
