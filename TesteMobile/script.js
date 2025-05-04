@@ -2,27 +2,23 @@ const video = document.getElementById("video-input");
 const canvas = document.getElementById("canvas-output");
 
 async function initialize() {
-    const socket = new WebSocket("ws://192.168.4.1/ws");
+    const serviceUuid = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';
+    const characteristicUuid = 'beb5483e-36e1-4688-b7f5-ea07361b26a8';
 
-    socket.onopen = () => {
-    console.log("WebSocket connected");
-    };
+    const device = await navigator.bluetooth.requestDevice({
+        filters: [{ name: 'ESP32_Robo' }],
+            optionalServices: [serviceUuid]
+        });
 
-    socket.onerror = (e) => {
-    console.error("WebSocket error", e);
-    };
+    const server = await device.gatt.connect();
+    const service = await server.getPrimaryService(serviceUuid);
+    const characteristic = await service.getCharacteristic(characteristicUuid);
 
-    function sendFastData(errorPorcent) {
-        if (socket.readyState === WebSocket.OPEN) {
-            socket.send(errorPorcent.toFixed(2));
-        }
-    }
-
+    const encoder = new TextEncoder();    
+    console.log("Comando enviado via BLE!");
 
     const stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-            facingMode: { exact: "environment" } // força a câmera traseira
-        },
+        video: { facingMode: 'environment' },
         audio: false,
     });
 
@@ -51,7 +47,7 @@ async function initialize() {
 
     var ultimoCentro = centerX;
 
-    function processVideo() {
+    async function processVideo() {
         let begin = Date.now();
 
         cap.read(src);
@@ -135,8 +131,8 @@ async function initialize() {
             document.getElementById("width").innerText = `Width: ${rotatedRect.size.width.toFixed(2)}`;
             document.getElementById("teste").innerText = `Width: ${ultimoCentro}`;
 
+            await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
 
-            sendFastData(errorPorcent);
         }
 
 
