@@ -1,7 +1,8 @@
 const video = document.getElementById("video-input");
 const canvas = document.getElementById("canvas-output");
 
-(async () => {
+async function initialize() {
+    console.log(navigator);
     const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: false,
@@ -83,7 +84,7 @@ const canvas = document.getElementById("canvas-output");
                 angle = 90 + angle;
             }
 
-            const errorPorcent = smallestCenterDistance / (src.cols / 2) * 100;
+            const errorPorcent = (smallestCenterDistance) / (src.cols / 2) * 100;
 
             // Show error value as well
             document.getElementById("error").innerText = `Error: ${errorPorcent.toFixed(2)}%`;
@@ -104,4 +105,4 @@ const canvas = document.getElementById("canvas-output");
     }
 
   setTimeout(processVideo, 0);
-})();
+}
