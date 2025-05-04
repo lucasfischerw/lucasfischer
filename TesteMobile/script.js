@@ -41,7 +41,7 @@ async function initialize() {
     const centerY = src.rows / 2;
 
     let height = 100;
-    let y = src.rows - height; // começa 100 pixels antes de terminar a imagem
+    let y = 0; // começa 100 pixels antes de terminar a imagem
     let x = 0;
     let width = src.cols;
 
