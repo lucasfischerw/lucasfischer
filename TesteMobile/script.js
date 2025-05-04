@@ -5,17 +5,17 @@ async function initialize() {
     const serviceUuid = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';
     const characteristicUuid = 'beb5483e-36e1-4688-b7f5-ea07361b26a8';
 
-    const device = await navigator.bluetooth.requestDevice({
-        filters: [{ name: 'ESP32_Robo' }],
-            optionalServices: [serviceUuid]
-        });
+    // const device = await navigator.bluetooth.requestDevice({
+    //     filters: [{ name: 'ESP32_Robo' }],
+    //         optionalServices: [serviceUuid]
+    //     });
 
-    const server = await device.gatt.connect();
-    const service = await server.getPrimaryService(serviceUuid);
-    const characteristic = await service.getCharacteristic(characteristicUuid);
+    // const server = await device.gatt.connect();
+    // const service = await server.getPrimaryService(serviceUuid);
+    // const characteristic = await service.getCharacteristic(characteristicUuid);
 
-    const encoder = new TextEncoder();    
-    console.log("Comando enviado via BLE!");
+    // const encoder = new TextEncoder();    
+    // console.log("Comando enviado via BLE!");
 
     const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' },
@@ -88,8 +88,8 @@ async function initialize() {
         let imgHSV = new cv.Mat();
         cv.cvtColor(cropped, imgHSV, cv.COLOR_BGR2HSV);
         // Definição dos limites HSV
-        let lower = cv.matFromArray(1, 1, cv.CV_8UC3, [60, 125, 65]);
-        let upper = cv.matFromArray(1, 1, cv.CV_8UC3, [90, 255, 255]);
+        let lower = cv.matFromArray(1, 1, cv.CV_8UC3, [40, 95, 50]);
+        let upper = cv.matFromArray(1, 1, cv.CV_8UC3, [100, 225, 155]);
         // Aplicação da máscara
         let masked_image = new cv.Mat();
         cv.inRange(imgHSV, lower, upper, masked_image);
@@ -154,13 +154,14 @@ async function initialize() {
             document.getElementById("width").innerText = `Width: ${rotatedRect.size.width.toFixed(2)}`;
             document.getElementById("teste").innerText = `Width: ${ultimoCentro}`;
 
-            await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
+            // await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
 
         }
 
 
         // Show the result
         cv.imshow("canvas-output", cropped);
+        cv.imshow("canvas-output-verde", masked_image);
 
         // Schedule the next frame
         let delay = 1000 / FPS - (Date.now() - begin);
