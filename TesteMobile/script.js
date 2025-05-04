@@ -54,7 +54,30 @@ async function initialize() {
         let rect = new cv.Rect(x, y, width, height);
         let cropped = src.roi(rect);
         cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
-        cv.threshold(gray, thresh, 0, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU);
+        
+        // Mat de mesmo tamanho e tipo de gray, inicializado com zeros
+        let lowerGray = new cv.Mat(
+            gray.rows, 
+            gray.cols, 
+            gray.type(),
+            new cv.Scalar(0, 0, 0, 0)    // <-- quatro zeros
+        );
+        
+        // Mat de mesmo tamanho e tipo de gray, inicializado com 90
+        let upperGray = new cv.Mat(
+            gray.rows, 
+            gray.cols, 
+            gray.type(),
+            new cv.Scalar(90, 90, 90, 90) // <-- quatro noventas
+        );
+        
+        // Faz o inRange: pixels entre 0 e 90 ficam 255, o resto 0
+        cv.inRange(gray, lowerGray, upperGray, thresh);
+        
+        // Limpeza de memória
+        lowerGray.delete();
+        upperGray.delete();
+  
 
         cv.erode(thresh, thresh, kernel, new cv.Point(-1, -1), 5);
         cv.dilate(thresh, thresh, kernel, new cv.Point(-1, -1), 9);
