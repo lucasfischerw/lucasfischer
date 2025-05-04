@@ -6,6 +6,7 @@ async function initialize() {
     const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: false,
+        facingMode: 'environment',
     });
 
     if (!stream) {
