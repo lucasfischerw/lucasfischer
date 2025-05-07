@@ -30,7 +30,11 @@ async function initialize() {
     }
 
     const stream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: 'environment' },
+        video: {
+            facingMode: 'environment',
+            width: { ideal: 1920 },
+            height: { ideal: 1080 }
+        },
         audio: false,
     });
 
@@ -114,21 +118,15 @@ async function initialize() {
 
         let rect = new cv.Rect(x, y, width, height);
         let cropped = src.roi(rect);
-        console.log("Passou!")
         cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
-        console.log("Passou!")
         const lowerGray = new cv.Mat(gray.rows, gray.cols, gray.type(), new cv.Scalar(0, 0, 0, 0));
         const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(65, 65, 65, 65));
         cv.inRange(gray, lowerGray, upperGray, thresh);
-        console.log("Passou!")
   
         cv.erode(thresh, thresh, kernel, new cv.Point(-1, -1), 5);
         cv.dilate(thresh, thresh, kernel, new cv.Point(-1, -1), 9);
-        console.log("Passou!")
 
         cv.findContours(thresh,contours,hierarchy,cv.RETR_CCOMP,cv.CHAIN_APPROX_SIMPLE);
-        console.log("Passou!")
-
 
         //Verde
         let rgb = new cv.Mat();
