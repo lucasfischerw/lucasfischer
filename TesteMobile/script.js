@@ -66,7 +66,12 @@ async function initialize() {
     const centerX = src.cols / 2;
     const centerY = src.rows / 2;
 
-    let height = 100;
+    console.log("Largura: " + src.cols);
+    console.log("Altura: " + src.rows);
+    console.log("Centro X: " + centerX);
+    console.log("Centro Y: " + centerY);
+
+    let height = 350;
     let y = src.rows - (height * 2);
     let x = 0;
     let width = src.cols;
@@ -117,10 +122,12 @@ async function initialize() {
         cap.read(src);
 
         let rect = new cv.Rect(x, y, width, height);
+        let rectVerde = new cv.Rect(x, y / 2, width, height * 2);
         let cropped = src.roi(rect);
+        let croppedVerde = src.roi(rectVerde);
         cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
         const lowerGray = new cv.Mat(gray.rows, gray.cols, gray.type(), new cv.Scalar(0, 0, 0, 0));
-        const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(65, 65, 65, 65));
+        const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(80, 80, 80, 80));
         cv.inRange(gray, lowerGray, upperGray, thresh);
   
         cv.erode(thresh, thresh, kernel, new cv.Point(-1, -1), 5);
@@ -130,7 +137,7 @@ async function initialize() {
 
         //Verde
         let rgb = new cv.Mat();
-        cv.cvtColor(cropped, rgb, cv.COLOR_RGBA2RGB);
+        cv.cvtColor(croppedVerde, rgb, cv.COLOR_RGBA2RGB);
         const imgHSV = new cv.Mat();
         cv.cvtColor(rgb, imgHSV, cv.COLOR_RGB2HSV);
 
@@ -155,7 +162,7 @@ async function initialize() {
             const center = new cv.Point(cx, cy);
             const radius = 5;
             const colorCenter = new cv.Scalar(0, 255, 0, 255);
-            cv.circle(cropped, center, radius, colorCenter, -1);
+            cv.circle(croppedVerde, center, radius, colorCenter, -1);
             const rotatedRect = cv.minAreaRect(contour);
             let angle = rotatedRect.angle;
             if (angle > 45) angle = 90 - angle;
@@ -164,10 +171,48 @@ async function initialize() {
             if(Math.abs(rotatedRect.size.width - rotatedRect.size.height) > 60)
                 continue;
 
-            cv.drawContours(cropped, contours_Verde, i, new cv.Scalar(0, 255, 0), 2, cv.LINE_8, hierarchy_Verde, 100);
-        }
+            const rect = cv.boundingRect(contour);
+            // Definir margem para cima e para baixo a partir do centro vertical
+            const margin = Math.floor(rect.height); // ou outro valor maior para ampliar a área
+            const yTop = Math.max(0, cy - margin);
+            const yBottom = Math.min(croppedVerde.rows, cy + margin);
 
-        cv.imshow("canvas-output-verde", masked_image);
+            const verticalRect = new cv.Rect(
+                rect.x,
+                yTop,
+                rect.width,
+                yBottom - yTop
+            );
+
+            const verticalROI = croppedVerde.roi(verticalRect);
+            // Converter para escala de cinza
+            let gray = new cv.Mat();
+            cv.cvtColor(verticalROI, gray, cv.COLOR_RGBA2GRAY);
+
+            // // Dividir em parte superior e inferior
+            const halfHeight = Math.floor(gray.rows / 2);
+            const topHalf = gray.rowRange(0, halfHeight);
+            const bottomHalf = gray.rowRange(halfHeight, gray.rows);
+
+            let topThresh = new cv.Mat();
+            let bottomThresh = new cv.Mat();
+
+            cv.threshold(topHalf, topThresh, 90, 255, cv.THRESH_BINARY_INV);
+            cv.threshold(bottomHalf, bottomThresh, 90, 255, cv.THRESH_BINARY_INV);
+
+            let topBlack = cv.countNonZero(topThresh);
+            let bottomBlack = cv.countNonZero(bottomThresh);
+
+            // Comparar
+            if (topBlack > bottomBlack) {
+                const color = new cv.Scalar(0, 255, 0, 255);
+                cv.drawContours(croppedVerde, contours_Verde, i, color, 10, cv.LINE_8, hierarchy_Verde, 100);
+            } else {
+                const color = new cv.Scalar(255, 0, 0, 255);
+                cv.drawContours(croppedVerde, contours_Verde, i, color, 10, cv.LINE_8, hierarchy_Verde, 100);
+            }
+        }
+        cv.imshow("canvas-output-verde", croppedVerde);
 
         var bestContourIndex = 0;
         var smallestCenterDistance = 1000000;
@@ -190,7 +235,7 @@ async function initialize() {
 
         if (bestContour) {
             const color = new cv.Scalar(0, 0, 255, 255);
-            cv.drawContours(cropped, contours, bestContourIndex, color, 2, cv.LINE_8, hierarchy, 100);
+            cv.drawContours(cropped, contours, bestContourIndex, color, 5, cv.LINE_8, hierarchy, 100);
             const M = cv.moments(bestContour);
             const cx = M.m10 / M.m00;
             const cy = M.m01 / M.m00;
