@@ -9,43 +9,47 @@
 
     <style>
         body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background-color: #f0f0f0;
-        font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
         }
-      #video-input,
-      #canvas-output {
-        border: 1px solid black;
-        border-radius: 10px;
-        margin: 10px;
-      }
-      button {
-        margin: 10px;
-        padding: 10px;
-        font-size: 16px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #45a049;
-      }
+        canvas {
+            max-width: 100vw !important;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
   </head>
   <body>
-    <button onclick="initialize()">Iniciar</button>
-    <canvas id="canvas-output" width="480px" height="320px"></canvas>
-    <canvas id="canvas-output-verde" width="480px" height="320px"></canvas>
+    <div>
+        <button onclick="conectBluetooth()">Conectar Bluetooth</button>
+        <button onclick="initialize()">Iniciar</button>
+    </div>
+
+    <canvas id="canvas-output"></canvas>
+    <canvas id="canvas-output-verde"></canvas>
     <video id="video-input" width="480px" height="320px" playsinline></video>
+    
     <h1 id="error"></h1>
     <h1 id="angle"></h1>
     <h1 id="width"></h1>
-    <h1 id="teste"></h1>
 
     <script src="script.js"></script>
   </body>

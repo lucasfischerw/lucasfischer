@@ -1,34 +1,56 @@
 const video = document.getElementById("video-input");
 const canvas = document.getElementById("canvas-output");
+var characteristic;
 
-async function initialize() {
+async function conectBluetooth() {
+    if (!navigator.bluetooth) {
+        alert("Bluetooth não suportado neste navegador.");
+        return;
+    }
+
     const serviceUuid = '4fafc201-1fb5-459e-8fcc-c5c9c331914b';
     const characteristicUuid = 'beb5483e-36e1-4688-b7f5-ea07361b26a8';
 
-    // const device = await navigator.bluetooth.requestDevice({
-    //     filters: [{ name: 'ESP32_Robo' }],
-    //         optionalServices: [serviceUuid]
-    //     });
+    const device = await navigator.bluetooth.requestDevice({
+        filters: [{ name: 'ESP32_Robo' }],
+            optionalServices: [serviceUuid]
+        });
 
-    // const server = await device.gatt.connect();
-    // const service = await server.getPrimaryService(serviceUuid);
-    // const characteristic = await service.getCharacteristic(characteristicUuid);
+    const server = await device.gatt.connect();
+    const service = await server.getPrimaryService(serviceUuid);
+    characteristic = await service.getCharacteristic(characteristicUuid);
+    const encoder = new TextEncoder();
+}
 
-    // const encoder = new TextEncoder();    
-    // console.log("Comando enviado via BLE!");
+async function initialize() {
+    // Iniciar a câmera
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        alert("Navegador não suporta getUserMedia.");
+        return;
+    }
 
     const stream = await navigator.mediaDevices.getUserMedia({
         video: { facingMode: 'environment' },
         audio: false,
     });
 
-    if (!stream) {
-        return;
-    }
+    if (!stream) return;
 
     video.srcObject = stream;
     await video.play();
 
+    await new Promise(resolve => {
+        const checkDimensions = () => {
+            if (video.videoWidth > 0 && video.videoHeight > 0) {
+                resolve();
+            } else {
+                requestAnimationFrame(checkDimensions);
+            }
+        };
+        checkDimensions();
+    });
+
+    // Inicializar OpenCV
     const FPS = 60;
     const cap = new cv.VideoCapture(video);
     const src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
@@ -41,69 +63,118 @@ async function initialize() {
     const centerY = src.rows / 2;
 
     let height = 100;
-    let y = src.rows - (height * 2); // começa 100 pixels antes de terminar a imagem
+    let y = src.rows - (height * 2);
     let x = 0;
     let width = src.cols;
 
     var ultimoCentro = centerX;
 
+    async function Verde(imgHSV) {
+        let masked_image = new cv.Mat();
+        const lower = new cv.Scalar(40, 95, 50);
+        const upper = new cv.Scalar(100, 225, 160);
+        cv.inRange(imgHSV, lower, upper, masked_image);
+        cv.erode(masked_image, masked_image, kernel, new cv.Point(-1, -1), 5);
+        cv.dilate(masked_image, masked_image, kernel, new cv.Point(-1, -1), 9);
+
+        let contours = new cv.MatVector();
+        let hierarchy = new cv.Mat();
+        cv.findContours(masked_image, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+        let maxArea = 0;
+        let maxContour = null;
+        for (let i = 0; i < contours.size(); ++i) {
+            const contour = contours.get(i);
+            const area = cv.contourArea(contour);
+            if (area > maxArea) {
+                maxArea = area;
+                maxContour = contour;
+            }
+        }
+
+        // if (maxContour) {
+        //     const color = new cv.Scalar(0, 255, 0, 255);
+        //     cv.drawContours(masked_image, contours, -1, color, 2, cv.LINE_8, hierarchy, 100);
+        //     const M = cv.moments(maxContour);
+        //     const cx = M.m10 / M.m00;
+        //     const cy = M.m01 / M.m00;
+        //     const center = new cv.Point(cx, cy);
+        //     const radius = 5;
+        //     const colorCenter = new cv.Scalar(0, 0, 255, 255);
+        //     cv.circle(masked_image, center, radius, colorCenter, -1);
+        // }
+        cv.imshow("canvas-output-verde", masked_image);
+        masked_image.delete();
+        contours.delete();
+        hierarchy.delete();
+    }
+
     async function processVideo() {
         let begin = Date.now();
-
         cap.read(src);
+
         let rect = new cv.Rect(x, y, width, height);
         let cropped = src.roi(rect);
+        console.log("Passou!")
         cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
-        
-        // Mat de mesmo tamanho e tipo de gray, inicializado com zeros
-        let lowerGray = new cv.Mat(
-            gray.rows, 
-            gray.cols, 
-            gray.type(),
-            new cv.Scalar(0, 0, 0, 0)    // <-- quatro zeros
-        );
-        
-        // Mat de mesmo tamanho e tipo de gray, inicializado com 90
-        let upperGray = new cv.Mat(
-            gray.rows, 
-            gray.cols, 
-            gray.type(),
-            new cv.Scalar(90, 90, 90, 90) // <-- quatro noventas
-        );
-        
-        // Faz o inRange: pixels entre 0 e 90 ficam 255, o resto 0
+        console.log("Passou!")
+        const lowerGray = new cv.Mat(gray.rows, gray.cols, gray.type(), new cv.Scalar(0, 0, 0, 0));
+        const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(90, 90, 90, 90));
         cv.inRange(gray, lowerGray, upperGray, thresh);
-        
-        // Limpeza de memória
-        lowerGray.delete();
-        upperGray.delete();
+        console.log("Passou!")
   
-
         cv.erode(thresh, thresh, kernel, new cv.Point(-1, -1), 5);
         cv.dilate(thresh, thresh, kernel, new cv.Point(-1, -1), 9);
+        console.log("Passou!")
 
         cv.findContours(thresh,contours,hierarchy,cv.RETR_CCOMP,cv.CHAIN_APPROX_SIMPLE);
+        console.log("Passou!")
 
-        // Conversão para HSV
-        let imgHSV = new cv.Mat();
-        cv.cvtColor(cropped, imgHSV, cv.COLOR_BGR2HSV);
-        // Definição dos limites HSV
-        let lower = cv.matFromArray(1, 1, cv.CV_8UC3, [40, 95, 50]);
-        let upper = cv.matFromArray(1, 1, cv.CV_8UC3, [100, 225, 155]);
-        // Aplicação da máscara
-        let masked_image = new cv.Mat();
+
+        //Verde
+        let rgb = new cv.Mat();
+        cv.cvtColor(cropped, rgb, cv.COLOR_RGBA2RGB);
+        const imgHSV = new cv.Mat();
+        cv.cvtColor(rgb, imgHSV, cv.COLOR_RGB2HSV);
+
+        const masked_image = new cv.Mat();
+        const lower = new cv.Mat(imgHSV.rows, imgHSV.cols, imgHSV.type(), new cv.Scalar(40, 95, 50));
+        const upper = new cv.Mat(imgHSV.rows, imgHSV.cols, imgHSV.type(), new cv.Scalar(150, 255, 255));
+
         cv.inRange(imgHSV, lower, upper, masked_image);
+        cv.erode(masked_image, masked_image, kernel, new cv.Point(-1, -1), 5);
+        cv.dilate(masked_image, masked_image, kernel, new cv.Point(-1, -1), 9);
 
-        // Liberação de memória
-        lower.delete();
-        upper.delete();
-        // NÃO delete `frame` nem `masked_image` antes do imshow
+        let contours_Verde = new cv.MatVector();
+        let hierarchy_Verde = new cv.Mat();
+        cv.findContours(masked_image, contours_Verde, hierarchy_Verde, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+
+        for (let i = 0; i < contours_Verde.size(); ++i) {
+            const contour = contours_Verde.get(i);
+            const area = cv.contourArea(contour);
+            const M = cv.moments(contour);
+            const cx = M.m10 / M.m00;
+            const cy = M.m01 / M.m00;
+            const center = new cv.Point(cx, cy);
+            const radius = 5;
+            const colorCenter = new cv.Scalar(0, 0, 255, 255);
+            cv.circle(cropped, center, radius, colorCenter, -1);
+            const rotatedRect = cv.minAreaRect(contour);
+            let angle = rotatedRect.angle;
+            if (angle > 45) angle = 90 - angle;
+            if (angle < -45) angle = 90 + angle;
+
+            if(Math.abs(rotatedRect.size.width - rotatedRect.size.height) > 60)
+                continue;
+
+            // cv.drawContours(cropped, contours_Verde, i, new cv.Scalar(0, 255, 0), 2, cv.LINE_8, hierarchy_Verde, 100);
+        }
+
+        cv.imshow("canvas-output-verde", masked_image);
 
         var bestContourIndex = 0;
         var smallestCenterDistance = 1000000;
         let bestContour = null;
 
-        // Draw contours on the original image
         for (let i = 0; i < contours.size(); ++i) {
             const contour = contours.get(i);
             const M = cv.moments(contour);
@@ -119,54 +190,42 @@ async function initialize() {
             }
         }
 
-        // Draw the best contour
         if (bestContour) {
-            const color = new cv.Scalar(0, 255, 0, 255);
+            const color = new cv.Scalar(0, 0, 255, 255);
             cv.drawContours(cropped, contours, bestContourIndex, color, 2, cv.LINE_8, hierarchy, 100);
-        
-            // Draw the center
             const M = cv.moments(bestContour);
             const cx = M.m10 / M.m00;
             const cy = M.m01 / M.m00;
             const center = new cv.Point(cx, cy);
             const radius = 5;
-            const colorCenter = new cv.Scalar(0, 0, 255, 255); // Red color
+            const colorCenter = new cv.Scalar(0, 0, 255, 255);
             cv.circle(cropped, center, radius, colorCenter, -1);
             ultimoCentro = cx;
         
-            // Compute the min area rect and get the angle
-            const rotatedRect = cv.minAreaRect(bestContour); // returns {center, size, angle}
+            const rotatedRect = cv.minAreaRect(bestContour);
             let angle = rotatedRect.angle;
         
-            // Normaliza o ângulo para que 0° seja horizontal
-            if(angle > 45) {
-                angle = 90 - angle;
-            }
-            if (angle < -45) {
-                angle = 90 + angle;
-            }
+            if (angle > 45) angle = 90 - angle;
+            if (angle < -45) angle = 90 + angle;
 
             const errorPorcent = (cx - (src.cols / 2)) / (src.cols / 2) * 100;
-
-            // Show error value as well
             document.getElementById("error").innerText = `Error: ${errorPorcent.toFixed(2)}%`;
             document.getElementById("angle").innerText = `Angle: ${angle.toFixed(2)}`;
             document.getElementById("width").innerText = `Width: ${rotatedRect.size.width.toFixed(2)}`;
-            document.getElementById("teste").innerText = `Width: ${ultimoCentro}`;
 
-            // await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
-
+            if(characteristic)
+                await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
         }
 
-
-        // Show the result
+        // let canvas = document.getElementById("canvas-output");
+        // canvas.width = window.innerWidth;
+        // canvas.height = window.innerWidth * (src.rows / src.cols);
         cv.imshow("canvas-output", cropped);
-        cv.imshow("canvas-output-verde", masked_image);
+        // cv.imshow("canvas-output-verde", masked_image);
 
-        // Schedule the next frame
         let delay = 1000 / FPS - (Date.now() - begin);
         setTimeout(processVideo, delay);
     }
 
-  setTimeout(processVideo, 0);
+    setTimeout(processVideo, 0);
 }
