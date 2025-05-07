@@ -16,11 +16,13 @@
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
         }
-        canvas {
+        canvas,
+        video {
             max-width: 100vw !important;
             height: auto;
             display: block;
             margin: 0 auto;
+            object-fit: cover;
         }
         button {
             margin: 10px;
@@ -45,7 +47,7 @@
 
     <canvas id="canvas-output"></canvas>
     <canvas id="canvas-output-verde"></canvas>
-    <video id="video-input" width="480px" height="320px" playsinline></video>
+    <video id="video-input" width="1920" height="1080" playsinline></video>
     
     <h1 id="error"></h1>
     <h1 id="angle"></h1>
