@@ -118,7 +118,7 @@ async function initialize() {
         cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
         console.log("Passou!")
         const lowerGray = new cv.Mat(gray.rows, gray.cols, gray.type(), new cv.Scalar(0, 0, 0, 0));
-        const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(90, 90, 90, 90));
+        const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(65, 65, 65, 65));
         cv.inRange(gray, lowerGray, upperGray, thresh);
         console.log("Passou!")
   
@@ -156,7 +156,7 @@ async function initialize() {
             const cy = M.m01 / M.m00;
             const center = new cv.Point(cx, cy);
             const radius = 5;
-            const colorCenter = new cv.Scalar(0, 0, 255, 255);
+            const colorCenter = new cv.Scalar(0, 255, 0, 255);
             cv.circle(cropped, center, radius, colorCenter, -1);
             const rotatedRect = cv.minAreaRect(contour);
             let angle = rotatedRect.angle;
@@ -166,7 +166,7 @@ async function initialize() {
             if(Math.abs(rotatedRect.size.width - rotatedRect.size.height) > 60)
                 continue;
 
-            // cv.drawContours(cropped, contours_Verde, i, new cv.Scalar(0, 255, 0), 2, cv.LINE_8, hierarchy_Verde, 100);
+            cv.drawContours(cropped, contours_Verde, i, new cv.Scalar(0, 255, 0), 2, cv.LINE_8, hierarchy_Verde, 100);
         }
 
         cv.imshow("canvas-output-verde", masked_image);
