@@ -19,7 +19,6 @@ async function conectBluetooth() {
     const server = await device.gatt.connect();
     const service = await server.getPrimaryService(serviceUuid);
     characteristic = await service.getCharacteristic(characteristicUuid);
-    const encoder = new TextEncoder();
 }
 
 async function initialize() {
@@ -76,194 +75,190 @@ async function initialize() {
     console.log("Centro X: " + centerX);
     console.log("Centro Y: " + centerY);
 
-    let height = 150;
+    let height = 300;
     let y = src.rows - (height * 2);
     let x = 0;
     let width = src.cols;
 
     var ultimoCentro = centerX;
+    var ultimoErro = 0;
 
     async function processVideo() {
         let begin = Date.now();
         try {
-        cap.read(src);
+            cap.read(src);
 
-        let rect = new cv.Rect(x, y, width, height);
-        let rectVerde = new cv.Rect(x, y / 2, width, height * 2);
-        let cropped = src.roi(rect);
-        let croppedVerde = src.roi(rectVerde);
+            let rect = new cv.Rect(x, y, width, height);
+            let rectVerde = new cv.Rect(x, y / 2, width, height * 2);
+            let cropped = src.roi(rect);
+            let croppedVerde = src.roi(rectVerde);
 
 
-        cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
-        const lowerGray = new cv.Mat(gray.rows, gray.cols, gray.type(), new cv.Scalar(0, 0, 0, 0));
-        const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(80, 80, 80, 80));
-        cv.inRange(gray, lowerGray, upperGray, thresh);
-        lowerGray.delete();
-        upperGray.delete();
-  
-        cv.erode(thresh, thresh, kernel, new cv.Point(-1, -1), 3);
-        cv.dilate(thresh, thresh, kernel, new cv.Point(-1, -1), 5);
+            cv.cvtColor(cropped, gray, cv.COLOR_RGBA2GRAY);
+            const lowerGray = new cv.Mat(gray.rows, gray.cols, gray.type(), new cv.Scalar(0, 0, 0, 0));
+            const upperGray = new cv.Mat(gray.rows, gray.cols, gray.type(),new cv.Scalar(80, 80, 80, 80));
+            cv.inRange(gray, lowerGray, upperGray, thresh);
+            lowerGray.delete();
+            upperGray.delete();
+    
+            cv.erode(thresh, thresh, kernel, new cv.Point(-1, -1), 3);
+            cv.dilate(thresh, thresh, kernel, new cv.Point(-1, -1), 5);
 
-        cv.findContours(thresh,contours,hierarchy,cv.RETR_CCOMP,cv.CHAIN_APPROX_SIMPLE);
+            cv.findContours(thresh,contours,hierarchy,cv.RETR_CCOMP,cv.CHAIN_APPROX_SIMPLE);
 
-        //Verde
-        cv.cvtColor(croppedVerde, imgHSV, cv.COLOR_RGB2HSV);
+            //Verde
+            cv.cvtColor(croppedVerde, imgHSV, cv.COLOR_RGB2HSV);
 
-        const lower = new cv.Mat(imgHSV.rows, imgHSV.cols, imgHSV.type(), new cv.Scalar(40, 95, 50));
-        const upper = new cv.Mat(imgHSV.rows, imgHSV.cols, imgHSV.type(), new cv.Scalar(150, 255, 255));
-        cv.inRange(imgHSV, lower, upper, masked_image);
-        lower.delete();
-        upper.delete();
-        cv.erode(masked_image, masked_image, kernel, new cv.Point(-1, -1), 3);
-        cv.dilate(masked_image, masked_image, kernel, new cv.Point(-1, -1), 5);
-        cv.findContours(masked_image, contours_Verde, hierarchy_Verde, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+            const lower = new cv.Mat(imgHSV.rows, imgHSV.cols, imgHSV.type(), new cv.Scalar(40, 95, 50));
+            const upper = new cv.Mat(imgHSV.rows, imgHSV.cols, imgHSV.type(), new cv.Scalar(150, 255, 255));
+            cv.inRange(imgHSV, lower, upper, masked_image);
+            lower.delete();
+            upper.delete();
+            cv.erode(masked_image, masked_image, kernel, new cv.Point(-1, -1), 3);
+            cv.dilate(masked_image, masked_image, kernel, new cv.Point(-1, -1), 5);
+            cv.findContours(masked_image, contours_Verde, hierarchy_Verde, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
 
-        // for (let i = 0; i < contours_Verde.size(); ++i) {
-        //     const contour = contours_Verde.get(i);
-        //     const area = cv.contourArea(contour);
-        //     const M = cv.moments(contour);
-        //     const cx = M.m10 / M.m00;
-        //     const cy = M.m01 / M.m00;
-        //     const center = new cv.Point(cx, cy);
-        //     const radius = 5;
-        //     const colorCenter = new cv.Scalar(0, 255, 0, 255);
-        //     cv.circle(croppedVerde, center, radius, colorCenter, -1);
-        //     const rotatedRect = cv.minAreaRect(contour);
-        //     let angle = rotatedRect.angle;
-        //     if (angle > 45) angle = 90 - angle;
-        //     if (angle < -45) angle = 90 + angle;
+            for (let i = 0; i < contours_Verde.size(); ++i) {
+                const contour = contours_Verde.get(i);
 
-        //     if(Math.abs(rotatedRect.size.width - rotatedRect.size.height) > 60)
-        //         continue;
+                const M = cv.moments(contour);
+                const cx = M.m10 / M.m00;
+                const cy = M.m01 / M.m00;
+                const center = new cv.Point(cx, cy);
+                cv.circle(croppedVerde, center, 5, new cv.Scalar(0, 255, 0, 255), -1);
 
-        //     const rect = cv.boundingRect(contour);
-        //     // Definir margem para cima e para baixo a partir do centro vertical
-        //     const margin = Math.floor(rect.height); // ou outro valor maior para ampliar a área
-        //     const yTop = Math.max(0, cy - margin);
-        //     const yBottom = Math.min(croppedVerde.rows, cy + margin);
+                const rotatedRect = cv.minAreaRect(contour);
+                if(Math.abs(rotatedRect.size.width - rotatedRect.size.height) > 60) continue;
 
-        //     const verticalRect = new cv.Rect(
-        //         rect.x,
-        //         yTop,
-        //         rect.width,
-        //         yBottom - yTop
-        //     );
+                const rect = cv.boundingRect(contour);
+                const margin = Math.floor(rect.height);
+                const yTop = Math.max(0, cy - margin);
+                const yBottom = Math.min(croppedVerde.rows, cy + margin);
+                const xLeft = Math.max(0, cx - margin);
+                const xRight = Math.min(croppedVerde.cols, cx + margin);
 
-        //     const verticalROI = croppedVerde.roi(verticalRect);
-        //     // Converter para escala de cinza
-        //     let gray = new cv.Mat();
-        //     cv.cvtColor(verticalROI, gray, cv.COLOR_RGBA2GRAY);
+                const verticalRect = new cv.Rect(rect.x, yTop, rect.width, yBottom - yTop);
+                const horizontalRect = new cv.Rect(xLeft, rect.y, xRight - xLeft, rect.height);
 
-        //     // // Dividir em parte superior e inferior
-        //     const halfHeight = Math.floor(gray.rows / 2);
-        //     const topHalf = gray.rowRange(0, halfHeight);
-        //     const bottomHalf = gray.rowRange(halfHeight, gray.rows);
+                const verticalROI = croppedVerde.roi(verticalRect);
+                const horizontalROI = croppedVerde.roi(horizontalRect);
+                const gray = new cv.Mat();
+                const grayHorizontal = new cv.Mat();
+                cv.cvtColor(verticalROI, gray, cv.COLOR_RGBA2GRAY);
+                cv.cvtColor(horizontalROI, grayHorizontal, cv.COLOR_RGBA2GRAY);
 
-        //     let topThresh = new cv.Mat();
-        //     let bottomThresh = new cv.Mat();
+                const halfHeight = Math.floor(gray.rows / 2);
+                const topHalf = gray.rowRange(0, halfHeight);
+                const bottomHalf = gray.rowRange(halfHeight, gray.rows);
+                const halfWidth = Math.floor(grayHorizontal.cols / 2);
+                const leftHalf = grayHorizontal.colRange(0, halfWidth);
+                const rightHalf = grayHorizontal.colRange(halfWidth, grayHorizontal.cols);
 
-        //     cv.threshold(topHalf, topThresh, 90, 255, cv.THRESH_BINARY_INV);
-        //     cv.threshold(bottomHalf, bottomThresh, 90, 255, cv.THRESH_BINARY_INV);
+                const topThresh = new cv.Mat();
+                const bottomThresh = new cv.Mat();
+                const leftThresh = new cv.Mat();
+                const rightThresh = new cv.Mat();
 
-        //     let topBlack = cv.countNonZero(topThresh);
-        //     let bottomBlack = cv.countNonZero(bottomThresh);
+                cv.threshold(topHalf, topThresh, 90, 255, cv.THRESH_BINARY_INV);
+                cv.threshold(bottomHalf, bottomThresh, 90, 255, cv.THRESH_BINARY_INV);
+                cv.threshold(leftHalf, leftThresh, 90, 255, cv.THRESH_BINARY_INV);
+                cv.threshold(rightHalf, rightThresh, 90, 255, cv.THRESH_BINARY_INV);
 
-        //     // Comparar
-        //     if (topBlack > bottomBlack) {
-        //         const color = new cv.Scalar(0, 255, 0, 255);
-        //         cv.drawContours(croppedVerde, contours_Verde, i, color, 10, cv.LINE_8, hierarchy_Verde, 100);
-        //     } else {
-        //         const color = new cv.Scalar(255, 0, 0, 255);
-        //         cv.drawContours(croppedVerde, contours_Verde, i, color, 10, cv.LINE_8, hierarchy_Verde, 100);
-        //     }
-        // }
-        cv.imshow("canvas-output-verde", croppedVerde);
 
-        var bestContourIndex = 0;
-        var smallestCenterDistance = 1000000;
-        let bestContour = null;
+                const topBlack = cv.countNonZero(topThresh);
+                const bottomBlack = cv.countNonZero(bottomThresh);
+                const leftBlack = cv.countNonZero(leftThresh);
+                const rightBlack = cv.countNonZero(rightThresh);
 
-        for (let i = 0; i < contours.size(); ++i) {
-            const contour = contours.get(i);
-            const M = cv.moments(contour);
-            const cx = M.m10 / M.m00;
-            const cy = M.m01 / M.m00;
+                if (topBlack > bottomBlack)
+                    cv.drawContours(croppedVerde, contours_Verde, i, new cv.Scalar(0, 255, 0, 255), 10, cv.LINE_8, hierarchy_Verde, 100);
+                else
+                    cv.drawContours(croppedVerde, contours_Verde, i, new cv.Scalar(255, 0, 0, 255), 10, cv.LINE_8, hierarchy_Verde, 100);
 
-            const distance = cx - ultimoCentro;
-            
-            if (Math.abs(distance) < Math.abs(smallestCenterDistance)) {
-                smallestCenterDistance = distance;
-                bestContour = contour;
-                bestContourIndex = i;
+                if(leftBlack > rightBlack)
+                    cv.putText(croppedVerde, "Dir", center, cv.FONT_HERSHEY_SIMPLEX, 2, new cv.Scalar(0, 255, 0, 255), 5);
+                else
+                    cv.putText(croppedVerde, "Esq", center, cv.FONT_HERSHEY_SIMPLEX, 2, new cv.Scalar(0, 255, 0, 255), 5);
+
+
+                gray.delete();
+                topThresh.delete();
+                bottomThresh.delete();
+                leftThresh.delete();
+                rightThresh.delete();
             }
-        }
+            
+            cv.imshow("canvas-output-verde", croppedVerde);
 
-        if (bestContour) {
-            const color = new cv.Scalar(0, 0, 255, 255);
-            cv.drawContours(cropped, contours, bestContourIndex, color, 5, cv.LINE_8, hierarchy, 100);
-            const M = cv.moments(bestContour);
-            const cx = M.m10 / M.m00;
-            const cy = M.m01 / M.m00;
-            const center = new cv.Point(cx, cy);
-            const radius = 5;
-            const colorCenter = new cv.Scalar(0, 0, 255, 255);
-            cv.circle(cropped, center, radius, colorCenter, -1);
-            ultimoCentro = cx;
-        
-            const rotatedRect = cv.minAreaRect(bestContour);
-            let angle = rotatedRect.angle;
-        
-            if (angle > 45) angle = 90 - angle;
-            if (angle < -45) angle = 90 + angle;
+            var bestContourIndex = 0;
+            var smallestCenterDistance = 1000000;
+            let bestContour = null;
 
-            const errorPorcent = (cx - (src.cols / 2)) / (src.cols / 2) * 100;
-            document.getElementById("error").innerText = `Error: ${errorPorcent.toFixed(2)}%`;
-            document.getElementById("angle").innerText = `Angle: ${angle.toFixed(2)}`;
-            document.getElementById("width").innerText = `Width: ${rotatedRect.size.width.toFixed(2)}`;
+            for (let i = 0; i < contours.size(); ++i) {
+                const contour = contours.get(i);
+                const M = cv.moments(contour);
+                const cx = M.m10 / M.m00;
+                const cy = M.m01 / M.m00;
 
-            if(characteristic)
+                const distance = cx - ultimoCentro;
+                
+                if (Math.abs(distance) < Math.abs(smallestCenterDistance)) {
+                    smallestCenterDistance = distance;
+                    bestContour = contour;
+                    bestContourIndex = i;
+                }
+            }
+
+            if (bestContour) {
+                const color = new cv.Scalar(0, 0, 255, 255);
+                cv.drawContours(cropped, contours, bestContourIndex, color, 5, cv.LINE_8, hierarchy, 100);
+                const M = cv.moments(bestContour);
+                const cx = M.m10 / M.m00;
+                const cy = M.m01 / M.m00;
+                const center = new cv.Point(cx, cy);
+                const radius = 5;
+                const colorCenter = new cv.Scalar(0, 0, 255, 255);
+                cv.circle(cropped, center, radius, colorCenter, -1);
+                ultimoCentro = cx;
+            
+                const rotatedRect = cv.minAreaRect(bestContour);
+                let angle = rotatedRect.angle;
+            
+                if (angle > 45) angle = 90 - angle;
+                if (angle < -45) angle = 90 + angle;
+
+                var errorPorcent = (cx - (src.cols / 2)) / (src.cols / 2) * 100;
+                var dX = Math.abs(errorPorcent) - Math.abs(ultimoErro);
+                
+                if(dX > 0)
+                    errorPorcent += dX * 5;
+                else
+                    errorPorcent -= dX * 5;
+
+                errorPorcent = errorPorcent * ((0.0045 * rotatedRect.size.width.toFixed(2)) + 0.3);
+
+                document.getElementById("error").innerText = `Error: ${errorPorcent.toFixed(2)}%`;
+                document.getElementById("angle").innerText = `Angle: ${angle.toFixed(2)}`;
+                document.getElementById("width").innerText = `Width: ${rotatedRect.size.width.toFixed(2)}`;
+
+                ultimoErro = (cx - (src.cols / 2)) / (src.cols / 2) * 100;
+
+                // if(characteristic) await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
+
+                const encoder = new TextEncoder();
                 await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
-        }
+            }
 
-        // let canvas = document.getElementById("canvas-output");
-        // canvas.width = window.innerWidth;
-        // canvas.height = window.innerWidth * (src.rows / src.cols);
-        cv.imshow("canvas-output", cropped);
-        // cv.imshow("canvas-output-verde", masked_image);
-    } catch (err) {
-        console.error(err);
-    }
+            cv.imshow("canvas-output", cropped);
+        } catch (err) {
+            console.error(err);
+        }
 
         document.getElementById("fps").innerText = `FPS: ${Math.round(1000 / (Date.now() - begin))}`;
-        // Limpar as matrizes
-        // src.delete();
-        // gray.delete();
-        // thresh.delete();
-        // contours.delete();
-        // hierarchy.delete();
-        // cropped.delete();
-        // croppedVerde.delete();
-        // masked_image.delete();
-        // rgb.delete();
-        // imgHSV.delete();
-        // lower.delete();
-        // upper.delete();
-        // topHalf.delete();
-        // bottomHalf.delete();
-        // topThresh.delete();
-
-        // bottomThresh.delete();
-        // verticalROI.delete();
-        // verticalRect.delete();
-        // gray.delete();
-        // lowerGray.delete();
-        // upperGray.delete();
-        // kernel.delete();
-        // masked_image.delete();
 
         let delay = 1000 / FPS - (Date.now() - begin);
         setTimeout(processVideo, delay);
-    }
+}
 
     setTimeout(processVideo, 0);
 }
