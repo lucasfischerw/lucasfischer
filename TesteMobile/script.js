@@ -37,6 +37,17 @@ async function initialize() {
         audio: false,
     });
 
+    const track = stream.getVideoTracks()[0];
+    const capabilities = track.getCapabilities();
+
+    if (capabilities.torch) {
+        await track.applyConstraints({
+            advanced: [{ torch: true }]
+        });
+    } else {
+        console.log("Torch not supported on this device.");
+    }
+
     if (!stream) return;
 
     video.srcObject = stream;
@@ -52,6 +63,8 @@ async function initialize() {
         };
         checkDimensions();
     });
+
+    const encoder = new TextEncoder();
 
     // Inicializar OpenCV
     const FPS = 60;
@@ -231,9 +244,9 @@ async function initialize() {
                 var dX = Math.abs(errorPorcent) - Math.abs(ultimoErro);
                 
                 if(dX > 0)
-                    errorPorcent += dX * 5;
+                    errorPorcent += dX * 0.5;
                 else
-                    errorPorcent -= dX * 5;
+                    errorPorcent -= dX * 0.5;
 
                 errorPorcent = errorPorcent * ((0.0045 * rotatedRect.size.width.toFixed(2)) + 0.3);
 
@@ -243,10 +256,9 @@ async function initialize() {
 
                 ultimoErro = (cx - (src.cols / 2)) / (src.cols / 2) * 100;
 
-                // if(characteristic) await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
+                if(characteristic) await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
 
-                const encoder = new TextEncoder();
-                await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
+                // await characteristic.writeValue(encoder.encode(Math.round(errorPorcent)));
             }
 
             cv.imshow("canvas-output", cropped);
